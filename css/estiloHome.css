@@ -44,12 +44,13 @@ nav a {
     font-family: 'Cormorant Garamond', serif;
 }
 
-.HomeBotones button{
+.HomeBotones a{
     background-color: #4e6881;
+    color: #000000;
+    text-decoration: none;
     border: none;
     padding: 15px;
     border-radius: 10px;
-    margin-bottom: 2em;
     text-align: center;
     font-family: 'Cormorant Garamond', serif;
     font-family: 'Cormorant Infant', serif;
@@ -57,7 +58,7 @@ nav a {
     font-weight: 500;
 }
 
-.HomeBotones button:hover{
+.HomeBotones a:hover{
     background-color: #535c85;
     color: #eeeeee;
 }
