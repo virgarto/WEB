@@ -15,9 +15,12 @@ body{
 }
 
 nav {
-    margin-top: 60px;
+    margin-top: 55px;
     margin-left: 50px;
     text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Infant', serif;
+    font-size: 1.5em;
 }
 
 nav a {
