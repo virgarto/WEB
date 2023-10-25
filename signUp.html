@@ -9,15 +9,27 @@
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
     </head>
     <body>
-        <section id="loginForm">
-            <form id="registro" method="post">
-                <ul>
-                    <p><input name="name" type="text" placeholder="nombre" required/></p>
-                    <p><input name="email" type="text" placeholder="email" required/></p>
-                    <p><input name="password" type="text" placeholder="password" required/></p>
-                </ul>
+        <section id="signUpForm">
+            <form id="registro">
+                <div class="imgLogoForm">
+                    <img src="imagenes/Retro Roller Skates Roller Blades Sticker _ Roller-skating.jpg" alt="Logo">
+                </div>
+                <div class="contaniner">
+                    <label for="username"><b>Username</b></label>
+                    <input type="text" placeholder="Introduce tu username" name="username" required>
+
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Introduce tu email" name="email" required>
+
+                    <label for="passwd">^<b>Password</b></label>
+                    <input type="text" placeholder="Introduce tu contraseña" name="passwd" required>
+                    
+                    <button type="submit">Sign Up</button>
+                </div>
+                <div>
+                    <span>¿Ya tienes una cuenta? inicia sesión aquí!</span>
+                    <button>Login</button>
+                </div>
             </form>
-            <button type="submit">Sign Up</button>
-        </section>
     </body>
 </html>

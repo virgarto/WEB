@@ -11,12 +11,23 @@
     <body>
         <section id="loginForm">
             <form id="registro" method="post">
-                <ul>
-                    <p><input name="email" type="text" placeholder="email" required/></p>
-                    <p><input name="password" type="text" placeholder="password" required/></p>
-                </ul>
+                <div class="imgLogoForm">
+                    <img src="imagenes/Retro Roller Skates Roller Blades Sticker _ Roller-skating.jpg" alt="Logo">
+                </div>
+                <div class="contaniner">
+                    <label for="username"><b>Username</b></label>
+                    <input type="text" placeholder="Introduce tu username" name="username" required>
+
+                    <label for="passwd">^<b>Password</b></label>
+                    <input type="text" placeholder="Introduce tu contraseña" name="passwd" required>
+                    
+                    <button type="submit">Login</button>
+                </div>
+                <div>
+                    <span>¿No tienes una cuenta? Únete a Skating Traker</span>
+                    <button>Sign Up</button>
+                </div>
             </form>
-            <button type="submit">Login</button>
         </section>
     </body>
 </html>
