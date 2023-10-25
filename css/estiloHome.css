@@ -75,11 +75,18 @@ footer{
 }
 
 /* LOGIN Y SIGN UP PAGES */
-#loginForm{
+#loginForm {
+    text-align: center;
+    margin-top: 10em;
+}
+
+#signUpForm {
     text-align: center;
     margin-top: 10em;
 }
 
 #registro{
     border: #000000;
+    border-radius: 50px;
+    color: #000000;
 }
