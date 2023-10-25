@@ -1,5 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
+
+/* HOME PAGE */
 body{
     margin: 2px;
     background-color: #eeeeee;
@@ -70,4 +72,14 @@ footer{
     margin: 0px;
     bottom: 0px;
     padding: 15px;
+}
+
+/* LOGIN Y SIGN UP PAGES */
+#loginForm{
+    text-align: center;
+    margin-top: 10em;
+}
+
+#registro{
+    border: #000000;
 }
