@@ -75,18 +75,76 @@ footer{
 }
 
 /* LOGIN Y SIGN UP PAGES */
-#loginForm {
+.login-box {
+    width: 340px;
+    height: 450px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
     text-align: center;
-    margin-top: 10em;
+    border-radius: 15px;
+    border: 2px solid #969da5;
+    box-shadow: 5px 5px #969da5;
+    
 }
 
-#signUpForm {
-    text-align: center;
-    margin-top: 10em;
+.login-box .logoLogin{
+    width: 100px;
+    border-radius: 50%;
+    margin-top: 15px;
+    
 }
 
-#registro{
-    border: #000000;
-    border-radius: 50px;
+.login-box h1{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Kay Pho Du', serif;
+    font-weight: bold;
+}
+
+.login-box label{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: 'Kay Pho Du', serif;
+    font-weight: 100;
+}
+
+.login-box input[type="text"], .login-box input[type="password"]{
+    width: 75%;
+    border: none;
+    border-bottom: 1px solid #969da5;
+    outline: none;
+    height: 40px;
+}
+
+.login-box input[type="submit"]{
+    border: none;
+    outline: none;
+    width: 80px;
+    height: 40px;
+    background: #535c85;
+    border-radius: 5px;
     color: #000000;
+    font-size: 13px;
+}
+
+.login-box input[type="submit"]:hover{
+    color: #eeeeee;
+}
+
+.login-box a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    font-family: 'Kay Pho Du', serif;
+    color: black;
+}
+
+.login-box a:hover{
+    color: darkgrey;
 }
