@@ -75,7 +75,7 @@ footer{
 }
 
 /* LOGIN Y SIGN UP PAGES */
-.login-box {
+.login-box{
     width: 340px;
     height: 450px;
     top: 50%;
@@ -87,17 +87,30 @@ footer{
     border-radius: 15px;
     border: 2px solid #969da5;
     box-shadow: 5px 5px #969da5;
-    
 }
 
-.login-box .logoLogin{
+.signUpBox{
+    width: 340px;
+    height: 520px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid #969da5;
+    box-shadow: 5px 5px #969da5;
+}
+
+.login-box .logoLogin, .signUpBox .logoSUp{
     width: 100px;
     border-radius: 50%;
     margin-top: 15px;
     
 }
 
-.login-box h1{
+.login-box h1, .signUpBox h1{
     margin: 0;
     padding: 0;
     text-align: center;
@@ -106,7 +119,7 @@ footer{
     font-weight: bold;
 }
 
-.login-box label{
+.login-box label, .signUpBox label{
     margin: 0;
     padding: 0;
     font-size: 15px;
@@ -114,7 +127,8 @@ footer{
     font-weight: 100;
 }
 
-.login-box input[type="text"], .login-box input[type="password"]{
+.login-box input[type="text"], .login-box input[type="password"],
+.signUpBox input[type="text"]{
     width: 75%;
     border: none;
     border-bottom: 1px solid #969da5;
@@ -122,7 +136,7 @@ footer{
     height: 40px;
 }
 
-.login-box input[type="submit"]{
+.login-box input[type="submit"], .signUpBox input[type="submit"]{
     border: none;
     outline: none;
     width: 80px;
@@ -133,11 +147,11 @@ footer{
     font-size: 13px;
 }
 
-.login-box input[type="submit"]:hover{
+.login-box input[type="submit"]:hover, .signUpBox input[type="submit"]:hover{
     color: #eeeeee;
 }
 
-.login-box a{
+.login-box a, .signUpBox a{
     text-decoration: none;
     font-size: 12px;
     line-height: 20px;
@@ -145,6 +159,6 @@ footer{
     color: black;
 }
 
-.login-box a:hover{
+.login-box a:hover, .signUpBox a:hover{
     color: darkgrey;
 }
