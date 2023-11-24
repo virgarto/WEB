@@ -23,10 +23,12 @@ nav {
     font-family: 'Cormorant Garamond', serif;
     font-family: 'Cormorant Infant', serif;
     font-size: 1.5em;
+    
 }
 
 nav a {
     text-decoration: none;
+    color: #000;
     margin-left: 100px;
 }
 
@@ -74,91 +76,17 @@ footer{
     padding: 15px;
 }
 
-/* LOGIN Y SIGN UP PAGES */
-.login-box{
-    width: 340px;
-    height: 450px;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
+/* PERFIL */
+#bannerPage{
     text-align: center;
-    border-radius: 15px;
-    border: 2px solid #969da5;
-    box-shadow: 5px 5px #969da5;
+    height: 80px;
+    background-color: #fd7a22;
+    color:#e6e0e0;
+    padding-top: 5px;
 }
 
-.signUpBox{
-    width: 340px;
-    height: 530px;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    text-align: center;
-    border-radius: 15px;
-    border: 2px solid #969da5;
-    box-shadow: 5px 5px #969da5;
-}
-
-.login-box .logoLogin, .signUpBox .logoSUp{
-    width: 100px;
-    border-radius: 50%;
-    margin-top: 15px;
-    
-}
-
-.login-box h1, .signUpBox h1{
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    font-size: 25px;
-    font-family: 'Kay Pho Du', serif;
-    font-weight: bold;
-}
-
-.login-box label, .signUpBox label{
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
-    font-family: 'Kay Pho Du', serif;
-    font-weight: 100;
-}
-
-.login-box input[type="text"], .login-box input[type="password"],
-.signUpBox input[type="text"]{
-    width: 75%;
-    border: none;
-    border-bottom: 1px solid #969da5;
-    outline: none;
-    height: 40px;
-}
-
-.login-box input[type="submit"], .signUpBox input[type="submit"]{
-    border: none;
-    outline: none;
-    width: 80px;
-    height: 40px;
-    background: #535c85;
-    border-radius: 5px;
-    color: #000000;
-    font-size: 13px;
-}
-
-.login-box input[type="submit"]:hover, .signUpBox input[type="submit"]:hover{
-    color: #eeeeee;
-}
-
-.login-box a, .signUpBox a{
-    text-decoration: none;
-    font-size: 12px;
-    line-height: 20px;
-    font-family: 'Kay Pho Du', serif;
-    color: black;
-}
-
-.login-box a:hover, .signUpBox a:hover{
-    color: darkgrey;
+#bannerPage h2{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: normal;
+    font-size: 27px;
 }
