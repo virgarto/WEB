@@ -15,3 +15,5 @@ conexión.connect((error) => {
     }
     console.log('Conexión a la base de datos cumplida con éxito!');
 });
+
+module.exports = conexión;
