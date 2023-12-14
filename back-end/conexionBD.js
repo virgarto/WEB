@@ -1,8 +1,8 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // Creamos la conexión a la BBDD
 const conexión = mysql.createConnection({
-    host: 'Virginia',
+    host: 'localhost',
     user: 'root',
     password: 'mysqltfg',
     database: 'tfg',
@@ -13,5 +13,5 @@ conexión.connect((error) => {
     if (error){
         throw error; 
     }
-    console.log('Conexión a la base de datos exitosa!');
+    console.log('Conexión a la base de datos cumplida con éxito!');
 });
