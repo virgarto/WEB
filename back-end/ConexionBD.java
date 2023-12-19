@@ -17,7 +17,7 @@ public class ConexionBD {
             try{
                 Unique_Instance = new ConexionBD();
             } 
-            catch (Exception e){
+            catch (SQLException e){
                 System.err.println("Error al crear la instancia de la clase Conexión a BD");
                 e.printStackTrace();
             }
