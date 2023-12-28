@@ -1,5 +1,5 @@
 // Hacemos la conexión a la BBDD
-const conexión = require('./conexionBD');
+const conexión = require('conexionBD');
 
 //Función del login
 function loginUsuario(user, password) {
