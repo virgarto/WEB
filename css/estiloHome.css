@@ -101,9 +101,3 @@ footer{
     text-align: center;
     text-decoration: none;
 }
-
-#entreneform{
-    margin: 40px;
-    column-count: 3;
-    column-gap: 40px;
-}
