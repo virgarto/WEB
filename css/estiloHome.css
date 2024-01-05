@@ -90,3 +90,10 @@ footer{
     font-weight: normal;
     font-size: 27px;
 }
+
+/* ENTRENE FORM*/
+#entreneform{
+    margin: 40px;
+    column-count: 3;
+    column-gap: 40px;
+}
