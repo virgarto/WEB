@@ -17,19 +17,20 @@ body{
 }
 
 nav {
-    margin-top: 55px;
-    margin-left: 50px;
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-family: 'Cormorant Infant', serif;
-    font-size: 1.5em;
-    
+    display: flex;
+	flex-direction: row;
 }
 
 nav a {
     text-decoration: none;
     color: #000;
-    margin-left: 100px;
+    flex-grow: 1;
+    padding-top: 55px;
+    padding-left: 50px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Infant', serif;
+    font-size: 1.5em;
 }
 
 #namePage{
@@ -91,7 +92,16 @@ footer{
     font-size: 27px;
 }
 
-/* ENTRENE FORM*/
+/* ENTRENAMIENTOS*/
+#entrene-display h3{
+    text-align: center;
+}
+
+#entrene-display a{
+    text-align: center;
+    text-decoration: none;
+}
+
 #entreneform{
     margin: 40px;
     column-count: 3;
