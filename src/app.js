@@ -8,6 +8,39 @@ const bodyParser = require('body-parser');
 const app = express();
 app.set('port', 4000);
 
+app.set('views', __dirname + '/views');
+app.engine('.hbs', engine({
+    extname: '.hbs',
+}));
+
+app.use(express.static(__dirname + '/public'));
+
+app.set('view engine', 'hbs')
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
+
+app.use(myconnection(mysql, {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    port: 3306,
+    database: 'tfg'
+}));
+
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
 app.listen(app.get('port'), () => {
     console.log('Listening on port ', app.get('port'));
 });
+
+app.get('/', (req, res) => {
+    res.render('home');
+})
