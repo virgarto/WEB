@@ -13,6 +13,11 @@
             <img class="logoSUp" src="imagenes/icono.jpg" width="100" alt="Logo">    
             <h1>Sign Up Here</h1><br>
             <form action="" method="POST">
+
+                {{#if error}}
+                    <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: brown">*{{error}}*</p>
+                {{/if}}
+
                 <label for="username"><b>Username</b></label><br>
                 <input type="text" placeholder="Introduce tu username" name="username" required><br><br>
 
@@ -28,7 +33,7 @@
                 <input type="radio" id="patinador" name="rol" value="Patinador/a">
                 <label for="patinador">Patinador/a</label><br><br>
 
-                <input type="submit" value="Sign Up"><br><br><br>
+                <input type="submit" value="Sign Up"><br><br>
     
                 <a href="/login">¿Ya tienes una cuenta? Haz Login aquí!</a>
             </form>

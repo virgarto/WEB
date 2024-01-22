@@ -12,18 +12,22 @@
         <div class="login-box">
             <img class="logoLogin" src="imagenes/icono.jpg" alt="Logo Skating Tracker">
             <h1>Login Here</h1><br>
-            <form  method="post" action="" class="loginForm">
+            <form  method="POST" action="" class="loginForm">
+
+                {{#if error}}
+                    <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: brown">*{{error}}*</p>
+                {{/if}}
+
                 <label for="username"><b>Username</b></label><br>
                 <input type="text" placeholder="Introduce tu username" name="username" id="username"><br><br>
 
                 <label for="password"><b>Password</b></label><br>
                 <input type="password" placeholder="Introduce tu contraseña" name="password" id="password"><br><br>
 
-                <input type="submit" name="loginBtn" value="Login"><br><br>
+                <input type="submit" value="Login"><br><br>
 
-                <a href="signUp.html">¿No tienes una cuenta aún? Pulsa aquí y únete a Skating Tracker</a>  
+                <a href="/signUp">¿No tienes una cuenta aún? Pulsa aquí y únete a Skating Tracker</a>  
             </form>
         </div>
-        <footer>All Rights Reserved © 2023 - Developed by Virginia García</footer>
     </body>
 </html>

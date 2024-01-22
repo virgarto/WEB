@@ -3,7 +3,7 @@
 
 .login-box{
     width: 340px;
-    height: 450px;
+    height: fit-content;
     top: 50%;
     left: 50%;
     position: absolute;
@@ -17,7 +17,7 @@
 
 .signUpBox{
     width: 340px;
-    height: 530px;
+    height:fit-content;
     top: 50%;
     left: 50%;
     position: absolute;
@@ -83,6 +83,7 @@
     line-height: 20px;
     font-family: 'Kay Pho Du', serif;
     color: black;
+    margin-bottom: 15px;
 }
 
 .login-box a:hover, .signUpBox a:hover{
