@@ -54,7 +54,7 @@
 }
 
 .login-box input[type="text"], .login-box input[type="password"],
-.signUpBox input[type="text"]{
+.signUpBox input[type="text"], .signUpBox input[type="email"], .signUpBox input[type="password"]{
     width: 75%;
     border: none;
     border-bottom: 1px solid #969da5;
