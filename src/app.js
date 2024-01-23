@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
+const menuRoutes = require('./routes/menu')
 const loginRoutes = require('./routes/login');
 
 const app = express();
@@ -43,8 +44,15 @@ app.listen(app.get('port'), () => {
     console.log('Listening on port ', app.get('port'));
 });
 
+app.use('/', menuRoutes);
 app.use('/', loginRoutes);
 
 app.get('/', (req, res) => {
-    res.render('home');
+    if(req.session.loggedin == true)
+    {
+        res.render('perfil', { name: req.session.name });
+    }
+    else{ 
+        res.redirect('/login');
+    }
 })

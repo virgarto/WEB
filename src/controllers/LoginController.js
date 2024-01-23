@@ -2,9 +2,17 @@
 const bcrypt = require('bcrypt');
 
 function login(req, res) {
-    res.render('login');
+    // Comprobamos que no haya una sesion: Si no la hay al pulsar login le manda al form
+    if(req.session.loggedin != true)
+    {
+        res.render('login');
+    }
+    else{ //Si hay sesión creada le manda al perfil
+        res.render('perfil');
+    }
 }
 
+//Función inicio sesión
 function auth(req, res){
     const data = req.body;
     
@@ -36,10 +44,17 @@ function auth(req, res){
 }
 
 function signUp(req, res) {
-    res.render('signUp');
+    // Comprobamos que no haya una sesion: Si no la hay al pulsar login le manda al form
+    if(req.session.loggedin != true)
+    {
+        res.render('signUp');
+    }
+    else{ //Si hay sesión creada le manda al perfil
+        res.render('perfil');
+    }
 }
 
-// Imprime info del formulario
+//Funcion registrar usuario
 function anyadirUser(req, res) {
     const data = req.body;
 
@@ -57,6 +72,8 @@ function anyadirUser(req, res) {
                     // Añadimos usuario
                     req.getConnection((err, conn) => {
                         conn.query('INSERT INTO users SET ?', [data], (err, rows) => {
+                            req.session.loggedin = true;
+                            req.session.name = data.username;
                             res.redirect('/');
                         })
                     });
@@ -67,9 +84,20 @@ function anyadirUser(req, res) {
     
 }
 
+//Función cierre sesión
+function logout(req, res) {
+    if(req.session.loggedin == true){
+        req.session.destroy();
+
+    }
+    
+    res.redirect('/login');
+}
+
 module.exports = {
     login,
     signUp,
     anyadirUser,
-    auth
+    auth,
+    logout
 }

@@ -79,8 +79,9 @@ footer{
 
 /* PERFIL */
 #bannerPage{
-    text-align: center;
     height: 80px;
+    width: 100%;
+    text-align: center;
     background-color: #fd7a22;
     color:#e6e0e0;
     padding-top: 5px;
@@ -90,6 +91,24 @@ footer{
     font-family: 'Cormorant Garamond', serif;
     font-weight: normal;
     font-size: 27px;
+}
+
+#perfilPage a{
+    position: absolute;
+    left: 40%;
+    padding: 15px;
+    padding-left: 80px;
+    padding-right: 80px;
+    background-color: #4e6881;
+    color: #000000;
+    text-decoration: none;
+    border: none;
+    
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Infant', serif;
+    font-size: 20px;
 }
 
 /* ENTRENAMIENTOS*/
@@ -183,6 +202,8 @@ footer{
     .cbp-mc-form input.cbp-mc-submit:hover {
     background: #1478b1;
     }
+
+    
     
     @media screen and (max-width: 70em) {
     .cbp-mc-column {
