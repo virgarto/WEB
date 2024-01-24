@@ -93,22 +93,41 @@ footer{
     font-size: 27px;
 }
 
-#perfilPage a{
-    position: absolute;
-    left: 40%;
-    padding: 15px;
-    padding-left: 80px;
-    padding-right: 80px;
-    background-color: #4e6881;
-    color: #000000;
+#perfilPage .fotoPerfil{
+    position: relative;
+    left: 47.5em;
+    top: 15px;
+}
+
+#perfilPage .container{
+    display: flex; 
+    flex-direction:column;
+
+    align-items: center;
+}
+
+#perfilPage .container a{
+    display: inline-block;
+    width: 200px;
+    padding: 18px;
+    background-color: #ffe8a4 ;
+    color: #000;
     text-decoration: none;
-    border: none;
+    margin-top: 15px;
     
+    border:2px solid #ec5334;
     border-radius: 10px;
+
     text-align: center;
     font-family: 'Cormorant Garamond', serif;
     font-family: 'Cormorant Infant', serif;
     font-size: 20px;
+    font-weight: bolder;
+}
+
+#perfilPage .container a:hover{
+    background-color: #ec5334 ;
+    color: #ffe8a4 ;
 }
 
 /* ENTRENAMIENTOS*/
@@ -203,7 +222,95 @@ footer{
     background: #1478b1;
     }
 
+    /* LOGIN Y SIGN UP */
+    .login-box{
+        width: 340px;
+        height: fit-content;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 15px;
+        border: 2px solid #969da5;
+        box-shadow: 5px 5px #969da5;
+    }
     
+    .signUpBox{
+        width: 340px;
+        height:fit-content;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 15px;
+        border: 2px solid #969da5;
+        box-shadow: 5px 5px #969da5;
+    }
+    
+    .login-box .logoLogin, .signUpBox .logoSUp{
+        width: 100px;
+        border-radius: 50%;
+        margin-top: 15px;
+        
+    }
+    
+    .login-box h1, .signUpBox h1{
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-size: 25px;
+        font-family: 'Kay Pho Du', serif;
+        font-weight: bold;
+    }
+    
+    .login-box label, .signUpBox label{
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+        font-family: 'Kay Pho Du', serif;
+        font-weight: 100;
+    }
+    
+    .login-box input[type="text"], .login-box input[type="password"],
+    .signUpBox input[type="text"], .signUpBox input[type="email"], .signUpBox input[type="password"]{
+        width: 75%;
+        border: none;
+        border-bottom: 1px solid #969da5;
+        outline: none;
+        height: 40px;
+    }
+    
+    .login-box input[type="submit"], .signUpBox input[type="submit"]{
+        border: none;
+        outline: none;
+        width: 80px;
+        height: 40px;
+        background: #535c85;
+        border-radius: 5px;
+        color: #000000;
+        font-size: 13px;
+    }
+    
+    .login-box input[type="submit"]:hover, .signUpBox input[type="submit"]:hover{
+        color: #eeeeee;
+    }
+    
+    .login-box a, .signUpBox a{
+        text-decoration: none;
+        font-size: 12px;
+        line-height: 20px;
+        font-family: 'Kay Pho Du', serif;
+        color: black;
+        margin-bottom: 15px;
+    }
+    
+    .login-box a:hover, .signUpBox a:hover{
+        color: darkgrey;
+    }
     
     @media screen and (max-width: 70em) {
     .cbp-mc-column {
