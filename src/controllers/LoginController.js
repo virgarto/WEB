@@ -30,6 +30,7 @@ function auth(req, res){
                             // Creamos la sesión
                             req.session.loggedin = true;
                             req.session.name = element.username;
+                            req.session.rol = element.rol;
 
                             res.redirect('/');
                         }

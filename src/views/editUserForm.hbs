@@ -24,22 +24,24 @@
             <section id="bannerPage">
                 <h2>Perfil</h2>
             </section>
-            <section id="perfilPage">
-                {{#if name}}
-                <img src="imagenes/icono perfil.png" height="150px;" class="fotoPerfil">
-                    <p style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;">Hola <b>{{name}}</b>!</p>
-                    <div class="container">
-                        <a href="/editUserForm">Editar información</a>
-                        <a href="">Ver reglamento</a>
-                        <a href="/logout">Log Out</a>
-                    </div>
-                    
-                {{/if}}
-             </section>
+            <form action="" method="POST" class="formEditPat">
+                <h2>Editar usuario</h2>
 
-             
+                <label for="username"><b>Username</b></label><br>
+                <input type="text" placeholder="username" name="username"><br><br>
+
+                <label for="password"><b>Password</b></label><br>
+                <input type="password" placeholder="contraseña" name="password"><br><br>
+
+                <label for="fecha_nacimiento"><b>Password</b></label><br>
+                <input type="date"  name="fecha_nacimiento"><br><br>
+
+                <label for="estado"><b>Estado</b></label><br>
+                <input type="radio"  name="estado">Activo<br><br>
+                <input type="radio"  name="estado">Inactivo<br><br>
+
+                <input type="submit" value="Guardar cambios"><br><br>
+            </form>
         </main>
-        
     </body>
-    <footer style="position:absolute; bottom:0px; width:98%;">All Rights Reserved © 2023 - Developed by Virginia García</footer>
 </html>
