@@ -5,6 +5,14 @@ function editUser (req, res){
         res.render('editEntrenadorForm');
 }
 
+function editPatinador (req, res){
+    const data = req.body;
+
+    req.getConnection((err, conn) => {
+        conn.query('')
+    })
+}
+
 function verReglamento (req, res){
     //Tendría que descargar el archivo 
 }
