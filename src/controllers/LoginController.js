@@ -29,6 +29,7 @@ function auth(req, res){
                         else{
                             // Creamos la sesión
                             req.session.loggedin = true;
+                            req.session.email = element.email;
                             req.session.name = element.username;
                             req.session.rol = element.rol;
 
