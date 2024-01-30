@@ -77,6 +77,7 @@ function anyadirUser(req, res) {
                         conn.query('INSERT INTO users SET ?', [data], (err, rows) => {
                             req.session.loggedin = true;
                             req.session.name = data.username;
+                            req.session.fecha_nacimiento = data.fecha_nacimiento;
                             res.redirect('/');
                         })
                     });

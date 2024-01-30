@@ -26,13 +26,13 @@
             </section>
             <form action="" method="POST" class="formEditPat">
                 <h2>Editar usuario</h2>
-
+                
                 {{#if error}}
                     <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: brown">*{{error}}*</p>
                 {{/if}}
 
                 <label for="username"><b>Username</b></label><br>
-                <input type="text" placeholder="username" name="username"><br><br>
+                <input type="text" value="{{username}}" name="username"><br><br>
 
                 <label for="password"><b>Password</b></label><br>
                 <input type="password" placeholder="contraseña" name="password"><br><br>

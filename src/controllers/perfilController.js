@@ -19,16 +19,14 @@ function editPatinador (req, res){
                     bcrypt.hash(data.password, 12).then(hash => {
                         data.password = hash; 
 
-                        conn.query('UPDATE users SET username = ?, password = ?, fecha_nacimiento = ?, estado = ? WHERE email = ?', [data.username, data.password, data.fecha_nacimiento, data.estado, req.session.email]);
+                        conn.query('UPDATE users SET username = ?, password = ?, estado = ? WHERE email = ?', [data.username, data.password, data.estado, req.session.email]);
                         req.session.name = data.username;
-                        req.session.fecha_nacimiento = data.fecha_nacimiento;
                         req.session.estado = data.estado;
                         res.redirect('/');
                     });
                 }
             }
             else{
-                console.log('estoy aqui');
                 res.render('editUserForm', {error: 'Error: No has hecho ningún cambio.'});
             }
             
