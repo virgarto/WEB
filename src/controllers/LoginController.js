@@ -31,6 +31,9 @@ function auth(req, res){
                             req.session.loggedin = true;
                             req.session.email = element.email;
                             req.session.name = element.username;
+                            req.session.fecha_nacimiento = element.fecha_nacimiento;
+                            console.log('Element: ' + element.fecha_nacimiento);
+                            console.log('session: ' + req.session.fecha_nacimiento);
                             req.session.rol = element.rol;
 
                             res.redirect('/');

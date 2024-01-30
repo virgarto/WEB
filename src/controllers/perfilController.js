@@ -1,8 +1,11 @@
 const bcrypt = require('bcrypt');
 
 function editUser (req, res){
-    if(req.session.rol != 'Entrenador')
+    if(req.session.rol != 'Entrenador'){
+        console.log('Edit: ' + req.session.fecha_nacimiento);
         res.render('editUserForm');
+    }
+        
     else    
         res.render('editEntrenadorForm');
 }
@@ -19,6 +22,8 @@ function editPatinador (req, res){
 
                         conn.query('UPDATE users SET username = ?, password = ?, fecha_nacimiento = ?, estado = ? WHERE email = ?', [data.username, data.password, data.fecha_nacimiento, data.estado, req.session.email]);
                         req.session.name = data.username;
+                        req.session.fecha_nacimiento = data.fecha_nacimiento;
+                        req.session.estado = data.estado;
                         res.redirect('/');
                     });
                 }

@@ -52,7 +52,8 @@ app.use('/', userPerfilRoutes);
 app.get('/', (req, res) => {
     if(req.session.loggedin == true)
     {
-        res.render('perfil', { name: req.session.name });
+        res.render('perfil', { name: req.session.name,
+                                fecha_nacimiento: req.session.fecha_nacimiento});
     }
     else{ 
         res.redirect('/login');
