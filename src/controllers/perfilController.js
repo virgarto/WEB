@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 
 function editUser (req, res){
     if(req.session.rol != 'Entrenador'){
-        console.log('Edit: ' + req.session.fecha_nacimiento);
         res.render('editUserForm');
     }
         
