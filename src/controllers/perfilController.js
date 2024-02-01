@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 function editUser (req, res){
     if(req.session.rol != 'Entrenador'){
         res.render('editUserForm');
+        console.log('Email: ' + req.session.email);
     }
         
     else    
@@ -14,6 +15,7 @@ function editPatinador (req, res){
 
     req.getConnection((err, conn) =>{
         conn.query('SELECT * FROM users WHERE email = ?', [req.session.email] , (err, userData) => {
+            
             if(userData.length > 0){
                 if(req.body.password){
                     bcrypt.hash(data.password, 12).then(hash => {
