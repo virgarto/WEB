@@ -49,25 +49,6 @@ nav a {
     font-family: 'Cormorant Garamond', serif;
 }
 
-.HomeBotones a{
-    background-color: #4e6881;
-    color: #000000;
-    text-decoration: none;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-family: 'Cormorant Infant', serif;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.HomeBotones a:hover{
-    background-color: #535c85;
-    color: #eeeeee;
-}
-
 footer{
     background-color: #000000;
     color: #eeeeee;

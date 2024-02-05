@@ -17,7 +17,7 @@ function entrenamientos (req, res){
     {
         res.render('login');
     }
-    else{ //Si hay sesión creada le manda al perfil
+    else{ 
         res.render('entrenamientos');
     }
 }

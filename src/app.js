@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const menuRoutes = require('./routes/menu')
 const loginRoutes = require('./routes/login');
 const userPerfilRoutes = require('./routes/userPerfil');
+const entreneRoutes = require('./routes/entrene');
 
 const app = express();
 app.set('port', 4000);
@@ -48,6 +49,7 @@ app.listen(app.get('port'), () => {
 app.use('/', menuRoutes);
 app.use('/', loginRoutes);
 app.use('/', userPerfilRoutes);
+app.use('/', entreneRoutes);
 
 app.get('/', (req, res) => {
     if(req.session.loggedin == true)
