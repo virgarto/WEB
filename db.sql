@@ -12,3 +12,6 @@ INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2013, 'Aleví
 INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2014, 'Benjamin', 'Alevín', 'Alevín');
 INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2015, 'Benjamin', 'Benjamin', 'Alevín');
 INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2016, '', 'Benjamin', 'Benjamin');
+
+
+/*SELECT YEAR(mi_columna_fecha) AS anio FROM mi_tabla;*/

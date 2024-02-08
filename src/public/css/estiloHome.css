@@ -76,8 +76,7 @@ footer{
 
 #perfilPage .fotoPerfil{
     position: relative;
-    left: 47.5em;
-    top: 15px;
+    margin-left: 45%;
 }
 
 #perfilPage .container{

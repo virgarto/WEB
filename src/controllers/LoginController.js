@@ -31,7 +31,7 @@ function auth(req, res){
                             req.session.loggedin = true;
                             req.session.email = element.email;
                             req.session.name = element.username;
-                            req.session.fecha_nacimiento = element.fecha_nacimiento;
+                            req.session.categoria = element.categoria_act;
                             req.session.rol = element.rol;
 
                             res.redirect('/');
@@ -77,7 +77,18 @@ function anyadirUser(req, res) {
                         conn.query('INSERT INTO users SET ?', [data], (err, rows) => {
                             req.session.loggedin = true;
                             req.session.name = data.username;
+                            req.session.rol = data.rol;
                             req.session.fecha_nacimiento = data.fecha_nacimiento;
+
+                            const fechaNacimiento = new Date(data.fecha_nacimiento);
+                            const anyoNacimiento = fechaNacimiento.getFullYear();
+                            // Ponemos categoria segun edad
+                            conn.query('SELECT cat_2023, cat_2024, cat_2025 FROM categoria WHERE anyo = ?', [anyoNacimiento], (err, catData) =>{
+                                console.log(catData);
+                            
+                                //conn.query('UPDATE users SET categoria_ant = ?, categoria_act = ?, categoria_post = ? WHERE email = ?', [catData[0], catData[1], catData[2], data.email]);
+                            });
+
                             res.redirect('/');
                         })
                     });
