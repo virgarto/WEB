@@ -82,12 +82,16 @@ function anyadirUser(req, res) {
 
                             const fechaNacimiento = new Date(data.fecha_nacimiento);
                             const anyoNacimiento = fechaNacimiento.getFullYear();
-                            // Ponemos categoria segun edad
-                            conn.query('SELECT cat_2023, cat_2024, cat_2025 FROM categoria WHERE anyo = ?', [anyoNacimiento], (err, catData) =>{
-                                console.log(catData);
                             
-                                //conn.query('UPDATE users SET categoria_ant = ?, categoria_act = ?, categoria_post = ? WHERE email = ?', [catData[0], catData[1], catData[2], data.email]);
-                            });
+                            // Ponemos categoria segun edad
+                            if(anyoNacimiento > 2003 && data.rol ==  "Patinador/a"){
+                                conn.query('SELECT cat_2023, cat_2024, cat_2025 FROM categoria WHERE anyo = ?', [anyoNacimiento], (err, catData) =>{
+                                    console.log(catData[0].cat_2023);
+                                
+                                    conn.query('UPDATE users SET categoria_ant = ?, categoria_act = ?, categoria_post = ? WHERE email = ?', [catData[0].cat_2023, catData[0].cat_2024, catData[0].cat_2025, data.email]);
+                                });
+                            }
+                            
 
                             res.redirect('/');
                         })
