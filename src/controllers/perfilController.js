@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt');
 
 function editUser (req, res, userData){
     if(req.session.rol != 'Entrenador'){
-        res.render('editUserForm', {user: userData, error: null});
+        res.render('editUserForm', {});
+        console.log('Carga: ' + userData);
     }
         
     else    
@@ -11,6 +12,7 @@ function editUser (req, res, userData){
 
 function editPatinador (req, res){
     const data = req.body;
+    console.log(userData);
 
     req.getConnection((err, conn) =>{
         conn.query('SELECT * FROM users WHERE email = ?', [req.session.email] , (err, userData) => {
@@ -19,6 +21,7 @@ function editPatinador (req, res){
                 if(req.body.password){
                     bcrypt.hash(data.password, 12).then(hash => {
                         data.password = hash; 
+
 
                         conn.query('UPDATE users SET username = ?, password = ?, estado = ? WHERE email = ?', [data.username, data.password, data.estado, req.session.email]);
                         req.session.name = data.username;

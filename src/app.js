@@ -55,7 +55,8 @@ app.get('/', (req, res) => {
     if(req.session.loggedin == true)
     {
         res.render('perfil', { name: req.session.name,
-                                fecha_nacimiento: req.session.fecha_nacimiento});
+                                password: req.session.password,
+                            estado: req.session.estado});
     }
     else{ 
         res.redirect('/login');
