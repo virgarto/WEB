@@ -32,20 +32,20 @@
                 {{/if}}
 
                 <label for="username"><b>Username</b></label><br>
-                <input type="text" value="" name="username"><br><br>
+                <input type="text" value="{{user.username}}" name="username"><br><br>
 
                 <label for="password"><b>Password</b></label><br>
-                <input type="password" value="" name="password"><br><br>
+                <input type="password" value="{{user.password}}" name="password"><br><br>
 
-                <!--{{#unless fecha_nacimiento}}
-                <label for="fecha_nacimiento"><b>Fecha de nacimiento</b></label><br>
-                <input type="date"  name="fecha_nacimiento"><br><br>
-                {{/unless}}-->
-
-                <label for="estado"><b>Estado</b></label><br>
+               <label for="estado"><b>Estado</b></label><br>
                 <input type="radio"  name="estado">Activo<br><br>
                 <input type="radio"  name="estado">Inactivo<br><br>
 
+               <!-- <select name="estado">
+                    <option value="activo" {{#if user.estado === '1'}}selected{{/if}}>Activo</option>
+                    <option value="inactivo" {{#if user.estado === '0'}}selected{{/if}}>Inactivo</option>
+                </select>
+-->
                 <input type="submit" value="Guardar cambios"><br><br>
                 <a href="perfil">Volver atrás</a><br><br>
             </form>

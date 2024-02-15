@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 
-function editUser (req, res){
+function editUser (req, res, userData){
     if(req.session.rol != 'Entrenador'){
-        res.render('editUserForm');
+        res.render('editUserForm', {user: userData, error: null});
     }
         
     else    
