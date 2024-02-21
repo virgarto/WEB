@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+nav .nav-link {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.5em;
+    margin-right: 15px;
+}
+
+#namePage{
+    background-color: #000000;
+    color: #eeeeee;
+    padding: 1px;
+    text-align: center;
+    font-size: 60px;
+}
