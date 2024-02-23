@@ -13,33 +13,34 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand">
-                    <img alt="logo" width="120" height="120" src="imagenes/icono.jpg">
-                </a>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active"  href="home">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="entrenamientos">ENTRENAMIENTOS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="perfil">PERFIL</a>
-                    </li>
-                </ul>
+        <div> 
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid" style="background-color: #eeeeee;">
+                    <a class="navbar-brand">
+                        <img alt="logo" width="120" height="120" src="imagenes/icono.jpg">
+                    </a>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active"  href="home">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="entrenamientos">ENTRENAMIENTOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="perfil">PERFIL</a>
+                        </li>
+                    </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
         <main>
-            <section id="bannerPage">
-                <h2>Perfil</h2>
-            </section>
+            <h3 class="display-6" style="background-color: #ffe8a4; color:#222222;" >Perfil</h3>
             <section id="perfilPage">
                 {{#if name}}
-                <img src="imagenes/icono perfil.png" height="150px;" class="fotoPerfil">
+                <img src="imagenes/icono perfil negro.png" height="150px;" class="fotoPerfil">
+                <i class="bi bi-person"></i>
                     <p style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;">Hola <b>{{name}}</b>!</p>
                     <div class="container">
                         <a href="/editUserForm">Editar información</a>
@@ -54,5 +55,9 @@
         </main>
         
     </body>
-    <footer style="position:absolute; bottom:0px; width:98%;">All Rights Reserved © 2023 - Developed by Virginia García</footer>
+    <footer class="text-center mt-5 footer-copyright">
+        <div class="text-center p-3" style="background-color: #222222; color:#ded8ae">
+            © 2024 Copyright: Virginia García
+        </div>
+    </footer>
 </html>
