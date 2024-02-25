@@ -1,12 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
-html, body {
-    min-height: 100%;
-    background-color:#eeeeee;
+:root{
+    --primary_background: #eeeeee;
+    --bc_black: #222222;
 }
 
-body{
-    background-color:black;
+html, body {
+    min-height: 100%;
+    background-color: var(--primary_background);
 }
 
 main{
@@ -15,7 +16,7 @@ main{
 }
 
 .display-6{
-    background-color: #222222;
+    background-color: var(--bc_black);
     color: #eeeeee;
     text-align: center;
     padding-top: 25px;
@@ -24,14 +25,14 @@ main{
 
 nav .nav-link {
     text-decoration: none;
-    color: #000;
+    color: --bc_black;
     font-size: 1.5em;
     margin-right: 15px;
 }
 
 #namePage{
-    background-color: #000000;
-    color: #eeeeee;
+    background-color: var(--bc_black);
+    color: var(--primary_background);
     padding: 1px;
     text-align: center;
     font-size: 60px;
@@ -49,3 +50,4 @@ footer{
     color:#222222;  
     margin-top: 10px;
 }
+

@@ -56,7 +56,8 @@ app.get('/', (req, res) => {
     {
         res.render('perfil', { name: req.session.name,
                                 password: req.session.password,
-                            estado: req.session.estado});
+                                estado: req.session.estado,
+                                categoria: req.session.categoria});
     }
     else{ 
         res.redirect('/login');

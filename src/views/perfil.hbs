@@ -37,16 +37,17 @@
         </div>
         <main>
             <div class="profile-card">
-                <h3 class="display-6" style="background-color: #ffe8a4; color:#222222;" >Perfil</h3>
+                <h3 class="display-6 fw-normal" style="background-color: #f3d886; color:#222222;" >Perfil</h3>
                 <div class="text-center">
                     {{#if name}}
                     <img src="imagenes/icono perfil negro.png" height="150px;">
-                        <p style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;">Hola <b>{{name}}</b>!</p>
+                        <h2 class="text-uppercase fs-4" style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;"><b>{{name}}</b></h2>
+                        <p class="fw-normal" style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;">{{categoria}}</p>
                         <div class="container">
-                            <div class="btn-group-vertical">
-                                <a href="/editUserForm" class="btn btn-primary" style="border:none; background-color: #9badbb; color:#222222;  margin-top: 10px;">Editar información</a>
-                                <a href="Reglamento.pdf" download="Reglameto" class="btn btn-primary" style="border:none; background-color: #9badbb; color:#222222;  margin-top: 10px;">Descargar reglamento</a>
-                                <a href="/logout" class="btn btn-primary" style="border:none; background-color: #9badbb; color:#222222;  margin-top: 10px;">Log Out</a>  
+                            <div class="d-grid gap-2 col-3 mx-auto">
+                                <a href="/editUserForm" class="btn btn-primary btn-lg" role="button">Editar información</a>
+                                <a href="Reglamento.pdf" download="Reglameto" class="btn btn-primary btn-lg" role="button">Descargar reglamento</a>
+                                <a href="/logout" class="btn btn-danger btn-lg" role="button" style="margin-top: 10px;">Log Out</a>  
                             </div>
                             
                         </div>
