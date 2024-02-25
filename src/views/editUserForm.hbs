@@ -50,8 +50,8 @@
                     <input type="password" name="password"><br><br>
 
                     <label for="estado"><b>Estado</b></label><br>
-                        <input type="radio"  name="estado" {{#if estado}}checked{{/if}}>Activo<br><br>
-                        <input type="radio"  name="estado" {{#if estado}}checked{{/if}}>Inactivo<br><br>
+                        <input type="radio"  name="estado" {{#if (eq estado "on")}}checked{{/if}}>Activo<br><br>
+                        <input type="radio"  name="estado" {{#if (eq estado "on")}}checked{{/if}}>Inactivo<br><br>
 
                     <input type="submit" value="Guardar cambios"><br><br>
                     <a href="perfil">Volver atrás</a><br><br>

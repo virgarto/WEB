@@ -31,6 +31,7 @@ function auth(req, res){
                             req.session.loggedin = true;
                             req.session.email = element.email;
                             req.session.name = element.username;
+                            req.session.estado = element.estado;
                             req.session.categoria = element.categoria_act;
                             req.session.rol = element.rol;
 
