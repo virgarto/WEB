@@ -42,3 +42,10 @@ footer{
     width:  100%;
     bottom:  0;
 }
+
+.btn-primary{
+    border:none; 
+    background-color: #9badbb; 
+    color:#222222;  
+    margin-top: 10px;
+}

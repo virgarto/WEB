@@ -22,13 +22,13 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active"  href="home">HOME</a>
+                            <a class="nav-link"  href="home">HOME</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="entrenamientos">ENTRENAMIENTOS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="perfil">PERFIL</a>
+                            <a class="nav-link active" href="perfil">PERFIL</a>
                         </li>
                     </ul>
                     </div>
@@ -36,22 +36,23 @@
             </nav>
         </div>
         <main>
-            <h3 class="display-6" style="background-color: #ffe8a4; color:#222222;" >Perfil</h3>
-            <section id="perfilPage">
-                {{#if name}}
-                <img src="imagenes/icono perfil negro.png" height="150px;" class="fotoPerfil">
-                <i class="bi bi-person"></i>
-                    <p style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;">Hola <b>{{name}}</b>!</p>
-                    <div class="container">
-                        <a href="/editUserForm">Editar información</a>
-                        <a href="Reglamento.pdf" download="Reglameto">Descargar reglamento</a>
-                        <a href="/logout">Log Out</a>
-                    </div>
-                    
-                {{/if}}
-             </section>
-
-             
+            <div class="profile-card">
+                <h3 class="display-6" style="background-color: #ffe8a4; color:#222222;" >Perfil</h3>
+                <div class="text-center">
+                    {{#if name}}
+                    <img src="imagenes/icono perfil negro.png" height="150px;">
+                        <p style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;">Hola <b>{{name}}</b>!</p>
+                        <div class="container">
+                            <div class="btn-group-vertical">
+                                <a href="/editUserForm" class="btn btn-primary" style="border:none; background-color: #9badbb; color:#222222;  margin-top: 10px;">Editar información</a>
+                                <a href="Reglamento.pdf" download="Reglameto" class="btn btn-primary" style="border:none; background-color: #9badbb; color:#222222;  margin-top: 10px;">Descargar reglamento</a>
+                                <a href="/logout" class="btn btn-primary" style="border:none; background-color: #9badbb; color:#222222;  margin-top: 10px;">Log Out</a>  
+                            </div>
+                            
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
         </main>
         
     </body>
