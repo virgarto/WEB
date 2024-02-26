@@ -22,8 +22,19 @@ function entrenamientos (req, res){
     }
 }
 
+function coreografias (req, res){
+    if(req.session.loggedin != true)
+    {
+        res.render('login');
+    }
+    else{ 
+        res.render('coreografias');
+    }
+}
+
 module.exports = {
     home,
     perfil,
-    entrenamientos
+    entrenamientos,
+    coreografias
 }
