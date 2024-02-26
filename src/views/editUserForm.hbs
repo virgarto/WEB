@@ -51,11 +51,11 @@
                     <input type="text" name="username" value="{{name}}"><br><br>
 
                     <label for="password"><b>Password</b></label><br>
-                    <input type="password" name="password"><br><br>
+                    <input type="password" name="password" value="{{password}}"><br><br>
 
                     <label for="estado"><b>Estado</b></label><br>
-                        <input type="radio"  name="estado" {{#if (eq estado "on")}}checked{{/if}}>Activo<br><br>
-                        <input type="radio"  name="estado" {{#if (eq estado "on")}}checked{{/if}}>Inactivo<br><br>
+                        <input type="radio"  name="estado" >Activo<br><br>
+                        <input type="radio"  name="estado" >Inactivo<br><br>
 
                     <input type="submit" value="Guardar cambios"><br><br>
                     <a href="perfil">Volver atrás</a><br><br>
