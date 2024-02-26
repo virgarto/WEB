@@ -33,7 +33,7 @@ function auth(req, res){
                             req.session.name = element.username;
                             req.session.estado = element.estado;
                             req.session.categoria = element.categoria_act;
-                            req.session.rol = element.rol;
+                            req.session.club = element.club;
 
                             res.redirect('/');
                         }
@@ -80,6 +80,7 @@ function anyadirUser(req, res) {
                             req.session.name = data.username;
                             req.session.rol = data.rol;
                             req.session.fecha_nacimiento = data.fecha_nacimiento;
+                            req.session.club = data.club;
 
                             const fechaNacimiento = new Date(data.fecha_nacimiento);
                             const anyoNacimiento = fechaNacimiento.getFullYear();
@@ -87,12 +88,14 @@ function anyadirUser(req, res) {
                             // Ponemos categoria segun edad
                             if(anyoNacimiento > 2003 && data.rol ==  "Patinador/a"){
                                 conn.query('SELECT cat_2023, cat_2024, cat_2025 FROM categoria WHERE anyo = ?', [anyoNacimiento], (err, catData) =>{
-                                    console.log(catData[0].cat_2023);
                                 
                                     conn.query('UPDATE users SET categoria_ant = ?, categoria_act = ?, categoria_post = ? WHERE email = ?', [catData[0].cat_2023, catData[0].cat_2024, catData[0].cat_2025, data.email]);
-                                });
+                                
+                                    req.session.categoria = catData[0].cat_2024;
+                                    
+                                    res.redirect('/');
+                                })
                             }
-                            
 
                             res.redirect('/');
                         })

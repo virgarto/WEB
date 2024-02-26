@@ -45,7 +45,11 @@
                     {{#if name}}
                     <img src="imagenes/icono perfil negro.png" height="150px;">
                         <h2 class="text-uppercase fs-4" style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;"><b>{{name}}</b></h2>
-                        <p class="fw-normal" style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;">{{categoria}}</p>
+                        <div>
+                            <p class="fw-normal" style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;">{{categoria}} - {{club}}</p>
+                            <p class="fw-normal" style="font-family: 'Kay Pho Du'; text-align:center; font-size: 18px;"></p>
+                        </div>
+                        
                         <div class="container">
                             <div class="d-grid gap-2 col-3 mx-auto">
                                 <a href="/editUserForm" class="btn btn-primary btn-lg" role="button">
