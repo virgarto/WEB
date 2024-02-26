@@ -45,9 +45,6 @@ function editPatinador (req, res){
     });
 }
 
-function verReglamento (req, res){
-    //Tendría que descargar el archivo 
-}
 
 module.exports = {
     editUser,
