@@ -1,7 +1,5 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
-const helpers = require('handlebars-helpers')();
-const exphbs = require('express-handlebars');
 const myconnection = require('express-myconnection');
 const mysql = require('mysql');
 const session = require('express-session');
