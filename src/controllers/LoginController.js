@@ -80,6 +80,7 @@ function anyadirUser(req, res) {
                             req.session.name = data.username;
                             req.session.rol = data.rol;
                             req.session.fecha_nacimiento = data.fecha_nacimiento;
+                            req.session.estado = data.estado;
                             req.session.club = data.club;
 
                             const fechaNacimiento = new Date(data.fecha_nacimiento);

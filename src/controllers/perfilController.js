@@ -18,7 +18,7 @@ function editPatinador (req, res){
                     bcrypt.hash(data.password, 12).then(hash => {
                         data.password = hash; 
 
-                        if(data.username != req.session.username){
+                        if(data.username.length > 0){
                             conn.query('UPDATE users SET username = ? WHERE email = ?', [data.username, req.session.email]);
                             console.log(data.username);
                         }
