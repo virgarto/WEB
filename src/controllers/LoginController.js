@@ -91,10 +91,15 @@ function anyadirUser(req, res) {
                                 
                                     conn.query('UPDATE users SET categoria_ant = ?, categoria_act = ?, categoria_post = ? WHERE email = ?', [catData[0].cat_2023, catData[0].cat_2024, catData[0].cat_2025, data.email]);
                                 
-                                    req.session.categoria = catData[0].cat_2024;
+                                    data.categoria = catData[0].cat_2024;
+                                    req.session.categoria = data.categoria;
+                                    res.redirect('/');
                                 })
                             }
-                            res.redirect('/');
+                            else{
+                                res.redirect('/');
+                            }
+                            
                         })
                     });
                 });
