@@ -26,7 +26,6 @@ function editPatinador (req, res){
                         else{
                             conn.query('UPDATE users SET password = ? WHERE email = ?', [data.password, req.session.email]);
                         }
-                        //conn.query('UPDATE users SET username = ?, password = ?, estado = ? WHERE email = ?', [data.username, data.password, data.estado, req.session.email]);
                     });
                 }else if(data.username && data.username.length > 0){
                         conn.query('UPDATE users SET username = ? WHERE email = ?', [data.username, req.session.email]);
