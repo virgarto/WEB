@@ -1,5 +1,5 @@
 function goToEntreneForm (req, res){
-    res.render('newEntrene');
+    res.render('newEntreneDanza');
 }
 
 module.exports = {

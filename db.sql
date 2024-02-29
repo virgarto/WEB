@@ -140,9 +140,87 @@ CREATE TABLE `tfg`.`rocker_izq` (
   PRIMARY KEY (`id`));
 
 
-CREATE TABLE entrenamiento_danza (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    id_pat INT FOREIGN KEY,
-
-)
+CREATE TABLE `tfg`.`entrenamiento_danza` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `id_patinador`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_art_foot_sq`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`art_foot_sequence` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_bracket_der`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`bracket_derecho` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_bracket_izq`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`bracket_izquierdo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_choreo_step_sq`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`choreo_step_sequence` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_cluster`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`cluster` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_counter_der`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`counter_derecho` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_counter_izq`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`counter_izquierdo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_dance_step_sq`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`dance_step_sequence` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_footwork_sq`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`footwork_sequence` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_loop_der`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`loop_derecho` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_loop_izq`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`loop_izquierdo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_pattern_sq`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`pattern_sequence` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_rocker_der`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`rocker_derecho` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_rocker_izq`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`rocker_izq` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_travelling`
+    FOREIGN KEY (`id`)
+    REFERENCES `tfg`.`travelling` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
