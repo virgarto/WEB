@@ -46,7 +46,7 @@ nav .nav-link {
 
 #content-wrap {
 	padding-bottom: 2.5rem; 
-	background-color: var(--primary_background);   /* altura de pie de página */
+	background-color: var(--primary_background);  
   }
 
 footer{
