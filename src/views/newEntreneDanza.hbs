@@ -14,268 +14,250 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     </head>
     <body>
-        <div> 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid" style="background-color: #eeeeee;">
-                    <a class="navbar-brand">
-                        <img alt="logo" width="120" height="120" src="imagenes/icono.jpg">
-                    </a>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link"  href="home">HOME</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="entrenamientos">ENTRENAMIENTOS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="coreografias">COREOGRAFÍAS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="perfil">PERFIL</a>
-                        </li>
-                    </ul>
-                    </div>
+        <div id="page-container">
+            <div id="content-wrap">
+                <div> 
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid" style="background-color: #eeeeee;">
+                            <a class="navbar-brand">
+                                <img alt="logo" width="120" height="120" src="imagenes/icono.jpg">
+                            </a>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link"  href="home">HOME</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="entrenamientos">ENTRENAMIENTOS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="coreografias">COREOGRAFÍAS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="perfil">PERFIL</a>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-        <main>
-            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamiento Danza</h3>
-            <div class="text-center">
-                <form id="entreneform" method="post">
-                    <!-- progressbar -->
-                    <ul id="progressbar">
-                        <li class="active">Travelling y Cluster</li>
-                        <li>Pattern Sequence y Art Foot Sequence</li>
-                        <li>Dance Step Sequence, Footwork sequence y Choreo Step</li>
-                        <li>Bracket derecho e izquierdo</li>
-                        <li>Counter derecho e izquierdo</li>
-                        <li>Rocker derecho e izquierdo</li>
-                        <li>Loop derecho e izquierdo</li>
-                    </ul>
-                    <fieldset class="form-step">
-                        <h4 class="fs-title">TRAVELLING</h4>
-                            <label for="TravellingB">Travelling B</label>
-                            <input type="number"><br>
-                            <label for="Travelling1">Travelling 1</label>
-                            <input type="number"><br>
-                            <label for="Travelling2">Travelling 2</label>
-                            <input type="number"><br>
-                            <label for="Travelling3">Travelling 3</label>
-                            <input type="number"><br>
-                            <label for="Travelling4">Travelling 4</label>
-                            <input type="number"><br><br>
+                <main>
+                    <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamiento Danza</h3>
+                    <div class="text-center">
+                        <form id="entreneform" method="post">
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active">Travelling y Cluster</li>
+                                <li>Pattern Sequence y Art Foot Sequence</li>
+                                <li>Dance Step Sequence, Footwork sequence y Choreo Step</li>
+                                <li>Bracket derecho e izquierdo</li>
+                                <li>Counter derecho e izquierdo</li>
+                                <li>Rocker derecho e izquierdo</li>
+                                <li>Loop derecho e izquierdo</li>
+                            </ul>
+                            <fieldset class="form-step">
+                                <h4 class="fs-title">TRAVELLING</h4>
+                                    <label for="TravellingB">Travelling B</label>
+                                    <input type="number"><br>
+                                    <label for="Travelling1">Travelling 1</label>
+                                    <input type="number"><br>
+                                    <label for="Travelling2">Travelling 2</label>
+                                    <input type="number"><br>
+                                    <label for="Travelling3">Travelling 3</label>
+                                    <input type="number"><br>
+                                    <label for="Travelling4">Travelling 4</label>
+                                    <input type="number"><br><br>
 
-                        <h4 class="fs-title">CLUSTER</h4>
-                            <label for="ClusterB">Cluster B</label>
-                            <input type="number"><br>
-                            <label for="Cluster1">Cluster 1</label>
-                            <input type="number"><br>
-                            <label for="Cluster2">Cluster 2</label>
-                            <input type="number"><br>
-                            <label for="Cluster3">Cluster 3</label>
-                            <input type="number"><br>
-                            <label for="Cluster4">Cluster 4</label>
-                            <input type="number"><br><br>
+                                <h4 class="fs-title">CLUSTER</h4>
+                                    <label for="ClusterB">Cluster B</label>
+                                    <input type="number"><br>
+                                    <label for="Cluster1">Cluster 1</label>
+                                    <input type="number"><br>
+                                    <label for="Cluster2">Cluster 2</label>
+                                    <input type="number"><br>
+                                    <label for="Cluster3">Cluster 3</label>
+                                    <input type="number"><br>
+                                    <label for="Cluster4">Cluster 4</label>
+                                    <input type="number"><br><br>
 
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
 
-                    <fieldset class="form-step">
-                        <h4 class="fs-title">PATTERN SEQUENCE (OBLIGATORIA)</h4>
-                            <label for="KeyPoint1">KeyPoint 1</label>
-                            <input type="number"><br>
-                            <label for="KeyPoint2">KeyPoint 2</label>
-                            <input type="number"><br>
-                            <label for="KeyPoint3">KeyPoint 3</label>
-                            <input type="number"><br>
-                            <label for="KeyPoint4">KeyPoint 4</label>
-                            <input type="number"><br><br>
+                            <fieldset class="form-step">
+                                <h4 class="fs-title">PATTERN SEQUENCE (OBLIGATORIA)</h4>
+                                    <label for="KeyPoint1">KeyPoint 1</label>
+                                    <input type="number"><br>
+                                    <label for="KeyPoint2">KeyPoint 2</label>
+                                    <input type="number"><br>
+                                    <label for="KeyPoint3">KeyPoint 3</label>
+                                    <input type="number"><br>
+                                    <label for="KeyPoint4">KeyPoint 4</label>
+                                    <input type="number"><br><br>
 
-                        <h4 class="fs-title">ART FOOT SEQUENCE</h4>
-                            <label for="ASqB">ASq B</label>
-                            <input type="number"><br>
-                            <label for="ASq1">ASq 1</label>
-                            <input type="number"><br>
-                            <label for="ASq2">ASq 2</label>
-                            <input type="number"><br>
-                            <label for="ASq3">ASq 3</label>
-                            <input type="number"><br>
-                            <label for="ASq4">ASq 4</label>
-                            <input type="number"><br><br>
+                                <h4 class="fs-title">ART FOOT SEQUENCE</h4>
+                                    <label for="ASqB">ASq B</label>
+                                    <input type="number"><br>
+                                    <label for="ASq1">ASq 1</label>
+                                    <input type="number"><br>
+                                    <label for="ASq2">ASq 2</label>
+                                    <input type="number"><br>
+                                    <label for="ASq3">ASq 3</label>
+                                    <input type="number"><br>
+                                    <label for="ASq4">ASq 4</label>
+                                    <input type="number"><br><br>
 
-                        <input type="button" name="previous" class="previous action-button" value="Previous" />
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
+                                <input type="button" name="previous" class="previous action-button" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
 
-                    <fieldset class="form-step">
-                        <h4 class="fs-title">DANCE STEP SEQUENCE</h4>
-                            <label for="DStepSqB">DStepSq B</label>
-                            <input type="number"><br>
-                            <label for="DStepSq1">DStepSq 1</label>
-                            <input type="number"><br>
-                            <label for="DStepSq2">DStepSq 2</label>
-                            <input type="number"><br>
-                            <label for="DStepSq3">DStepSq 3</label>
-                            <input type="number"><br>
-                            <label for="DStepSq4">DStepSq 4</label>
-                            <input type="number"><br><br>
-                
-                        <h4 class="fs-title">FOOTWORK SEQUENCE</h4>
-                            <label for="FoSqB">FoSq B</label>
-                            <input type="number"><br>
-                            <label for="FoSq1">FoSq 1</label>
-                            <input type="number"><br>
-                            <label for="FoSq2">FoSq 2</label>
-                            <input type="number"><br>
-                            <label for="FoSq3">FoSq 3</label>
-                            <input type="number"><br>
-                            <label for="FoSq4">FoSq 4</label>
-                            <input type="number"><br><br>
-
-                        <h4 class="fs-title">CHOREO STEP SEQUENCE</h4>
-                            <label for="ChStSq">ChStSq</label>
-                            <input type="number"><br><br>
-
-                        <input type="button" name="previous" class="previous action-button" value="Previous" />
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
-
-                    <fieldset class="form-step">
-                        <h4 class="fs-title">BRACKET DERECHO</h4>
-                            <label for="BrDExtDetras">BrExtDetras</label>
-                            <input type="number"><br>
-                            <label for="BrDExtDelante">BrExtDelante</label>
-                            <input type="number"><br>
-                            <label for="BrDIntDetras">BrIntDetras</label>
-                            <input type="number"><br>
-                            <label for="BrDIntDelante">BrIntDelante</label>
-                            <input type="number"><br><br>
-
-                        <h4 class="fs-title">BRACKET IZQUIERDO</h4>
-                            <label for="BrIExtDetras">BrExtDetras</label>
-                            <input type="number"><br>
-                            <label for="BrIExtDelante">BrExtDelante</label>
-                            <input type="number"><br>
-                            <label for="BrIIntDetras">BrIntDetras</label>
-                            <input type="number"><br>
-                            <label for="BrIIntDelante">BrIntDelante</label>
-                            <input type="number"><br><br>
-
-                        <input type="button" name="previous" class="previous action-button" value="Previous" />
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
-
-                    <fieldset class="form-step">
-                        <h4 class="fs-title">COUNTER DERECHO</h4>
-                            <label for="CoDExtDetras">CoExtDetras</label>
-                            <input type="number"><br>
-                            <label for="CoDExtDelante">CoExtDelante</label>
-                            <input type="number"><br>
-                            <label for="CoDIntDetras">CoIntDetras</label>
-                            <input type="number"><br>
-                            <label for="CoDIntDelante">CoIntDelante</label>
-                            <input type="number"><br><br>
-                    
-                        <h4 class="fs-title">COUNTER IZQUIERDO</h4>
-                            <label for="CoIExtDetras">CoExtDetras</label>
-                            <input type="number"><br>
-                            <label for="CoIExtDelante">CoExtDelante</label>
-                            <input type="number"><br>
-                            <label for="CoIIntDetras">CoIntDetras</label>
-                            <input type="number"><br>
-                            <label for="CoIIntDelante">CoIntDelante</label>
-                            <input type="number"><br><br>
+                            <fieldset class="form-step">
+                                <h4 class="fs-title">DANCE STEP SEQUENCE</h4>
+                                    <label for="DStepSqB">DStepSq B</label>
+                                    <input type="number"><br>
+                                    <label for="DStepSq1">DStepSq 1</label>
+                                    <input type="number"><br>
+                                    <label for="DStepSq2">DStepSq 2</label>
+                                    <input type="number"><br>
+                                    <label for="DStepSq3">DStepSq 3</label>
+                                    <input type="number"><br>
+                                    <label for="DStepSq4">DStepSq 4</label>
+                                    <input type="number"><br><br>
                         
-                        <input type="button" name="previous" class="previous action-button" value="Previous" />
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
+                                <h4 class="fs-title">FOOTWORK SEQUENCE</h4>
+                                    <label for="FoSqB">FoSq B</label>
+                                    <input type="number"><br>
+                                    <label for="FoSq1">FoSq 1</label>
+                                    <input type="number"><br>
+                                    <label for="FoSq2">FoSq 2</label>
+                                    <input type="number"><br>
+                                    <label for="FoSq3">FoSq 3</label>
+                                    <input type="number"><br>
+                                    <label for="FoSq4">FoSq 4</label>
+                                    <input type="number"><br><br>
 
-                    <fieldset class="form-step">
-                        <h4 class="fs-title">ROCKER DERECHO</h4>
-                            <label for="RoDExtDetras">RoExtDetras</label>
-                            <input type="number"><br>
-                            <label for="RoDExtDelante">RoExtDelante</label>
-                            <input type="number"><br>
-                            <label for="RoDIntDetras">RoIntDetras</label>
-                            <input type="number"><br>
-                            <label for="RoDIntDelante">RoIntDelante</label>
-                            <input type="number"><br><br>
+                                <h4 class="fs-title">CHOREO STEP SEQUENCE</h4>
+                                    <label for="ChStSq">ChStSq</label>
+                                    <input type="number"><br><br>
 
-                        <h4 class="fs-title">ROCKER IZQUIERDO</h4>
-                            <label for="RoIExtDetras">RoExtDetras</label>
-                            <input type="number"><br>
-                            <label for="RoIExtDelante">RoExtDelante</label>
-                            <input type="number"><br>
-                            <label for="RoIIntDetras">RoIntDetras</label>
-                            <input type="number"><br>
-                            <label for="RoIIntDelante">RoIntDelante</label>
-                            <input type="number"><br><br>
+                                <input type="button" name="previous" class="previous action-button" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
 
-                        <input type="button" name="previous" class="previous action-button" value="Previous" />
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
+                            <fieldset class="form-step">
+                                <h4 class="fs-title">BRACKET DERECHO</h4>
+                                    <label for="BrDExtDetras">BrExtDetras</label>
+                                    <input type="number"><br>
+                                    <label for="BrDExtDelante">BrExtDelante</label>
+                                    <input type="number"><br>
+                                    <label for="BrDIntDetras">BrIntDetras</label>
+                                    <input type="number"><br>
+                                    <label for="BrDIntDelante">BrIntDelante</label>
+                                    <input type="number"><br><br>
 
-                    <fieldset class="form-step">
-                        <h4 class="fs-title">LOOP DERECHO</h4>
-                            <label for="LoDExtDetras">LoExtDetras</label>
-                            <input type="number"><br>
-                            <label for="LoDExtDelante">LoExtDelante</label>
-                            <input type="number"><br>
-                            <label for="LoDIntDetras">LoIntDetras</label>
-                            <input type="number"><br>
-                            <label for="LoDIntDelante">LoIntDelante</label>
-                            <input type="number"><br><br>
+                                <h4 class="fs-title">BRACKET IZQUIERDO</h4>
+                                    <label for="BrIExtDetras">BrExtDetras</label>
+                                    <input type="number"><br>
+                                    <label for="BrIExtDelante">BrExtDelante</label>
+                                    <input type="number"><br>
+                                    <label for="BrIIntDetras">BrIntDetras</label>
+                                    <input type="number"><br>
+                                    <label for="BrIIntDelante">BrIntDelante</label>
+                                    <input type="number"><br><br>
 
-                        <h4 class="fs-title">LOOP IZQUIERDO</h4>
-                            <label for="LoIExtDetras">LoExtDetras</label>
-                            <input type="number"><br>
-                            <label for="LoIExtDelante">LoExtDelante</label>
-                            <input type="number"><br>
-                            <label for="LoIIntDetras">LoIntDetras</label>
-                            <input type="number"><br>
-                            <label for="LoIIntDelante">LoIntDelante</label>
-                            <input type="number"><br><br>
+                                <input type="button" name="previous" class="previous action-button" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
 
-                        <input type="button" name="previous" class="previous action-button" value="Previous" />
-                        <input type="submit" name="anyadirEntreneDanzaBtn" value="Submit">
-                    </fieldset>
-                </form>
+                            <fieldset class="form-step">
+                                <h4 class="fs-title">COUNTER DERECHO</h4>
+                                    <label for="CoDExtDetras">CoExtDetras</label>
+                                    <input type="number"><br>
+                                    <label for="CoDExtDelante">CoExtDelante</label>
+                                    <input type="number"><br>
+                                    <label for="CoDIntDetras">CoIntDetras</label>
+                                    <input type="number"><br>
+                                    <label for="CoDIntDelante">CoIntDelante</label>
+                                    <input type="number"><br><br>
+                            
+                                <h4 class="fs-title">COUNTER IZQUIERDO</h4>
+                                    <label for="CoIExtDetras">CoExtDetras</label>
+                                    <input type="number"><br>
+                                    <label for="CoIExtDelante">CoExtDelante</label>
+                                    <input type="number"><br>
+                                    <label for="CoIIntDetras">CoIntDetras</label>
+                                    <input type="number"><br>
+                                    <label for="CoIIntDelante">CoIntDelante</label>
+                                    <input type="number"><br><br>
+                                
+                                <input type="button" name="previous" class="previous action-button" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+
+                            <fieldset class="form-step">
+                                <h4 class="fs-title">ROCKER DERECHO</h4>
+                                    <label for="RoDExtDetras">RoExtDetras</label>
+                                    <input type="number"><br>
+                                    <label for="RoDExtDelante">RoExtDelante</label>
+                                    <input type="number"><br>
+                                    <label for="RoDIntDetras">RoIntDetras</label>
+                                    <input type="number"><br>
+                                    <label for="RoDIntDelante">RoIntDelante</label>
+                                    <input type="number"><br><br>
+
+                                <h4 class="fs-title">ROCKER IZQUIERDO</h4>
+                                    <label for="RoIExtDetras">RoExtDetras</label>
+                                    <input type="number"><br>
+                                    <label for="RoIExtDelante">RoExtDelante</label>
+                                    <input type="number"><br>
+                                    <label for="RoIIntDetras">RoIntDetras</label>
+                                    <input type="number"><br>
+                                    <label for="RoIIntDelante">RoIntDelante</label>
+                                    <input type="number"><br><br>
+
+                                <input type="button" name="previous" class="previous action-button" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+
+                            <fieldset class="form-step">
+                                <h4 class="fs-title">LOOP DERECHO</h4>
+                                    <label for="LoDExtDetras">LoExtDetras</label>
+                                    <input type="number"><br>
+                                    <label for="LoDExtDelante">LoExtDelante</label>
+                                    <input type="number"><br>
+                                    <label for="LoDIntDetras">LoIntDetras</label>
+                                    <input type="number"><br>
+                                    <label for="LoDIntDelante">LoIntDelante</label>
+                                    <input type="number"><br><br>
+
+                                <h4 class="fs-title">LOOP IZQUIERDO</h4>
+                                    <label for="LoIExtDetras">LoExtDetras</label>
+                                    <input type="number"><br>
+                                    <label for="LoIExtDelante">LoExtDelante</label>
+                                    <input type="number"><br>
+                                    <label for="LoIIntDetras">LoIntDetras</label>
+                                    <input type="number"><br>
+                                    <label for="LoIIntDelante">LoIntDelante</label>
+                                    <input type="number"><br><br>
+
+                                <input type="button" name="previous" class="previous action-button" value="Previous" />
+                                <input type="submit" name="anyadirEntreneDanzaBtn" value="Submit">
+                            </fieldset>
+                        </form>
+                    </div>
+                </main>
             </div>
-        </main>
-        <footer class="text-center mt-5 footer-copyright">
-            <div class="text-center p-3" style="background-color: #222222; color:#ded8ae">
-                © 2024 Copyright: Virginia García
-            </div>
-        </footer>
-        <!--<script>
-            const nextButtons = document.querySelectorAll('.next');
-            const previousButtons = document.querySelectorAll('.previous');
-            const formSteps = document.querySelectorAll('.form-step');
+            <footer class="text-center mt-5 footer-copyright">
+                <div class="p-3" style="background-color: #222222; color:#ded8ae">
+                    © 2024 Copyright: Virginia García
+                </div>
+            </footer>
+        </div>
+         
 
-            nextButtons.forEach((button, index) => {
-                button.addEventListener('click', () => {
-                formSteps[index].classList.add('hidden');
-                formSteps[index + 1].classList.remove('hidden');
-                });
-            });
-
-            previousButtons.forEach((button, index) => {
-                button.addEventListener('click', () => {
-                formSteps[index].classList.add('hidden');
-                formSteps[index].classList.remove('hidden');
-                });
-            });
-        </script>-->
         <script>
             var current_fs, next_fs, previous_fs; //fieldsets
-            var left, opacity, scale; //fieldset properties which we will animate
-            var animating; //flag to prevent quick multi-click glitches
 
             $(".next").click(function(){
-                if(animating) return false;
-                animating = true;
-                
                 current_fs = $(this).parent();
                 next_fs = $(this).parent().next();
                 
@@ -284,27 +266,10 @@
                 
                 //show the next fieldset
                 next_fs.show(); 
-                //hide the current fieldset with style
-                current_fs.animate({opacity: 0}, {
-                    step: function(now, mx) {
-                        current_fs.css({
-                    'transform': 'scale('+scale+')',
-                    'position': 'absolute'
-                });
-                        next_fs.css({'left': left, 'opacity': opacity});
-                    }, 
-                    duration: 800, 
-                    complete: function(){
-                        current_fs.hide();
-                        animating = false;
-                    }
-                });
+                current_fs.hide();
             });
 
-            $(".previous").click(function(){
-                if(animating) return false;
-                animating = true;
-                
+            $(".previous").click(function(){                
                 current_fs = $(this).parent();
                 previous_fs = $(this).parent().prev();
                 
@@ -313,20 +278,7 @@
                 
                 //show the previous fieldset
                 previous_fs.show(); 
-                //hide the current fieldset with style
-                current_fs.animate({opacity: 0}, {
-                    step: function(now, mx) {
-                        current_fs.css({'left': left, 'position': 'absolute'});
-                        previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-                    }, 
-                    duration: 800, 
-                    complete: function(){
-                        current_fs.hide();
-                        animating = false;
-                    }, 
-                    //this comes from the custom easing plugin
-                    easing: 'easeInOutBack'
-                });
+                current_fs.hide();
             });
         </script>
     </body>
