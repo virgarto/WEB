@@ -125,10 +125,34 @@ footer{
     font-size: 14px;
 }
 
+#entreneform .submit-button{
+	width: 100px;
+	background: white;
+	font-weight: bold;
+	color:  #535b85;
+	border: 2px solid #535b85;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px;
+	margin: 10px 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#entreneform .submit-button:hover{
+	background: #535b85;
+	color: white;
+}
+
 #entreneform fieldset{
     position: relative;
 }
 
 #entreneform fieldset:not(:first-of-type) {
 	display: none;
+}
+
+#entreneform label{
+	display: inline-block;
+	width:  150px;
 }
