@@ -142,85 +142,97 @@ CREATE TABLE `tfg`.`rocker_izq` (
 
 CREATE TABLE `tfg`.`entrenamiento_danza` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `fecha` DATE NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `id_patinador`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`users` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_art_foot_sq`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`art_foot_sequence` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_bracket_der`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`bracket_derecho` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_bracket_izq`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`bracket_izquierdo` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_choreo_step_sq`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`choreo_step_sequence` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_cluster`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`cluster` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_counter_der`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`counter_derecho` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_counter_izq`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`counter_izquierdo` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_dance_step_sq`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`dance_step_sequence` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_footwork_sq`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`footwork_sequence` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_loop_der`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`loop_derecho` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_loop_izq`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`loop_izquierdo` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_pattern_sq`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`pattern_sequence` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_rocker_der`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`rocker_derecho` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_rocker_izq`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`rocker_izq` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_travelling`
     FOREIGN KEY (`id`)
     REFERENCES `tfg`.`travelling` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE CASCADE);
 
+/***************************************************************/
+/* Creamos un nuevo trigger para que cada vez que se añada un  */
+/* registro a la tabla de los elementos integrativos se añada  */
+/* a la tabla de entrenamiento principal                       */
+/***************************************************************/
+CREATE TRIGGER insert_elemento_danza
+AFTER INSERT ON `tfg`.`travelling`
+FOR EACH ROW
+INSERT INTO `tfg`.`entrenamiento_danza` (id_travelling) VALUES (NEW.id);
+
+DROP TRIGGER insert_elemento_danza;
