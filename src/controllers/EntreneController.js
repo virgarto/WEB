@@ -3,9 +3,10 @@ function goToEntreneForm (req, res){
 }
 
 function createEntreneDanza(req, res){
-    const data = req.body;
+    const {travellingB, cluster2} = req.body;
+
+    console.log(travellingB, cluster2);
     
-    console.log(data);
 }
 
 module.exports = {
