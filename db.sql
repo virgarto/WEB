@@ -246,9 +246,12 @@ CREATE TABLE `tfg`.`entrenamiento_danza` (
 /* registro a la tabla de los elementos integrativos se añada  */
 /* a la tabla de entrenamiento principal                       */
 /***************************************************************/
-CREATE TRIGGER insert_elemento_danza
-AFTER INSERT ON `tfg`.`travelling`
+CREATE TRIGGER agregar_id_travelling
+AFTER INSERT ON travelling
 FOR EACH ROW
-INSERT INTO `tfg`.`entrenamiento_danza` (id_travelling) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza (id_travelling) VALUES (NEW.id);
 
-DROP TRIGGER insert_elemento_danza;
+CREATE TRIGGER agregar_id_cluster
+AFTER INSERT ON cluster
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza (id_cluster) VALUES (NEW.id);
