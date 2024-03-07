@@ -143,84 +143,100 @@ CREATE TABLE `tfg`.`rocker_izq` (
 CREATE TABLE `tfg`.`entrenamiento_danza` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NOT NULL,
+  `id_patinador` INT, 
+  `id_art_foot_sq` INT,
+  `id_bracket_der` INT,
+  `id_bracket_izq` INT,
+  `id_choreo_step_sq` INT,
+  `id_cluster` INT,
+  `id_counter_der` INT,
+  `id_counter_izq` INT,
+  `id_dance_step_sq` INT,
+  `id_footwork_sq` INT,
+  `id_loop_der` INT,
+  `id_loop_izq` INT,
+  `id_pattern_sq` INT,
+  `id_rocker_der` INT,
+  `id_rocker_izq` INT,
+  `id_travelling` INT,
   PRIMARY KEY (`id`),
   CONSTRAINT `id_patinador`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_patinador`)
     REFERENCES `tfg`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_art_foot_sq`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_art_foot_sq`)
     REFERENCES `tfg`.`art_foot_sequence` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_bracket_der`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_bracket_der`)
     REFERENCES `tfg`.`bracket_derecho` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_bracket_izq`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_bracket_izq`)
     REFERENCES `tfg`.`bracket_izquierdo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_choreo_step_sq`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_choreo_step_sq`)
     REFERENCES `tfg`.`choreo_step_sequence` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_cluster`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_cluster`)
     REFERENCES `tfg`.`cluster` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_counter_der`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_counter_der`)
     REFERENCES `tfg`.`counter_derecho` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_counter_izq`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_counter_izq`)
     REFERENCES `tfg`.`counter_izquierdo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_dance_step_sq`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_dance_step_sq`)
     REFERENCES `tfg`.`dance_step_sequence` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_footwork_sq`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_footwork_sq`)
     REFERENCES `tfg`.`footwork_sequence` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_loop_der`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_loop_der`)
     REFERENCES `tfg`.`loop_derecho` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_loop_izq`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_loop_izq`)
     REFERENCES `tfg`.`loop_izquierdo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_pattern_sq`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_pattern_sq`)
     REFERENCES `tfg`.`pattern_sequence` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_rocker_der`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_rocker_der`)
     REFERENCES `tfg`.`rocker_derecho` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_rocker_izq`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_rocker_izq`)
     REFERENCES `tfg`.`rocker_izq` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_travelling`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`id_travelling`)
     REFERENCES `tfg`.`travelling` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE);
