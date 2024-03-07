@@ -132,7 +132,7 @@ CREATE TABLE `tfg`.`rocker_izq` (
   PRIMARY KEY (`id`));
 
   CREATE TABLE `tfg`.`loop_izquierdo` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `LoIExtDetras` INT NULL,
   `LoIExtDelante` INT NULL,
   `LoIIntDetras` INT NULL,
@@ -302,7 +302,7 @@ FOR EACH ROW
   INSERT INTO entrenamiento_danza (id_loop_der) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_loop_izquierdo
-AFTER INSERT ON loop_derecho
+AFTER INSERT ON loop_izquierdo
 FOR EACH ROW
   INSERT INTO entrenamiento_danza (id_loop_izq) VALUES (NEW.id);
 
