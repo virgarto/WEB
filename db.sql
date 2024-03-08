@@ -242,81 +242,90 @@ CREATE TABLE `tfg`.`entrenamiento_danza` (
     ON UPDATE CASCADE);
 
 /***************************************************************/
+/* Creamos una tabla intermedia para añadir los registros de   */
+/* los fk en la tabla principal de entrenamiento_danza         */
+/***************************************************************/
+CREATE TABLE entrenamiento_danza_temp LIKE entrenamiento_danza;
+
+
+/***************************************************************/
 /* Creamos un nuevo trigger para que cada vez que se añada un  */
 /* registro a la tabla de los elementos integrativos se añada  */
 /* a la tabla de entrenamiento principal                       */
 /***************************************************************/
+
+
 CREATE TRIGGER agregar_id_travelling
 AFTER INSERT ON travelling
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_travelling) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_travelling) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_cluster
 AFTER INSERT ON cluster
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_cluster) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_cluster) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_art_foot_sq
 AFTER INSERT ON art_foot_sequence
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_art_foot_sq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_art_foot_sq) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_bracket_derecho
 AFTER INSERT ON bracket_derecho
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_bracket_der) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_bracket_der) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_bracket_izquierdo
 AFTER INSERT ON bracket_izquierdo
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_bracket_izq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_bracket_izq) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_choreo_step
 AFTER INSERT ON choreo_step_sequence
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_choreo_step_sq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_choreo_step_sq) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_counter_derecho
 AFTER INSERT ON counter_derecho
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_counter_der) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_counter_der) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_counter_izquierdo
 AFTER INSERT ON counter_izquierdo
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_counter_izq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_counter_izq) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_dance_step
 AFTER INSERT ON dance_step_sequence
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_dance_step_sq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_dance_step_sq) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_footwork_sq
 AFTER INSERT ON footwork_sequence
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_footwork_sq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_footwork_sq) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_loop_derecho
 AFTER INSERT ON loop_derecho
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_loop_der) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_loop_der) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_loop_izquierdo
 AFTER INSERT ON loop_izquierdo
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_loop_izq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_loop_izq) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_pattern_sequence
 AFTER INSERT ON pattern_sequence
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_pattern_sq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_pattern_sq) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_rocker_derecho
 AFTER INSERT ON rocker_derecho
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_rocker_der) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_rocker_der) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_rocker_izquierdo
 AFTER INSERT ON rocker_izq
 FOR EACH ROW
-  INSERT INTO entrenamiento_danza (id_rocker_izq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_danza_temp (id_rocker_izq) VALUES (NEW.id);
