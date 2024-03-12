@@ -57,7 +57,7 @@ function createEntreneDanza(req, res){
                         // Borramos la información guardada en la tabla temporal
                         conn.query('DELETE FROM entrenamiento_danza_temp');
                         
-                        res.render('entrenamientos');
+                        res.render('entrenamientos', {msg: 'Nuevo entrenamiento registrado con éxito'});
                     
                 });
             }         
