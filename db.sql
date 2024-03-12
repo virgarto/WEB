@@ -329,3 +329,5 @@ CREATE TRIGGER agregar_id_rocker_izquierdo
 AFTER INSERT ON rocker_izq
 FOR EACH ROW
   INSERT INTO entrenamiento_danza_temp (id_rocker_izq) VALUES (NEW.id);
+
+ALTER TABLE travelling AUTO_INCREMENT = 1;
