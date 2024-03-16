@@ -115,15 +115,15 @@ function createEntreneLibre(req, res){
 
                 // Añadimos en la tabla principal los registros de la tabla temporal para que estén todos en el mismo registro
                 req.getConnection((err, conn)=>{
-                    conn.query('INSERT INTO entrenamiento_danza (id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq) SELECT MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq) FROM entrenamiento_danza_temp');
+                    conn.query('INSERT INTO entrenamiento_libre (id_uprigth_izq, id_uprigth_der, id_sit_izq, id_sit_der, id_camel_izq, id_camel_der, id_heel_izq, id_heel_der, id_saltos_simples, id_saltos_dobles, id_saltos_triples, id_pos_avanzadas, id_discos, id_flexibilidad) SELECT MAX(id_uprigth_izq), MAX(id_uprigth_der), MAX(id_sit_izq), MAX(id_sit_der), MAX(id_camel_izq), MAX(id_camel_der), MAX(id_heel_izq), MAX(id_heel_der), MAX(id_saltos_simples), MAX(id_saltos_dobles), MAX(id_saltos_triples), MAX(id_pos_avanzadas), MAX(id_discos), MAX(id_flexibilidad) FROM entrenamiento_libre_temp');
 
                         // Finalizamos la creación del entrenamiento añadiendo el id del usuario
-                        conn.query('UPDATE entrenamiento_danza SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_danza)', [id_pat]); 
+                        conn.query('UPDATE entrenamiento_libre SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_libre)', [id_pat]); 
                 
                         // Borramos la información guardada en la tabla temporal
-                        conn.query('DELETE FROM entrenamiento_danza_temp');
+                        conn.query('DELETE FROM entrenamiento_libre_temp');
                         
-                        res.render('entrenamientos', {msg: 'Nuevo entrenamiento registrado con éxito'});
+                        res.render('entrenamientos', {msg: 'Nuevo entrenamiento libre registrado con éxito'});
                     
                 });
             }         

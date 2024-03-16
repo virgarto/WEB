@@ -546,3 +546,78 @@ CREATE TABLE `tfg`.`entrenamiento_libre` (
 
 
 CREATE TABLE `tfg`.`entrenamiento_libre_temp`LIKE `tfg`.`entrenamiento_libre`;
+
+CREATE TRIGGER agregar_id_upright_izq
+AFTER INSERT ON upright_izquierdo
+FOR EACH ROW
+  INSERT INTO entrenamiento_libre_temp (id_upright_izq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_upright_der
+AFTER INSERT ON upright_derecho
+FOR EACH ROW
+  INSERT INTO entrenamiento_libre_temp (id_upright_izq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_sit_izq
+AFTER INSERT ON sit_izquierdo
+FOR EACH ROW
+  INSERT INTO entrenamiento_libre_temp (id_sit_izq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_bracket_derecho
+AFTER INSERT ON sit_derecho
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_bracket_der) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_bracket_izquierdo
+AFTER INSERT ON bracket_izquierdo
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_bracket_izq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_choreo_step
+AFTER INSERT ON choreo_step_sequence
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_choreo_step_sq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_counter_derecho
+AFTER INSERT ON counter_derecho
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_counter_der) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_counter_izquierdo
+AFTER INSERT ON counter_izquierdo
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_counter_izq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_dance_step
+AFTER INSERT ON dance_step_sequence
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_dance_step_sq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_footwork_sq
+AFTER INSERT ON footwork_sequence
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_footwork_sq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_loop_derecho
+AFTER INSERT ON loop_derecho
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_loop_der) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_loop_izquierdo
+AFTER INSERT ON loop_izquierdo
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_loop_izq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_pattern_sequence
+AFTER INSERT ON pattern_sequence
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_pattern_sq) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_rocker_derecho
+AFTER INSERT ON rocker_derecho
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_rocker_der) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_rocker_izquierdo
+AFTER INSERT ON rocker_izq
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_rocker_izq) VALUES (NEW.id);
