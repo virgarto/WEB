@@ -330,4 +330,219 @@ AFTER INSERT ON rocker_izq
 FOR EACH ROW
   INSERT INTO entrenamiento_danza_temp (id_rocker_izq) VALUES (NEW.id);
 
-ALTER TABLE travelling AUTO_INCREMENT = 1;
+/* TABLAS PARA ENTRENAMIENTO LIBRE */
+CREATE TABLE `tfg`.`upright_izquierdo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `upright` INT NULL,
+  `forward` INT NULL,
+  `layback` INT NULL,
+  `sideways` INT NULL,
+  `split` INT NULL,
+  `torso` INT NULL,
+  `biellman` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`upright_derecho` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `upright` INT NULL,
+  `forward` INT NULL,
+  `layback` INT NULL,
+  `sideways` INT NULL,
+  `split` INT NULL,
+  `torso` INT NULL,
+  `biellman` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`sit_izquierdo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `sit` INT NULL,
+  `forward` INT NULL,
+  `sideways` INT NULL,
+  `behind` INT NULL,
+  `twist` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`sit_derecho` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `sit` INT NULL,
+  `forward` INT NULL,
+  `sideways` INT NULL,
+  `behind` INT NULL,
+  `twist` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`camel_izquierdo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `exterior` INT NULL,
+  `interior` INT NULL,
+  `layover` INT NULL,
+  `forward` INT NULL,
+  `sideways` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`camel_izquierdo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `exterior` INT NULL,
+  `interior` INT NULL,
+  `layover` INT NULL,
+  `forward` INT NULL,
+  `sideways` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`heel_izquierdo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `heel` INT NULL,
+  `forward` INT NULL,
+  `sideways` INT NULL,
+  `layover` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`heel_derecho` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `heel` INT NULL,
+  `forward` INT NULL,
+  `sideways` INT NULL,
+  `layover` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`posiciones_avanzadas` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `inverted` INT NULL,
+  `broken` INT NULL,
+  `bryant` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`saltos_simples` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `waltz_jump` INT NULL,
+  `salchow` INT NULL,
+  `toeloop` INT NULL,
+  `flip` INT NULL,
+  `lutz` INT NULL,
+  `loop` INT NULL,
+  `thoren` INT NULL,
+  `axel` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`saltos_dobles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `salchow` INT NULL,
+  `toeloop` INT NULL,
+  `flip` INT NULL,
+  `lutz` INT NULL,
+  `loop` INT NULL,
+  `thoren` INT NULL,
+  `axel` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`saltos_triples` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `salchow` INT NULL,
+  `toeloop` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`discos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `corto` INT NULL,
+  `largo` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `tfg`.`flexibilidad` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `split` INT NULL,
+  `arco` INT NULL,
+  PRIMARY KEY (`id`));
+
+
+CREATE TABLE `tfg`.`entrenamiento_libre` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_patinador` INT NOT NULL,
+  `fecha` DATE NULL,
+  `id_upright_izq` INT NULL,
+  `id_upright_der` INT NULL,
+  `id_sit_izq` INT NULL,
+  `id_sit_der` INT NULL,
+  `id_camel_izq` INT NULL,
+  `id_camel_der` INT NULL,
+  `id_heel_izq` INT NULL,
+  `id_heel_der` INT NULL,
+  `id_saltos_simples` INT NULL,
+  `id_saltos_dobles` INT NULL,
+  `id_saltos_triples` INT NULL,
+  `id_pos_avanzadas` INT NULL,
+  `id_discos` INT NULL,
+  `id_flexibilidad` INT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `id_upright_izq`
+    FOREIGN KEY (`id_upright_izq`)
+    REFERENCES `tfg`.`upright_izquierdo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_upright_der`
+    FOREIGN KEY (`id_upright_der`)
+    REFERENCES `tfg`.`upright_derecho` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_sit_izq`
+    FOREIGN KEY (`id_sit_izq`)
+    REFERENCES `tfg`.`sit_izquierdo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_sit_der`
+    FOREIGN KEY (`id_sit_der`)
+    REFERENCES `tfg`.`sit_derecho` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_camel_izq`
+    FOREIGN KEY (`id_camel_izq`)
+    REFERENCES `tfg`.`camel_izquierdo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_camel_der`
+    FOREIGN KEY (`id_camel_der`)
+    REFERENCES `tfg`.`camel_derecho` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_heel_izq`
+    FOREIGN KEY (`id_heel_izq`)
+    REFERENCES `tfg`.`heel_izquierdo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_heel_der`
+    FOREIGN KEY (`id_heel_der`)
+    REFERENCES `tfg`.`heel_derecho` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_saltos_simples`
+    FOREIGN KEY (`id_saltos_simples`)
+    REFERENCES `tfg`.`saltos_simples` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_saltos_dobles`
+    FOREIGN KEY (`id_saltos_dobles`)
+    REFERENCES `tfg`.`saltos_dobles` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_saltos_triples`
+    FOREIGN KEY (`id_saltos_triples`)
+    REFERENCES `tfg`.`saltos_triples` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_pos_avanzadas`
+    FOREIGN KEY (`id_pos_avanzadas`)
+    REFERENCES `tfg`.`posiciones_avanzadas` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_discos`
+    FOREIGN KEY (`id_discos`)
+    REFERENCES `tfg`.`discos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_flexibilidad`
+    FOREIGN KEY (`id_flexibilidad`)
+    REFERENCES `tfg`.`flexibilidad` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE);
+
+
+CREATE TABLE `tfg`.`entrenamiento_libre_temp`LIKE `tfg`.`entrenamiento_libre`;

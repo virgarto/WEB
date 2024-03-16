@@ -2,6 +2,10 @@ function goToEntreneForm (req, res){
     res.render('newEntreneDanza');
 }
 
+function goToEntreneLibre (req, res){
+    res.render('newEntreneLibre');
+}
+
 function createEntreneDanza(req, res){
     const {travellingB, travelling1, travelling2, travelling3, travelling4} = req.body;
     const {clusterB, cluster1, cluster2, cluster3, cluster4} = req.body;
@@ -67,7 +71,71 @@ function createEntreneDanza(req, res){
     })
 }
 
+function createEntreneLibre(req, res){
+    const {upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq} = req.body;
+    const {upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der} = req.body;
+    const {sit_izq, sit_forward_izq, sit_sideways_izq, behind_izq, twist_izq} = req.body;
+    const {sit_der, sit_forward_der, sit_sideways_der, behind_der, twist_der} = req.body;
+    const {exterior_izq, interior_izq, layover_izq, camel_forward_izq, camel_sideways_izq} = req.body;
+    const {exterior_der, interior_der, layover_der, camel_forward_der, camel_sideways_der} = req.body;
+    const {heel_izq, heel_forward_izq, heel_sideways_izq, heel_layover_izq} = req.body;
+    const {heel_der, heel_forward_der, heel_sideways_der, heel_layover_der} = req.body;
+    const {waltz_jump, salchow, toeloop, flip, lutz, loop, thoren, axel} = req.body;
+    const {salchow_2, Toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2} = req.body;
+    const {salchow_3, Toeloop_3} = req.body;
+    const {pos_inverted, pos_broken, pos_bryant} = req.body;
+    const {disc_corto, disc_largo} = req.body;
+    const {flexi_split, flexi_arco} = req.body;
+        
+    req.getConnection((err, conn) => {
+        
+        conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [req.session.email], (err, id) =>{
+            if(err){
+                console.log("Error al obtener el Id del usuario");
+            }
+            else{
+                const id_pat = id[0].pat_ID;
+                console.log("Id del patinador: " + id_pat);
+
+                // Creamos los registros de cada elemento integrativo del entrenamiento
+                conn.query('INSERT INTO uprigth_izquierdo (upright, forward, layback, sideways, split, torso, biellman) VALUES (?, ?, ?, ?, ?)', [upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq]);
+                conn.query('INSERT INTO uprigth_derecho (upright, forward, layback, sideways, split, torso, biellman) VALUES (?, ?, ?, ?, ?)', [upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der]);
+                conn.query('INSERT INTO sit_izquierdo (sit, forward, sideways, behind, twist) VALUES (?, ?, ?, ?)', [sit_izq, sit_forward_izq, sit_sideways_izq, behind_izq, twist_izq]);
+                conn.query('INSERT INTO sit_derecho (sit, forward, sideways, behind, twist) VALUES (?, ?, ?, ?, ?)', [sit_der, sit_forward_der, sit_sideways_der, behind_der, twist_der]);
+                conn.query('INSERT INTO camel_izquierdo (exterior, interior, layover, forward, sideways) VALUES (?, ?, ?, ?, ?)', [exterior_izq, interior_izq, layover_izq, camel_forward_izq, camel_sideways_izq]);
+                conn.query('INSERT INTO camel_derecho (exterior, interior, layover, forward, sideways) VALUES (?, ?, ?, ?, ?)', [exterior_der, interior_der, layover_der, camel_forward_der, camel_sideways_der]);
+                conn.query('INSERT INTO heel_izquierdo (heel, forward, sideways, layover) VALUES (?)', [heel_izq, heel_forward_izq, heel_sideways_izq, heel_layover_izq]);
+                conn.query('INSERT INTO heel_derecho (heel, forward, sideways, layover) VALUES (?, ?, ?, ?)', [heel_der, heel_forward_der, heel_sideways_der, heel_layover_der]);
+                conn.query('INSERT INTO saltos_simples (waltz_jump, salchow, toeloop, flip, lutz, loop, thoren, axel) VALUES (?, ?, ?, ?)', [waltz_jump, salchow, toeloop, flip, lutz, loop, thoren, axel]);
+                conn.query('INSERT INTO saltos_dobles (salchow, Toeloop, flip, lutz, loop, thoren, axel) VALUES (?, ?, ?, ?)', [salchow_2, Toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2]);
+                conn.query('INSERT INTO saltos_triples (salchow, Toeloop) VALUES (?, ?, ?, ?)', [salchow_3, Toeloop_3]);
+                conn.query('INSERT INTO posiciones_avanzadas (inverted, broken, bryant) VALUES (?, ?, ?, ?)', [pos_inverted, pos_broken, pos_bryant]);
+                conn.query('INSERT INTO discos (corto, largo) VALUES (?, ?, ?, ?)', [disc_corto, disc_largo]);
+                conn.query('INSERT INTO flexibilidad (split, arco) VALUES (?, ?, ?, ?)', [flexi_split, flexi_arco]);
+
+                // Añadimos en la tabla principal los registros de la tabla temporal para que estén todos en el mismo registro
+                req.getConnection((err, conn)=>{
+                    conn.query('INSERT INTO entrenamiento_danza (id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq) SELECT MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq) FROM entrenamiento_danza_temp');
+
+                        // Finalizamos la creación del entrenamiento añadiendo el id del usuario
+                        conn.query('UPDATE entrenamiento_danza SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_danza)', [id_pat]); 
+                
+                        // Borramos la información guardada en la tabla temporal
+                        conn.query('DELETE FROM entrenamiento_danza_temp');
+                        
+                        res.render('entrenamientos', {msg: 'Nuevo entrenamiento registrado con éxito'});
+                    
+                });
+            }         
+            
+        })
+            
+    })
+}
+
 module.exports = {
     goToEntreneForm,
     createEntreneDanza,
+    goToEntreneLibre,
+    createEntreneLibre,
 }
