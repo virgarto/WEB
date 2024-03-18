@@ -80,7 +80,7 @@ function createEntreneLibre(req, res){
     const {exterior_der, interior_der, layover_der, camel_forward_der, camel_sideways_der} = req.body;
     const {heel_izq, heel_forward_izq, heel_sideways_izq, heel_layover_izq} = req.body;
     const {heel_der, heel_forward_der, heel_sideways_der, heel_layover_der} = req.body;
-    const {waltz_jump, salchow, toeloop, flip, lutz, loop, thoren, axel} = req.body;
+    const {waltz_jump, salchow, toeloop, flip, lutz, loop_simple, thoren, axel} = req.body;
     const {salchow_2, Toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2} = req.body;
     const {salchow_3, Toeloop_3} = req.body;
     const {pos_inverted, pos_broken, pos_bryant} = req.body;
@@ -106,8 +106,8 @@ function createEntreneLibre(req, res){
                 conn.query('INSERT INTO camel_derecho (exterior, interior, layover, forward, sideways) VALUES (?, ?, ?, ?, ?)', [exterior_der, interior_der, layover_der, camel_forward_der, camel_sideways_der]);
                 conn.query('INSERT INTO heel_izquierdo (heel, forward, sideways, layover) VALUES (?, ?, ?, ?)', [heel_izq, heel_forward_izq, heel_sideways_izq, heel_layover_izq]);
                 conn.query('INSERT INTO heel_derecho (heel, forward, sideways, layover) VALUES (?, ?, ?, ?)', [heel_der, heel_forward_der, heel_sideways_der, heel_layover_der]);
-                conn.query('INSERT INTO saltos_simples (waltz_jump, salchow, toeloop, flip, lutz, loop, thoren, axel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [waltz_jump, salchow, toeloop, flip, lutz, loop, thoren, axel]);
-                conn.query('INSERT INTO saltos_dobles (salchow, toeloop, flip, lutz, loop, thoren, axel) VALUES (?, ?, ?, ?, ?, ?, ?)', [salchow_2, Toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2]);
+                conn.query('INSERT INTO saltos_simples (waltz_jump, salchow, toeloop, flip, lutz, loop_simple, thoren, axel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [waltz_jump, salchow, toeloop, flip, lutz, loop_simple, thoren, axel]);
+                conn.query('INSERT INTO saltos_dobles (salchow, toeloop, flip, lutz, loop_doble, thoren, axel) VALUES (?, ?, ?, ?, ?, ?, ?)', [salchow_2, Toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2]);
                 conn.query('INSERT INTO saltos_triples (salchow, toeloop) VALUES (?, ?)', [salchow_3, Toeloop_3]);
                 conn.query('INSERT INTO posiciones_avanzadas (inverted, broken, bryant) VALUES (?, ?, ?)', [pos_inverted, pos_broken, pos_bryant]);
                 conn.query('INSERT INTO discos (corto, largo) VALUES (?, ?)', [disc_corto, disc_largo]);
@@ -115,7 +115,7 @@ function createEntreneLibre(req, res){
 
                 // Añadimos en la tabla principal los registros de la tabla temporal para que estén todos en el mismo registro
                 req.getConnection((err, conn)=>{
-                    conn.query('INSERT INTO entrenamiento_libre (id_uprigth_izq, id_uprigth_der, id_sit_izq, id_sit_der, id_camel_izq, id_camel_der, id_heel_izq, id_heel_der, id_saltos_simples, id_saltos_dobles, id_saltos_triples, id_pos_avanzadas, id_discos, id_flexibilidad) SELECT MAX(id_uprigth_izq), MAX(id_uprigth_der), MAX(id_sit_izq), MAX(id_sit_der), MAX(id_camel_izq), MAX(id_camel_der), MAX(id_heel_izq), MAX(id_heel_der), MAX(id_saltos_simples), MAX(id_saltos_dobles), MAX(id_saltos_triples), MAX(id_pos_avanzadas), MAX(id_discos), MAX(id_flexibilidad) FROM entrenamiento_libre_temp');
+                    conn.query('INSERT INTO entrenamiento_libre (id_upright_izq, id_upright_der, id_sit_izq, id_sit_der, id_camel_izq, id_camel_der, id_heel_izq, id_heel_der, id_saltos_simples, id_saltos_dobles, id_saltos_triples, id_pos_avanzadas, id_discos, id_flexibilidad) SELECT MAX(id_upright_izq), MAX(id_upright_der), MAX(id_sit_izq), MAX(id_sit_der), MAX(id_camel_izq), MAX(id_camel_der), MAX(id_heel_izq), MAX(id_heel_der), MAX(id_saltos_simples), MAX(id_saltos_dobles), MAX(id_saltos_triples), MAX(id_pos_avanzadas), MAX(id_discos), MAX(id_flexibilidad) FROM entrenamiento_libre_temp');
 
                         // Finalizamos la creación del entrenamiento añadiendo el id del usuario
                         conn.query('UPDATE entrenamiento_libre SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_libre)', [id_pat]); 

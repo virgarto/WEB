@@ -419,7 +419,7 @@ CREATE TABLE `tfg`.`saltos_simples` (
   `toeloop` INT NULL,
   `flip` INT NULL,
   `lutz` INT NULL,
-  `loop` INT NULL,
+  `loop_simple` INT NULL,
   `thoren` INT NULL,
   `axel` INT NULL,
   PRIMARY KEY (`id`));
@@ -430,7 +430,7 @@ CREATE TABLE `tfg`.`saltos_dobles` (
   `toeloop` INT NULL,
   `flip` INT NULL,
   `lutz` INT NULL,
-  `loop` INT NULL,
+  `loop_doble` INT NULL,
   `thoren` INT NULL,
   `axel` INT NULL,
   PRIMARY KEY (`id`));
@@ -555,7 +555,7 @@ FOR EACH ROW
 CREATE TRIGGER agregar_id_upright_der
 AFTER INSERT ON upright_derecho
 FOR EACH ROW
-  INSERT INTO entrenamiento_libre_temp (id_upright_izq) VALUES (NEW.id);
+  INSERT INTO entrenamiento_libre_temp (id_upright_der) VALUES (NEW.id);
 
 CREATE TRIGGER agregar_id_sit_izq
 AFTER INSERT ON sit_izquierdo
