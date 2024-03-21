@@ -8,4 +8,6 @@ router.post('/newEntreneDanza', EntreneController.createEntreneDanza);
 router.get('/newEntreneLibre', EntreneController.goToEntreneLibre);
 router.post('/newEntreneLibre', EntreneController.createEntreneLibre);
 
+router.get('/entrenamientos', EntreneController.getInforme);
+
 module.exports = router;

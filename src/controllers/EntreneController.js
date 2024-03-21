@@ -133,9 +133,17 @@ function createEntreneLibre(req, res){
     })
 }
 
+function getInforme(req, res){
+    const modalidad = req.body.modalidad;
+    req.getConnection((err,conn)=> {
+        console.log(modalidad);
+    })
+}
+
 module.exports = {
     goToEntreneForm,
     createEntreneDanza,
     goToEntreneLibre,
     createEntreneLibre,
+    getInforme,
 }

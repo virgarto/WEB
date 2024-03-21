@@ -53,7 +53,18 @@
 
                     <div class="col-7" style="font-size: 16px; margin-top: 15px;" >
                         <p>Informe Patinadores</p>
-                        
+                        <form method="GET">
+                            <label for="startDate">Desde: </label>
+                            <input type="date" name="startDate" required />
+                            <label for="endDate" style="margin-left: 10px;">Hasta: </label>
+                            <input type="date" name="endDate" required/><br> <br>
+                            <select name="modalidad" id="modalidad">
+                                <option value="libre">Modalidad Libre</option>
+                                <option value="danza">Modalidad Danza</option>
+                            </select><br><br>
+                            
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </form>
                     </div>
                 </div>
                 
