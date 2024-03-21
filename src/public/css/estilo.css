@@ -156,3 +156,13 @@ footer{
 	display: inline-block;
 	width:  150px;
 }
+
+.linkEntrene{
+	text-decoration: none;
+	color: #222222;
+}
+
+.linkEntrene:hover{
+	text-decoration: none;
+	color: #0d6efd;
+}
