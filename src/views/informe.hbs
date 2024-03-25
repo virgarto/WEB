@@ -40,34 +40,7 @@
         <main>
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamientos</h3>
             <div class="container text-center" style="margin-top: 10px;">
-                <div class="row justify-content-start" style="margin-left: -10%;">
-                    <div class="col-3">
-                        <p class="text-center" style="font-size: 16px; margin-top: 15px;">Añade nuevos entrenamientos:</p>
-                        <a class="linkEntrene" href="newEntreneDanza">Modalidad Danza</a>
-                        </br>
-                        <a class="linkEntrene" href="newEntreneLibre">Modalidad Libre</a>
-                    </div>  
-                    {{#if msg}}
-                        <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: rgb(42, 165, 63)">*{{msg}}*</p>
-                    {{/if}}
-
-                    <div class="col-7" style="font-size: 16px; margin-top: 15px;" >
-                        <p>Informe Patinadores</p>
-                        <form method="GET" action="/informe">
-                            <label for="startDate">Desde: </label>
-                            <input type="date" name="startDate" required />
-                            <label for="endDate" style="margin-left: 10px;">Hasta: </label>
-                            <input type="date" name="endDate"/><br> <br>
-                            <select name="modalidad">
-                                <option value="libre">Modalidad Libre</option>
-                                <option value="danza">Modalidad Danza</option>
-                            </select><br><br>
-                            
-                            <button type="submit" class="btn btn-primary">Buscar</button>
-                        </form>
-                    </div>
-                </div>
-                
+                <p>Hola</p>
             </div>
             
         </main>

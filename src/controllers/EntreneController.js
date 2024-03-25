@@ -6,6 +6,58 @@ function goToEntreneLibre (req, res){
     res.render('newEntreneLibre');
 }
 
+function getInforme(req, res){
+    const modalidad = req.query.modalidad;
+    const fecha_ini = req.query.startDate;
+    const fecha_fin = req.query.endDate;
+
+    const placeholders = [];
+    const values = [];
+
+    let BrDExtDetras_avg, BrDExtDelante_avg, BrDIntDetras_avg, BrDIntDelante_avg;
+    req.getConnection((err,conn)=> {
+        if(modalidad ==  'danza'){
+            conn.query('SELECT * FROM entrenamiento_danza WHERE fecha > ? AND fecha < ?', [fecha_ini, fecha_fin], (err, entrenes_danza) => {
+                if(err){
+                    console.log('Error al obtener listado de entrenamientos Danza: ' + err);
+                }
+                else{
+                    for (let i = 0; i < entrenes_danza.length; i++) {
+                        placeholders.push('?');
+                        values.push(entrenes_danza[i].id_bracket_der);
+                    }
+                    const sql = 'SELECT AVG(BrDExtDetras) AS BrDExtDetras_avg, AVG(BrDExtDelante) AS BrDExtDelante_avg, AVG(BrDIntDetras) AS BrDIntDetras_avg, AVG(BrDIntDelante) AS BrDIntDelante_avg FROM (SELECT BrDExtDetras, BrDExtDelante, BrDIntDetras, BrDIntDelante FROM bracket_derecho WHERE id IN ('+ placeholders.join(',')+ ') ) AS subquery'
+                    conn.query(sql, values, (err, avg_bracket_der) => {
+                        if (err) {
+                          console.error(err);
+                          return;
+                        }
+                      
+                        console.log(avg_bracket_der);
+                    });
+                    /*conn.query('SELECT AVG(BrDExtDetras) AS BrDExtDetras_avg, AVG(BrDExtDelante) AS BrDExtDelante_avg, AVG(BrDIntDetras) AS BrDIntDetras_avg, AVG(BrDIntDelante) AS BrDIntDelante_avg FROM (SELECT BrDExtDetras, BrDExtDelante, BrDIntDetras, BrDIntDelante FROM bracket_derecho WHERE id= ? union SELECT BrDExtDetras, BrDExtDelante, BrDIntDetras, BrDIntDelante FROM bracket_derecho WHERE id= ?) AS subquery;', [entrenes_danza[0].id_bracket_der, entrenes_danza[1].id_bracket_der], (err, avg_bracket_der) => {
+                        console.log(avg_bracket_der);
+                        BrDExtDetras_avg = avg_bracket_der[0].BrDExtDetras_avg;
+                        BrDExtDelante_avg = avg_bracket_der[0].BrDExtDelante_avg;
+                        BrDIntDetras_avg = avg_bracket_der[0].BrDIntDetras_avg;
+                        BrDIntDelante_avg = avg_bracket_der[0].BrDIntDelante_avg;
+                    })*/
+                }
+            });
+        }else{
+            conn.query('SELECT * FROM entrenamiento_libre WHERE fecha > ? AND fecha < ?', [fecha_ini, fecha_fin], (err, entrenes_libre) => {
+                if (err) {
+                    console.log('Error al obtener listado de entrenamientos Libre: ' + err);
+                }else{
+
+                }
+            });
+        }
+    })
+ 
+     res.render('informe');
+ }
+
 function createEntreneDanza(req, res){
     const {travellingB, travelling1, travelling2, travelling3, travelling4} = req.body;
     const {clusterB, cluster1, cluster2, cluster3, cluster4} = req.body;
@@ -133,17 +185,12 @@ function createEntreneLibre(req, res){
     })
 }
 
-function getInforme(req, res){
-    const modalidad = req.body.modalidad;
-    req.getConnection((err,conn)=> {
-        console.log(modalidad);
-    })
-}
+
 
 module.exports = {
     goToEntreneForm,
     createEntreneDanza,
     goToEntreneLibre,
     createEntreneLibre,
-    getInforme,
+    getInforme
 }
