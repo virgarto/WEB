@@ -27,11 +27,29 @@ function getInforme(req, res){
         'loop_izquierdo': ['LoIExtDetras', 'LoIExtDelante', 'LoIIntDetras', 'LoIIntDelante'], 
         'pattern_sequence': ['key_point1', 'key_point2', 'key_point3', 'key_point4'], 
         'rocker_derecho': ['RoDExtDetras', 'RoDExtDelante', 'RoDIntDetras', 'RoDIntDelante'], 
-        'rocker_izq': ['RoIExtDetras', 'RoIExtDelante', 'RoIIntDetras', 'RoIIntDelante']};
+        'rocker_izq': ['RoIExtDetras', 'RoIExtDelante', 'RoIIntDetras', 'RoIIntDelante']
+    };
+
+    const tablasLibre = {
+        'upright_izquierdo': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman'],
+        'upright_derecho': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman'],
+        'sit_izquierdo': ['sit', 'forward', 'sideways', 'behind', 'twist'],
+        'sit_derecho': ['sit', 'forward', 'sideways', 'behind', 'twist'],
+        'camel_izquierdo': ['exterior', 'interior', 'layover', 'forward', 'sideways'],
+        'camel_derecho': ['exterior', 'interior', 'layover', 'forward', 'sideways'],
+        'heel_izquierdo': ['heel', 'forward', 'sideways', 'layover'],
+        'heel_derecho': ['heel', 'forward', 'sideways', 'layover'],
+        'saltos_simples': ['waltz_jump', 'salchow', 'toeloop', 'flip', 'lutz', 'loop_simple', 'thoren', 'axel'],
+        'saltos_dobles': ['salchow', 'toeloop', 'flip', 'lutz', 'loop_doble', 'thoren', 'axel'],
+        'saltos_triples': ['salchow', 'toeloop'],
+        'posiciones_avanzadas': ['inverted', 'broken', 'bryant'],
+        'discos': ['corto', 'largo'],
+        'flexibilidad': ['split', 'arco']
+    };
 
     req.getConnection((err,conn)=> {
         if(modalidad ==  'danza'){
-            conn.query('SELECT * FROM entrenamiento_danza WHERE fecha > ? AND fecha < ?', [fecha_ini, fecha_fin], (err, entrenes_danza) => {
+            conn.query('SELECT * FROM entrenamiento_danza WHERE fecha >= ? AND fecha <= ?', [fecha_ini, fecha_fin], (err, entrenes_danza) => {
                 if(err){
                     console.log('Error al obtener listado de entrenamientos Danza: ' + err);
                 }
@@ -39,14 +57,13 @@ function getInforme(req, res){
                     console.log(entrenes_danza);
                     for (let i = 0; i < entrenes_danza.length; i++) {
                         placeholders.push('?');
-                        values.push(entrenes_danza[i].id_bracket_der);
+                        values.push(entrenes_danza[i].id);
                     }
                     for(let tablasName in  tablasDanza) {
                         const columnNames = tablasDanza[tablasName];
-                        const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',')+ ') ) AS subquery'; 
+                        const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                     
-                    //const  = 'SELECT AVG(BrDExtDetras) AS BrDExtDetras_avg, AVG(BrDExtDelante) AS BrDExtDelante_avg, AVG(BrDIntDetras) AS BrDIntDetras_avg, AVG(BrDIntDelante) AS BrDIntDelante_avg FROM (SELECT BrDExtDetras, BrDExtDelante, BrDIntDetras, BrDIntDelante FROM bracket_derecho WHERE id IN ('+ (',')+ ') ) AS subquery'
-                        conn.query(sql, values, (err, avg_data) => {
+                       conn.query(sql, values, (err, avg_data) => {
                             if (err) {
                                 console.error(err);
                                 return;
@@ -58,17 +75,40 @@ function getInforme(req, res){
                 }
             });
         }else{
-            conn.query('SELECT * FROM entrenamiento_libre WHERE fecha > ? AND fecha < ?', [fecha_ini, fecha_fin], (err, entrenes_libre) => {
+            conn.query('SELECT * FROM entrenamiento_libre WHERE fecha >= ? AND fecha <= ?', [fecha_ini, fecha_fin], (err, entrenes_libre) => {
                 if (err) {
                     console.log('Error al obtener listado de entrenamientos Libre: ' + err);
                 }else{
+                    console.log(entrenes_libre);
+                    for(let tablasName in  tablasLibre) {
+                        const columnNames = tablasLibre[tablasName];
 
+                        for (let i = 0; i < entrenes_libre.length; i++) {
+                            placeholders.push('?');
+                            values.push(entrenes_libre[i].id);
+                        }
+
+                        const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
+                    
+                        conn.query(sql, values, (err, avg_data) => {
+                            if (err) {
+                                console.error(err);
+                                return;
+                            }
+                        
+                            console.log(tablasName, avg_data);
+                            
+                            //Reset placeholders y values
+                            placeholders.length = 0;
+                            values.length = 0;
+                        });
+                    }
                 }
             });
         }
     })
- 
-     res.render('informe');
+    res.render('informe');
+     
  }
 
 function createEntreneDanza(req, res){
@@ -117,18 +157,16 @@ function createEntreneDanza(req, res){
             
 
                 // Añadimos en la tabla principal los registros de la tabla temporal para que estén todos en el mismo registro
-                req.getConnection((err, conn)=>{
-                    conn.query('INSERT INTO entrenamiento_danza (id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq) SELECT MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq) FROM entrenamiento_danza_temp');
+                conn.query('INSERT INTO entrenamiento_danza (id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq) SELECT MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq) FROM entrenamiento_danza_temp');
 
-                        // Finalizamos la creación del entrenamiento añadiendo el id del usuario
-                        conn.query('UPDATE entrenamiento_danza SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_danza)', [id_pat]); 
+                // Finalizamos la creación del entrenamiento añadiendo el id del usuario
+                conn.query('UPDATE entrenamiento_danza SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_danza)', [id_pat]); 
+        
+                // Borramos la información guardada en la tabla temporal
+                conn.query('DELETE FROM entrenamiento_danza_temp');
                 
-                        // Borramos la información guardada en la tabla temporal
-                        conn.query('DELETE FROM entrenamiento_danza_temp');
-                        
-                        res.render('entrenamientos', {msg: 'Nuevo entrenamiento de danza registrado con éxito'});
-                    
-                });
+                res.render('entrenamientos', {msg: 'Nuevo entrenamiento de danza registrado con éxito'});
+                
             }         
             
         })
@@ -179,18 +217,16 @@ function createEntreneLibre(req, res){
                 conn.query('INSERT INTO flexibilidad (split, arco) VALUES (?, ?)', [flexi_split, flexi_arco]);
 
                 // Añadimos en la tabla principal los registros de la tabla temporal para que estén todos en el mismo registro
-                req.getConnection((err, conn)=>{
-                    conn.query('INSERT INTO entrenamiento_libre (id_upright_izq, id_upright_der, id_sit_izq, id_sit_der, id_camel_izq, id_camel_der, id_heel_izq, id_heel_der, id_saltos_simples, id_saltos_dobles, id_saltos_triples, id_pos_avanzadas, id_discos, id_flexibilidad) SELECT MAX(id_upright_izq), MAX(id_upright_der), MAX(id_sit_izq), MAX(id_sit_der), MAX(id_camel_izq), MAX(id_camel_der), MAX(id_heel_izq), MAX(id_heel_der), MAX(id_saltos_simples), MAX(id_saltos_dobles), MAX(id_saltos_triples), MAX(id_pos_avanzadas), MAX(id_discos), MAX(id_flexibilidad) FROM entrenamiento_libre_temp');
+                conn.query('INSERT INTO entrenamiento_libre (id_upright_izq, id_upright_der, id_sit_izq, id_sit_der, id_camel_izq, id_camel_der, id_heel_izq, id_heel_der, id_saltos_simples, id_saltos_dobles, id_saltos_triples, id_pos_avanzadas, id_discos, id_flexibilidad) SELECT MAX(id_upright_izq), MAX(id_upright_der), MAX(id_sit_izq), MAX(id_sit_der), MAX(id_camel_izq), MAX(id_camel_der), MAX(id_heel_izq), MAX(id_heel_der), MAX(id_saltos_simples), MAX(id_saltos_dobles), MAX(id_saltos_triples), MAX(id_pos_avanzadas), MAX(id_discos), MAX(id_flexibilidad) FROM entrenamiento_libre_temp');
 
-                        // Finalizamos la creación del entrenamiento añadiendo el id del usuario
-                        conn.query('UPDATE entrenamiento_libre SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_libre)', [id_pat]); 
+                // Finalizamos la creación del entrenamiento añadiendo el id del usuario
+                conn.query('UPDATE entrenamiento_libre SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_libre)', [id_pat]); 
+        
+                // Borramos la información guardada en la tabla temporal
+                conn.query('DELETE FROM entrenamiento_libre_temp');
                 
-                        // Borramos la información guardada en la tabla temporal
-                        conn.query('DELETE FROM entrenamiento_libre_temp');
-                        
-                        res.render('entrenamientos', {msg: 'Nuevo entrenamiento libre registrado con éxito'});
-                    
-                });
+                res.render('entrenamientos', {msg: 'Nuevo entrenamiento libre registrado con éxito'});
+                  
             }         
             
         })
