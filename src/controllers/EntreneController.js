@@ -55,12 +55,14 @@ function getInforme(req, res){
                 }
                 else{
                     console.log(entrenes_danza);
-                    for (let i = 0; i < entrenes_danza.length; i++) {
-                        placeholders.push('?');
-                        values.push(entrenes_danza[i].id);
-                    }
+                    let avgData = {};
+                    
                     for(let tablasName in  tablasDanza) {
                         const columnNames = tablasDanza[tablasName];
+                        for (let i = 0; i < entrenes_danza.length; i++) {
+                            placeholders.push('?');
+                            values.push(entrenes_danza[i].id);
+                        }
                         const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                     
                        conn.query(sql, values, (err, avg_data) => {
@@ -69,9 +71,21 @@ function getInforme(req, res){
                                 return;
                             }
                         
-                            console.log(tablasName, avg_data);
+                            //console.log(tablasName, avg_data);
+                            avgData[tablasName] = avg_data[0];
+
+                            //Reset placeholders y values
+                            placeholders.length = 0;
+                            values.length = 0;
+
+                            if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
+                                // Renderizamos la vista con los datos
+                                res.render("informe", { avgData, dias: entrenes_danza.length });
+                              }
                         });
                     }
+                    
+                    
                 }
             });
         }else{
@@ -80,6 +94,7 @@ function getInforme(req, res){
                     console.log('Error al obtener listado de entrenamientos Libre: ' + err);
                 }else{
                     console.log(entrenes_libre);
+                    const avgData = [];
                     for(let tablasName in  tablasLibre) {
                         const columnNames = tablasLibre[tablasName];
 
@@ -97,17 +112,19 @@ function getInforme(req, res){
                             }
                         
                             console.log(tablasName, avg_data);
+                            avgData[tablasName] = avg_data;
                             
                             //Reset placeholders y values
                             placeholders.length = 0;
                             values.length = 0;
                         });
                     }
+                    res.render('informe', {avgData});
                 }
             });
         }
     })
-    res.render('informe');
+    
      
  }
 

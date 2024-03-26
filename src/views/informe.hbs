@@ -37,12 +37,22 @@
                 </div>
             </nav>
         </div>
-        <main>
+        <main style="padding-bottom: 2.5em;">
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamientos</h3>
             <div class="container text-center" style="margin-top: 10px;">
-                <p>Hola</p>
+                <h4>Informe Entrenamientos</h4>
+                <p>Días resumidos: {{dias}}</p>
+                {{#each avgData}}
+                    <div>
+                        <b>{{@key}}</b>
+                        <ul>
+                        {{#each this}}
+                        <li style="list-style: none;">{{@key}}: {{this}}</li>
+                        {{/each}}
+                        </ul>
+                    </div>
+                    {{/each}}
             </div>
-            
         </main>
         <footer class="text-center mt-5 footer-copyright">
             <div class="text-center p-3" style="background-color: #222222; color:#ded8ae">

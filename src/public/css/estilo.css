@@ -50,9 +50,9 @@ nav .nav-link {
   }
 
 footer{
-    position: absolute;
+    position: fixed;
     width:  100%;
-	height: 2em;
+	height: 3.5em;
     bottom:  0;
 }
 
