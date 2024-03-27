@@ -9,6 +9,7 @@ const menuRoutes = require('./routes/menu')
 const loginRoutes = require('./routes/login');
 const userPerfilRoutes = require('./routes/userPerfil');
 const entreneRoutes = require('./routes/entrene');
+const entrenadorRoutes = require('./routes/entrenadorList');
 
 const app = express();
 app.set('port', 4000);
@@ -50,6 +51,7 @@ app.use('/', menuRoutes);
 app.use('/', loginRoutes);
 app.use('/', userPerfilRoutes);
 app.use('/', entreneRoutes);
+app.use('/', entrenadorRoutes);
 
 app.get('/', (req, res) => {
     if(req.session.loggedin == true)

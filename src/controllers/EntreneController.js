@@ -129,7 +129,6 @@ function getInforme(req, res){
             });
         }
     })
-    
      
  }
 

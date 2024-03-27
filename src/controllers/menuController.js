@@ -28,8 +28,7 @@ function entrenamientosEntrenador (req, res){
         res.render('login');
     }
     else{ 
-        res.render('entrenamientosList', {rol: req.session.rol});
-           
+        res.render('entrenamientosList', {rol: req.session.rol});   
     }
 }
 
