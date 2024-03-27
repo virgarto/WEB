@@ -1,5 +1,5 @@
 function home (req, res){
-    res.render('home');
+    res.render('home', {rol: req.session.rol});
 }
 
 function perfil (req, res){
@@ -28,7 +28,7 @@ function entrenamientosEntrenador (req, res){
         res.render('login');
     }
     else{ 
-        res.render('entrenamientosList');
+        res.render('entrenamientosList', {rol: req.session.rol});
            
     }
 }
@@ -39,7 +39,7 @@ function coreografias (req, res){
         res.render('login');
     }
     else{ 
-        res.render('coreografias');
+        res.render('coreografias', {rol: req.session.rol});
     }
 }
 

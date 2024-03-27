@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
                                 estado: req.session.estado,
                                 categoria: req.session.categoria,
                                 club: req.session.club, 
-                                rol: req.session.rol,});
+                                rol: req.session.rol});
     }
     else{ 
         res.redirect('/login');
