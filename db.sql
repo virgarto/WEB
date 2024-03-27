@@ -1,4 +1,8 @@
-/* INSERTAMOS VALUES EN LA TABLA DE CATEGORIA */
+/***************************************************************/
+/* Insertamos en la tabla de categoria la información          */
+/* necesaria para calcular la categoria de los patinadores     */
+/*  segun su año de nacimiento                                 */
+/***************************************************************/
 INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2004, 'Senior', 'Senior', 'Senior');
 INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2005, 'Junior', 'Senior', 'Senior');
 INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2006, 'Junior', 'Junior', 'Senior');
@@ -13,6 +17,10 @@ INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2014, 'Benjam
 INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2015, 'Benjamin', 'Benjamin', 'Alevín');
 INSERT INTO categoria (anyo, cat_2023, cat_2024, cat_2025) VALUES (2016, '', 'Benjamin', 'Benjamin');
 
+/***************************************************************/
+/* Creamos las tablas para cada elemento integrativo de        */
+/* modalidad danza                                             */  
+/***************************************************************/
 CREATE TABLE `tfg`.`travelling` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `travellingB` INT NULL,
@@ -139,7 +147,10 @@ CREATE TABLE `tfg`.`rocker_izq` (
   `LoIIntDelante` INT NULL,
   PRIMARY KEY (`id`));
 
-
+/***************************************************************/
+/* Creamos una tabla para los entrenamientos de modalidad tipo */
+/* danza                                                       */
+/***************************************************************/
 CREATE TABLE `tfg`.`entrenamiento_danza` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NOT NULL,
@@ -159,6 +170,8 @@ CREATE TABLE `tfg`.`entrenamiento_danza` (
   `id_rocker_der` INT,
   `id_rocker_izq` INT,
   `id_travelling` INT,
+  `id_tres_der` INT,
+  `id_tres_izq` INT,
   PRIMARY KEY (`id`),
   CONSTRAINT `id_patinador`
     FOREIGN KEY (`id_patinador`)
@@ -239,7 +252,18 @@ CREATE TABLE `tfg`.`entrenamiento_danza` (
     FOREIGN KEY (`id_travelling`)
     REFERENCES `tfg`.`travelling` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_tres_der`
+    FOREIGN KEY (`id_tres_der`)
+    REFERENCES `tfg`.`tres_derecho` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `id_tres_izq`
+    FOREIGN KEY (`id_tres_izq`)
+    REFERENCES `tfg`.`tres_izquierdo` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE CASCADE);
+
 
 /***************************************************************/
 /* Creamos una tabla intermedia para añadir los registros de   */
@@ -253,8 +277,6 @@ CREATE TABLE entrenamiento_danza_temp LIKE entrenamiento_danza;
 /* registro a la tabla de los elementos integrativos se añada  */
 /* a la tabla de entrenamiento principal                       */
 /***************************************************************/
-
-
 CREATE TRIGGER agregar_id_travelling
 AFTER INSERT ON travelling
 FOR EACH ROW
@@ -330,7 +352,20 @@ AFTER INSERT ON rocker_izq
 FOR EACH ROW
   INSERT INTO entrenamiento_danza_temp (id_rocker_izq) VALUES (NEW.id);
 
-/* TABLAS PARA ENTRENAMIENTO LIBRE */
+CREATE TRIGGER agregar_id_tres_der
+AFTER INSERT ON tres_derecho
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_tres_der) VALUES (NEW.id);
+
+CREATE TRIGGER agregar_id_tres_izq
+AFTER INSERT ON tres_izquierdo
+FOR EACH ROW
+  INSERT INTO entrenamiento_danza_temp (id_tres_izq) VALUES (NEW.id);
+
+/***************************************************************/
+/* Creamos las tablas para cada elemento integrativo de        */
+/* modalidad libre                                             */  
+/***************************************************************/
 CREATE TABLE `tfg`.`upright_izquierdo` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `upright` INT NULL,
@@ -453,7 +488,10 @@ CREATE TABLE `tfg`.`flexibilidad` (
   `arco` INT NULL,
   PRIMARY KEY (`id`));
 
-
+/***************************************************************/
+/* Creamos una tabla para los entrenamientos de modalidad tipo */
+/* libre                                                       */
+/***************************************************************/
 CREATE TABLE `tfg`.`entrenamiento_libre` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_patinador` INT NOT NULL,
@@ -544,9 +582,17 @@ CREATE TABLE `tfg`.`entrenamiento_libre` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE);
 
-
+/***************************************************************/
+/* Creamos una tabla intermedia para añadir los registros de   */
+/* los fk en la tabla principal de entrenamiento_danza         */
+/***************************************************************/
 CREATE TABLE `tfg`.`entrenamiento_libre_temp`LIKE `tfg`.`entrenamiento_libre`;
 
+/***************************************************************/
+/* Creamos un nuevo trigger para que cada vez que se añada un  */
+/* registro a la tabla de los elementos integrativos se añada  */
+/* a la tabla de entrenamiento principal                       */
+/***************************************************************/
 CREATE TRIGGER agregar_id_upright_izq
 AFTER INSERT ON upright_izquierdo
 FOR EACH ROW

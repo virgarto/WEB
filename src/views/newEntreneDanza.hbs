@@ -41,7 +41,7 @@
                         </div>
                     </nav>
                 </div>
-                <main>
+                <main style="padding-bottom: 4em;">
                     <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamiento Danza</h3>
                     <div class="text-center">
                         <form id="entreneform" method="POST" action="">
@@ -54,6 +54,7 @@
                                 <li>Counter derecho e izquierdo</li>
                                 <li>Rocker derecho e izquierdo</li>
                                 <li>Loop derecho e izquierdo</li>
+                                <li>Tres derecho e izquierdo</li>
                             </ul>
                             <fieldset class="form-step">
                                 <h4 class="fs-title">TRAVELLING</h4>
@@ -238,6 +239,31 @@
                                     <input type="number" max="4" name="LoIIntDetras"><br>
                                     <label for="LoIIntDelante">LoIntDelante</label>
                                     <input type="number" max="4" name="LoIIntDelante"><br><br>
+
+                                <input type="button" name="previous" class="previous action-button" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next"/>                                
+                            </fieldset>
+
+                            <fieldset class="form-step">
+                                <h4 class="fs-title">TRES DERECHO</h4>
+                                    <label for="TresDExtDetras">TresExtDetras</label>
+                                    <input type="number" max="4" name="TresDExtDetras"><br>
+                                    <label for="TresDExtDelante">TresExtDelante</label>
+                                    <input type="number" max="4" name="TresDExtDelante"><br>
+                                    <label for="TresDIntDetras">TresIntDetras</label>
+                                    <input type="number" max="4" name="TresDIntDetras"><br>
+                                    <label for="TresDIntDelante">TresIntDelante</label>
+                                    <input type="number" max="4" name="TresDIntDelante"><br><br>
+
+                                <h4 class="fs-title">TRES IZQUIERDO</h4>
+                                    <label for="TresIExtDetras">TresExtDetras</label>
+                                    <input type="number" max="4" name="TresIExtDetras"><br>
+                                    <label for="TresIExtDelante">TresExtDelante</label>
+                                    <input type="number" max="4" name="TresIExtDelante"><br>
+                                    <label for="TresIIntDetras">TresIntDetras</label>
+                                    <input type="number" max="4" name="TresIIntDetras"><br>
+                                    <label for="TresIIntDelante">TresIntDelante</label>
+                                    <input type="number" max="4" name="TresIIntDelante"><br><br>
 
                                 <input type="button" name="previous" class="previous action-button" value="Previous" />
                                 <input type="submit" name="anyadirEntreneDanzaBtn" class="submit-button" value="Submit">

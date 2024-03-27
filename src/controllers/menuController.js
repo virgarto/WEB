@@ -12,13 +12,24 @@ function perfil (req, res){
     }
 }
 
-function entrenamientos (req, res){
+function entrenamientosPatinador (req, res){
     if(req.session.loggedin != true)
     {
         res.render('login');
     }
     else{ 
-        res.render('entrenamientos');
+        res.render('entrenamientos');     
+    }
+}
+
+function entrenamientosEntrenador (req, res){
+    if(req.session.loggedin != true)
+    {
+        res.render('login');
+    }
+    else{ 
+        res.render('entrenamientosList');
+           
     }
 }
 
@@ -35,6 +46,7 @@ function coreografias (req, res){
 module.exports = {
     home,
     perfil,
-    entrenamientos,
+    entrenamientosPatinador,
+    entrenamientosEntrenador,
     coreografias
 }

@@ -25,9 +25,9 @@
                         </li>
                         <li class="nav-item">
                             {{#if rol}}
-                                <a class="nav-link" href="entrenamientosList">PATINADORES</a>
+                                <a class="nav-link active" href="entrenamientosList">PATINADORES</a>
                             {{else}}
-                                <a class="nav-link" href="entrenamientos">ENTRENAMIENTOS</a>
+                                <a class="nav-link active" href="entrenamientos">ENTRENAMIENTOS</a>
                             {{/if}}
                         </li>
                         <li class="nav-item">
@@ -41,23 +41,15 @@
                 </div>
             </nav>
         </div>
-        <main style="padding-bottom: 4em;">
-            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamientos</h3>
+        <main>
+            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Patinadores</h3>
             <div class="container text-center" style="margin-top: 10px;">
-                <h4>Informe Entrenamientos</h4>
-                <p>Días entrenados: {{dias}}</p>
-                <p> De {{fecha_ini}} a {{fecha_fin}}</p>
-                {{#each avgData}}
-                    <div>
-                        <b>{{@key}}</b>
-                        <ul>
-                        {{#each this}}
-                        <li style="list-style: none;">{{@key}}: {{this}}</li>
-                        {{/each}}
-                        </ul>
-                    </div>
-                    {{/each}}
+                <div class="row justify-content-start" style="margin-left: -10%;">
+                    Hola
+                </div>
+                
             </div>
+            
         </main>
         <footer class="text-center mt-5 footer-copyright">
             <div class="text-center p-3" style="background-color: #222222; color:#ded8ae">

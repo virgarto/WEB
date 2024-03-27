@@ -35,6 +35,11 @@ function auth(req, res){
                             req.session.categoria = element.categoria_act;
                             req.session.club = element.club;
 
+                            //Pasamos el rol a la sesión tan solo si el usuario cuenta con el rol de Entrenador
+                            if(element.rol == 'Entrenador'){
+                                req.session.rol = element.rol;
+                            }
+
                             res.redirect('/');
                         }
                     });
@@ -78,10 +83,14 @@ function anyadirUser(req, res) {
                         conn.query('INSERT INTO users SET ?', [data], (err, rows) => {
                             req.session.loggedin = true;
                             req.session.name = data.username;
-                            req.session.rol = data.rol;
                             req.session.fecha_nacimiento = data.fecha_nacimiento;
                             req.session.estado = data.estado;
                             req.session.club = data.club;
+
+                            //Pasamos el rol a la sesión tan solo si el usuario cuenta con el rol de Entrenador
+                            if(data.rol == 'Entrenador'){
+                                req.session.rol = data.rol;
+                            }
 
                             const fechaNacimiento = new Date(data.fecha_nacimiento);
                             const anyoNacimiento = fechaNacimiento.getFullYear();
