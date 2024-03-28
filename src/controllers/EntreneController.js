@@ -65,7 +65,7 @@ function getInforme(req, res){
                         }
                         const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                     
-                       conn.query(sql, values, (err, avg_data) => {
+                        conn.query(sql, values, (err, avg_data) => {
                             if (err) {
                                 console.error(err);
                                 return;
@@ -81,7 +81,7 @@ function getInforme(req, res){
                             if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
                                 // Renderizamos la vista con los datos
                                 res.render("informe", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin });
-                              }
+                            }
                         });
                     }
                     

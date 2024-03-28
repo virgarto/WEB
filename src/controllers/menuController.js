@@ -28,8 +28,19 @@ function entrenamientosEntrenador (req, res){
         res.render('login');
     }
     else{ 
-        res.render('entrenamientosList', {rol: req.session.rol});   
-    }
+        req.getConnection((err, conn) => {
+            if(err) 
+                console.log('Error al conectarse a la BBDD: ' + err);
+            else{
+                console.log(req.session.club);
+                // Obtenemos mediante una query el listado de patinadores en su mismo club
+                conn.query('SELECT username, fecha_nacimiento, categoria_act, categoria_post FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
+                    console.log(listPat);
+                    res.render('entrenamientosList', {listPat, rol: req.session.rol});
+                });
+            }  
+        })   
+    }   
 }
 
 function coreografias (req, res){
