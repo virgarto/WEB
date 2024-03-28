@@ -32,11 +32,17 @@ function entrenamientosEntrenador (req, res){
             if(err) 
                 console.log('Error al conectarse a la BBDD: ' + err);
             else{
-                console.log(req.session.club);
+                let listaPatinadores = {}
                 // Obtenemos mediante una query el listado de patinadores en su mismo club
                 conn.query('SELECT username, fecha_nacimiento, categoria_act, categoria_post FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
-                    console.log(listPat);
-                    res.render('entrenamientosList', {listPat, rol: req.session.rol});
+                    for(let i = 0; i < listPat.lenght; i++){
+                        listaPatinadores = listPat[i];
+
+                        if (listaPatinadores.length === listPat.length) {
+                            // Renderizamos la vista con los datos
+                            res.render('entrenamientosList', {listaPatinadores, rol: req.session.rol});
+                        }
+                    }
                 });
             }  
         })   
