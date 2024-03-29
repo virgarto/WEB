@@ -8,8 +8,8 @@ const bodyParser = require('body-parser');
 const menuRoutes = require('./routes/menu')
 const loginRoutes = require('./routes/login');
 const userPerfilRoutes = require('./routes/userPerfil');
-const entreneRoutes = require('./routes/entrene');
-const entrenadorRoutes = require('./routes/entrenadorList');
+const patinadorRoutes = require('./routes/patinador');
+const entrenadorRoutes = require('./routes/entrenador');
 
 const app = express();
 app.set('port', 4000);
@@ -50,7 +50,7 @@ app.listen(app.get('port'), () => {
 app.use('/', menuRoutes);
 app.use('/', loginRoutes);
 app.use('/', userPerfilRoutes);
-app.use('/', entreneRoutes);
+app.use('/', patinadorRoutes);
 app.use('/', entrenadorRoutes);
 
 app.get('/', (req, res) => {
