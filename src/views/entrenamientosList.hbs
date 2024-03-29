@@ -45,16 +45,21 @@
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Patinadores</h3>
             <div class="container text-center" style="margin-top: 10px;">
                 <div class="row justify-content-start" style="margin-left: -10%;">
-                    {{#each listaPatinadores}}
-                    <div>
-                        <b>{{@key}}</b>
-                        <ul>
-                        {{#each this}}
-                        <li style="list-style: none;">{{@key}}: {{this}}</li>
+                    <table>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha de nacimiento</th>
+                            <th>Categoría actual</th>
+                            <th>Próxima categoría</th>
+                            <th></th>
+                        </tr>
+                        {{#each listPat}}
+                        <tr>
+                            <td>{{listPat.Nombre}}</td>
+                        </tr>
                         {{/each}}
-                        </ul>
-                    </div>
-                {{/each}}
+                    </table>
+                    
                 </div>
                 
             </div>
