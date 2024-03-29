@@ -48,6 +48,14 @@ function getInforme(req, res){
     };
 
     req.getConnection((err,conn)=> {
+        conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [req.session.email], (err, id) =>{
+            if(err){
+                console.log("Error al obtener el Id del usuario");
+            }
+            else{
+                console.log(id);
+            }
+        });
         if(modalidad ==  'danza'){
             conn.query('SELECT * FROM entrenamiento_danza WHERE fecha >= ? AND fecha <= ?', [fecha_ini, fecha_fin], (err, entrenes_danza) => {
                 if(err){
@@ -152,7 +160,6 @@ function createEntreneDanza(req, res){
     const {TresIExtDetras, TresIExtDelante, TresIIntDetras, TresIIntDelante} = req.body;
         
     req.getConnection((err, conn) => {
-        
         conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [req.session.email], (err, id) =>{
             if(err){
                 console.log("Error al obtener el Id del usuario");
@@ -182,7 +189,7 @@ function createEntreneDanza(req, res){
             
 
                 // Añadimos en la tabla principal los registros de la tabla temporal para que estén todos en el mismo registro
-                conn.query('INSERT INTO entrenamiento_danza (id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq, id_tres_der, id_tres_izq) SELECT MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq), MAX(id_tres_der), MAX(id_tresizq) FROM entrenamiento_danza_temp');
+                conn.query('INSERT INTO entrenamiento_danza (id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq, id_tres_der, id_tres_izq) SELECT MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq), MAX(id_tres_der), MAX(id_tres_izq) FROM entrenamiento_danza_temp');
 
                 // Finalizamos la creación del entrenamiento añadiendo el id del usuario
                 conn.query('UPDATE entrenamiento_danza SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_danza)', [id_pat]); 

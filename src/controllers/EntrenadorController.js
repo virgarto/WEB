@@ -1,6 +1,10 @@
 function goToInforme (req, res){
-   res.render('informeEntrenador', {rol: req.session.rol});
-   
+    const email = req.query.email;
+    res.render('informeEntrenador', {rol: req.session.rol, email});
+}
+
+function getInforme(req,res) {
+    
 }
 
 module.exports = {

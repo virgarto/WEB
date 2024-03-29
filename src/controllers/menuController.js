@@ -18,7 +18,7 @@ function entrenamientosPatinador (req, res){
         res.render('login');
     }
     else{ 
-        res.render('entrenamientos');     
+        res.render('entrenamientos', {email: req.session.email});     
     }
 }
 
@@ -34,7 +34,6 @@ function entrenamientosEntrenador (req, res){
             else{
                 // Obtenemos mediante una query el listado de patinadores en su mismo club
                 conn.query('SELECT username AS Nombre, DATE_FORMAT(fecha_nacimiento, "%b %d, %Y") AS Año, email AS Email, categoria_act AS Categoria, categoria_post AS Categoría_2025 FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
-                    console.log(listPat);
                     res.render('entrenamientosList', {listPat, rol: req.session.rol});
                 });
             }  
