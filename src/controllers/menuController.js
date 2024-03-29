@@ -33,7 +33,7 @@ function entrenamientosEntrenador (req, res){
                 console.log('Error al conectarse a la BBDD: ' + err);
             else{
                 // Obtenemos mediante una query el listado de patinadores en su mismo club
-                conn.query('SELECT username AS Nombre, DATE_FORMAT(fecha_nacimiento, "%b %d, %Y") AS Año, categoria_act AS Categoria, categoria_post AS Categoría_2025 FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
+                conn.query('SELECT username AS Nombre, DATE_FORMAT(fecha_nacimiento, "%b %d, %Y") AS Año, email AS Email, categoria_act AS Categoria, categoria_post AS Categoría_2025 FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
                     console.log(listPat);
                     res.render('entrenamientosList', {listPat, rol: req.session.rol});
                 });

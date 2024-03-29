@@ -42,36 +42,25 @@
             </nav>
         </div>
         <main>
-            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Patinadores</h3>
+            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamientos</h3>
             <div class="container text-center" style="margin-top: 10px;">
                 <div class="row justify-content-start" style="margin-left: -10%;">
-                    <table class="table table-striped table-hover table-responsive-sm">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Fecha de nacimiento</th>
-                                <th>Email</th>
-                                <th>Categoría actual</th>
-                                <th>Próxima categoría</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each listPat}}
-                                <tr>
-                                <td>{{Nombre}}</td>
-                                <td>{{Año}}</td>
-                                <td>{{Email}}</td>
-                                <td>{{Categoria}}</td>
-                                <td>{{Categoría_2025}}</td>
-                                <td><a class="btn btn-outline-success" role="button" href="informeEntrenador{{email}}">Informe</button>
-                                </tr>
-                            {{/each}}
-                            </tbody>
-                    </table>
-                    
-                </div>
-                
+                    <div class="col-7" style="font-size: 16px; margin-top: 15px;" >
+                        <p>Informe Patinadores</p>
+                        <form method="GET" action="/informe">
+                            <label for="startDate">Desde: </label>
+                            <input type="date" name="startDate" required />
+                            <label for="endDate" style="margin-left: 10px;">Hasta: </label>
+                            <input type="date" name="endDate"/><br> <br>
+                            <select name="modalidad">
+                                <option value="libre">Modalidad Libre</option>
+                                <option value="danza">Modalidad Danza</option>
+                            </select><br><br>
+                            
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </form>
+                    </div>
+                </div>   
             </div>
             
         </main>
