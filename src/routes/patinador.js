@@ -9,6 +9,6 @@ router.post('/newEntreneDanza', PatinadorController.createEntreneDanza);
 router.get('/newEntreneLibre', PatinadorController.goToEntreneLibre);
 router.post('/newEntreneLibre', PatinadorController.createEntreneLibre);
 
-router.get('/informe', PatinadorController.getInforme);
+router.get('/informe2', PatinadorController.getInforme);
 
 module.exports = router;

@@ -4,6 +4,7 @@ const EntrenadorController = require('../controllers/EntrenadorController');
 const router = express.Router();
 
 router.get('/informeEntrenador', EntrenadorController.goToInforme);
-router.post('/informeEntrenador', EntrenadorController.getInforme);
+
+router.get('/informe1', EntrenadorController.getInformeEntrenador);
 
 module.exports = router;

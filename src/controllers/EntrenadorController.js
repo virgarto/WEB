@@ -1,14 +1,13 @@
 function goToInforme (req, res){
     const email = req.query.email;
-    res.render('informeEntrenador', {email: req.session.rol, email});
+    res.render('informeEntrenador', {rol: req.session.rol, email});
 }
 
-function getInforme(req,res) {
+function getInformeEntrenador(req,res) {
     const patinador_email = req.query.patinador;
     const modalidad = req.query.modalidad;
     const fecha_ini = req.query.startDate;
     const fecha_fin = req.query.endDate;
-    console.log(patinador_email);
 
     const placeholders = [];
     const values = [];
@@ -47,7 +46,8 @@ function getInforme(req,res) {
     };
 
     req.getConnection((err, conn) => {
-        conn.query('SELECT id FROM users WHERE email = ?', [patinador_email], (error, id) => {
+        console.log(patinador_email);
+        conn.query('SELECT id AS pat_ID FROM users WHERE email = ?', [patinador_email], (error, id) => {
             if(err){
                 console.log("Error al obtener el Id del usuario" + error);
             }else{
@@ -87,7 +87,7 @@ function getInforme(req,res) {
             
                                         if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
                                             // Renderizamos la vista con los datos
-                                            res.render("informeEntrenador", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin });
+                                            res.render("informe", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin });
                                         }
                                     });
                                 }
@@ -132,7 +132,7 @@ function getInforme(req,res) {
             
                                         if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
                                             // Renderizamos la vista con los datos
-                                            res.render("informeEntrenador", { avgData, dias: entrenes_libre.length, fecha_ini, fecha_fin });
+                                            res.render("informe", { avgData, dias: entrenes_libre.length, fecha_ini, fecha_fin });
                                         }
                                     });
                                 }
@@ -152,5 +152,5 @@ function getInforme(req,res) {
 
 module.exports = {
     goToInforme,
-    getInforme,
+    getInformeEntrenador,
 }
