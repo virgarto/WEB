@@ -50,7 +50,7 @@ function getInforme(req, res){
     req.getConnection((err,conn)=> {
         conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [req.session.email], (err, id) =>{
             if(err){
-                console.log("Error al obtener el Id del usuario");
+                console.log("Error al obtener el Id del usuario: " + err);
             }
             else{
                 console.log(id[0].pat_ID);
