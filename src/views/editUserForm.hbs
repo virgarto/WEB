@@ -44,20 +44,20 @@
         <main>
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Perfil</h3>
             <div class="text-center">
-                <form action="" method="POST" class="formEditPat">
-                    <h2 class="fs-3 fw-normal ">Editar usuario</h2>
+                <form action="" method="POST" class="formEdit">
+                    <h2 class="fs-3 fw-normal mt-4" >Editar usuario</h2>
                     
                     {{#if error}}
                         <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: brown">*{{error}}*</p>
                     {{/if}}
                     
                     <label for="username"><b>Username</b></label><br>
-                    <input type="text" name="username" value="{{name}}"><br><br>
+                    <input type="text" name="username" value="{{name}}" class="text-center form-control w-25"><br><br>
 
                     <label for="password"><b>Password</b></label><br>
-                    <input type="password" name="password" value="{{password}}"><br><br>
+                    <input type="password" name="password" value="{{password}}" class="text-center form-control w-25"><br><br>
 
-                    <input type="submit" value="Guardar cambios"><br><br>
+                    <button type="submit" class="btn btn-outline-success">Guardar cambios</button><br><br>
                     <a href="perfil">Volver atrás</a><br><br>
                 </form>
             </div>

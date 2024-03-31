@@ -111,13 +111,18 @@ footer{
 	color: rgb(230, 227, 227);
 }
 
+#entreneForm .previous{
+	background: white;
+	color: #535b85;
+}
+
 #entreneform .action-button {
 	width: 100px;
 	background: #535b85;
 	font-weight: bold;
 	color: white;
 	border: 0 none;
-	border-radius: 1px;
+	border-radius: 5px;
 	cursor: pointer;
 	padding: 10px;
 	margin: 10px 5px;
@@ -127,11 +132,11 @@ footer{
 
 #entreneform .submit-button{
 	width: 100px;
-	background: white;
+	background: #535b85;
 	font-weight: bold;
-	color:  #535b85;
+	color:  white;
 	border: 2px solid #535b85;
-	border-radius: 1px;
+	border-radius: 5px;
 	cursor: pointer;
 	padding: 10px;
 	margin: 10px 5px;
@@ -140,7 +145,7 @@ footer{
 }
 
 #entreneform .submit-button:hover{
-	background: #535b85;
+	background: #3a4788;
 	color: white;
 }
 
@@ -157,14 +162,37 @@ footer{
 	width:  150px;
 }
 
-.linkEntrene{
-	text-decoration: none;
-	color: #222222;
-}
-
-.linkEntrene:hover{
-	text-decoration: none;
-	color: #0d6efd;
+.addEntrene p, a{
+	font-size: 18px;
+	font-family: 'Kay Pho Du', serif;
+	font-weight: 100;
 }
 
 th{color: #333;}
+
+.formInforme label, p{
+	font-size: 18px;
+	font-family: 'Kay Pho Du', serif;
+	font-weight: 100;
+}
+
+.formInforme input{
+	margin-left: 16em;
+	border: #757575 solid 1px;
+}
+
+.formEdit h2{
+	font-family: 'Kay Pho Du', serif;
+	font-weight: 100;
+}
+
+.formEdit label{
+	font-size: 18px;
+	font-family: 'Kay Pho Du', serif;
+	font-weight: 100;
+}
+
+.formEdit input{
+	margin-left: 39em;
+	border: #757575 solid 1px;
+}
