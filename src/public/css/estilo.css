@@ -186,7 +186,7 @@ th{color: #333;}
 	font-weight: 100;
 }
 
-.formEdit label{
+.formEdit label, .formInformeEntr label{
 	font-size: 18px;
 	font-family: 'Kay Pho Du', serif;
 	font-weight: 100;
@@ -196,3 +196,9 @@ th{color: #333;}
 	margin-left: 39em;
 	border: #757575 solid 1px;
 }
+
+.formInformeEntr input{
+	margin-left: 30em;
+	border: #757575 solid 1px;
+}
+
