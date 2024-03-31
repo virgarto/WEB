@@ -53,89 +53,102 @@ function getInforme(req, res){
                 console.log("Error al obtener el Id del usuario");
             }
             else{
-                console.log(id);
+                console.log(id[0].pat_ID);
+                const id_pat = id[0].pat_ID;
+
+                if(modalidad ==  'danza'){
+                    conn.query('SELECT * FROM entrenamiento_danza WHERE fecha >= ? AND fecha <= ? AND id_patinador = ?', [fecha_ini, fecha_fin, id_pat], (err, entrenes_danza) => {
+                        if(err){
+                            console.log('Error al obtener listado de entrenamientos Danza: ' + err);
+                        }
+                        else{
+                            if(entrenes_danza.length > 0){
+                                console.log(entrenes_danza);
+                                let avgData = {};
+                                
+                                for(let tablasName in  tablasDanza) {
+                                    const columnNames = tablasDanza[tablasName];
+                                    for (let i = 0; i < entrenes_danza.length; i++) {
+                                        placeholders.push('?');
+                                        values.push(entrenes_danza[i].id);
+                                    }
+                                    const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
+                                
+                                    conn.query(sql, values, (err, avg_data) => {
+                                        if (err) {
+                                            console.error(err);
+                                            return;
+                                        }
+                                    
+                                        //console.log(tablasName, avg_data);
+                                        avgData[tablasName] = avg_data[0];
+            
+                                        //Reset placeholders y values
+                                        placeholders.length = 0;
+                                        values.length = 0;
+            
+                                        if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
+                                            // Renderizamos la vista con los datos
+                                            res.render("informe", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin });
+                                        }
+                                    });
+                                }
+                            }else{
+                                console.log('No se encontraron entrenamientos de modalidad danza registrados para este usuario.');
+                                res.render('entrenamientos', {error: 'No se encontraron entrenamientos de modalidad danza registrados para este usuario.'});
+                            }
+                        }
+                    });
+                }else{
+                    conn.query('SELECT * FROM entrenamiento_libre WHERE fecha >= ? AND fecha <= ? AND id_patinador = ?', [fecha_ini, fecha_fin, id_pat], (err, entrenes_libre) => {
+                        if (err) {
+                            console.log('Error al obtener listado de entrenamientos Libre: ' + err);
+                        }else{
+                            if(entrenes_libre.length  > 0){
+                                console.log(entrenes_libre);
+
+                                let avgData = {};
+            
+                                for(let tablasName in  tablasLibre) {
+                                    const columnNames = tablasLibre[tablasName];
+            
+                                    for (let i = 0; i < entrenes_libre.length; i++) {
+                                        placeholders.push('?');
+                                        values.push(entrenes_libre[i].id);
+                                    }
+            
+                                    const sql = 'SELECT' + columnNames.map(c => ' AVG('+ c +') AS '+ c + '_avg').join(',') + ' FROM (SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
+                                
+                                    conn.query(sql, values, (err, avg_data) => {
+                                        if (err) {
+                                            console.error(err);
+                                            return;
+                                        }
+                                    
+                                        console.log(tablasName, avg_data);
+                                        avgData[tablasName] = avg_data[0];
+                                        
+                                        //Reset placeholders y values
+                                        placeholders.length = 0;
+                                        values.length = 0;
+            
+                                        if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
+                                            // Renderizamos la vista con los datos
+                                            res.render("informe", { avgData, dias: entrenes_libre.length, fecha_ini, fecha_fin });
+                                        }
+                                    });
+                                }
+                            }
+                            else{
+                                console.log('No se encontraron entrenamientos de modalidad libre registrados para este usuario.');
+                                res.render('entrenamientos', {error: 'No se encontraron entrenamientos de modalidad libre registrados para este usuario.'});
+                            }
+                        }
+                    });
+                }                
             }
         });
-        if(modalidad ==  'danza'){
-            conn.query('SELECT * FROM entrenamiento_danza WHERE fecha >= ? AND fecha <= ?', [fecha_ini, fecha_fin], (err, entrenes_danza) => {
-                if(err){
-                    console.log('Error al obtener listado de entrenamientos Danza: ' + err);
-                }
-                else{
-                    console.log(entrenes_danza);
-                    let avgData = {};
-                    
-                    for(let tablasName in  tablasDanza) {
-                        const columnNames = tablasDanza[tablasName];
-                        for (let i = 0; i < entrenes_danza.length; i++) {
-                            placeholders.push('?');
-                            values.push(entrenes_danza[i].id);
-                        }
-                        const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
-                    
-                        conn.query(sql, values, (err, avg_data) => {
-                            if (err) {
-                                console.error(err);
-                                return;
-                            }
-                        
-                            //console.log(tablasName, avg_data);
-                            avgData[tablasName] = avg_data[0];
-
-                            //Reset placeholders y values
-                            placeholders.length = 0;
-                            values.length = 0;
-
-                            if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
-                                // Renderizamos la vista con los datos
-                                res.render("informe", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin });
-                            }
-                        });
-                    }
-                    
-                    
-                }
-            });
-        }else{
-            conn.query('SELECT * FROM entrenamiento_libre WHERE fecha >= ? AND fecha <= ?', [fecha_ini, fecha_fin], (err, entrenes_libre) => {
-                if (err) {
-                    console.log('Error al obtener listado de entrenamientos Libre: ' + err);
-                }else{
-                    console.log(entrenes_libre);
-                    let avgData = {};
-
-                    for(let tablasName in  tablasLibre) {
-                        const columnNames = tablasLibre[tablasName];
-
-                        for (let i = 0; i < entrenes_libre.length; i++) {
-                            placeholders.push('?');
-                            values.push(entrenes_libre[i].id);
-                        }
-
-                        const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
-                    
-                        conn.query(sql, values, (err, avg_data) => {
-                            if (err) {
-                                console.error(err);
-                                return;
-                            }
-                        
-                            console.log(tablasName, avg_data);
-                            avgData[tablasName] = avg_data[0];
-                            
-                            //Reset placeholders y values
-                            placeholders.length = 0;
-                            values.length = 0;
-
-                            if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
-                                // Renderizamos la vista con los datos
-                                res.render("informe", { avgData, dias: entrenes_libre.length, fecha_ini, fecha_fin });
-                              }
-                        });
-                    }
-                }
-            });
-        }
+        
     })
      
  }
