@@ -1,6 +1,10 @@
 // Para encriptar la información
 const bcrypt = require('bcrypt');
 
+/***************************************************************/
+/* Función que comprueba si hay una sesión abierta para ir     */ 
+/* al login, si la hay le manda al perfil                      */
+/***************************************************************/
 function login(req, res) {
     // Comprobamos que no haya una sesion: Si no la hay al pulsar login le manda al form
     if(req.session.loggedin != true)
@@ -12,7 +16,11 @@ function login(req, res) {
     }
 }
 
-//Función inicio sesión
+/***************************************************************/
+/* Función para el inicio de sesión. Se recogen los datos,     */
+/* username y contraseña, se comprueban con los almacenados    */
+/* y en caso de ser correctos se redirige al perfil            */
+/***************************************************************/
 function auth(req, res){
     const data = req.body;
     
@@ -46,12 +54,18 @@ function auth(req, res){
                 });
             }
             else{
+                // Si no se encuentra el usuario
                 res.render('login', {error: 'Error: Este usuario no existe!'});
             }
         });
     });
 }
 
+/***************************************************************/
+/* Función que redirige al form para registrarse si no hay una */
+/* sesión abierta, en caso de haber una sesión iniciada le     */ 
+/* manda al perfil.                                            */
+/***************************************************************/
 function signUp(req, res) {
     // Comprobamos que no haya una sesion: Si no la hay al pulsar login le manda al form
     if(req.session.loggedin != true)
@@ -63,12 +77,15 @@ function signUp(req, res) {
     }
 }
 
-//Funcion registrar usuario
+/***************************************************************/
+/* Función que para registrar un nuevo usuario en la BBDD con  */
+/* la información que se introduce en el form                  */
+/***************************************************************/
 function anyadirUser(req, res) {
     const data = req.body;
 
-    // Comprobamos si existe el usuario
     req.getConnection((err, conn) => {
+        // Comprobamos si existe el usuario
         conn.query('SELECT * FROM users WHERE email = ?', [data.email], (err, userData) => {
             if(userData.length > 0){
                 res.render('signUp', {error: 'Error: Este usuario ya existe.'});
@@ -92,6 +109,7 @@ function anyadirUser(req, res) {
                                 req.session.rol = data.rol;
                             }
 
+                            // Obtenemos el año de nacimiento del usuario
                             const fechaNacimiento = new Date(data.fecha_nacimiento);
                             const anyoNacimiento = fechaNacimiento.getFullYear();
                             
@@ -109,7 +127,6 @@ function anyadirUser(req, res) {
                             else{
                                 res.redirect('/');
                             }
-                            
                         })
                     });
                 });
@@ -119,7 +136,10 @@ function anyadirUser(req, res) {
     
 }
 
-//Función cierre sesión
+/***************************************************************/
+/* Función que para cerrar la sesión. Una vez cerrada redirige */
+/* al usuario al form de login                                 */
+/***************************************************************/
 function logout(req, res) {
     if(req.session.loggedin == true){
         req.session.destroy();

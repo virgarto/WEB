@@ -1,7 +1,13 @@
+/***************************************************************/
+/* Función que para cargar la pagina home                      */
+/***************************************************************/
 function home (req, res){
     res.render('home', {rol: req.session.rol});
 }
 
+/***************************************************************/
+/* Función que para cargar la pagina perfil                      */
+/***************************************************************/
 function perfil (req, res){
     if(req.session.loggedin != true)
     {
@@ -12,6 +18,9 @@ function perfil (req, res){
     }
 }
 
+/***************************************************************/
+/* Función que para cargar la pagina Entrenamientos Patinador  */
+/***************************************************************/
 function entrenamientosPatinador (req, res){
     if(req.session.loggedin != true)
     {
@@ -22,12 +31,18 @@ function entrenamientosPatinador (req, res){
     }
 }
 
+/***************************************************************/
+/* Función que para cargar la pagina Entrenamientos Entrenador */
+/* la cual esta formada de un listado de los patinadores que   */
+/* conforman el club al que pertenece dicho entrenador         */
+/***************************************************************/
 function entrenamientosEntrenador (req, res){
     if(req.session.loggedin != true)
     {
         res.render('login');
     }
     else{ 
+        // Nos conectamos a la BBDD para obtener el listado
         req.getConnection((err, conn) => {
             if(err) 
                 console.log('Error al conectarse a la BBDD: ' + err);
@@ -41,6 +56,9 @@ function entrenamientosEntrenador (req, res){
     }   
 }
 
+/***************************************************************/
+/* Función que para cargar la pagina Coreografías              */
+/***************************************************************/
 function coreografias (req, res){
     if(req.session.loggedin != true)
     {

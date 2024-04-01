@@ -1,16 +1,29 @@
+/***************************************************************/
+/* Función para cargar la página que contiene el form          */
+/* para generar un informe del patinador seleccionado          */
+/***************************************************************/
 function goToInforme (req, res){
     const email = req.query.email;
     res.render('informeEntrenador', {rol: req.session.rol, email});
 }
 
+/***************************************************************/
+/* Función que recoge el email del patinador, así como la      */
+/*  modalidad y dos fechas entre las que se comprende el       */
+/* informe a generar                                           */
+/***************************************************************/
 function getInformeEntrenador(req,res) {
+    // Variables recogidas del form
     const patinador_email = req.query.patinador;
     const modalidad = req.query.modalidad;
     const fecha_ini = req.query.startDate;
     const fecha_fin = req.query.endDate;
 
+    // Arrays vacios para generar la consulta
     const placeholders = [];
     const values = [];
+
+    // Tablas de Entrenamiento Danza y Libre con sus respectivos elementos y columnas
     const tablasDanza = {
         'art_foot_sequence': ['ASqB', 'ASq1', 'ASq2', 'ASq3', 'ASq4'],
         'bracket_derecho': ['BrDExtDetras', 'BrDExtDelante', 'BrDIntDetras', 'BrDIntDelante'], 
@@ -47,6 +60,7 @@ function getInformeEntrenador(req,res) {
 
     req.getConnection((err, conn) => {
         console.log(patinador_email);
+        // Obtenemos el id del patinador que se va a consultar
         conn.query('SELECT id AS pat_ID FROM users WHERE email = ?', [patinador_email], (error, id) => {
             if(err){
                 console.log("Error al obtener el Id del usuario" + error);
@@ -54,6 +68,7 @@ function getInformeEntrenador(req,res) {
                 console.log('Id del patinador: ' + id[0].pat_ID);
                 const id_pat = id[0].pat_ID;
 
+                // Diferenciamos el tipo de modalidad del que se quiere hacer el informe
                 if(modalidad ==  'danza'){
                     conn.query('SELECT * FROM entrenamiento_danza WHERE fecha >= ? AND fecha <= ? AND id_patinador = ?', [fecha_ini, fecha_fin, id_pat], (err, entrenes_danza) => {
                         if(err){
@@ -64,28 +79,33 @@ function getInformeEntrenador(req,res) {
                                 console.log(entrenes_danza);
                                 let avgData = {};
                                 
+                                // Recorremos la tabla correspondiente y para cada elemento en el array
+                                // empujamos un '?' al array placeholders y el id del elemento actual al array values.
                                 for(let tablasName in  tablasDanza) {
                                     const columnNames = tablasDanza[tablasName];
                                     for (let i = 0; i < entrenes_danza.length; i++) {
                                         placeholders.push('?');
                                         values.push(entrenes_danza[i].id);
                                     }
+
+                                    // Generamos la consulta final
                                     const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                                 
+                                    // Ejecutamos la consulta con los values recogidos
                                     conn.query(sql, values, (err, avg_data) => {
                                         if (err) {
                                             console.error(err);
                                             return;
                                         }
                                     
-                                        //console.log(tablasName, avg_data);
+                                        // Guardamos el resultado
                                         avgData[tablasName] = avg_data[0];
             
                                         //Reset placeholders y values
                                         placeholders.length = 0;
                                         values.length = 0;
             
-                                        if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
+                                        if (Object.keys(avgData).length === Object.keys(tablasDanza).length) {
                                             // Renderizamos la vista con los datos
                                             res.render("informe", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin });
                                         }
@@ -107,6 +127,8 @@ function getInformeEntrenador(req,res) {
 
                                 let avgData = {};
             
+                                // Recorremos la tabla correspondiente y para cada elemento en el array
+                                // empujamos un '?' al array placeholders y el id del elemento actual al array values.
                                 for(let tablasName in  tablasLibre) {
                                     const columnNames = tablasLibre[tablasName];
             
@@ -115,15 +137,17 @@ function getInformeEntrenador(req,res) {
                                         values.push(entrenes_libre[i].id);
                                     }
             
+                                    // Generamos la consulta final
                                     const sql = 'SELECT' + columnNames.map(c => ' AVG('+ c +') AS '+ c + '_avg').join(',') + ' FROM (SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                                 
+                                    // Ejecutamos la consulta con los values recogidos
                                     conn.query(sql, values, (err, avg_data) => {
                                         if (err) {
                                             console.error(err);
                                             return;
                                         }
                                     
-                                        console.log(tablasName, avg_data);
+                                        // Guardamos el resultado
                                         avgData[tablasName] = avg_data[0];
                                         
                                         //Reset placeholders y values

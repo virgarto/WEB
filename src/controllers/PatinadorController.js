@@ -1,18 +1,35 @@
+/***************************************************************/
+/* Función para cargar el form de crear un Entrenamiento   */
+/* de modalidad Danza                                          */
+/***************************************************************/
 function goToEntreneForm (req, res){
     res.render('newEntreneDanza');
 }
 
+/***************************************************************/
+/* Función para cargar el form de crear un Entrenamiento   */
+/* de modalidad Libre                                          */
+/***************************************************************/
 function goToEntreneLibre (req, res){
     res.render('newEntreneLibre');
 }
 
+/***************************************************************/
+/* Función que genera un informe de la modalidad deseada y de  */
+/* los entrenamientos realizados comprendidos en las fechas    */
+/* que se han introducido                                      */
+/***************************************************************/
 function getInforme(req, res){
+    // Variables recogidas del form
     const modalidad = req.query.modalidad;
     const fecha_ini = req.query.startDate;
     const fecha_fin = req.query.endDate;
 
+    // Arrays vacios para generar la consulta
     const placeholders = [];
     const values = [];
+
+    // Tablas de Entrenamiento Danza y Libre con sus respectivos elementos y columnas
     const tablasDanza = {
         'art_foot_sequence': ['ASqB', 'ASq1', 'ASq2', 'ASq3', 'ASq4'],
         'bracket_derecho': ['BrDExtDetras', 'BrDExtDelante', 'BrDIntDetras', 'BrDIntDelante'], 
@@ -48,6 +65,7 @@ function getInforme(req, res){
     };
 
     req.getConnection((err,conn)=> {
+        // Obtenemos el id del patinador que se va a consultar
         conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [req.session.email], (err, id) =>{
             if(err){
                 console.log("Error al obtener el Id del usuario: " + err);
@@ -56,6 +74,7 @@ function getInforme(req, res){
                 console.log(id[0].pat_ID);
                 const id_pat = id[0].pat_ID;
 
+                // Diferenciamos el tipo de modalidad del que se quiere hacer el informe
                 if(modalidad ==  'danza'){
                     conn.query('SELECT * FROM entrenamiento_danza WHERE fecha >= ? AND fecha <= ? AND id_patinador = ?', [fecha_ini, fecha_fin, id_pat], (err, entrenes_danza) => {
                         if(err){
@@ -66,21 +85,26 @@ function getInforme(req, res){
                                 console.log(entrenes_danza);
                                 let avgData = {};
                                 
+                                // Recorremos la tabla correspondiente y para cada elemento en el array
+                                // empujamos un '?' al array placeholders y el id del elemento actual al array values.
                                 for(let tablasName in  tablasDanza) {
                                     const columnNames = tablasDanza[tablasName];
                                     for (let i = 0; i < entrenes_danza.length; i++) {
                                         placeholders.push('?');
                                         values.push(entrenes_danza[i].id);
                                     }
+
+                                    // Generamos la consulta final
                                     const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                                 
+                                    // Ejecutamos la consulta con los values recogidos
                                     conn.query(sql, values, (err, avg_data) => {
                                         if (err) {
                                             console.error(err);
                                             return;
                                         }
                                     
-                                        //console.log(tablasName, avg_data);
+                                        // Guardamos el resultado
                                         avgData[tablasName] = avg_data[0];
             
                                         //Reset placeholders y values
@@ -109,6 +133,8 @@ function getInforme(req, res){
 
                                 let avgData = {};
             
+                                // Recorremos la tabla correspondiente y para cada elemento en el array
+                                // empujamos un '?' al array placeholders y el id del elemento actual al array values.
                                 for(let tablasName in  tablasLibre) {
                                     const columnNames = tablasLibre[tablasName];
             
@@ -153,7 +179,12 @@ function getInforme(req, res){
      
  }
 
+ /***************************************************************/
+/* Función para registrar un nuevo entrenamiento mediante el    */
+/* formulario con sus elementos integrativos                    */
+/****************************************************************/
 function createEntreneDanza(req, res){
+    // Recogemos la información del form
     const {travellingB, travelling1, travelling2, travelling3, travelling4} = req.body;
     const {clusterB, cluster1, cluster2, cluster3, cluster4} = req.body;
     const {key_point1, key_point2, key_point3, key_point4} = req.body;
@@ -173,6 +204,7 @@ function createEntreneDanza(req, res){
     const {TresIExtDetras, TresIExtDelante, TresIIntDetras, TresIIntDelante} = req.body;
         
     req.getConnection((err, conn) => {
+        // Obtenemos el id del patinador que está haciendo el registro
         conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [req.session.email], (err, id) =>{
             if(err){
                 console.log("Error al obtener el Id del usuario");
@@ -200,6 +232,8 @@ function createEntreneDanza(req, res){
                 conn.query('INSERT INTO tres_derecho (TresDExtDetras, TresDExtDelante, TresDIntDetras, TresDIntDelante) VALUES (?, ?, ?, ?)', [TresDExtDetras, TresDExtDelante, TresDIntDetras, TresDIntDelante]);
                 conn.query('INSERT INTO tres_izquierdo (TresIExtDetras, TresIExtDelante, TresIIntDetras, TresIIntDelante) VALUES (?, ?, ?, ?)', [TresIExtDetras, TresIExtDelante, TresIIntDetras, TresIIntDelante]);
             
+                // Mediante los triggers creados, que se pueden ver en el documento db.sql, se añaden los registros de cada elemento integrativo
+                // a la tabla temporal
 
                 // Añadimos en la tabla principal los registros de la tabla temporal para que estén todos en el mismo registro
                 conn.query('INSERT INTO entrenamiento_danza (id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq, id_tres_der, id_tres_izq) SELECT MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq), MAX(id_tres_der), MAX(id_tres_izq) FROM entrenamiento_danza_temp');
@@ -220,6 +254,7 @@ function createEntreneDanza(req, res){
 }
 
 function createEntreneLibre(req, res){
+    // Recogemos los datos del form
     const {upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq} = req.body;
     const {upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der} = req.body;
     const {sit_izq, sit_forward_izq, sit_sideways_izq, behind_izq, twist_izq} = req.body;
@@ -236,7 +271,7 @@ function createEntreneLibre(req, res){
     const {flexi_split, flexi_arco} = req.body;
         
     req.getConnection((err, conn) => {
-        
+        // Obtenemos el id del usuario
         conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [req.session.email], (err, id) =>{
             if(err){
                 console.log("Error al obtener el Id del usuario");
