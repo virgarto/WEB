@@ -106,6 +106,7 @@ function getInforme(req, res){
                                     
                                         // Guardamos el resultado
                                         avgData[tablasName] = avg_data[0];
+                                        console.log(avgData[tablasName]);
             
                                         //Reset placeholders y values
                                         placeholders.length = 0;
@@ -177,7 +178,15 @@ function getInforme(req, res){
         
     })
      
- }
+}
+
+ /***************************************************************/
+/* Función que genera un gráfico con la información recogida    */
+/* para generar el informe                                      */
+/****************************************************************/
+function createGrafic(){
+
+}
 
  /***************************************************************/
 /* Función para registrar un nuevo entrenamiento mediante el    */
