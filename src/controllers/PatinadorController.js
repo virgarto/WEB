@@ -114,7 +114,7 @@ function getInforme(req, res){
             
                                         if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
                                             // Renderizamos la vista con los datos
-                                            res.render("informe", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin });
+                                            res.render('entrenamientos', { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin });
                                         }
                                     });
                                 }
@@ -180,13 +180,6 @@ function getInforme(req, res){
      
 }
 
- /***************************************************************/
-/* Función que genera un gráfico con la información recogida    */
-/* para generar el informe                                      */
-/****************************************************************/
-function createGrafic(){
-
-}
 
  /***************************************************************/
 /* Función para registrar un nuevo entrenamiento mediante el    */
@@ -330,5 +323,5 @@ module.exports = {
     createEntreneDanza,
     goToEntreneLibre,
     createEntreneLibre,
-    getInforme
+    getInforme,
 }
