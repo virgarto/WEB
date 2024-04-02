@@ -43,15 +43,13 @@
                 </div>
             </nav>
         </div>
-        <main>
+        <main >
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamientos</h3>
-            <div class="container text-center" style="margin-top: 10px;">
-                <div class="row justify-content-start" style="margin-left: -10%;">
-                    <div class="col mt-4" id="newEntreneLink">
+            <div class="container text-center mt-3" >
+                    <div class="mt-4" id="newEntreneLink">
                         <p class="text-center">Registra tus nuevos entrenamientos:</p>
                         <a class="btn btn-outline-success mt-3"  href="newEntreneDanza">Modalidad Danza</a>
-                        </br>
-                        <a class="btn btn-outline-success mt-4" href="newEntreneLibre">Modalidad Libre</a>
+                        <a class="btn btn-outline-success mt-3" href="newEntreneLibre">Modalidad Libre</a>
                     </div>  
                     {{#if msg}}
                         <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: rgb(42, 165, 63)">*{{msg}}*</p>
@@ -60,8 +58,9 @@
                         <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: brown">*{{error}}*</p>
                     {{/if}}
 
-                    <div class="col mt-4" style="font-size: 16px;" >
+                    <div class="mt-4" style="font-size: 16px;" >
                         <form method="GET" id="formInforme" action="informe2">
+                            <p class="text-center mt-4">Observa tu avance rellenando este formulario</p>
                             <label for="startDate">Desde: *</label> <br>
                             <input type="date" class="form-control text-center mt-3" name="startDate" required /> <br>
                             <label for="endDate" class="mt-4">Hasta: *</label> <br>
