@@ -157,14 +157,10 @@ footer{
 	width:  150px;
 }
 
-.linkEntrene{
-	text-decoration: none;
-	color: #222222;
-}
-
-.linkEntrene:hover{
-	text-decoration: none;
-	color: #0d6efd;
+#formInforme label, #newEntreneLink p{
+	font-size: 15px;
+	font-family: 'Kay Pho Du', serif;
+    font-weight: 100;
 }
 
 th{color: #333;}
