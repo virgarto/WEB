@@ -46,10 +46,10 @@
         <main >
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamientos</h3>
             <div class="container text-center mt-3" >
-                    <div class="mt-4" id="newEntreneLink">
+                    <div class="mt-3" id="newEntreneLink">
                         <p class="text-center">Registra tus nuevos entrenamientos:</p>
-                        <a class="btn btn-outline-success mt-3"  href="newEntreneDanza">Modalidad Danza</a>
-                        <a class="btn btn-outline-success mt-3" href="newEntreneLibre">Modalidad Libre</a>
+                        <a class="btn btn-outline-success mt-1"  href="newEntreneDanza">Modalidad Danza</a>
+                        <a class="btn btn-outline-success mt-1" href="newEntreneLibre">Modalidad Libre</a>
                     </div>  
                     {{#if msg}}
                         <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: rgb(42, 165, 63)">*{{msg}}*</p>
@@ -58,18 +58,18 @@
                         <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: brown">*{{error}}*</p>
                     {{/if}}
 
-                    <div class="mt-4" style="font-size: 16px;" >
+                    <div class="mt-5" style="font-size: 16px;" >
                         <form method="GET" id="formInforme" action="informe2">
-                            <p class="text-center mt-4">Observa tu avance rellenando este formulario</p>
+                            <p class="text-center">Observa tu avance rellenando este formulario</p>
                             <label for="startDate">Desde: *</label> <br>
-                            <input type="date" class="form-control text-center mt-3" name="startDate" required /> <br>
-                            <label for="endDate" class="mt-4">Hasta: *</label> <br>
-                            <input type="date" class="form-control text-center mt-3" name="endDate" required/><br> <br>
-                            <p class="mt-4">Modalidad *</p>
-                            <select name="modalidad" class="form-select text-center mt-3">
+                            <input type="date" class="form-control text-center mt-1" name="startDate" required /> <br>
+                            <label for="endDate" class="mt-1">Hasta: *</label> <br>
+                            <input type="date" class="form-control text-center mt-1" name="endDate" required/><br>
+                            <p class="mt-1" style="font-size: 16px;">Modalidad *</p>
+                            <select name="modalidad" class="form-select text-center mt-1">
                                 <option value="libre">Modalidad Libre</option>
                                 <option value="danza">Modalidad Danza</option>
-                            </select><br><br>
+                            </select><br>
                             
                             <button type="submit" class="btn btn-success">Buscar</button>
                         </form>
