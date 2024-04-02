@@ -158,9 +158,18 @@ footer{
 }
 
 #formInforme label, #newEntreneLink p{
-	font-size: 15px;
+	font-size: 18px;
 	font-family: 'Kay Pho Du', serif;
     font-weight: 100;
+}
+
+#formInforme input, #formInforme select{
+	border: #727171 solid 1px;
+} 
+
+#formInforme{
+	display:inline-block;
+	justify-content: center;
 }
 
 th{color: #333;}
