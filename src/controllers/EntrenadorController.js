@@ -87,7 +87,7 @@ function getInformeEntrenador(req,res) {
             
                                         if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
                                             // Renderizamos la vista con los datos
-                                            res.render("informe", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin });
+                                            res.render("informe", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin, rol: req.session.rol });
                                         }
                                     });
                                 }
@@ -132,7 +132,7 @@ function getInformeEntrenador(req,res) {
             
                                         if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
                                             // Renderizamos la vista con los datos
-                                            res.render("informe", { avgData, dias: entrenes_libre.length, fecha_ini, fecha_fin });
+                                            res.render("informe", { avgData, dias: entrenes_libre.length, fecha_ini, fecha_fin, rol: req.session.rol });
                                         }
                                     });
                                 }
