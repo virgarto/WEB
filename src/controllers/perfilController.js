@@ -4,7 +4,7 @@ const e = require('express');
 function editUser (req, res){
     res.render('editUserForm', { name: req.session.name,
                                 password: req.session.password,
-                                estado: req.session.estado});
+                                rol: req.session.rol});
     
 }
 

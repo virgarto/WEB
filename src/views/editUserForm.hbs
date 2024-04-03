@@ -43,22 +43,23 @@
         </nav>
         <main>
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Perfil</h3>
-            <div class="text-center">
-                <form action="" method="POST" class="formEditPat">
-                    <h2 class="fs-3 fw-normal ">Editar usuario</h2>
+            <div class="container text-center mt-4">
+                <form action="" method="POST" id="formEditPat">
+                    <h2 class="fs-3 fw-normal mt-4">Editar usuario</h2>
                     
                     {{#if error}}
                         <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: brown">*{{error}}*</p>
                     {{/if}}
                     
-                    <label for="username"><b>Username</b></label><br>
-                    <input type="text" name="username" value="{{name}}"><br><br>
+                    <label for="username" class="mt-2">Username</label><br>
+                    <input type="text" name="username" class="form-control text-center mt-1" value="{{name}}"><br>
 
-                    <label for="password"><b>Password</b></label><br>
-                    <input type="password" name="password" value="{{password}}"><br><br>
+                    <label for="password">Password</label><br>
+                    <input type="password" name="password" class="form-control text-center mt-1" value="{{password}}"><br>
 
-                    <input type="submit" value="Guardar cambios"><br><br>
-                    <a href="perfil">Volver atrás</a><br><br>
+                    <a role="button" class="btn btn-outline-secondary mt-4" href="perfil">Volver atrás</a>
+                    <button type="submit" class="btn btn-success mt-4">Guardar cambios</button>
+                    
                 </form>
             </div>
         </main>
