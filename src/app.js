@@ -10,6 +10,7 @@ const loginRoutes = require('./routes/login');
 const userPerfilRoutes = require('./routes/userPerfil');
 const patinadorRoutes = require('./routes/patinador');
 const entrenadorRoutes = require('./routes/entrenador');
+const coreosRoutes = require('./routes/coreos');
 
 const app = express();
 app.set('port', 4000);
@@ -52,6 +53,7 @@ app.use('/', loginRoutes);
 app.use('/', userPerfilRoutes);
 app.use('/', patinadorRoutes);
 app.use('/', entrenadorRoutes);
+app.use('/', coreosRoutes);
 
 app.get('/', (req, res) => {
     if(req.session.loggedin == true)
