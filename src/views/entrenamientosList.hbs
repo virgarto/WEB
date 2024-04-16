@@ -48,11 +48,7 @@
                     <div class="search">
                         <form method="GET">
                             <div class="input-group rounded">
-                                <input type="text" class="form-control" placeholder="Buscar..." name="patName"  value="{{{patName}}}"/>
-                                <span class="input-group-text">
-                                    <i class="icon icon-search"></i>
-                                    <button type="submit" class="btn btn-outline-dark">Buscar</button>
-                                </span>
+                                <input type="text" class="form-control" id="searchInput" placeholder="Buscar..."/>
                             </div>
                         </form>
                     </div>
@@ -62,7 +58,7 @@
                 </div>
             </div>
             <div class="container text-center mt-3">
-                    <table class="table table-striped table-hover table-responsive-sm">
+                    <table class="table table-striped table-hover table-responsive-sm" id="tabla_patinadores">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -96,19 +92,34 @@
             </div>
         </footer>
         <script>
-            var $table = $('#table');
-            $(function () {
-                $('#toolbar').find('select').change(function () {
-                    $table.bootstrapTable('refreshOptions', {
-                        exportDataType: $(this).val()
-                    });
-                });
-            })
+            document.getElementById('searchInput').addEventListener('input', function() {
+                var input = this;
+                var tabla = document.getElementById('tabla_patinadores');
+                var rows = tabla.getElementsByTagName('tr');
 
-                var trBoldBlue = $("table");
+                // Recorremos las filas
+                for (var i = 0; i < rows.length; i++) {
+                    // obtenemos la información de las celdas
+                    var info_celdas = rows[i].getElementsByTagName('td');
+                    var found = false;
 
-            $(trBoldBlue).on("click", "tr", function (){
-                    $(this).toggleClass("bold-blue");
+                    // Recorremos las celdas
+                    for (var j = 0; j < info_celdas.length; j++) {
+                        var celda = info_celdas[j];
+                        // Se comprueba la información de la celda con el input
+                        if (celda.innerText.toLowerCase().indexOf(input.value.toLowerCase()) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    // Se muestra las filas que contienen al menos una celda con la información del input
+                    if (found) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
             });
         </script>
     </body>
