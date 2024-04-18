@@ -46,20 +46,30 @@
         <main >
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Corto</h3>
             <div class="container text-center mt-3" >
+                {{categoria}}
                     <form method="GET" action="" id="">
                     
                     <label for="SJu">Simple Jump</label>
-                    <input type="text" name="SJu"><br>
+                    <input type="text" name="SJu" value="Axel" readonly>
+                    <select name="tipo_salto">
+                        <option value="simple">Simple</option>
+                        <option value="doble">Doble</option>
+                        <option value="triple">Triple</option>
+                    </select><br>
                     
-                    <label for="CJu">Combined Jump </label>
-                    <input type="text" name="CJu" /><br>
+                    <label for="CJu">Combined Jump (min. 2, max. 4 saltos)</label>
+                    <button id="addInputsButton" type="button">
+                            <i class="fas fa-plus"></i> Añadir saltos
+                    </button>
+                    <div id="dinamicInputsJump"></div>
                     
                     <label for="Footwork">Footwork </label><br>
 
                     <label for="SSp">Simple Spin</label> 
                     <input type="text" name="SJu"><br>
+
                     <label for="CSpin">Combined Spin </label>
-                    <input type="text" name="CJu" /><br>
+                    <input type="text" name="nSpin" placeholder="nº posiciones (max. 4)"/><br>
                     
                     <button type="submit" class="btn btn-success mt-5">Crear</button>
                 
@@ -71,5 +81,37 @@
                 © 2024 Copyright: Virginia García
             </div>
         </footer>
+        <script>
+        var numJumps = 0;
+
+        function createInputs() {
+            // Limpiar el contenedor de inputs dinámicos
+            var dynamicInputsContainer = document.getElementById('dinamicInputsJump');
+            dynamicInputsContainer.innerHTML = '';
+
+            if(numJumps < 4){
+                // Crear los inputs dinámicos
+                for (var i = 1; i <= numJumps + 1; i++) {
+                var input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'jump' + i;
+                input.placeholder = 'Salto ' + i;
+                dynamicInputsContainer.appendChild(input);
+                dynamicInputsContainer.appendChild(document.createElement('br'));
+                }
+            }
+            else{
+                alert('No se pueden agregar más saltos');
+            }
+            
+
+            // Incrementar el valor de numJumps
+            numJumps++;
+        }
+
+        // Agregar un evento de clic al botón "addInputsButton"
+        document.getElementById('addInputsButton').addEventListener('click', createInputs);
+
+</script>
     </body>
 </html>
