@@ -46,33 +46,149 @@
         <main >
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Corto</h3>
             <div class="container text-center mt-3" >
-                {{categoria}}
+                <p>Patinador/a: <b class="text-uppercase">{{name}}</b></p>
+                <p>Categoria: <b class="text-uppercase">{{categoria}}</b></p>
                     <form method="GET" action="" id="">
-                    
-                    <label for="SJu">Simple Jump</label>
-                    <input type="text" name="SJu" value="Axel" readonly>
-                    <select name="tipo_salto">
-                        <option value="simple">Simple</option>
-                        <option value="doble">Doble</option>
-                        <option value="triple">Triple</option>
-                    </select><br>
-                    
-                    <label for="CJu">Combined Jump (min. 2, max. 4 saltos)</label>
-                    <button id="addInputsButton" type="button">
-                            <i class="fas fa-plus"></i> Añadir saltos
-                    </button>
-                    <div id="dinamicInputsJump"></div>
-                    
-                    <label for="Footwork">Footwork </label><br>
+                        <table class="table table-striped table-hover table-responsive-sm"> 
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Code</th>
+                                    <th>Elements</th>
+                                    <th>BASE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <select>
+                                            <option value="SJu">SJu</option>
+                                            <option value="CoJ">CoJ</option>
+                                            <option value="SSp">SSp</option>
+                                            <option value="CSp">CSp</option>
+                                            <option value="FoSq">FoSq</option>
+                                            <option value="ChSt">ChSt</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-success">Añadir Elemetos</a>
+                                    </td>
+                                </tr>
 
-                    <label for="SSp">Simple Spin</label> 
-                    <input type="text" name="SJu"><br>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <select>
+                                            <option value="SJu">SJu</option>
+                                            <option value="CoJ">CoJ</option>
+                                            <option value="SSp">SSp</option>
+                                            <option value="CSp">CSp</option>
+                                            <option value="FoSq">FoSq</option>
+                                            <option value="ChSt">ChSt</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-success">Añadir Elemetos</a>
+                                    </td>
+                                </tr>
 
-                    <label for="CSpin">Combined Spin </label>
-                    <input type="text" name="nSpin" placeholder="nº posiciones (max. 4)"/><br>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <select>
+                                            <option value="SJu">SJu</option>
+                                            <option value="CoJ">CoJ</option>
+                                            <option value="SSp">SSp</option>
+                                            <option value="CSp">CSp</option>
+                                            <option value="FoSq">FoSq</option>
+                                            <option value="ChSt">ChSt</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-success">Añadir Elemetos</a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <select>
+                                            <option value="SJu">SJu</option>
+                                            <option value="CoJ">CoJ</option>
+                                            <option value="SSp">SSp</option>
+                                            <option value="CSp">CSp</option>
+                                            <option value="FoSq">FoSq</option>
+                                            <option value="ChSt">ChSt</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-success">Añadir Elemetos</a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        <select>
+                                            <option value="SJu">SJu</option>
+                                            <option value="CoJ">CoJ</option>
+                                            <option value="SSp">SSp</option>
+                                            <option value="CSp">CSp</option>
+                                            <option value="FoSq">FoSq</option>
+                                            <option value="ChSt">ChSt</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-success">Añadir Elemetos</a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        <select>
+                                            <option value="SJu">SJu</option>
+                                            <option value="CoJ">CoJ</option>
+                                            <option value="SSp">SSp</option>
+                                            <option value="CSp">CSp</option>
+                                            <option value="FoSq">FoSq</option>
+                                            <option value="ChSt">ChSt</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-success">Añadir Elemetos</a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>7</td>
+                                    <td>
+                                        <select>
+                                            <option value="SJu">SJu</option>
+                                            <option value="CoJ">CoJ</option>
+                                            <option value="SSp">SSp</option>
+                                            <option value="CSp">CSp</option>
+                                            <option value="FoSq">FoSq</option>
+                                            <option value="ChSt">ChSt</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-success">Añadir Elemetos</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total: </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
                     
-                    <button type="submit" class="btn btn-success mt-5">Crear</button>
-                
+                        <button type="submit" class="btn btn-success mt-2">Crear</button>
+                    </form>
             </div>
             
         </main>
