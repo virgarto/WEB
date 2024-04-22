@@ -48,6 +48,10 @@
             <div class="container text-center mt-3" >
                 <p>Fila: {{fila}}</p>
                 <p>Código: {{codigo}}</p>
+
+                {{#if (eq codigo 'SJu')}}
+                    <p>Mostrar contenido para opción 1</p>
+                {{/if}}
             </div>
         </main>
         <footer class="text-center mt-5 footer-copyright">

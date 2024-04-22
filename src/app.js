@@ -4,6 +4,7 @@ const myconnection = require('express-myconnection');
 const mysql = require('mysql');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const Handlebars = require('./helpers');
 
 const menuRoutes = require('./routes/menu')
 const loginRoutes = require('./routes/login');
@@ -18,7 +19,10 @@ app.set('port', 4000);
 app.set('views', __dirname + '/views');
 app.engine('.hbs', engine({
     extname: '.hbs',
+    helpers: Handlebars.helpers,
 }));
+
+
 
 app.use(express.static(__dirname + '/public'));
 
