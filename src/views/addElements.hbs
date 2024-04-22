@@ -27,13 +27,13 @@
                         </li>
                         <li class="nav-item">
                             {{#if rol}}
-                                <a class="nav-link active" href="entrenamientosList">PATINADORES</a>
+                                <a class="nav-link" href="entrenamientosList">PATINADORES</a>
                             {{else}}
-                                <a class="nav-link active" href="entrenamientos">ENTRENAMIENTOS</a>
+                                <a class="nav-link" href="entrenamientos">ENTRENAMIENTOS</a>
                             {{/if}}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="coreografias">COREOGRAFÍAS</a>
+                            <a class="nav-link active" href="coreografias">COREOGRAFÍAS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="perfil">PERFIL</a>
@@ -46,7 +46,8 @@
         <main >
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Corto</h3>
             <div class="container text-center mt-3" >
-               {{codeSelected}}
+                <p>Fila: {{fila}}</p>
+                <p>Código: {{codigo}}</p>
             </div>
         </main>
         <footer class="text-center mt-5 footer-copyright">

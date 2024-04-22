@@ -27,13 +27,13 @@
                         </li>
                         <li class="nav-item">
                             {{#if rol}}
-                                <a class="nav-link active" href="entrenamientosList">PATINADORES</a>
+                                <a class="nav-link" href="entrenamientosList">PATINADORES</a>
                             {{else}}
-                                <a class="nav-link active" href="entrenamientos">ENTRENAMIENTOS</a>
+                                <a class="nav-link" href="entrenamientos">ENTRENAMIENTOS</a>
                             {{/if}}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="coreografias">COREOGRAFÍAS</a>
+                            <a class="nav-link active" href="coreografias">COREOGRAFÍAS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="perfil">PERFIL</a>
@@ -62,24 +62,27 @@
                                 <tr>
                                     <td>1</td>
                                     <td>
-                                        <select name="codeSelected">
+                                        <select name="codigo" id="select-1">
                                             <option value="SJu">SJu</option>
                                             <option value="CoJ">CoJ</option>
                                             <option value="SSp">SSp</option>
                                             <option value="CSp">CSp</option>
                                             <option value="FoSq">FoSq</option>
                                             <option value="ChSt">ChSt</option>
+                                            <option value="----">----</option>
+                                            
                                         </select>
                                     </td>
                                     <td>
-                                        <a role="button" class="btn btn-outline-success" href="/addElements?code=codeSelected">Añadir Elementos</a>
+                                        <a role="button" class="btn btn-outline-success" onclick="addElements(1, document.getElementById('select-1').value)">Añadir Elementos</a>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>2</td>
                                     <td>
-                                        <select>
+                                        <select name="codigo" id="select-2">
+                                            <option value="----">----</option>
                                             <option value="SJu">SJu</option>
                                             <option value="CoJ">CoJ</option>
                                             <option value="SSp">SSp</option>
@@ -96,7 +99,8 @@
                                 <tr>
                                     <td>3</td>
                                     <td>
-                                        <select>
+                                        <select name="codigo" id="select-3">
+                                            <option value="----">----</option>
                                             <option value="SJu">SJu</option>
                                             <option value="CoJ">CoJ</option>
                                             <option value="SSp">SSp</option>
@@ -113,7 +117,8 @@
                                 <tr>
                                     <td>4</td>
                                     <td>
-                                        <select name="codeSelected">
+                                        <select name="codigo" id="select-4">
+                                            <option value="----">----</option>
                                             <option value="SJu">SJu</option>
                                             <option value="CoJ">CoJ</option>
                                             <option value="SSp">SSp</option>
@@ -130,7 +135,8 @@
                                 <tr>
                                     <td>5</td>
                                     <td>
-                                        <select>
+                                        <select name="codigo" id="select-5">
+                                            <option value="----">----</option>
                                             <option value="SJu">SJu</option>
                                             <option value="CoJ">CoJ</option>
                                             <option value="SSp">SSp</option>
@@ -147,7 +153,8 @@
                                 <tr>
                                     <td>6</td>
                                     <td>
-                                        <select>
+                                        <select name="codigo" id="select-6">
+                                            <option value="----">----</option>
                                             <option value="SJu">SJu</option>
                                             <option value="CoJ">CoJ</option>
                                             <option value="SSp">SSp</option>
@@ -164,7 +171,8 @@
                                 <tr>
                                     <td>7</td>
                                     <td>
-                                        <select>
+                                        <select name="codigo" id="select-7">
+                                            <option value="----">----</option>
                                             <option value="SJu">SJu</option>
                                             <option value="CoJ">CoJ</option>
                                             <option value="SSp">SSp</option>
@@ -198,36 +206,10 @@
             </div>
         </footer>
         <script>
-        var numJumps = 0;
-
-        function createInputs() {
-            // Limpiar el contenedor de inputs dinámicos
-            var dynamicInputsContainer = document.getElementById('dinamicInputsJump');
-            dynamicInputsContainer.innerHTML = '';
-
-            if(numJumps < 4){
-                // Crear los inputs dinámicos
-                for (var i = 1; i <= numJumps + 1; i++) {
-                var input = document.createElement('input');
-                input.type = 'text';
-                input.name = 'jump' + i;
-                input.placeholder = 'Salto ' + i;
-                dynamicInputsContainer.appendChild(input);
-                dynamicInputsContainer.appendChild(document.createElement('br'));
-                }
+            function addElements(rowNumber, selectedValue) {
+                window.location.href = `/addElements?fila=${rowNumber}&codigo=${selectedValue}`;
             }
-            else{
-                alert('No se pueden agregar más saltos');
-            }
-            
 
-            // Incrementar el valor de numJumps
-            numJumps++;
-        }
-
-        // Agregar un evento de clic al botón "addInputsButton"
-        document.getElementById('addInputsButton').addEventListener('click', createInputs);
-
-</script>
+        </script>
     </body>
 </html>
