@@ -59,7 +59,7 @@
                             </div>
                         </form>
                     </div>
-                    <form method="POST">
+                    <form method="POST" id="formSJu">
                         <table class="table table-striped table-hover table-responsive-sm" id="tabla_saltos">
                             <thead>
                                 <th>CheckBox</th>
@@ -68,7 +68,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
+                                    <td><input type="checkbox" class="select-item" name="Waltz_Jump"></td>
                                     <td>Waltz_Jump</td>
                                     <td>0.4</td>
                                 </tr>
@@ -210,6 +210,24 @@
                         rows[i].style.display = 'none';
                     }
                 }
+            });
+
+            const form = document.querySelector('#formSJu');
+            form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Selecciona el checkbox marcado
+            const checkbox = document.querySelector('.select-item:checked');
+
+            // Obtiene la fila correspondiente al checkbox
+            const row = checkbox.parentNode.parentNode;
+
+            // Obtiene el contenido de la celda correspondiente al salto
+            const salto = row.querySelector('td').eq(1).innerText;
+
+            // Crea un objeto con los datos a enviar al servidor
+            const data = new FormData();
+            data.append('salto', salto);
             });
         </script>
     </body>

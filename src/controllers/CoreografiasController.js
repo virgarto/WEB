@@ -10,7 +10,8 @@ function goToaddElementInForm (req, res){
 
 function addElement(req, res){
     // Formulario para el SJu
-    // Nos aseguramos de si está en mitad programa en adelante por aumentar el porcentaje de BASE
+    const sJu_selected = req.query.salto;
+    console.log(sJu_selected);
     
 }
 
