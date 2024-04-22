@@ -9,7 +9,9 @@ function goToaddElementInForm (req, res){
 }
 
 function addElement(req, res){
-    console.log(req.query.codigo);
+    // Formulario para el SJu
+    // Nos aseguramos de si está en mitad programa en adelante por aumentar el porcentaje de BASE
+    
 }
 
 module.exports ={
