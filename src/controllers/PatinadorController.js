@@ -255,8 +255,8 @@ function createEntreneLibre(req, res){
                 conn.query('INSERT INTO heel_izquierdo (heel, forward, sideways, layover) VALUES (?, ?, ?, ?)', [heel_izq, heel_forward_izq, heel_sideways_izq, heel_layover_izq]);
                 conn.query('INSERT INTO heel_derecho (heel, forward, sideways, layover) VALUES (?, ?, ?, ?)', [heel_der, heel_forward_der, heel_sideways_der, heel_layover_der]);
                 conn.query('INSERT INTO saltos_simples (waltz_jump, salchow, toeloop, flip, lutz, loop_simple, thoren, axel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [waltz_jump, salchow, toeloop, flip, lutz, loop_simple, thoren, axel]);
-                conn.query('INSERT INTO saltos_dobles (salchow, toeloop, flip, lutz, loop_doble, thoren, axel) VALUES (?, ?, ?, ?, ?, ?, ?)', [salchow_2, Toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2]);
-                conn.query('INSERT INTO saltos_triples (salchow, toeloop) VALUES (?, ?)', [salchow_3, Toeloop_3]);
+                conn.query('INSERT INTO saltos_dobles (salchow_2, toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2) VALUES (?, ?, ?, ?, ?, ?, ?)', [salchow_2, Toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2]);
+                conn.query('INSERT INTO saltos_triples (salchow_3, toeloop_3) VALUES (?, ?)', [salchow_3, Toeloop_3]);
                 conn.query('INSERT INTO posiciones_avanzadas (inverted, broken, bryant) VALUES (?, ?, ?)', [pos_inverted, pos_broken, pos_bryant]);
                 conn.query('INSERT INTO discos (corto, largo) VALUES (?, ?)', [disc_corto, disc_largo]);
                 conn.query('INSERT INTO flexibilidad (split, arco) VALUES (?, ?)', [flexi_split, flexi_arco]);

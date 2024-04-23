@@ -461,19 +461,19 @@ CREATE TABLE `tfg`.`saltos_simples` (
 
 CREATE TABLE `tfg`.`saltos_dobles` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `salchow` INT NULL,
-  `toeloop` INT NULL,
-  `flip` INT NULL,
-  `lutz` INT NULL,
-  `loop_doble` INT NULL,
-  `thoren` INT NULL,
-  `axel` INT NULL,
+  `salchow_2` INT NULL,
+  `toeloop_2` INT NULL,
+  `flip_2` INT NULL,
+  `lutz_2` INT NULL,
+  `loop_2` INT NULL,
+  `thoren_2` INT NULL,
+  `axel_2` INT NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE `tfg`.`saltos_triples` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `salchow` INT NULL,
-  `toeloop` INT NULL,
+  `salchow_3` INT NULL,
+  `toeloop_3` INT NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE `tfg`.`discos` (
@@ -665,5 +665,36 @@ CREATE TRIGGER agregar_id_flexibilidad
 AFTER INSERT ON flexibilidad
 FOR EACH ROW
   INSERT INTO entrenamiento_libre_temp (id_flexibilidad) VALUES (NEW.id);
+
+
+
+/***************************************************************/
+/* Creamos una tabla para guardar las valoraciones base        */
+/* de cada salto                                               */
+/***************************************************************/
+CREATE TABLE `tfg`.`saltos_base` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `salto_nombre` VARCHAR(45) NULL,
+  `rating_base` INT NULL,
+  PRIMARY KEY (`id`));
+
+
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('waltz_jump', 0.4);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('salchow', 0.6);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('toeloop', 0.6);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('flip', 0.8);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('lutz', 0.9);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('loop_simple', 0.9);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('thoren', 0.9);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('axel', 1.3);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('salchow_2', 1.7);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('toeloop_2', 1.7);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('flip_2', 2);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('lutz_2', 2.2);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('loop_2', 2.2);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('thoren_2', 2.2);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('axel_2', 6.1);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('salchow_3', 7);
+INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('toeloop_3', 11.8);
 
 

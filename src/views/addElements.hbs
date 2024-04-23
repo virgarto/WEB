@@ -52,124 +52,58 @@
                 {{#if (eq codigo 'SJu')}}
                     <p>Selecciona el salto a realizar:</p>
 
-                    <div class="search">
-                        <form method="GET">
-                            <div class="input-group rounded">
-                                <input type="text" class="form-control" id="searchInput" placeholder="Buscar..."/>
-                            </div>
-                        </form>
-                    </div>
-                    <form method="POST" id="formSJu">
-                        <table class="table table-striped table-hover table-responsive-sm" id="tabla_saltos">
-                            <thead>
-                                <th>CheckBox</th>
-                                <th>Salto</th>
-                                <th>BASE</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="checkbox" class="select-item" name="Waltz_Jump"></td>
-                                    <td>Waltz_Jump</td>
-                                    <td>0.4</td>
-                                </tr>
+                    <form method="POST" id="formSJu" action="discoCortoForm" onsubmit="return saltoFormSubmit(event)">
+                        <input type="radio" name="salto" value="waltz_jump"/>
+                        <label for="waltz_jump">Waltz_Jump (Base Rating: 0.4)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>Salchow</td>
-                                    <td>0.6</td>
-                                </tr>
+                        <input type="radio" name="salto" value="salchow" />
+                        <label for="salchow">Salchow (Base Rating: 0.6)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>Toeloop</td>
-                                    <td>0.6</td>
-                                </tr>
+                        <input type="radio" name="salto" value="toeloop" />
+                        <label for="toeloop">Toeloop (Base Rating: 0.6)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>Flip</td>
-                                    <td>0.8</td>
-                                </tr>
+                        <input type="radio" name="salto" value="flip" />
+                        <label for="flip">Flip (Base Rating: 0.8)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>Lutz</td>
-                                    <td>0.9</td>
-                                </tr>
+                        <input type="radio" name="salto" value="lutz" />
+                        <label for="lutz">Lutz (Base Rating: 0.9)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>Loop</td>
-                                    <td>0.9</td>
-                                </tr>
+                        <input type="radio" name="salto" value="loop_simple" />
+                        <label for="loop_simple">Loop (Base Rating: 0.9)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>Thoren</td>
-                                    <td>0.9</td>
-                                </tr>
+                        <input type="radio" name="salto" value="thoren" />
+                        <label for="thoren">Thoren (Base Rating: 0.9)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>Axel</td>
-                                    <td>1.3</td>
-                                </tr>
+                        <input type="radio" name="salto" value="axel" />
+                        <label for="axel">Axel (Base Rating: 1.3)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>2 Salchow</td>
-                                    <td>1.7</td>
-                                </tr>
+                        <input type="radio" name="salto" value="salchow_2" />
+                        <label for="salchow_2">2 Salchow (Base Rating: 1.7)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>2 Toeloop</td>
-                                    <td>1.7</td>
-                                </tr>
+                        <input type="radio" name="salto" value="toeloop_2" />
+                        <label for="toeloop_2">2 Toeloop (Base Rating: 1.7)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>2 Flip</td>
-                                    <td>2</td>
-                                </tr>
+                        <input type="radio" name="salto" value="flip_2" />
+                        <label for="flip_2">2 Flip (Base Rating: 2)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>2 Lutz</td>
-                                    <td>2.2</td>
-                                </tr>
+                        <input type="radio" name="salto" value="lutz_2" />
+                        <label for="lutz_2">2 Lutz (Base Rating: 2.2)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>2 Loop</td>
-                                    <td>2.2</td>
-                                </tr>
+                        <input type="radio" name="salto" value="loop_2" />
+                        <label for="loop_2">2 Loop (Base Rating: 2.2)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>2 Thoren</td>
-                                    <td>2.2</td>
-                                </tr>
+                        <input type="radio" name="salto" value="thoren_2" />
+                        <label for="thoren_2">2 Thoren (Base Rating: 2.2)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>2 Axel</td>
-                                    <td>0.4</td>
-                                </tr>
+                        <input type="radio" name="salto" value="axel_2" />
+                        <label for="axel_2">2 Axel (Base Rating: 6.1)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>3 Salchow</td>
-                                    <td>7</td>
-                                </tr>
+                        <input type="radio" name="salto" value="salchow_3" />
+                        <label for="salchow_3">3 Salchow (Base Rating: 7)</label> <br>
 
-                                <tr>
-                                    <td><input type="checkbox" class="select-item"></td>
-                                    <td>3 Axel</td>
-                                    <td>11.8</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <input type="radio" name="salto" value="toeloop_3" />
+                        <label for="toeloop_3">3 Axel (Base Rating: 11.8)</label> <br>
+
                         <button type="submit" class="btn btn-success mt-2">Agregar Salto</button>
                     </form>
                     
@@ -181,54 +115,7 @@
                 © 2024 Copyright: Virginia García
             </div>
         </footer>
-        <script>
-            document.getElementById('searchInput').addEventListener('input', function() {
-                var input = this;
-                var tabla = document.getElementById('tabla_saltos');
-                var rows = tabla.getElementsByTagName('tr');
-
-                // Recorremos las filas
-                for (var i = 0; i < rows.length; i++) {
-                    // obtenemos la información de las celdas
-                    var info_celdas = rows[i].getElementsByTagName('td');
-                    var found = false;
-
-                    // Recorremos las celdas
-                    for (var j = 0; j < info_celdas.length; j++) {
-                        var celda = info_celdas[j];
-                        // Se comprueba la información de la celda con el input
-                        if (celda.innerText.toLowerCase().indexOf(input.value.toLowerCase()) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    // Se muestra las filas que contienen al menos una celda con la información del input
-                    if (found) {
-                        rows[i].style.display = '';
-                    } else {
-                        rows[i].style.display = 'none';
-                    }
-                }
-            });
-
-            const form = document.querySelector('#formSJu');
-            form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Selecciona el checkbox marcado
-            const checkbox = document.querySelector('.select-item:checked');
-
-            // Obtiene la fila correspondiente al checkbox
-            const row = checkbox.parentNode.parentNode;
-
-            // Obtiene el contenido de la celda correspondiente al salto
-            const salto = row.querySelector('td').eq(1).innerText;
-
-            // Crea un objeto con los datos a enviar al servidor
-            const data = new FormData();
-            data.append('salto', salto);
-            });
+        <script>     
         </script>
     </body>
 </html>

@@ -10,8 +10,9 @@ function goToaddElementInForm (req, res){
 
 function addElement(req, res){
     // Formulario para el SJu
-    const sJu_selected = req.query.salto;
-    console.log(sJu_selected);
+    const selectedSalto = req.body.salto;
+
+    console.log("Salto: " + selectedSalto);
     
 }
 
