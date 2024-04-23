@@ -46,13 +46,13 @@
         <main >
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Corto</h3>
             <div class="container text-center mt-3" >
-                <p>Fila: {{fila}}</p>
-                <p>Código: {{codigo}}</p>
-
                 {{#if (eq codigo 'SJu')}}
+                    <p>Fila: {{fila}}</p>
+                    <p>Código: <input type="text" value="{{codigo}}" name="code" readonly></p>
+
                     <p>Selecciona el salto a realizar:</p>
 
-                    <form method="POST" id="formSJu" action="discoCortoForm" onsubmit="return saltoFormSubmit(event)">
+                    <form method="POST" id="formSJu" action="discoCortoForm">
                         <input type="radio" name="salto" value="waltz_jump"/>
                         <label for="waltz_jump">Waltz_Jump (Base Rating: 0.4)</label> <br>
 
@@ -102,12 +102,73 @@
                         <label for="salchow_3">3 Salchow (Base Rating: 7)</label> <br>
 
                         <input type="radio" name="salto" value="toeloop_3" />
-                        <label for="toeloop_3">3 Axel (Base Rating: 11.8)</label> <br>
+                        <label for="toeloop_3">3 Axel (Base Rating: 7)</label> <br>
 
                         <button type="submit" class="btn btn-success mt-2">Agregar Salto</button>
                     </form>
-                    
                 {{/if}}
+                {{#if (eq codigo 'CoJ')}}
+                    <p>Fila: {{fila}}</p>
+                    <p>Código: <input value="{{codigo}}" name="code" readonly></p>
+
+                    <p>Selecciona el salto a realizar:</p>
+
+                    <form method="POST" id="formCoJ" action="discoCortoForm">
+                        <input type="checkbox" name="salto" value="waltz_jump"/>
+                        <label for="waltz_jump">Waltz_Jump (Base Rating: 0.4)</label> <br>
+
+                        <input type="checkbox" name="salto" value="salchow" />
+                        <label for="salchow">Salchow (Base Rating: 0.6)</label> <br>
+
+                        <input type="checkbox" name="salto" value="toeloop" />
+                        <label for="toeloop">Toeloop (Base Rating: 0.6)</label> <br>
+
+                        <input type="checkbox" name="salto" value="flip" />
+                        <label for="flip">Flip (Base Rating: 0.8)</label> <br>
+
+                        <input type="checkbox" name="salto" value="lutz" />
+                        <label for="lutz">Lutz (Base Rating: 0.9)</label> <br>
+
+                        <input type="checkbox" name="salto" value="loop_simple" />
+                        <label for="loop_simple">Loop (Base Rating: 0.9)</label> <br>
+
+                        <input type="checkbox" name="salto" value="thoren" />
+                        <label for="thoren">Thoren (Base Rating: 0.9)</label> <br>
+
+                        <input type="checkbox" name="salto" value="axel" />
+                        <label for="axel">Axel (Base Rating: 1.3)</label> <br>
+
+                        <input type="checkbox" name="salto" value="salchow_2" />
+                        <label for="salchow_2">2 Salchow (Base Rating: 1.7)</label> <br>
+
+                        <input type="checkbox" name="salto" value="toeloop_2" />
+                        <label for="toeloop_2">2 Toeloop (Base Rating: 1.7)</label> <br>
+
+                        <input type="checkbox" name="salto" value="flip_2" />
+                        <label for="flip_2">2 Flip (Base Rating: 2)</label> <br>
+
+                        <input type="checkbox" name="salto" value="lutz_2" />
+                        <label for="lutz_2">2 Lutz (Base Rating: 2.2)</label> <br>
+
+                        <input type="checkbox" name="salto" value="loop_2" />
+                        <label for="loop_2">2 Loop (Base Rating: 2.2)</label> <br>
+
+                        <input type="checkbox" name="salto" value="thoren_2" />
+                        <label for="thoren_2">2 Thoren (Base Rating: 2.2)</label> <br>
+
+                        <input type="checkbox" name="salto" value="axel_2" />
+                        <label for="axel_2">2 Axel (Base Rating: 6.1)</label> <br>
+
+                        <input type="checkbox" name="salto" value="salchow_3" />
+                        <label for="salchow_3">3 Salchow (Base Rating: 7)</label> <br>
+
+                        <input type="checkbox" name="salto" value="toeloop_3" />
+                        <label for="toeloop_3">3 Axel (Base Rating: 7)</label> <br>
+
+                        <button type="submit" class="btn btn-success mt-2">Agregar Salto</button>
+                    </form>
+                {{/if}}
+
             </div>
         </main>
         <footer class="text-center mt-5 footer-copyright">
