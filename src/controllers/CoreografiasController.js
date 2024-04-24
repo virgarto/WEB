@@ -30,7 +30,6 @@ function addElement(req, res){
                 console.log("Valoración: " + base[0].value);
                 let base_pos = `base${fila}`;
                 let elemento_pos = `elemento${fila}`;
-                console.log(elemento_pos);
 
                 // Cargamos el formulario base y pasamos los valores 
                 res.render('discoCortoForm', {[elemento_pos]: selectedSalto, [base_pos]: base[0].value, name, categoria});
@@ -52,11 +51,9 @@ function addElement(req, res){
                 
                     base_salto.push(base[0].value);
                     total_base += base[0].value;
-                    console.log("Valoración: " +base_salto);
                     console.log("BASE: " + total_base)
 
                     if(base_salto.length == selectedSalto.length){
-                        console.log("fin bucle")
                         res.render('discoCortoForm', {code, [elemento_pos]: selectedSalto, [base_pos]: total_base});
                     }
                 }) 
