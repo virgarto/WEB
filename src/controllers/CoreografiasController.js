@@ -52,7 +52,7 @@ function addElement(req, res){
 
                     if(base_salto.length == selectedSalto.length){
                         console.log("fin bucle")
-                        res.render('discoCortoForm', {[elemento_pos]: selectedSalto, [base_pos]: total_base});
+                        res.render('discoCortoForm', {code, [elemento_pos]: selectedSalto, [base_pos]: total_base});
                     }
                 }) 
             }
