@@ -5,13 +5,18 @@ function goToDiscoCortoForm (req, res){
 function goToaddElementInForm (req, res){
     const fila = req.query.fila;
     const codigo = req.query.codigo;
-    res.render('addElements', {rol: req.session.rol, fila, codigo});
+    const name = req.query.name;
+    const categoria = req.query.categoria;
+
+    res.render('addElements', {rol: req.session.rol, fila, codigo, name, categoria});
 }
 
 function addElement(req, res){
     const fila = req.body.fila;
     const selectedSalto = req.body.salto;
     const code = req.body.code;
+    const name = req.body.patinador;
+    const categoria = req.body.categoria;
     
     console.log("Code: " + code);
     console.log("#" + fila);
@@ -28,7 +33,7 @@ function addElement(req, res){
                 console.log(elemento_pos);
 
                 // Cargamos el formulario base y pasamos los valores 
-                res.render('discoCortoForm', {[elemento_pos]: selectedSalto, [base_pos]: base[0].value});
+                res.render('discoCortoForm', {[elemento_pos]: selectedSalto, [base_pos]: base[0].value, name, categoria});
             })
         })
     }
