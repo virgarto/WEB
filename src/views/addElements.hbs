@@ -47,12 +47,17 @@
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Corto</h3>
             <div class="container text-center mt-3" >
                 {{#if (eq codigo 'SJu')}}
-                    <p>Fila: {{fila}}</p>
-                    <p>Código: <input type="text" value="{{codigo}}" name="code" readonly></p>
-
-                    <p>Selecciona el salto a realizar:</p>
-
                     <form method="POST" id="formSJu" action="discoCortoForm">
+                        <label for="patinador"></label>
+                        <input type="text" name="patinador" value="{{name}}" readonly> - 
+                        <label for="categoria"></label>
+                        <input type="text" name="categoria" value="{{categoria}}" readonly>
+                        <p># <input type="number" name="fila" value="{{fila}}" readonly></p>
+                        <label for="code"></label>
+                        <input type="text" name="code" value="{{codigo}}" readonly>
+
+                        <p>Selecciona el salto a realizar:</p>
+
                         <input type="radio" name="salto" value="waltz_jump"/>
                         <label for="waltz_jump">Waltz_Jump (Base Rating: 0.4)</label> <br>
 
@@ -108,12 +113,13 @@
                     </form>
                 {{/if}}
                 {{#if (eq codigo 'CoJ')}}
-                    <p>Fila: {{fila}}</p>
-                    <p>Código: <input value="{{codigo}}" name="code" readonly></p>
-
                     <p>Selecciona el salto a realizar:</p>
 
                     <form method="POST" id="formCoJ" action="discoCortoForm">
+                        <p># <input type="number" name="fila" value="{{fila}}" readonly></p>
+                        <label for="code"></label>
+                        <input type="text" name="code" value="{{codigo}}" readonly><br>
+                        
                         <input type="checkbox" name="salto" value="waltz_jump"/>
                         <label for="waltz_jump">Waltz_Jump (Base Rating: 0.4)</label> <br>
 

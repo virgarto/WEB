@@ -48,7 +48,7 @@
             <div class="container text-center mt-3" >
                 <p>Patinador/a: <b class="text-uppercase">{{name}}</b></p>
                 <p>Categoria: <b class="text-uppercase">{{categoria}}</b></p>
-                    <form method="GET" action="" id="">
+                    <form method="GET" action="" id="formCoreografíaLC">
                         <table class="table table-striped table-hover table-responsive-sm"> 
                             <thead>
                                 <tr>
@@ -59,7 +59,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr id="fila1">
                                     <td>1</td>
                                     <td>
                                         <select name="codigo" id="select-1">
@@ -73,16 +73,16 @@
                                             
                                         </select>
                                     </td>
-                                    <td>
-                                        {{#if salto}}
-                                            {{salto}}
+                                    <td id="elemento-1">
+                                        {{#if elemento1}}
+                                            {{elemento1}}
                                         {{else }}
                                             <a role="button" class="btn btn-outline-success" onclick="addElements(1, document.getElementById('select-1').value)">Añadir Elementos</a>
                                         {{/if}}
                                     </td>
-                                    <td>
-                                        {{#if base_salto}}
-                                            {{base_salto}}
+                                    <td id="base-1">
+                                        {{#if base1}}
+                                            {{base1}}
                                         {{/if}}
                                     </td>
                                 </tr>
@@ -101,7 +101,16 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <a role="button" class="btn btn-outline-success" onclick="addElements(2, document.getElementById('select-2').value)">Añadir Elementos</a>
+                                        {{#if elemento2}}
+                                            {{elemento2}}
+                                        {{else }}
+                                            <a role="button" class="btn btn-outline-success" onclick="addElements(2, document.getElementById('select-1').value, {{name}}, {{categoria}})">Añadir Elementos</a>
+                                        {{/if}}
+                                    </td>
+                                    <td>
+                                        {{#if base2}}
+                                            {{base2}}
+                                        {{/if}}
                                     </td>
                                 </tr>
 
@@ -198,13 +207,11 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>Total: </td>
+                                    <td>Total: {{base1}} </td>
                                 </tr>
                             </tbody>
 
                         </table>
-                    
-                        <button type="submit" class="btn btn-success mt-2">Crear</button>
                     </form>
             </div>
             
@@ -215,8 +222,10 @@
             </div>
         </footer>
         <script>
+            var filasActualizadas = [];
+
             function addElements(rowNumber, selectedValue) {
-                window.location.href = `/addElements?fila=${rowNumber}&codigo=${selectedValue}`;
+                window.location.href = `/addElements?fila=${rowNumber}&codigo=${selectedValue}&name={{name}}&categoria={{categoria}}`;
             }
 
         </script>
