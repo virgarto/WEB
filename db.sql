@@ -697,7 +697,10 @@ INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('axel_2', 6.1);
 INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('salchow_3', 7);
 INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('toeloop_3', 11.8);
 
-
+/***************************************************************/
+/* Creamos una tabla para guardar las valoraciones base        */
+/* de cada nivel de la secuencia de pasos                      */
+/***************************************************************/
 CREATE TABLE `tfg`.`fosq_base` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nivel` VARCHAR(45) NULL,
@@ -709,3 +712,21 @@ INSERT INTO `tfg`.`fosq_base` (nivel, rating_base) VALUES ('level_1', 2.3);
 INSERT INTO `tfg`.`fosq_base` (nivel, rating_base) VALUES ('level_2', 3.3);
 INSERT INTO `tfg`.`fosq_base` (nivel, rating_base) VALUES ('level_3', 3.9);
 INSERT INTO `tfg`.`fosq_base` (nivel, rating_base) VALUES ('level_4', 4.4);
+
+/***************************************************************/
+/* Creamos una tabla para guardar las valoraciones base        */
+/* de cada pirueta                                             */
+/***************************************************************/
+CREATE TABLE `tfg`.`spin_base` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `spin` VARCHAR(45) NULL,
+  `rating_base` FLOAT NULL,
+  PRIMARY KEY (`id`));
+
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('upright_spin', 0.5);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('sit_spin', 0.8);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('camel_back_spin', 1.0);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('camel_forw_spin', 1.2);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('heel_back_spin', 2.0);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('broken_spin', 1.8);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('inverted_spin', 2.8);

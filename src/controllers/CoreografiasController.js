@@ -13,18 +13,17 @@ function goToaddElementInForm (req, res){
 
 function addElement(req, res){
     const fila = req.body.fila;
-    const selectedSalto = req.body.salto;
     const code = req.body.code;
     const name = req.body.patinador;
     const categoria = req.body.categoria;
     
     console.log("Code: " + code);
     console.log("#" + fila);
-    console.log("Salto: " + selectedSalto);
     
 
     // Formulario para el Salto Simple
     if(code == 'SJu'){
+        const selectedSalto = req.body.salto;
         //Conexión con la BBDD
         req.getConnection((error, conn) =>{
             // Obtenemos BASE del salto seleccionado
@@ -41,6 +40,7 @@ function addElement(req, res){
     
     // Formulario para Combinado de Saltos
     if(code == 'CoJ'){
+        const selectedSalto = req.body.salto;
         req.getConnection((error, conn) =>{
             // Variables para form
             let base_pos =  `base${fila}`;
@@ -84,7 +84,16 @@ function addElement(req, res){
     }
 
     if(code == 'SSp'){
+        const selectedSpin = req.body.spin;
+        
+        req.getConnection((err,conn)=>{
+            conn.query('SELECT rating_base as value FROM spin_base WHERE spin = ?', [selectedSpin], (error, base) => {
+                let base_pos = `base${fila}`;
+                let elemento_pos = `elemento${fila}`;
 
+                res.render('discoCortoForm', {[elemento_pos]: selectedSpin, [base_pos]: base[0].value, name, categoria});
+            })
+        })
     }
     
 }
