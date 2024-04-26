@@ -675,7 +675,7 @@ FOR EACH ROW
 CREATE TABLE `tfg`.`saltos_base` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `salto_nombre` VARCHAR(45) NULL,
-  `rating_base` INT NULL,
+  `rating_base` FLOAT NULL,
   PRIMARY KEY (`id`));
 
 
@@ -698,3 +698,14 @@ INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('salchow_3', 7);
 INSERT INTO saltos_base (salto_nombre, rating_base) VALUES ('toeloop_3', 11.8);
 
 
+CREATE TABLE `tfg`.`fosq_base` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nivel` VARCHAR(45) NULL,
+  `rating_base` FLOAT NULL,
+  PRIMARY KEY (`id`));
+
+INSERT INTO `tfg`.`fosq_base` (nivel, rating_base) VALUES ('level_base', 1.8);
+INSERT INTO `tfg`.`fosq_base` (nivel, rating_base) VALUES ('level_1', 2.3);
+INSERT INTO `tfg`.`fosq_base` (nivel, rating_base) VALUES ('level_2', 3.3);
+INSERT INTO `tfg`.`fosq_base` (nivel, rating_base) VALUES ('level_3', 3.9);
+INSERT INTO `tfg`.`fosq_base` (nivel, rating_base) VALUES ('level_4', 4.4);

@@ -23,9 +23,11 @@ function addElement(req, res){
     console.log("Salto: " + selectedSalto);
     
 
-    // Formulario para el SJu
+    // Formulario para el Salto Simple
     if(code == 'SJu'){
+        //Conexión con la BBDD
         req.getConnection((error, conn) =>{
+            // Obtenemos BASE del salto seleccionado
             conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [selectedSalto], (error, base) => {
                 console.log("Valoración: " + base[0].value);
                 let base_pos = `base${fila}`;
@@ -37,28 +39,52 @@ function addElement(req, res){
         })
     }
     
-
+    // Formulario para Combinado de Saltos
     if(code == 'CoJ'){
         req.getConnection((error, conn) =>{
+            // Variables para form
             let base_pos =  `base${fila}`;
             let elemento_pos = `elemento${fila}`;
+            // Variables que guardan la puntuación total de los saltos y el array con todos los BASE
             let total_base = 0;
             let base_salto = []
 
+            // Recorremos el array con los saltos seleccionados
             for(i = 0; i < selectedSalto.length; i++){
                 var salto = selectedSalto[i];
+
+                // Obtenemos BASE para cada salto
                 conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [salto], (error, base) => {
-                
+                    // Guardamos el valor en el array y lo sumamos al total
                     base_salto.push(base[0].value);
                     total_base += base[0].value;
                     console.log("BASE: " + total_base)
 
+                    // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
                     if(base_salto.length == selectedSalto.length){
                         res.render('discoCortoForm', {code, [elemento_pos]: selectedSalto, [base_pos]: total_base});
                     }
                 }) 
             }
         })
+    }
+
+    // Formulario para el Footwork Sequence
+    if(code == 'FoSq'){
+        const fosq_level = req.body.fosq;
+        
+        req.getConnection((err,conn)=>{
+            conn.query('SELECT rating_base as value FROM fosq_base WHERE nivel = ?', [fosq_level], (error, base) => {
+                let base_pos = `base${fila}`;
+                let elemento_pos = `elemento${fila}`;
+
+                res.render('discoCortoForm', {[elemento_pos]: fosq_level, [base_pos]: base[0].value, name, categoria});
+            })
+        })
+    }
+
+    if(code == 'SSp'){
+
     }
     
 }
