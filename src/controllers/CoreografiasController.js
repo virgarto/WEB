@@ -13,16 +13,15 @@ function goToaddElementInForm (req, res){
 
 function addElement(req, res){
     const fila = req.body.fila;
-    const code = req.body.code;
+    const codigo = req.body.code;
     const name = req.body.patinador;
     const categoria = req.body.categoria;
     
-    console.log("Code: " + code);
+    console.log("Code: " + codigo);
     console.log("#" + fila);
     
-
     // Formulario para el Salto Simple
-    if(code == 'SJu'){
+    if(codigo == 'SJu'){
         const selectedSalto = req.body.salto;
         //Conexión con la BBDD
         req.getConnection((error, conn) =>{
@@ -31,20 +30,23 @@ function addElement(req, res){
                 console.log("Valoración: " + base[0].value);
                 let base_pos = `base${fila}`;
                 let elemento_pos = `elemento${fila}`;
+                let code = `code${fila}`;
+                console.log(code);
 
                 // Cargamos el formulario base y pasamos los valores 
-                res.render('discoCortoForm', {[elemento_pos]: selectedSalto, [base_pos]: base[0].value, name, categoria});
+                res.render('discoCortoForm', {[code]: 'SJu', [elemento_pos]: selectedSalto, [base_pos]: base[0].value, name, categoria});
             })
         })
     }
     
     // Formulario para Combinado de Saltos
-    if(code == 'CoJ'){
+    if(codigo == 'CoJ'){
         const selectedSalto = req.body.salto;
         req.getConnection((error, conn) =>{
             // Variables para form
             let base_pos =  `base${fila}`;
             let elemento_pos = `elemento${fila}`;
+            let code = `code${fila}`;
             // Variables que guardan la puntuación total de los saltos y el array con todos los BASE
             let total_base = 0;
             let base_salto = []
@@ -62,7 +64,7 @@ function addElement(req, res){
 
                     // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
                     if(base_salto.length == selectedSalto.length){
-                        res.render('discoCortoForm', {code, [elemento_pos]: selectedSalto, [base_pos]: total_base});
+                        res.render('discoCortoForm', {[code]: 'CoJ', [elemento_pos]: selectedSalto, [base_pos]: total_base, name, categoria});
                     }
                 }) 
             }
@@ -70,29 +72,62 @@ function addElement(req, res){
     }
 
     // Formulario para el Footwork Sequence
-    if(code == 'FoSq'){
+    if(codigo == 'FoSq'){
         const fosq_level = req.body.fosq;
         
         req.getConnection((err,conn)=>{
             conn.query('SELECT rating_base as value FROM fosq_base WHERE nivel = ?', [fosq_level], (error, base) => {
                 let base_pos = `base${fila}`;
                 let elemento_pos = `elemento${fila}`;
+                let code = `code${fila}`;
 
-                res.render('discoCortoForm', {[elemento_pos]: fosq_level, [base_pos]: base[0].value, name, categoria});
+                res.render('discoCortoForm', {[code]: 'FoSq', [elemento_pos]: fosq_level, [base_pos]: base[0].value, name, categoria});
             })
         })
     }
 
-    if(code == 'SSp'){
+    if(codigo == 'SSp'){
         const selectedSpin = req.body.spin;
         
         req.getConnection((err,conn)=>{
             conn.query('SELECT rating_base as value FROM spin_base WHERE spin = ?', [selectedSpin], (error, base) => {
                 let base_pos = `base${fila}`;
                 let elemento_pos = `elemento${fila}`;
+                let code = `code${fila}`;
 
-                res.render('discoCortoForm', {[elemento_pos]: selectedSpin, [base_pos]: base[0].value, name, categoria});
+                res.render('discoCortoForm', {[code]: 'SSp', [elemento_pos]: selectedSpin, [base_pos]: base[0].value, name, categoria});
             })
+        })
+    }
+
+    if(codigo == 'CSp'){
+        const selectedSpin = req.body.spin;
+        req.getConnection((error, conn) =>{
+            // Variables para form
+            let base_pos =  `base${fila}`;
+            let elemento_pos = `elemento${fila}`;
+            let code = `code${fila}`;
+            // Variables que guardan la puntuación total de los saltos y el array con todos los BASE
+            let total_base = 0;
+            let base_salto = []
+
+            // Recorremos el array con los saltos seleccionados
+            for(i = 0; i < selectedSpin.length; i++){
+                var spin = selectedSpin[i];
+
+                // Obtenemos BASE para cada salto
+                conn.query('SELECT rating_base AS value FROM spin_base WHERE spin = ?', [spin], (error, base) => {
+                    // Guardamos el valor en el array y lo sumamos al total
+                    base_salto.push(base[0].value);
+                    total_base += base[0].value;
+                    console.log("BASE: " + total_base)
+
+                    // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
+                    if(base_salto.length == selectedSpin.length){
+                        res.render('discoCortoForm', {[code]: 'CSp', [elemento_pos]: selectedSpin, [base_pos]: total_base, name, categoria});
+                    }
+                }) 
+            }
         })
     }
     

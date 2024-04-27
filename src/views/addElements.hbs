@@ -266,6 +266,48 @@
                         <input type="radio" name="spin" value="inverted_spin" />
                         <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label> <br>
 
+
+                        <button type="submit" class="btn btn-success mt-2">Agregar Pirueta</button>
+                    </form>
+                {{/if}}
+
+                {{#if (eq codigo 'CSp')}}
+
+                    <form method="POST" id="forCSp" action="discoCortoForm">
+                        <label for="patinador"></label>
+                        <input type="text" class="text-center" name="patinador" value="{{name}}" readonly> - 
+                        <label for="categoria"></label>
+                        <input type="text" class="text-center" name="categoria" value="{{categoria}}" readonly>
+
+                        <p># <input type="number" name="fila" value="{{fila}}" readonly></p>
+                        <label for="code"></label>
+                        <input type="text" class="text-center" name="code" value="{{codigo}}" readonly><br>
+
+                        <input type="checkbox" name="spin" value="upright_spin" class="mt-2"/>
+                        <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> <br>
+
+                        <input type="checkbox" name="spin" value="sit_spin" />
+                        <label for="sit_spin">Sit Spin (Base Rating: 0.8)</label> <br>
+
+                        <input type="checkbox" name="spin" value="camel_back_spin" />
+                        <label for="camel_back_spin">Camel Spins Back (Base Rating: 1.0)</label> <br>
+
+                        <input type="checkbox" name="spin" value="camel_forw_spin" />
+                        <label for="camel_forw_spin">Camel Spin Forward (Base Rating: 1.2)</label> <br>
+
+                        <input type="checkbox" name="spin" value="heel_back_spin" />
+                        <label for="heel_back_spin">Heel Spins Back (Base Rating: 2.0)</label> <br>
+
+                        <input type="checkbox" name="spin" value="heel_forw_spin" />
+                        <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label> <br>
+
+                        <input type="checkbox" name="spin" value="broken_spin" />
+                        <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label> <br>
+
+                        <input type="checkbox" name="spin" value="inverted_spin" />
+                        <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label> <br>
+
+
                         <button type="submit" class="btn btn-success mt-2">Agregar Pirueta</button>
                     </form>
                 {{/if}}
