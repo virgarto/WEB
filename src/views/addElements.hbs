@@ -306,6 +306,7 @@
                         <input type="checkbox" name="spin" value="heel_back_spin" />
                         <label for="heel_back_spin">Heel Spins Back (Base Rating: 2.0)</label>
                         <a role="button" class="btn btn-outline-success" id="heel">Posición difícil</a> <br>
+                        <div id="heel-dif"> </div> <br>
 
                         <input type="checkbox" name="spin" value="heel_forw_spin" />
                         <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label>
@@ -314,6 +315,7 @@
                         <input type="checkbox" name="spin" value="broken_spin" />
                         <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label>
                         <a role="button" class="btn btn-outline-success" id="broken">Posición difícil</a> <br>
+                        <div id="broken-dif"> </div> <br>
 
                         <input type="checkbox" name="spin" value="inverted_spin" />
                         <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label>
@@ -382,7 +384,7 @@
             document.getElementById('sit').disabled = true;
 
             // CAMEL
-            const camel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%',];   
+            const camel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%'];   
             document.getElementById('camel').addEventListener("click", () => {
                 const radioButtons = document.createElement('div');
                 radioButtons.className = 'camelPosD';
@@ -402,6 +404,75 @@
                     radioButtons.appendChild(document.createElement('br'));
                 }
                 document.getElementById('camel-dif').appendChild(radioButtons);
+            }); 
+
+            // HEEL
+            const heel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%'];   
+            document.getElementById('heel').addEventListener("click", () => {
+                const radioButtons = document.createElement('div');
+                radioButtons.className = 'heelPosD';
+
+                for(let i = 0; i < heel_d.length; i++) {
+                    let input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'heelPosD';
+                    input.value = heel_d[i];
+
+                    let label =  document.createElement('label');
+                    label.htmlFor = input.value;
+                    label.innerHTML = heel_d[i];
+
+                    radioButtons.appendChild(input);
+                    radioButtons.appendChild(label);
+                    radioButtons.appendChild(document.createElement('br'));
+                }
+                document.getElementById('heel-dif').appendChild(radioButtons);
+            }); 
+
+            // HEEL
+            const heel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%'];   
+            document.getElementById('heel').addEventListener("click", () => {
+                const radioButtons = document.createElement('div');
+                radioButtons.className = 'heelPosD';
+
+                for(let i = 0; i < heel_d.length; i++) {
+                    let input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'heelPosD';
+                    input.value = heel_d[i];
+
+                    let label =  document.createElement('label');
+                    label.htmlFor = input.value;
+                    label.innerHTML = heel_d[i];
+
+                    radioButtons.appendChild(input);
+                    radioButtons.appendChild(label);
+                    radioButtons.appendChild(document.createElement('br'));
+                }
+                document.getElementById('heel-dif').appendChild(radioButtons);
+            }); 
+
+            // BROKEN
+            const broken_d = ['forward, 40%', 'sideways, 60%'];   
+            document.getElementById('broken').addEventListener("click", () => {
+                const radioButtons = document.createElement('div');
+                radioButtons.className = 'brokenPosD';
+
+                for(let i = 0; i < broken_d.length; i++) {
+                    let input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'brokenPosD';
+                    input.value = broken_d[i];
+
+                    let label =  document.createElement('label');
+                    label.htmlFor = input.value;
+                    label.innerHTML = broken_d[i];
+
+                    radioButtons.appendChild(input);
+                    radioButtons.appendChild(label);
+                    radioButtons.appendChild(document.createElement('br'));
+                }
+                document.getElementById('broken-dif').appendChild(radioButtons);
             }); 
         </script>
     </body>
