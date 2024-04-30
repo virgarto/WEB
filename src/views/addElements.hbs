@@ -284,28 +284,40 @@
                         <input type="text" class="text-center" name="code" value="{{codigo}}" readonly><br>
 
                         <input type="checkbox" name="spin" value="upright_spin" class="mt-2"/>
-                        <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> <br>
+                        <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> 
+                        <a role="button" class="btn btn-outline-success" id="upright">Posición difícil</a><br>
+                        <div id="upright-dif"> </div> <br>
 
                         <input type="checkbox" name="spin" value="sit_spin" />
-                        <label for="sit_spin">Sit Spin (Base Rating: 0.8)</label> <br>
+                        <label for="sit_spin">Sit Spin (Base Rating: 0.8)</label>
+                        <a role="button" class="btn btn-outline-success" id="sit">Posición difícil</a> <br>
+                        <div id="sit-dif"> </div> <br>
 
                         <input type="checkbox" name="spin" value="camel_back_spin" />
-                        <label for="camel_back_spin">Camel Spins Back (Base Rating: 1.0)</label> <br>
+                        <label for="camel_back_spin">Camel Spins Back (Base Rating: 1.0)</label>
+                        <a role="button" class="btn btn-outline-success" id="camel">Posición difícil</a> <br>
+                        <div id="camel-dif"> </div> <br>
 
                         <input type="checkbox" name="spin" value="camel_forw_spin" />
-                        <label for="camel_forw_spin">Camel Spin Forward (Base Rating: 1.2)</label> <br>
+                        <label for="camel_forw_spin">Camel Spin Forward (Base Rating: 1.2)</label>
+                        <a role="button" class="btn btn-outline-success" id="camel">Posición difícil</a> <br>
+                        <div id="camel-dif"> </div> <br>
 
                         <input type="checkbox" name="spin" value="heel_back_spin" />
-                        <label for="heel_back_spin">Heel Spins Back (Base Rating: 2.0)</label> <br>
+                        <label for="heel_back_spin">Heel Spins Back (Base Rating: 2.0)</label>
+                        <a role="button" class="btn btn-outline-success" id="heel">Posición difícil</a> <br>
 
                         <input type="checkbox" name="spin" value="heel_forw_spin" />
-                        <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label> <br>
+                        <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label>
+                        <a role="button" class="btn btn-outline-success" id="heel">Posición difícil</a> <br>
 
                         <input type="checkbox" name="spin" value="broken_spin" />
-                        <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label> <br>
+                        <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label>
+                        <a role="button" class="btn btn-outline-success" id="broken">Posición difícil</a> <br>
 
                         <input type="checkbox" name="spin" value="inverted_spin" />
-                        <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label> <br>
+                        <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label>
+                        <a role="button" class="btn btn-outline-success" id="inverted">Posición difícil</a> <br>
 
 
                         <button type="submit" class="btn btn-success mt-2">Agregar Pirueta</button>
@@ -320,7 +332,77 @@
                 © 2024 Copyright: Virginia García
             </div>
         </footer>
-        <script>     
+        <script> 
+            //Script para que el botón "posicion dificil" active la selección
+            // UPRIGHT
+            const upright_d = ['biellman, 2+80%', 'biellman heel, 3+40%', 'split, 1+50%', 'torso, 1+40%', 'layback, 1+20%', 'forward, 1', 'heel, 50%'];   
+            document.getElementById('upright').addEventListener("click", () => {
+                const radioButtons = document.createElement('div');
+                radioButtons.className = 'uprightPosD';
+
+                for(let i = 0; i < upright_d.length; i++) {
+                    let input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'uprightPosD';
+                    input.value = upright_d[i];
+
+                    let label =  document.createElement('label');
+                    label.htmlFor = input.value;
+                    label.innerHTML = upright_d[i];
+
+                    radioButtons.appendChild(input);
+                    radioButtons.appendChild(label);
+                    radioButtons.appendChild(document.createElement('br'));
+                }
+                document.getElementById('upright-dif').appendChild(radioButtons);
+            });  
+            
+            // SIT
+            const sit_d = ['sideways, 60%', 'twist, 60%', 'forward, 40%', 'behind, 20%'];   
+            document.getElementById('sit').addEventListener("click", () => {
+                const radioButtons = document.createElement('div');
+                radioButtons.className = 'sitPosD';
+
+                for(let i = 0; i < sit_d.length; i++) {
+                    let input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'sitPosD';
+                    input.value = sit_d[i];
+
+                    let label =  document.createElement('label');
+                    label.htmlFor = input.value;
+                    label.innerHTML = sit_d[i];
+
+                    radioButtons.appendChild(input);
+                    radioButtons.appendChild(label);
+                    radioButtons.appendChild(document.createElement('br'));
+                }
+                document.getElementById('sit-dif').appendChild(radioButtons);
+            });  
+            document.getElementById('sit').disabled = true;
+
+            // CAMEL
+            const camel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%',];   
+            document.getElementById('camel').addEventListener("click", () => {
+                const radioButtons = document.createElement('div');
+                radioButtons.className = 'camelPosD';
+
+                for(let i = 0; i < camel_d.length; i++) {
+                    let input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'camelPosD';
+                    input.value = camel_d[i];
+
+                    let label =  document.createElement('label');
+                    label.htmlFor = input.value;
+                    label.innerHTML = camel_d[i];
+
+                    radioButtons.appendChild(input);
+                    radioButtons.appendChild(label);
+                    radioButtons.appendChild(document.createElement('br'));
+                }
+                document.getElementById('camel-dif').appendChild(radioButtons);
+            }); 
         </script>
     </body>
 </html>
