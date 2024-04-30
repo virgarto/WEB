@@ -730,3 +730,11 @@ INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('camel_forw_spin', 1.2
 INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('heel_back_spin', 2.0);
 INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('broken_spin', 1.8);
 INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('inverted_spin', 2.8);
+
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('upright_biellman', 2.9);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('upright_biellman_heel', 3.7);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('upright_split', 1.75);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('upright_torso', 1.7);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('upright_layback', 1.6);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('upright_forward', 1.5);
+INSERT INTO `tfg`.`spin_base` (spin, rating_base) VALUES ('upright_heel', 0.75);

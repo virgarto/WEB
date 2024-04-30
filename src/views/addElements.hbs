@@ -243,28 +243,61 @@
                         <input type="text" class="text-center" name="code" value="{{codigo}}" readonly><br>
 
                         <input type="radio" name="spin" value="upright_spin" class="mt-2"/>
-                        <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> <br>
+                        <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> 
+                        <a role="button" class="btn btn-outline-success" id="upright">Posición difícil</a><br>
+                        <div id="upright-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="sit_spin" />
-                        <label for="sit_spin">Sit Spin (Base Rating: 0.8)</label> <br>
+                        <label for="sit_spin">Sit Spin (Base Rating: 0.8)</label> 
+                        <a role="button" class="btn btn-outline-success" id="sit">Posición difícil</a><br>
+                        <div id="sit-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="camel_back_spin" />
-                        <label for="camel_back_spin">Camel Spins Back (Base Rating: 1.0)</label> <br>
+                        <label for="camel_back_spin">Camel Spins Back (Base Rating: 1.0)</label> 
+                        <a role="button" class="btn btn-outline-success" id="camel">Posición difícil</a><br>
+                        <div id="camel-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="camel_forw_spin" />
-                        <label for="camel_forw_spin">Camel Spin Forward (Base Rating: 1.2)</label> <br>
+                        <label for="camel_forw_spin">Camel Spin Forward (Base Rating: 1.2)</label> 
+                        <a role="button" class="btn btn-outline-success" id="camel">Posición difícil</a><br>
+                        <div id="camel-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="heel_back_spin" />
-                        <label for="heel_back_spin">Heel Spins Back (Base Rating: 2.0)</label> <br>
+                        <label for="heel_back_spin">Heel Spins Back (Base Rating: 2.0)</label> 
+                        <a role="button" class="btn btn-outline-success" id="heel">Posición difícil</a><br>
+                        <div id="heel-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="heel_forw_spin" />
-                        <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label> <br>
+                        <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label>
+                        <a role="button" class="btn btn-outline-success" id="heel">Posición difícil</a><br>
+                        <div id="heel-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="broken_spin" />
-                        <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label> <br>
+                        <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label> 
+                        <a role="button" class="btn btn-outline-success" id="broken">Posición difícil</a><br>
+                        <div id="broken-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="inverted_spin" />
-                        <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label> <br>
+                        <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label> 
+                        <a role="button" class="btn btn-outline-success" id="inverted">Posición difícil</a><br>
+                        <div id="inverted-dif"> </div> <br>
+
+
+                        <p><b>Variaciones difíciles</b></p>
+                        <input type="radio" name="variacionD" value="entrada" />
+                        <label for="entrada">Entrada difícil (Base Rating: 15%)</label> <br>
+
+                        <input type="radio" name="variacionD" value="cambio" />
+                        <label for="cambio">Cambio difícil (de posición / pie)(Base Rating: 15%)</label> <br>
+
+                        <input type="radio" name="variacionD" value="sit_camel" />
+                        <label for="sit_camel">Sit entre Camels (Base Rating: 15% en la sit y siguientes)</label> <br>
+
+                        <input type="radio" name="variacionD" value="vueltas" />
+                        <label for="vueltas">Vueltas en las solo spins (Base Rating: 20%)</label> <br>
+
+                        <input type="radio" name="variacionD" value="direccion" />
+                        <label for="direccion">Usar dirección antihoraria y horaria en la dirección del giro (Base Rating: 60% en las siguientes al cambio)</label> <br>
 
 
                         <button type="submit" class="btn btn-success mt-2">Agregar Pirueta</button>
@@ -283,6 +316,7 @@
                         <label for="code"></label>
                         <input type="text" class="text-center" name="code" value="{{codigo}}" readonly><br>
 
+                        <p<b>Piruetas:</b></p>
                         <input type="checkbox" name="spin" value="upright_spin" class="mt-2"/>
                         <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> 
                         <a role="button" class="btn btn-outline-success" id="upright">Posición difícil</a><br>
@@ -319,14 +353,29 @@
 
                         <input type="checkbox" name="spin" value="inverted_spin" />
                         <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label>
-                        <a role="button" class="btn btn-outline-success" id="inverted">Posición difícil</a> <br>
+                        <a role="button" class="btn btn-outline-success" id="inverted">Posición difícil</a>
+                        <div id="inverted-dif"> </div> <br>
 
+                        <p><b>Variaciones difíciles</b></p>
+                        <input type="radio" name="variacionD" value="entrada" />
+                        <label for="entrada">Entrada difícil (Base Rating: 15%)</label> <br>
+
+                        <input type="radio" name="variacionD" value="cambio" />
+                        <label for="cambio">Cambio difícil (de posición / pie)(Base Rating: 15%)</label> <br>
+
+                        <input type="radio" name="variacionD" value="sit_camel" />
+                        <label for="sit_camel">Sit entre Camels (Base Rating: 15% en la sit y siguientes)</label> <br>
+
+                        <input type="radio" name="variacionD" value="vueltas" />
+                        <label for="vueltas">Vueltas en las solo spins (Base Rating: 20%)</label> <br>
+
+                        <input type="radio" name="variacionD" value="direccion" />
+                        <label for="direccion">Usar dirección antihoraria y horaria en la dirección del giro (Base Rating: 60% en las siguientes al cambio)</label> <br>
 
                         <button type="submit" class="btn btn-success mt-2">Agregar Pirueta</button>
                     </form>
                 {{/if}}
             </div>
-
 
         </main>
         <footer class="text-center mt-5 footer-copyright">
@@ -337,7 +386,7 @@
         <script> 
             //Script para que el botón "posicion dificil" active la selección
             // UPRIGHT
-            const upright_d = ['biellman, 2+80%', 'biellman heel, 3+40%', 'split, 1+50%', 'torso, 1+40%', 'layback, 1+20%', 'forward, 1', 'heel, 50%'];   
+            const upright_d = ['biellman, 2+80%', 'biellman_heel, 3+40%', 'split, 1+50%', 'torso, 1+40%', 'layback, 1+20%', 'forward, 1', 'heel, 50%', 'standard, 20%'];   
             document.getElementById('upright').addEventListener("click", () => {
                 const radioButtons = document.createElement('div');
                 radioButtons.className = 'uprightPosD';
@@ -346,7 +395,7 @@
                     let input = document.createElement('input');
                     input.type = 'radio';
                     input.name = 'uprightPosD';
-                    input.value = upright_d[i];
+                    input.value = upright_d[i].split(', ')[0];
 
                     let label =  document.createElement('label');
                     label.htmlFor = input.value;
@@ -360,7 +409,7 @@
             });  
             
             // SIT
-            const sit_d = ['sideways, 60%', 'twist, 60%', 'forward, 40%', 'behind, 20%'];   
+            const sit_d = ['sideways, 60%', 'twist, 60%', 'forward, 40%', 'behind, 20%', 'standard, 20%'];   
             document.getElementById('sit').addEventListener("click", () => {
                 const radioButtons = document.createElement('div');
                 radioButtons.className = 'sitPosD';
@@ -369,7 +418,7 @@
                     let input = document.createElement('input');
                     input.type = 'radio';
                     input.name = 'sitPosD';
-                    input.value = sit_d[i];
+                    input.value = sit_d[i].split(', ')[0];
 
                     let label =  document.createElement('label');
                     label.htmlFor = input.value;
@@ -384,7 +433,7 @@
             document.getElementById('sit').disabled = true;
 
             // CAMEL
-            const camel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%'];   
+            const camel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];   
             document.getElementById('camel').addEventListener("click", () => {
                 const radioButtons = document.createElement('div');
                 radioButtons.className = 'camelPosD';
@@ -393,7 +442,7 @@
                     let input = document.createElement('input');
                     input.type = 'radio';
                     input.name = 'camelPosD';
-                    input.value = camel_d[i];
+                    input.value = camel_d[i].split(', ')[0];
 
                     let label =  document.createElement('label');
                     label.htmlFor = input.value;
@@ -407,7 +456,7 @@
             }); 
 
             // HEEL
-            const heel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%'];   
+            const heel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];   
             document.getElementById('heel').addEventListener("click", () => {
                 const radioButtons = document.createElement('div');
                 radioButtons.className = 'heelPosD';
@@ -416,30 +465,7 @@
                     let input = document.createElement('input');
                     input.type = 'radio';
                     input.name = 'heelPosD';
-                    input.value = heel_d[i];
-
-                    let label =  document.createElement('label');
-                    label.htmlFor = input.value;
-                    label.innerHTML = heel_d[i];
-
-                    radioButtons.appendChild(input);
-                    radioButtons.appendChild(label);
-                    radioButtons.appendChild(document.createElement('br'));
-                }
-                document.getElementById('heel-dif').appendChild(radioButtons);
-            }); 
-
-            // HEEL
-            const heel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%'];   
-            document.getElementById('heel').addEventListener("click", () => {
-                const radioButtons = document.createElement('div');
-                radioButtons.className = 'heelPosD';
-
-                for(let i = 0; i < heel_d.length; i++) {
-                    let input = document.createElement('input');
-                    input.type = 'radio';
-                    input.name = 'heelPosD';
-                    input.value = heel_d[i];
+                    input.value = heel_d[i].split(', ')[0];
 
                     let label =  document.createElement('label');
                     label.htmlFor = input.value;
@@ -453,7 +479,7 @@
             }); 
 
             // BROKEN
-            const broken_d = ['forward, 40%', 'sideways, 60%'];   
+            const broken_d = ['forward, 40%', 'sideways, 60%', 'standard, 20%'];   
             document.getElementById('broken').addEventListener("click", () => {
                 const radioButtons = document.createElement('div');
                 radioButtons.className = 'brokenPosD';
@@ -462,7 +488,7 @@
                     let input = document.createElement('input');
                     input.type = 'radio';
                     input.name = 'brokenPosD';
-                    input.value = broken_d[i];
+                    input.value = broken_d[i].split(', ')[0];
 
                     let label =  document.createElement('label');
                     label.htmlFor = input.value;
@@ -473,6 +499,29 @@
                     radioButtons.appendChild(document.createElement('br'));
                 }
                 document.getElementById('broken-dif').appendChild(radioButtons);
+            }); 
+
+            // INVERTED
+            const inverted_d = ['bryant, 25%', 'standard, 20%'];   
+            document.getElementById('inverted').addEventListener("click", () => {
+                const radioButtons = document.createElement('div');
+                radioButtons.className = 'invertedPosD';
+
+                for(let i = 0; i < inverted_d.length; i++) {
+                    let input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'invertedPosD';
+                    input.value = inverted_d[i].split(', ')[0];
+
+                    let label =  document.createElement('label');
+                    label.htmlFor = input.value;
+                    label.innerHTML = inverted_d[i];
+
+                    radioButtons.appendChild(input);
+                    radioButtons.appendChild(label);
+                    radioButtons.appendChild(document.createElement('br'));
+                }
+                document.getElementById('inverted-dif').appendChild(radioButtons);
             }); 
         </script>
     </body>
