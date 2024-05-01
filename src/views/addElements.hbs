@@ -242,9 +242,13 @@
                         <label for="code"></label>
                         <input type="text" class="text-center" name="code" value="{{codigo}}" readonly><br>
 
-                        <input type="radio" name="spin" value="upright_spin" class="mt-2"/>
-                        <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> 
-                        <a role="button" class="btn btn-outline-success" id="upright">Posición difícil</a><br>
+                       <!-- <input type="radio" name="spin" value="upright_spin" class="mt-2"/>
+                        <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> -->
+                        <a role="button" class="btn btn-outline-success mt-4" id="upright"> UPRIGHT  
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="upright-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="sit_spin" />
@@ -389,7 +393,7 @@
             //Script para que el botón "posicion dificil" active la selección
             // UPRIGHT
             let buttonUpPressed = false;
-            const upright_d = ['biellman, 2+80%', 'biellman_heel, 3+40%', 'split, 1+50%', 'torso, 1+40%', 'layback, 1+20%', 'forward, 1', 'heel, 50%', 'standard, 20%'];   
+            const upright_d = ['Spin, (BASE: 0.5)', 'biellman, 2+80%', 'biellman_heel, 3+40%', 'split, 1+50%', 'torso, 1+40%', 'layback, 1+20%', 'forward, 1', 'heel, 50%', 'standard, 20%'];   
             document.getElementById('upright').addEventListener("click", () => {
                 if(!buttonUpPressed){
                     buttonUpPressed = true;
