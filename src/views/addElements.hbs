@@ -259,8 +259,8 @@
 
                         <input type="radio" name="spin" value="camel_forw_spin" />
                         <label for="camel_forw_spin">Camel Spin Forward (Base Rating: 1.2)</label> 
-                        <a role="button" class="btn btn-outline-success" id="camel">Posición difícil</a><br>
-                        <div id="camel-dif"> </div> <br>
+                        <a role="button" class="btn btn-outline-success" id="camel2">Posición difícil</a><br>
+                        <div id="camel2-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="heel_back_spin" />
                         <label for="heel_back_spin">Heel Spins Back (Base Rating: 2.0)</label> 
@@ -269,8 +269,8 @@
 
                         <input type="radio" name="spin" value="heel_forw_spin" />
                         <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label>
-                        <a role="button" class="btn btn-outline-success" id="heel">Posición difícil</a><br>
-                        <div id="heel-dif"> </div> <br>
+                        <a role="button" class="btn btn-outline-success" id="heel2">Posición difícil</a><br>
+                        <div id="heel2-dif"> </div> <br>
 
                         <input type="radio" name="spin" value="broken_spin" />
                         <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label> 
@@ -282,7 +282,7 @@
                         <a role="button" class="btn btn-outline-success" id="inverted">Posición difícil</a><br>
                         <div id="inverted-dif"> </div> <br>
 
-
+<!--
                         <p><b>Variaciones difíciles</b></p>
                         <input type="radio" name="variacionD" value="entrada" />
                         <label for="entrada">Entrada difícil (Base Rating: 15%)</label> <br>
@@ -299,7 +299,7 @@
                         <input type="radio" name="variacionD" value="direccion" />
                         <label for="direccion">Usar dirección antihoraria y horaria en la dirección del giro (Base Rating: 60% en las siguientes al cambio)</label> <br>
 
-
+-->
                         <button type="submit" class="btn btn-success mt-2">Agregar Pirueta</button>
                     </form>
                 {{/if}}
@@ -334,7 +334,7 @@
 
                         <input type="checkbox" name="spin" value="camel_forw_spin" />
                         <label for="camel_forw_spin">Camel Spin Forward (Base Rating: 1.2)</label>
-                        <a role="button" class="btn btn-outline-success" id="camel">Posición difícil</a> <br>
+                        <a role="button" class="btn btn-outline-success" id="camel2">Posición difícil</a> <br>
                         <div id="camel-dif"> </div> <br>
 
                         <input type="checkbox" name="spin" value="heel_back_spin" />
@@ -344,7 +344,7 @@
 
                         <input type="checkbox" name="spin" value="heel_forw_spin" />
                         <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label>
-                        <a role="button" class="btn btn-outline-success" id="heel">Posición difícil</a> <br>
+                        <a role="button" class="btn btn-outline-success" id="heel2">Posición difícil</a> <br>
 
                         <input type="checkbox" name="spin" value="broken_spin" />
                         <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label>
@@ -356,6 +356,7 @@
                         <a role="button" class="btn btn-outline-success" id="inverted">Posición difícil</a>
                         <div id="inverted-dif"> </div> <br>
 
+<!--
                         <p><b>Variaciones difíciles</b></p>
                         <input type="radio" name="variacionD" value="entrada" />
                         <label for="entrada">Entrada difícil (Base Rating: 15%)</label> <br>
@@ -371,6 +372,7 @@
 
                         <input type="radio" name="variacionD" value="direccion" />
                         <label for="direccion">Usar dirección antihoraria y horaria en la dirección del giro (Base Rating: 60% en las siguientes al cambio)</label> <br>
+-->
 
                         <button type="submit" class="btn btn-success mt-2">Agregar Pirueta</button>
                     </form>
@@ -386,96 +388,122 @@
         <script> 
             //Script para que el botón "posicion dificil" active la selección
             // UPRIGHT
+            let buttonUpPressed = false;
             const upright_d = ['biellman, 2+80%', 'biellman_heel, 3+40%', 'split, 1+50%', 'torso, 1+40%', 'layback, 1+20%', 'forward, 1', 'heel, 50%', 'standard, 20%'];   
             document.getElementById('upright').addEventListener("click", () => {
-                const radioButtons = document.createElement('div');
-                radioButtons.className = 'uprightPosD';
+                if(!buttonUpPressed){
+                    buttonUpPressed = true;
+                    const radioButtons = document.createElement('div');
+                    radioButtons.className = 'uprightPosD';
 
-                for(let i = 0; i < upright_d.length; i++) {
-                    let input = document.createElement('input');
-                    input.type = 'radio';
-                    input.name = 'uprightPosD';
-                    input.value = upright_d[i].split(', ')[0];
+                    for(let i = 0; i < upright_d.length; i++) {
+                        let input = document.createElement('input');
+                        input.type = 'radio';
+                        input.name = 'uprightPosD';
+                        input.value = upright_d[i].split(', ')[0];
 
-                    let label =  document.createElement('label');
-                    label.htmlFor = input.value;
-                    label.innerHTML = upright_d[i];
+                        let label =  document.createElement('label');
+                        label.htmlFor = input.value;
+                        label.innerHTML = upright_d[i];
 
-                    radioButtons.appendChild(input);
-                    radioButtons.appendChild(label);
-                    radioButtons.appendChild(document.createElement('br'));
+                        radioButtons.appendChild(input);
+                        radioButtons.appendChild(label);
+                        radioButtons.appendChild(document.createElement('br'));
+                    }
+                    document.getElementById('upright-dif').appendChild(radioButtons);
                 }
-                document.getElementById('upright-dif').appendChild(radioButtons);
             });  
             
             // SIT
             const sit_d = ['sideways, 60%', 'twist, 60%', 'forward, 40%', 'behind, 20%', 'standard, 20%'];   
+            let buttonSPressed = false;
             document.getElementById('sit').addEventListener("click", () => {
-                const radioButtons = document.createElement('div');
-                radioButtons.className = 'sitPosD';
+                if(!buttonSPressed){
+                    buttonSPressed = true;
+                    const radioButtons = document.createElement('div');
+                    radioButtons.className = 'sitPosD';
 
-                for(let i = 0; i < sit_d.length; i++) {
-                    let input = document.createElement('input');
-                    input.type = 'radio';
-                    input.name = 'sitPosD';
-                    input.value = sit_d[i].split(', ')[0];
+                    for(let i = 0; i < sit_d.length; i++) {
+                        let input = document.createElement('input');
+                        input.type = 'radio';
+                        input.name = 'sitPosD';
+                        input.value = sit_d[i].split(', ')[0];
 
-                    let label =  document.createElement('label');
-                    label.htmlFor = input.value;
-                    label.innerHTML = sit_d[i];
+                        let label =  document.createElement('label');
+                        label.htmlFor = input.value;
+                        label.innerHTML = sit_d[i];
 
-                    radioButtons.appendChild(input);
-                    radioButtons.appendChild(label);
-                    radioButtons.appendChild(document.createElement('br'));
+                        radioButtons.appendChild(input);
+                        radioButtons.appendChild(label);
+                        radioButtons.appendChild(document.createElement('br'));
+                    }
+                    document.getElementById('sit-dif').appendChild(radioButtons);
                 }
-                document.getElementById('sit-dif').appendChild(radioButtons);
             });  
             document.getElementById('sit').disabled = true;
 
             // CAMEL
-            const camel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];   
-            document.getElementById('camel').addEventListener("click", () => {
-                const radioButtons = document.createElement('div');
-                radioButtons.className = 'camelPosD';
+            const camels = document.querySelectorAll('#camel, #camel2');
+            const camel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];  
+            camels.forEach(camel => {
+                camel.addEventListener("click", () => {
+                    // Diferenciamos el div para saber si se han añadido ya los inputs 
+                    const targetDiv = document.getElementById(`${camel.id}-dif`);
 
-                for(let i = 0; i < camel_d.length; i++) {
-                    let input = document.createElement('input');
-                    input.type = 'radio';
-                    input.name = 'camelPosD';
-                    input.value = camel_d[i].split(', ')[0];
+                    if (targetDiv.childElementCount === 0) {
+                        const radioButtons = document.createElement('div');
+                        radioButtons.className = 'camelPosD';
 
-                    let label =  document.createElement('label');
-                    label.htmlFor = input.value;
-                    label.innerHTML = camel_d[i];
+                        for(let i = 0; i < camel_d.length; i++) {
+                            // Creamos inputs y label
+                            let input = document.createElement('input');
+                            input.type = 'radio';
+                            input.name = 'camelPosD';
+                            input.value = camel_d[i].split(', ')[0];
 
-                    radioButtons.appendChild(input);
-                    radioButtons.appendChild(label);
-                    radioButtons.appendChild(document.createElement('br'));
-                }
-                document.getElementById('camel-dif').appendChild(radioButtons);
+                            let label =  document.createElement('label');
+                            label.htmlFor = input.value;
+                            label.innerHTML = camel_d[i];
+
+                            radioButtons.appendChild(input);
+                            radioButtons.appendChild(label);
+                            radioButtons.appendChild(document.createElement('br'));
+                        }
+
+                        targetDiv.appendChild(radioButtons);
+                    }
+                });
             }); 
 
             // HEEL
-            const heel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];   
-            document.getElementById('heel').addEventListener("click", () => {
-                const radioButtons = document.createElement('div');
-                radioButtons.className = 'heelPosD';
+            const heels = document.querySelectorAll('#heel, #heel2');
+            const heel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];    
+            heels.forEach(heel => {
+                heel.addEventListener("click", () => {
+                    // Diferenciamos el div para saber si se han añadido ya los inputs, para inhabilitar el botón
+                    const targetDiv = document.getElementById(`${heel.id}-dif`);
 
-                for(let i = 0; i < heel_d.length; i++) {
-                    let input = document.createElement('input');
-                    input.type = 'radio';
-                    input.name = 'heelPosD';
-                    input.value = heel_d[i].split(', ')[0];
+                    if (targetDiv.childElementCount === 0) {
+                        const radioButtons = document.createElement('div');
+                        radioButtons.className = 'heelPosD';
 
-                    let label =  document.createElement('label');
-                    label.htmlFor = input.value;
-                    label.innerHTML = heel_d[i];
+                        for(let i = 0; i < heel_d.length; i++) {
+                            let input = document.createElement('input');
+                            input.type = 'radio';
+                            input.name = 'heelPosD';
+                            input.value = heel_d[i].split(', ')[0];
 
-                    radioButtons.appendChild(input);
-                    radioButtons.appendChild(label);
-                    radioButtons.appendChild(document.createElement('br'));
-                }
-                document.getElementById('heel-dif').appendChild(radioButtons);
+                            let label =  document.createElement('label');
+                            label.htmlFor = input.value;
+                            label.innerHTML = heel_d[i];
+
+                            radioButtons.appendChild(input);
+                            radioButtons.appendChild(label);
+                            radioButtons.appendChild(document.createElement('br'));
+                        }
+                        targetDiv.appendChild(radioButtons);
+                    }
+                });
             }); 
 
             // BROKEN

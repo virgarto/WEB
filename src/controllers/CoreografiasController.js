@@ -88,21 +88,20 @@ function addElement(req, res){
 
     if(codigo == 'SSp'){
         const selectedSpin = req.body.spin;
-        const spinD = req.body.uprightPosD;
-        console.log(spinD);
+        const spinUD = req.body.uprightPosD;
+        console.log(spinUD);
         
         req.getConnection((err,conn)=>{
-            if(spinD.length > 0){
-                console.log('hola')
-                conn.query('SELECT rating_base as value FROM spin_base WHERE spin = ?', ['upright_' + spinD], (error, base) => {
+            /*if(spinUD.length > 0){
+                conn.query('SELECT rating_base as value FROM spin_base WHERE spin = ?', ['upright_' + spinUD], (error, base) => {
                     let base_pos = `base${fila}`;
                     let elemento_pos = `elemento${fila}`;
                     let code = `code${fila}`;
     
-                    res.render('discoCortoForm', {[code]: 'SSp', [elemento_pos]: 'upright_' + spinD, [base_pos]: base[0].value, name, categoria});
+                    res.render('discoCortoForm', {[code]: 'SSp', [elemento_pos]: 'upright_' + spinUD, [base_pos]: base[0].value, name, categoria});
                 })
             }
-            else{
+            else{*/
                 conn.query('SELECT rating_base as value FROM spin_base WHERE spin = ?', [selectedSpin], (error, base) => {
                     let base_pos = `base${fila}`;
                     let elemento_pos = `elemento${fila}`;
@@ -110,7 +109,7 @@ function addElement(req, res){
 
                     //res.render('discoCortoForm', {[code]: 'SSp', [elemento_pos]: selectedSpin, [base_pos]: base[0].value, name, categoria});
                 })
-            }
+            //}
             
         })
     }
