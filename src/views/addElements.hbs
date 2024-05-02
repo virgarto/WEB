@@ -242,8 +242,6 @@
                         <label for="code"></label>
                         <input type="text" class="text-center" name="code" value="{{codigo}}" readonly><br>
 
-                       <!-- <input type="radio" name="spin" value="upright_spin" class="mt-2"/>
-                        <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> -->
                         <a role="button" class="btn btn-outline-success mt-4" id="upright"> UPRIGHT  
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -251,39 +249,53 @@
                         </a><br>
                         <div id="upright-dif"> </div> <br>
 
-                        <input type="radio" name="spin" value="sit_spin" />
-                        <label for="sit_spin">Sit Spin (Base Rating: 0.8)</label> 
-                        <a role="button" class="btn btn-outline-success" id="sit">Posición difícil</a><br>
+                        <a role="button" class="btn btn-outline-success" id="sit">SIT
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="sit-dif"> </div> <br>
 
-                        <input type="radio" name="spin" value="camel_back_spin" />
-                        <label for="camel_back_spin">Camel Spins Back (Base Rating: 1.0)</label> 
-                        <a role="button" class="btn btn-outline-success" id="camel">Posición difícil</a><br>
+                        <a role="button" class="btn btn-outline-success" id="camel">CAMEL BACK
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="camel-dif"> </div> <br>
 
-                        <input type="radio" name="spin" value="camel_forw_spin" />
-                        <label for="camel_forw_spin">Camel Spin Forward (Base Rating: 1.2)</label> 
-                        <a role="button" class="btn btn-outline-success" id="camel2">Posición difícil</a><br>
+                        <a role="button" class="btn btn-outline-success" id="camel2">CAMEL FORWARD
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="camel2-dif"> </div> <br>
-
-                        <input type="radio" name="spin" value="heel_back_spin" />
-                        <label for="heel_back_spin">Heel Spins Back (Base Rating: 2.0)</label> 
-                        <a role="button" class="btn btn-outline-success" id="heel">Posición difícil</a><br>
+ 
+                        <a role="button" class="btn btn-outline-success" id="heel">HEEL BACK
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="heel-dif"> </div> <br>
 
-                        <input type="radio" name="spin" value="heel_forw_spin" />
-                        <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label>
-                        <a role="button" class="btn btn-outline-success" id="heel2">Posición difícil</a><br>
+                        <a role="button" class="btn btn-outline-success" id="heel2">HEEL FORWARD
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="heel2-dif"> </div> <br>
 
-                        <input type="radio" name="spin" value="broken_spin" />
-                        <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label> 
-                        <a role="button" class="btn btn-outline-success" id="broken">Posición difícil</a><br>
+                        <a role="button" class="btn btn-outline-success" id="broken">BROKEN
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="broken-dif"> </div> <br>
 
-                        <input type="radio" name="spin" value="inverted_spin" />
-                        <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label> 
-                        <a role="button" class="btn btn-outline-success" id="inverted">Posición difícil</a><br>
+                        <a role="button" class="btn btn-outline-success" id="inverted">INVERTED
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="inverted-dif"> </div> <br>
 
 <!--
@@ -320,44 +332,60 @@
                         <label for="code"></label>
                         <input type="text" class="text-center" name="code" value="{{codigo}}" readonly><br>
 
-                        <p<b>Piruetas:</b></p>
-                        <input type="checkbox" name="spin" value="upright_spin" class="mt-2"/>
-                        <label for="upright_spin">Upright Spin (Base Rating: 0.5)</label> 
-                        <a role="button" class="btn btn-outline-success" id="upright">Posición difícil</a><br>
+                        <a role="button" class="btn btn-outline-success mt-4" id="upright"> UPRIGHT  
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="upright-dif"> </div> <br>
 
-                        <input type="checkbox" name="spin" value="sit_spin" />
-                        <label for="sit_spin">Sit Spin (Base Rating: 0.8)</label>
-                        <a role="button" class="btn btn-outline-success" id="sit">Posición difícil</a> <br>
+                        <a role="button" class="btn btn-outline-success" id="sit">SIT
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="sit-dif"> </div> <br>
 
-                        <input type="checkbox" name="spin" value="camel_back_spin" />
-                        <label for="camel_back_spin">Camel Spins Back (Base Rating: 1.0)</label>
-                        <a role="button" class="btn btn-outline-success" id="camel">Posición difícil</a> <br>
+                        <a role="button" class="btn btn-outline-success" id="camel">CAMEL BACK
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="camel-dif"> </div> <br>
 
-                        <input type="checkbox" name="spin" value="camel_forw_spin" />
-                        <label for="camel_forw_spin">Camel Spin Forward (Base Rating: 1.2)</label>
-                        <a role="button" class="btn btn-outline-success" id="camel2">Posición difícil</a> <br>
-                        <div id="camel-dif"> </div> <br>
-
-                        <input type="checkbox" name="spin" value="heel_back_spin" />
-                        <label for="heel_back_spin">Heel Spins Back (Base Rating: 2.0)</label>
-                        <a role="button" class="btn btn-outline-success" id="heel">Posición difícil</a> <br>
+                        <a role="button" class="btn btn-outline-success" id="camel2">CAMEL FORWARD
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
+                        <div id="camel2-dif"> </div> <br>
+ 
+                        <a role="button" class="btn btn-outline-success" id="heel">HEEL BACK
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="heel-dif"> </div> <br>
 
-                        <input type="checkbox" name="spin" value="heel_forw_spin" />
-                        <label for="heel_forw_spin">Heel Spin Forward (Base Rating: 2.5)</label>
-                        <a role="button" class="btn btn-outline-success" id="heel2">Posición difícil</a> <br>
+                        <a role="button" class="btn btn-outline-success" id="heel2">HEEL FORWARD
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
+                        <div id="heel2-dif"> </div> <br>
 
-                        <input type="checkbox" name="spin" value="broken_spin" />
-                        <label for="broken_spin">Broken Spin (Base Rating: 1.8)</label>
-                        <a role="button" class="btn btn-outline-success" id="broken">Posición difícil</a> <br>
+                        <a role="button" class="btn btn-outline-success" id="broken">BROKEN
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="broken-dif"> </div> <br>
 
-                        <input type="checkbox" name="spin" value="inverted_spin" />
-                        <label for="inverted_spin">Inverted Spin (Base Rating: 2.8)</label>
-                        <a role="button" class="btn btn-outline-success" id="inverted">Posición difícil</a>
+                        <a role="button" class="btn btn-outline-success" id="inverted">INVERTED
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </a><br>
                         <div id="inverted-dif"> </div> <br>
 
 <!--
@@ -393,7 +421,7 @@
             //Script para que el botón "posicion dificil" active la selección
             // UPRIGHT
             let buttonUpPressed = false;
-            const upright_d = ['Spin, (BASE: 0.5)', 'biellman, 2+80%', 'biellman_heel, 3+40%', 'split, 1+50%', 'torso, 1+40%', 'layback, 1+20%', 'forward, 1', 'heel, 50%', 'standard, 20%'];   
+            const upright_d = ['upright_spin, BASE: 0.5', 'upright_biellman, 2+80%', 'upright_biellman_heel, 3+40%', 'upright_split, 1+50%', 'upright_torso, 1+40%', 'upright_layback, 1+20%', 'upright_forward, 1', 'upright_heel, 50%', 'upright_standard, 20%'];   
             document.getElementById('upright').addEventListener("click", () => {
                 if(!buttonUpPressed){
                     buttonUpPressed = true;
@@ -403,7 +431,7 @@
                     for(let i = 0; i < upright_d.length; i++) {
                         let input = document.createElement('input');
                         input.type = 'radio';
-                        input.name = 'uprightPosD';
+                        input.name = 'spin';
                         input.value = upright_d[i].split(', ')[0];
 
                         let label =  document.createElement('label');
@@ -413,13 +441,19 @@
                         radioButtons.appendChild(input);
                         radioButtons.appendChild(label);
                         radioButtons.appendChild(document.createElement('br'));
+
+                        if (i === 0) {
+                            const p = document.createElement('p');
+                            p.innerHTML = 'Posiciones difíciles:';
+                            radioButtons.appendChild(p);
+                        }
                     }
                     document.getElementById('upright-dif').appendChild(radioButtons);
                 }
             });  
             
             // SIT
-            const sit_d = ['sideways, 60%', 'twist, 60%', 'forward, 40%', 'behind, 20%', 'standard, 20%'];   
+            const sit_d = ['sit_spin, BASE: 0.8', 'sit_sideways, 60%', 'sit_twist, 60%', 'sit_forward, 40%', 'sit_behind, 20%', 'sit_standard, 20%'];   
             let buttonSPressed = false;
             document.getElementById('sit').addEventListener("click", () => {
                 if(!buttonSPressed){
@@ -430,7 +464,7 @@
                     for(let i = 0; i < sit_d.length; i++) {
                         let input = document.createElement('input');
                         input.type = 'radio';
-                        input.name = 'sitPosD';
+                        input.name = 'spin';
                         input.value = sit_d[i].split(', ')[0];
 
                         let label =  document.createElement('label');
@@ -440,6 +474,12 @@
                         radioButtons.appendChild(input);
                         radioButtons.appendChild(label);
                         radioButtons.appendChild(document.createElement('br'));
+
+                        if (i === 0) {
+                            const p = document.createElement('p');
+                            p.innerHTML = 'Posiciones difíciles:';
+                            radioButtons.appendChild(p);
+                        }
                     }
                     document.getElementById('sit-dif').appendChild(radioButtons);
                 }
@@ -448,7 +488,7 @@
 
             // CAMEL
             const camels = document.querySelectorAll('#camel, #camel2');
-            const camel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];  
+            const camel_d = ['camel_spin, BASE: 1.0', 'forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];  
             camels.forEach(camel => {
                 camel.addEventListener("click", () => {
                     // Diferenciamos el div para saber si se han añadido ya los inputs 
@@ -462,17 +502,42 @@
                             // Creamos inputs y label
                             let input = document.createElement('input');
                             input.type = 'radio';
-                            input.name = 'camelPosD';
-                            input.value = camel_d[i].split(', ')[0];
+                            input.name = 'spin';
 
                             let label =  document.createElement('label');
                             label.htmlFor = input.value;
-                            label.innerHTML = camel_d[i];
+                            if (i === 0) {
+                                if (camel.id === 'camel') {
+                                    label.innerHTML = 'camel_back_spin, BASE: 1.0';
+                                    input.value = 'camel_back_spin';
+                                } 
+                                else if (camel.id === 'camel2') {
+                                    label.innerHTML = 'camel_forw_spin, BASE: 1.2';
+                                    input.value = 'camel_forw_spin';
+                                }
+                            } 
+                            else {
+                                if (camel.id === 'camel'){
+                                    label.innerHTML = 'camel_back_' + camel_d[i];
+                                    input.value = 'camel_back_' + camel_d[i].split(', ')[0]; 
+                                }
+
+                                if (camel.id === 'camel2') {
+                                    label.innerHTML = 'camel_forw_' + camel_d[i];
+                                    input.value = 'camel_forw_' + camel_d[i].split(', ')[0];
+                                }
+                            }
 
                             radioButtons.appendChild(input);
                             radioButtons.appendChild(label);
                             radioButtons.appendChild(document.createElement('br'));
+
+                            if (i === 0) {
+                            const p = document.createElement('p');
+                            p.innerHTML = 'Posiciones difíciles:';
+                            radioButtons.appendChild(p);
                         }
+                    }
 
                         targetDiv.appendChild(radioButtons);
                     }
@@ -481,7 +546,7 @@
 
             // HEEL
             const heels = document.querySelectorAll('#heel, #heel2');
-            const heel_d = ['forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];    
+            const heel_d = ['heel_spin, BASE: 2', 'forward, 40%', 'sideways, 60%', 'layover, 20%', 'standard, 20%'];    
             heels.forEach(heel => {
                 heel.addEventListener("click", () => {
                     // Diferenciamos el div para saber si se han añadido ya los inputs, para inhabilitar el botón
@@ -491,19 +556,45 @@
                         const radioButtons = document.createElement('div');
                         radioButtons.className = 'heelPosD';
 
-                        for(let i = 0; i < heel_d.length; i++) {
+                        for(let i = 0; i < camel_d.length; i++) {
+                            // Creamos inputs y label
                             let input = document.createElement('input');
                             input.type = 'radio';
-                            input.name = 'heelPosD';
-                            input.value = heel_d[i].split(', ')[0];
+                            input.name = 'spin';
 
                             let label =  document.createElement('label');
                             label.htmlFor = input.value;
-                            label.innerHTML = heel_d[i];
+                            if (i === 0) {
+                                if (heel.id === 'heel') {
+                                    label.innerHTML = 'heel_back_spin, BASE: 2.0';
+                                    input.value = 'heel_back_spin';
+                                } 
+                                else if (heel.id === 'heel2') {
+                                    label.innerHTML = 'heel_forw_spin, BASE: 2.5';
+                                    input.value = 'heel_forw_spin';
+                                }
+                            } 
+                            else {
+                                if (heel.id === 'heel'){
+                                    label.innerHTML = 'heel_back_' + heel_d[i];
+                                    input.value = 'heel_back_' + heel_d[i].split(', ')[0]; 
+                                }
+
+                                if (heel.id === 'heel2') {
+                                    label.innerHTML = 'heel_forw_' + heel_d[i];
+                                    input.value = 'heel_forw_' + heel_d[i].split(', ')[0];
+                                }
+                            }
 
                             radioButtons.appendChild(input);
                             radioButtons.appendChild(label);
                             radioButtons.appendChild(document.createElement('br'));
+
+                            if (i === 0) {
+                                const p = document.createElement('p');
+                                p.innerHTML = 'Posiciones difíciles:';
+                                radioButtons.appendChild(p);
+                            }
                         }
                         targetDiv.appendChild(radioButtons);
                     }
@@ -511,7 +602,7 @@
             }); 
 
             // BROKEN
-            const broken_d = ['forward, 40%', 'sideways, 60%', 'standard, 20%'];   
+            const broken_d = ['broken_spin, BASE: 1.8', 'broken_forward, 40%', 'broken_sideways, 60%', 'broken_standard, 20%'];   
             document.getElementById('broken').addEventListener("click", () => {
                 const radioButtons = document.createElement('div');
                 radioButtons.className = 'brokenPosD';
@@ -519,7 +610,7 @@
                 for(let i = 0; i < broken_d.length; i++) {
                     let input = document.createElement('input');
                     input.type = 'radio';
-                    input.name = 'brokenPosD';
+                    input.name = 'spin';
                     input.value = broken_d[i].split(', ')[0];
 
                     let label =  document.createElement('label');
@@ -529,12 +620,18 @@
                     radioButtons.appendChild(input);
                     radioButtons.appendChild(label);
                     radioButtons.appendChild(document.createElement('br'));
+
+                    if (i === 0) {
+                        const p = document.createElement('p');
+                        p.innerHTML = 'Posiciones difíciles:';
+                        radioButtons.appendChild(p);
+                    }
                 }
                 document.getElementById('broken-dif').appendChild(radioButtons);
             }); 
 
             // INVERTED
-            const inverted_d = ['bryant, 25%', 'standard, 20%'];   
+            const inverted_d = ['inverted_spin, BASE: 2.8', 'inverted_bryant, 25%', 'inverted_standard, 20%'];   
             document.getElementById('inverted').addEventListener("click", () => {
                 const radioButtons = document.createElement('div');
                 radioButtons.className = 'invertedPosD';
@@ -542,7 +639,7 @@
                 for(let i = 0; i < inverted_d.length; i++) {
                     let input = document.createElement('input');
                     input.type = 'radio';
-                    input.name = 'invertedPosD';
+                    input.name = 'spin';
                     input.value = inverted_d[i].split(', ')[0];
 
                     let label =  document.createElement('label');
@@ -552,6 +649,12 @@
                     radioButtons.appendChild(input);
                     radioButtons.appendChild(label);
                     radioButtons.appendChild(document.createElement('br'));
+
+                    if (i === 0) {
+                        const p = document.createElement('p');
+                        p.innerHTML = 'Posiciones difíciles:';
+                        radioButtons.appendChild(p);
+                    }
                 }
                 document.getElementById('inverted-dif').appendChild(radioButtons);
             }); 
