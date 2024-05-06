@@ -8,6 +8,10 @@ function goToaddElementInForm (req, res){
     const name = req.query.name;
     const categoria = req.query.categoria;
 
+    if(rowsCortoLibre.length == 6){
+        return res.render('discoCortoForm', {msg: 'Ya no se pueden añadir más elementos al programa.'})
+    }
+
     res.render('addElements', {rol: req.session.rol, fila, codigo, name, categoria});
 }
 
@@ -37,11 +41,11 @@ function addElement(req, res){
                 console.log("Valoración: " + base[0].value);
                                 
                 if (numRows < 7) {
-                    rowsCortoLibre.splice(1, 0, {
+                    rowsCortoLibre.push({
                         code: `SJu`,
                         elemento: selectedSalto,
                         base: base[0].value
-                      });
+                    });
                     numRows++;
                 }
 
