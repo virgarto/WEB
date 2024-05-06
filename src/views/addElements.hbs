@@ -107,9 +107,6 @@
                         <input type="radio" name="salto" value="salchow_3" />
                         <label for="salchow_3">3 Salchow (Base Rating: 7)</label> <br>
 
-                        <input type="radio" name="salto" value="toeloop_3" />
-                        <label for="toeloop_3">3 Axel (Base Rating: 7)</label> <br>
-
                         <button type="submit" class="btn btn-success mt-2">Agregar Salto</button>
                     </form>
                 {{/if}}
@@ -174,9 +171,6 @@
                         <input type="checkbox" name="salto" value="salchow_3" />
                         <label for="salchow_3">3 Salchow (Base Rating: 7)</label> <br>
 
-                        <input type="checkbox" name="salto" value="toeloop_3" />
-                        <label for="toeloop_3">3 Axel (Base Rating: 7)</label> <br>
-
                         <button type="submit" class="btn btn-success mt-2">Agregar Salto</button>
                     </form>
                 {{/if}}
@@ -240,63 +234,63 @@
 
                         <p># <input type="number" name="fila" value="{{fila}}" readonly></p>
                         <label for="code"></label>
-                        <input type="text" class="text-center" name="code" value="{{codigo}}" readonly><br>
+                        <input type="text" class="text-center" name="code" id="code" value="{{codigo}}" readonly><br>
 
                         <a role="button" class="btn btn-outline-success mt-4 w-25" id="upright"> UPRIGHT  
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="upright-dif"> </div> <br>
+                        <div id="upright-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="sit">SIT
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="sit-dif"> </div> <br>
+                        <div id="sit-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="camel">CAMEL BACK
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="camel-dif"> </div> <br>
+                        <div id="camel-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="camel2">CAMEL FORWARD
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="camel2-dif"> </div> <br>
+                        <div id="camel2-dif" class="hidden"> </div> <br>
  
                         <a role="button" class="btn btn-outline-success w-25" id="heel">HEEL BACK
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="heel-dif"> </div> <br>
+                        <div id="heel-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="heel2">HEEL FORWARD
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="heel2-dif"> </div> <br>
+                        <div id="heel2-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="broken">BROKEN
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="broken-dif"> </div> <br>
+                        <div id="broken-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="inverted">INVERTED
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="inverted-dif"> </div> <br>
+                        <div id="inverted-dif" class="hidden"> </div> <br>
 
 <!--
                         <p><b>Variaciones difíciles</b></p>
@@ -337,56 +331,56 @@
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="upright-dif"> </div> <br>
+                        <div id="upright-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="sit">SIT
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="sit-dif"> </div> <br>
+                        <div id="sit-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="camel">CAMEL BACK
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="camel-dif"> </div> <br>
+                        <div id="camel-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="camel2">CAMEL FORWARD
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="camel2-dif"> </div> <br>
+                        <div id="camel2-dif" class="hidden"> </div> <br>
  
                         <a role="button" class="btn btn-outline-success w-25" id="heel">HEEL BACK
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="heel-dif"> </div> <br>
+                        <div id="heel-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="heel2">HEEL FORWARD
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="heel2-dif"> </div> <br>
+                        <div id="heel2-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="broken">BROKEN
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="broken-dif"> </div> <br>
+                        <div id="broken-dif" class="hidden"> </div> <br>
 
                         <a role="button" class="btn btn-outline-success w-25" id="inverted">INVERTED
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="inverted-dif"> </div> <br>
+                        <div id="inverted-dif" class="hidden"> </div> <br>
 
 <!--
                         <p><b>Variaciones difíciles</b></p>
@@ -418,7 +412,8 @@
             </div>
         </footer>
         <script> 
-            const code = document.getElementById('code').value
+            const code = document.getElementById('code').value;
+            console.log(code);
             //Script para que el botón "posicion dificil" active la selección
             // UPRIGHT
             let buttonUpPressed = false;
@@ -701,6 +696,25 @@
                 }
                 document.getElementById('inverted-dif').appendChild(radioButtons);
             }); 
+
+            // CODIGO PARA OCULTAR LOS INPUTS 
+            function ocultarDiv(buttonId, divId) {
+                const button = document.getElementById(buttonId);
+                const div = document.getElementById(divId);
+
+                button.addEventListener('click', () => {
+                    div.classList.toggle('hidden');
+                });
+            }
+
+            ocultarDiv('upright', 'upright-dif');
+            ocultarDiv('sit', 'sit-dif');
+            ocultarDiv('camel', 'camel-dif');
+            ocultarDiv('camel2', 'camel2-dif');
+            ocultarDiv('heel', 'heel-dif');
+            ocultarDiv('heel2', 'heel2-dif');
+            ocultarDiv('broken', 'broken-dif');
+            ocultarDiv('inverted', 'inverted-dif');
         </script>
     </body>
 </html>
