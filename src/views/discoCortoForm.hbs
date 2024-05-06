@@ -61,6 +61,39 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{#each rowsCortoLibre}}
+                                <tr>
+                                    <td>{{inc @index}}
+                                    <td>{{code}}</td>
+                                    <td>{{elemento}}</td>
+                                    <td>{{base}}</td>
+                                </tr>
+                                {{/each}}
+                                <tr>
+                                    <td>Total:</td>
+                                    <td>{{sumaBASE}}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select name="codigo" id="select-1">
+                                            <option value="SJu" {{#if (eq code1 'SJu')}} selected {{/if}}>SJu</option>
+                                            <option value="CoJ" {{#if (eq code1 'CoJ')}} selected {{/if}}>CoJ</option>
+                                            <option value="SSp" {{#if (eq code1 'SSp')}} selected {{/if}}>SSp</option>
+                                            <option value="CSp" {{#if (eq code1 'CSp')}} selected {{/if}}>CSp</option>
+                                            <option value="FoSq" {{#if (eq code1 'FoSq')}} selected {{/if}}>FoSq</option>
+                                            <option value="----">----</option>
+                                        </select>
+                                    </td>
+                                    <td id="elemento-1">
+                                        {{#if (lt rowsCortoLibre.length 7)}}
+                                            <a role="button" class="btn btn-outline-success" onclick="addElements(1, document.getElementById('select-1').value)">Añadir Elementos</a>
+                                        {{else }}
+                                            <a role="button" class="btn btn-outline-success disabled" onclick="">Añadir Elementos</a>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <!--<tbody>
                                 <tr>
                                     <td>1</td>
                                     <td>
@@ -71,7 +104,6 @@
                                             <option value="CSp" {{#if (eq code1 'CSp')}} selected {{/if}}>CSp</option>
                                             <option value="FoSq" {{#if (eq code1 'FoSq')}} selected {{/if}}>FoSq</option>
                                             <option value="----">----</option>
-                                            
                                         </select>
                                     </td>
                                     <td id="elemento-1">
@@ -249,7 +281,7 @@
                                     <td></td>
                                     <td>Total: {{base1}} </td>
                                 </tr>
-                            </tbody>
+                            </tbody>-->
 
                         </table>
                     </form>
@@ -262,8 +294,6 @@
             </div>
         </footer>
         <script>
-            var filasActualizadas = [];
-
             function addElements(rowNumber, selectedValue) {
                 window.location.href = `/addElements?fila=${rowNumber}&codigo=${selectedValue}&name={{name}}&categoria={{categoria}}`;
             }

@@ -11,35 +11,18 @@ function goToaddElementInForm (req, res){
     res.render('addElements', {rol: req.session.rol, fila, codigo, name, categoria});
 }
 
-let rowsCortoLibre = {
-    code1: '',
-    elemento1: '',
-    base1: '',
-    code2: '',
-    elemento2: '',
-    base2: '',
-    code3: '',
-    elemento3: '',
-    base3: '',
-    code4: '',
-    elemento4: '',
-    base4: '',
-    code5: '',
-    elemento5: '',
-    base5: '',
-    code6: '',
-    elemento6: '',
-    base6: '',
-    code7: '',
-    elemento7: '',
-    base7: '',
-}
+let rowsCortoLibre = [
+    
+];
+let sumaBASE = 0;
 
 function addElement(req, res){
     const fila = req.body.fila;
     const codigo = req.body.code;
     const name = req.body.patinador;
     const categoria = req.body.categoria;
+    let numRows = 0;
+    
     
     console.log("Code: " + codigo);
     console.log("#" + fila);
@@ -52,18 +35,23 @@ function addElement(req, res){
             // Obtenemos BASE del salto seleccionado
             conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [selectedSalto], (error, base) => {
                 console.log("Valoración: " + base[0].value);
-                let base_pos = `base${fila}`;
-                let elemento_pos = `elemento${fila}`;
-                let code = `code${fila}`;
-                
-                rowsCortoLibre[`elemento${fila}`] = selectedSalto;
-                rowsCortoLibre[`base${fila}`] = base[0].value;
-                rowsCortoLibre[`code${fila}`] = 'SJu';
+                                
+                if (numRows < 7) {
+                    rowsCortoLibre.splice(1, 0, {
+                        code: `SJu`,
+                        elemento: selectedSalto,
+                        base: base[0].value
+                      });
+                    numRows++;
+                }
 
                 console.log(rowsCortoLibre);
 
+                sumaBASE += base[0].value;
+                console.log('suma de BASE: '+ sumaBASE);
+
                 // Cargamos el formulario base y pasamos los valores 
-                res.render('discoCortoForm', {[code]: 'SJu', [elemento_pos]: selectedSalto, [base_pos]: base[0].value, name, categoria});
+                res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
             })
         })
     }
