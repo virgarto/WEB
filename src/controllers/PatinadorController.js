@@ -220,8 +220,8 @@ function createEntreneDanza(req, res){
 }
 
 function createEntreneLibre(req, res){
-    const {upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq} = req.body;
-    const {upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der} = req.body;
+    const {upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq, biellman_heel_izq} = req.body;
+    const {upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der,biellman_heel_der} = req.body;
     const {sit_izq, sit_forward_izq, sit_sideways_izq, behind_izq, twist_izq} = req.body;
     const {sit_der, sit_forward_der, sit_sideways_der, behind_der, twist_der} = req.body;
     const {exterior_izq, interior_izq, layover_izq, camel_forward_izq, camel_sideways_izq} = req.body;
@@ -231,7 +231,7 @@ function createEntreneLibre(req, res){
     const {waltz_jump, salchow, toeloop, flip, lutz, loop_simple, thoren, axel} = req.body;
     const {salchow_2, Toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2} = req.body;
     const {salchow_3, Toeloop_3} = req.body;
-    const {pos_inverted, pos_broken, pos_bryant} = req.body;
+    const {pos_inverted, pos_broken, pos_bryant, pos_broken_forw, pos_broken_sideways} = req.body;
     const {disc_corto, disc_largo} = req.body;
     const {flexi_split, flexi_arco} = req.body;
         
@@ -246,8 +246,8 @@ function createEntreneLibre(req, res){
                 console.log("Id del patinador: " + id_pat);
 
                 // Creamos los registros de cada elemento integrativo del entrenamiento
-                conn.query('INSERT INTO upright_izquierdo (upright, forward, layback, sideways, split, torso, biellman) VALUES (?, ?, ?, ?, ?, ?, ?)', [upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq]);
-                conn.query('INSERT INTO upright_derecho (upright, forward, layback, sideways, split, torso, biellman) VALUES (?, ?, ?, ?, ?, ?, ?)', [upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der]);
+                conn.query('INSERT INTO upright_izquierdo (upright, forward, layback, sideways, split, torso, biellman, biellman_heel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq, biellman_heel_izq]);
+                conn.query('INSERT INTO upright_derecho (upright, forward, layback, sideways, split, torso, biellman, biellman_heel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der, biellman_heel_der]);
                 conn.query('INSERT INTO sit_izquierdo (sit, forward, sideways, behind, twist) VALUES (?, ?, ?, ?, ?)', [sit_izq, sit_forward_izq, sit_sideways_izq, behind_izq, twist_izq]);
                 conn.query('INSERT INTO sit_derecho (sit, forward, sideways, behind, twist) VALUES (?, ?, ?, ?, ?)', [sit_der, sit_forward_der, sit_sideways_der, behind_der, twist_der]);
                 conn.query('INSERT INTO camel_izquierdo (exterior, interior, layover, forward, sideways) VALUES (?, ?, ?, ?, ?)', [exterior_izq, interior_izq, layover_izq, camel_forward_izq, camel_sideways_izq]);
@@ -257,7 +257,7 @@ function createEntreneLibre(req, res){
                 conn.query('INSERT INTO saltos_simples (waltz_jump, salchow, toeloop, flip, lutz, loop_simple, thoren, axel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [waltz_jump, salchow, toeloop, flip, lutz, loop_simple, thoren, axel]);
                 conn.query('INSERT INTO saltos_dobles (salchow_2, toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2) VALUES (?, ?, ?, ?, ?, ?, ?)', [salchow_2, Toeloop_2, flip_2, lutz_2, loop_2, thoren_2, axel_2]);
                 conn.query('INSERT INTO saltos_triples (salchow_3, toeloop_3) VALUES (?, ?)', [salchow_3, Toeloop_3]);
-                conn.query('INSERT INTO posiciones_avanzadas (inverted, broken, bryant) VALUES (?, ?, ?)', [pos_inverted, pos_broken, pos_bryant]);
+                conn.query('INSERT INTO posiciones_avanzadas (inverted, broken, bryant, broken_forward, broken_sideways) VALUES (?, ?, ?, ?, ?)', [pos_inverted, pos_broken, pos_bryant, pos_broken_forw, pos_broken_sideways]);
                 conn.query('INSERT INTO discos (corto, largo) VALUES (?, ?)', [disc_corto, disc_largo]);
                 conn.query('INSERT INTO flexibilidad (split, arco) VALUES (?, ?)', [flexi_split, flexi_arco]);
 
