@@ -716,5 +716,29 @@
             ocultarDiv('broken', 'broken-dif');
             ocultarDiv('inverted', 'inverted-dif');
         </script>
+
+        <script>
+            // TENEMOS EN CUENTA LA CANTIDAD DE SALTOS Y PIRUETAS MÁX QUE SE PUEDEN MARCAR
+            const form = document.getElementById('formCoJ');
+            const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+            const maxCheckboxes = 4;
+            if( {{categoria}} == 'Infantil'){
+                maxCheckboxes = 2;
+            }
+
+            form.addEventListener('change', (event) => {
+            const checkedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
+
+            if (checkedCheckboxes.length >= maxCheckboxes) {
+                checkedCheckboxes.slice(maxCheckboxes).forEach((checkbox) => {
+                checkbox.disabled = true;
+                });
+            } else {
+                checkboxes.forEach((checkbox) => {
+                checkbox.disabled = false;
+                });
+            }
+            });
+        </script>
     </body>
 </html>
