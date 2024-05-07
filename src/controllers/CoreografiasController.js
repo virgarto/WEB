@@ -8,8 +8,8 @@ function goToaddElementInForm (req, res){
     const name = req.query.name;
     const categoria = req.query.categoria;
 
-    if(rowsCortoLibre.length == 6){
-        return res.render('discoCortoForm', {msg: 'Ya no se pueden añadir más elementos al programa.'})
+    if(rowsCortoLibre.length == 7){
+        return res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
     }
 
     res.render('addElements', {rol: req.session.rol, fila, codigo, name, categoria});
@@ -85,7 +85,22 @@ function addElement(req, res){
 
                     // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
                     if(base_salto.length == selectedSalto.length){
-                        res.render('discoCortoForm', {[code]: 'CoJ', [elemento_pos]: selectedSalto, [base_pos]: total_base, name, categoria});
+                        if (numRows < 7) {
+                            rowsCortoLibre.push({
+                                code: `CoJ`,
+                                elemento: selectedSalto,
+                                base: total_base
+                            });
+                            numRows++;
+                        }
+        
+                        console.log(rowsCortoLibre);
+        
+                        sumaBASE += total_base;
+                        console.log('suma de BASE: '+ sumaBASE);
+        
+                        // Cargamos el formulario base y pasamos los valores 
+                        res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
                     }
                 }) 
             }
@@ -98,11 +113,22 @@ function addElement(req, res){
         
         req.getConnection((err,conn)=>{
             conn.query('SELECT rating_base as value FROM fosq_base WHERE nivel = ?', [fosq_level], (error, base) => {
-                let base_pos = `base${fila}`;
-                let elemento_pos = `elemento${fila}`;
-                let code = `code${fila}`;
+                if (numRows < 7) {
+                    rowsCortoLibre.push({
+                        code: `FoSq`,
+                        elemento: fosq_level,
+                        base: base[0].value
+                    });
+                    numRows++;
+                }
 
-                res.render('discoCortoForm', {[code]: 'FoSq', [elemento_pos]: fosq_level, [base_pos]: base[0].value, name, categoria});
+                console.log(rowsCortoLibre);
+
+                sumaBASE += base[0].value;
+                console.log('suma de BASE: '+ sumaBASE);
+
+                // Cargamos el formulario base y pasamos los valores 
+                res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
             })
         })
     }
@@ -113,12 +139,22 @@ function addElement(req, res){
         
         req.getConnection((err,conn)=>{
             conn.query('SELECT rating_base as value FROM spin_base WHERE spin = ?', [selectedSpin], (error, base) => {
-                let base_pos = `base${fila}`;
-                let elemento_pos = `elemento${fila}`;
-                let code = `code${fila}`;
-                console.log(base[0].value);
+                if (numRows < 7) {
+                    rowsCortoLibre.push({
+                        code: `SSp`,
+                        elemento: selectedSpin,
+                        base: base[0].value
+                    });
+                    numRows++;
+                }
 
-                res.render('discoCortoForm', {[code]: 'SSp', [elemento_pos]: selectedSpin, [base_pos]: base[0].value, name, categoria});
+                console.log(rowsCortoLibre);
+
+                sumaBASE += base[0].value;
+                console.log('suma de BASE: '+ sumaBASE);
+
+                // Cargamos el formulario base y pasamos los valores 
+                res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
             })
             
         })
@@ -127,10 +163,6 @@ function addElement(req, res){
     if(codigo == 'CSp'){
         const selectedSpin = req.body.spin;
         req.getConnection((error, conn) =>{
-            // Variables para form
-            let base_pos =  `base${fila}`;
-            let elemento_pos = `elemento${fila}`;
-            let code = `code${fila}`;
             // Variables que guardan la puntuación total de los saltos y el array con todos los BASE
             let total_base = 0;
             let base_salto = []
@@ -148,7 +180,22 @@ function addElement(req, res){
 
                     // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
                     if(base_salto.length == selectedSpin.length){
-                        res.render('discoCortoForm', {[code]: 'CSp', [elemento_pos]: selectedSpin, [base_pos]: total_base, name, categoria});
+                        if (numRows < 7) {
+                            rowsCortoLibre.push({
+                                code: `CSp`,
+                                elemento: selectedSpin,
+                                base: total_base
+                            });
+                            numRows++;
+                        }
+        
+                        console.log(rowsCortoLibre);
+        
+                        sumaBASE += total_base;
+                        console.log('suma de BASE: '+ sumaBASE);
+        
+                        // Cargamos el formulario base y pasamos los valores 
+                        res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
                     }
                 }) 
             }

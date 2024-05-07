@@ -11,8 +11,4 @@ Handlebars.registerHelper('inc', function (index) {
   return index + 1;
 });
 
-Handlebars.registerHelper('lt', function(length, maxLength){
-  return length < maxLength;
-})
-
 module.exports = Handlebars;
