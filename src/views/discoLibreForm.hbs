@@ -47,10 +47,11 @@
             </nav>
         </div>
         <main >
-            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Largo</h3>
+            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco {{typeDisc}}</h3>
             <div class="container text-center mt-3" >
-                    <form method="GET" action="" id="formCoreografíaLC">
-                        
+                    <form method="GET" action="" id="formCoreografíaL">
+                        <label for="typeDisc">Disco</label>
+                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador">Patinador/a:</label> <br>
                         <input type="text" name="patinador" class="form-control text-center mt-1" value="{{name}}" readonly><br>
                         <label for="categoria">Categoria:</label> <br>
@@ -69,7 +70,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each rowsLargoLibre}}
+                                {{#each rowsLibre}}
                                 <tr>
                                     <td>{{inc @index}}
                                     <td>{{code}}</td>
@@ -113,7 +114,7 @@
         </footer>
         <script>
             function addElements(rowNumber, selectedValue) {
-                window.location.href = `/addElements?fila=${rowNumber}&codigo=${selectedValue}&name={{name}}&categoria={{categoria}}`;
+                window.location.href = `/addElements?fila=${rowNumber}&codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
             }
         </script>
         <script>
@@ -122,6 +123,7 @@
 
             function checkLength(jsonLength){
                 console.log(jsonLength);
+                
                 if (jsonLength < 5) {
                     alert('Debes introducir al menos 5 elementos para descargar el programa!');
                 }
@@ -131,7 +133,7 @@
             }
 
             downloadBtn.addEventListener('click', () => {
-                const jsonLength = {{rowsCortoLibre.length}};
+                const jsonLength = {{rowsLibre.length}};
                 checkLength(jsonLength);
             });
 

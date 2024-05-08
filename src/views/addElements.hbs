@@ -44,12 +44,12 @@
             </nav>
         </div>
         <main >
-            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Corto</h3>
+            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco {{typeDisc}}</h3>
             <div class="container text-center mt-3" >
                 {{#if (eq codigo 'SJu')}}
-                    <form method="POST" id="formSJu" action="">
-                        <label for="typeForm">Disco</label>
-                        <input type="text" name="typeForm" value="{{typeForm}}" readonly><br>
+                    <form method="POST" id="formSJu" action="discoLibreForm">
+                        <label for="typeDisc">Disco</label>
+                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
@@ -115,7 +115,7 @@
                 {{#if (eq codigo 'CoJ')}}
                     <p>Selecciona el salto a realizar:</p>
 
-                    <form method="POST" id="formCoJ" action="discoCortoForm">
+                    <form method="POST" id="formCoJ" action="discoLibreForm">
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
@@ -179,7 +179,7 @@
 
                 {{#if (eq codigo 'FoSq')}}
 
-                    <form method="POST" id="forFoSq" action="discoCortoForm">
+                    <form method="POST" id="forFoSq" action="discoLibreForm">
                         <label for="patinador"></label>
                         <input type="text" class="text-center" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
@@ -228,7 +228,7 @@
 
                 {{#if (eq codigo 'SSp')}}
 
-                    <form method="POST" id="forSSp" action="discoCortoForm">
+                    <form method="POST" id="forSSp" action="discoLibreForm">
                         <label for="patinador"></label>
                         <input type="text" class="text-center" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
@@ -318,7 +318,7 @@
 
                 {{#if (eq codigo 'CSp')}}
 
-                    <form method="POST" id="forCSp" action="discoCortoForm">
+                    <form method="POST" id="forCSp" action="discoLibreForm">
                         <label for="patinador"></label>
                         <input type="text" class="text-center" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
