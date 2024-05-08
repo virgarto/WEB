@@ -1,11 +1,29 @@
+/*****************************************************/
+/* Función para acceder al formulario para crear una */
+/* coreografía de Modalidad Libre Disco CORTO        */
+/*****************************************************/
 function goToDiscoCortoForm (req, res){
-    const categoria = req.session.categoria
+    const categoria = req.session.categoria;
+
     if(categoria == 'Alevín' || categoria == 'Benjamin'){
         res.render('coreografías', {rol: req.session.rol, msg: 'Programa no disponible para la categoría Alevín y Benjamin'});
     }
-    res.render('discoCortoForm', {rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name}); 
+    res.render('discoCortoForm', {rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeForm: req.query.typeForm}); 
 }
 
+/*****************************************************/
+/* Función para acceder al formulario para crear una */
+/* coreografía de Modalidad Libre Disco LARGO        */
+/*****************************************************/
+function goToDiscoLargoForm (req, res){
+    res.render('discoLargoForm', {rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeForm: req.query.typeForm});
+}
+
+/*****************************************************/
+/* Función para acceder al formulario para añadir a  */
+/* la coreogría un nuevo elemento. También controla  */
+/* que se pueda añadir más elementos a los disco     */
+/*****************************************************/
 function goToaddElementInForm (req, res){
     const fila = req.query.fila;
     const codigo = req.query.codigo;
@@ -19,20 +37,29 @@ function goToaddElementInForm (req, res){
     res.render('addElements', {rol: req.session.rol, fila, codigo, name, categoria});
 }
 
+/*****************************************************/
+/* Variables que guardan los programas Corto y Largo */
+/* y el numero de filas que tiene la coreografía     */
+/*****************************************************/
 let rowsCortoLibre = [];
 let rowsLargoLibre = [];
 let sumaBASE = 0;
 
-
-
+/*****************************************************/
+/* Función que según el codigo del elemento, añade a */
+/* la coreografía el salto o la pirueta junto con su */
+/* BASE */
+/*****************************************************/
 function addElement(req, res){
     const fila = req.body.fila;
     const codigo = req.body.code;
     const name = req.body.patinador;
     const categoria = req.body.categoria;
     let numRows = 0;
+
+    const typeForm = req.body.typeForm;
     
-    
+    console.log(typeForm);
     console.log("Code: " + codigo);
     console.log("#" + fila);
     
@@ -45,23 +72,43 @@ function addElement(req, res){
             conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [selectedSalto], (error, base) => {
                 console.log("Valoración: " + base[0].value);
 
-                                
-                if (numRows < 7) {
-                    rowsCortoLibre.push({
-                        code: `SJu`,
-                        elemento: selectedSalto,
-                        base: base[0].value
-                    });
-                    numRows++;
-                }
+                if(typeForm == 'Corto'){
+                    if (numRows < 7) {
+                        rowsCortoLibre.push({
+                            code: `SJu`,
+                            elemento: selectedSalto,
+                            base: base[0].value
+                        });
+                        numRows++;
+                    }
 
-                console.log(rowsCortoLibre);
+                    console.log(rowsCortoLibre);
 
-                sumaBASE += base[0].value;
-                console.log('suma de BASE: '+ sumaBASE);
+                    sumaBASE += base[0].value;
+                    console.log('suma de BASE: '+ sumaBASE);
 
-                // Cargamos el formulario base y pasamos los valores 
-                res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
+                    // Cargamos el formulario base y pasamos los valores 
+                    res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
+                }  
+                else{
+                    if (numRows < 13) {
+                        rowsLargoLibre.push({
+                            code: `SJu`,
+                            elemento: selectedSalto,
+                            base: base[0].value
+                        });
+                        numRows++;
+                    }
+
+                    console.log(rowsLargoLibre);
+
+                    sumaBASE += base[0].value;
+                    console.log('suma de BASE: '+ sumaBASE);
+
+                    // Cargamos el formulario base y pasamos los valores 
+                    res.render('discoLargoForm', {rowsLargoLibre, sumaBASE, name, categoria});
+                }              
+                
             })
         })
     }
@@ -249,4 +296,5 @@ module.exports ={
     goToDiscoCortoForm,
     goToaddElementInForm,
     addElement,
+    goToDiscoLargoForm,
 }

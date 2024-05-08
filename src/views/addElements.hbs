@@ -47,7 +47,9 @@
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Corto</h3>
             <div class="container text-center mt-3" >
                 {{#if (eq codigo 'SJu')}}
-                    <form method="POST" id="formSJu" action="discoCortoForm">
+                    <form method="POST" id="formSJu" action="">
+                        <label for="typeForm">Disco</label>
+                        <input type="text" name="typeForm" value="{{typeForm}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>

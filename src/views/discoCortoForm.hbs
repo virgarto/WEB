@@ -50,6 +50,8 @@
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Corto</h3>
             <div class="container text-center mt-3" >
                     <form method="GET" action="" id="formCoreografíaLC">
+                        <label for="typeForm">Disco</label>
+                        <input type="text" name="typeForm" value="Corto" readonly><br>
                         <label for="patinador">Patinador/a:</label> <br>
                         <input type="text" name="patinador" class="form-control text-center mt-1" value="{{name}}" readonly><br>
                         <label for="categoria">Categoria:</label> <br>
@@ -112,7 +114,7 @@
         </footer>
         <script>
             function addElements(rowNumber, selectedValue) {
-                window.location.href = `/addElements?fila=${rowNumber}&codigo=${selectedValue}&name={{name}}&categoria={{categoria}}`;
+                window.location.href = `/addElements?fila=${rowNumber}&codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeForm=Corto`;
             }
         </script>
         <script>
