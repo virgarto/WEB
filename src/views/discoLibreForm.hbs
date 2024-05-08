@@ -79,7 +79,7 @@
                                 </tr>
                                 {{/each}}
                                 <tr>
-                                    <td>Total:</td>
+                                    <td><b>Total:</b></td>
                                     <td>{{sumaBASE}}</td>
                                 </tr>
                                 <tr>
@@ -122,8 +122,6 @@
             const main = document.querySelector('main');
 
             function checkLength(jsonLength){
-                console.log(jsonLength);
-                
                 if (jsonLength < 5) {
                     alert('Debes introducir al menos 5 elementos para descargar el programa!');
                 }
@@ -135,37 +133,41 @@
             downloadBtn.addEventListener('click', () => {
                 const jsonLength = {{rowsLibre.length}};
                 checkLength(jsonLength);
+                CoreografíasController.resetRowsLibre();
             });
 
             function downloadPDF() {
-                const select = document.getElementById('select-1');
-                const AddBtn = document.getElementById('addToProgramm'); 
-                const DownloadBtn = document.getElementById('downloadProgramm'); 
-                const msgElement = document.getElementById('msg'); 
+                if(confirm("¿Estás seguro de que quieres descargar el programa? Una vez descargado, se reiniciará la información")){
+                    const select = document.getElementById('select-1');
+                    const AddBtn = document.getElementById('addToProgramm'); 
+                    const DownloadBtn = document.getElementById('downloadProgramm'); 
+                    const msgElement = document.getElementById('msg'); 
 
-                // Escondemos los botones y el mensaje
-                select.style.display = 'none';
-                AddBtn.style.display = 'none';
-                DownloadBtn.style.display = 'none';
-                msgElement.style.display = 'none';
+                    // Escondemos los botones y el mensaje
+                    select.style.display = 'none';
+                    AddBtn.style.display = 'none';
+                    DownloadBtn.style.display = 'none';
+                    msgElement.style.display = 'none';
 
-                const pdf = new jsPDF('p', 'pt', 'a4');
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
-                const scale = 1;
-                const scaleFactor = pdfWidth / main.offsetWidth;
-                const pdfContent = html2canvas(main, { scale }).then(canvas => {
-                    const imgData = canvas.toDataURL('image/jpeg', 1.0);
-                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight * scaleFactor);
-                    pdf.save('programaCorto.pdf');
-                });
+                    const pdf = new jsPDF('p', 'pt', 'a4');
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = pdf.internal.pageSize.getHeight();
+                    const scale = 1;
+                    const scaleFactor = pdfWidth / main.offsetWidth;
+                    const pdfContent = html2canvas(main, { scale }).then(canvas => {
+                        const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight * scaleFactor);
+                        pdf.save('programa_Modalidad_Libre.pdf');
+                    });
 
-                // Volvemos a enseñar los botones
-                select.style.display = 'inline-block';
-                AddBtn.style.display = 'inline-block';
-                DownloadBtn.style.display = 'inline-block';
-                msgElement.style.display = 'inline-block';
+                    // Volvemos a enseñar los botones
+                    select.style.display = 'inline-block';
+                    AddBtn.style.display = 'inline-block';
+                    DownloadBtn.style.display = 'inline-block';
+                    msgElement.style.display = 'inline-block';
+                }
             }
+
         </script>
     </body>
 </html>

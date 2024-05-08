@@ -48,6 +48,10 @@ function goToaddElementInForm (req, res){
 let rowsLibre = [];
 let sumaBASE = 0;
 
+function resetRowsLibre(){
+    rowsLibre = [];
+}
+
 /*****************************************************/
 /* Función que según el codigo del elemento, añade a */
 /* la coreografía el salto o la pirueta junto con su */
@@ -84,15 +88,7 @@ function addElement(req, res){
                         });
                         numRows++;
                     }
-
-                    console.log(rowsLibre);
-
-                    sumaBASE += base[0].value;
-                    console.log('suma de BASE: '+ sumaBASE);
-
-                    // Cargamos el formulario base y pasamos los valores 
-                    res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
-                }  
+                }
                 else{
                     if (numRows < 13) {
                         rowsLibre.push({
@@ -102,21 +98,20 @@ function addElement(req, res){
                         });
                         numRows++;
                     }
+                }
+                   
+                console.log(rowsLibre);
 
-                    console.log(rowsLibre);
+                sumaBASE += base[0].value;
+                console.log('suma de BASE: '+ sumaBASE);
 
-                    sumaBASE += base[0].value;
-                    console.log('suma de BASE: '+ sumaBASE);
-
-                    // Cargamos el formulario base y pasamos los valores 
-                    res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
-                }              
-                
+                // Cargamos el formulario base y pasamos los valores 
+                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
             })
         })
     }
     
-    // Formulario para Combinado de Saltos
+    // Formulario para COMBINADO de SALTOS
     if(codigo == 'CoJ'){
         const selectedSalto = req.body.salto;
         req.getConnection((error, conn) =>{
@@ -176,76 +171,114 @@ function addElement(req, res){
 
                     // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
                     if(base_salto.length == selectedSalto.length){
-                        if (numRows < 7) {
-                            rowsCortoLibre.push({
-                                code: `CoJ`,
-                                elemento: selectedSalto,
-                                base: total_base
-                            });
-                            numRows++;
+                        if(typeDisc == 'Corto'){
+                            if (numRows < 7) {
+                                rowsLibre.push({
+                                    code: `CoJ`,
+                                    elemento: selectedSalto,
+                                    base: total_base
+                                });
+                                numRows++;
+                            }
                         }
-        
-                        console.log(rowsCortoLibre);
+                        else{
+                            if (numRows < 13) {
+                                rowsLibre.push({
+                                    code: `CoJ`,
+                                    elemento: selectedSalto,
+                                    base: total_base
+                                });
+                                numRows++;
+                            }
+                        }
+            
+                        console.log(rowsLibre);
         
                         sumaBASE += total_base;
                         console.log('suma de BASE: '+ sumaBASE);
         
                         // Cargamos el formulario base y pasamos los valores 
-                        res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
+                        res.render('discoCortoForm', {rowsLibre, sumaBASE, name, categoria , typeDisc});
+                        
                     }
                 }) 
             }
         })
     }
 
-    // Formulario para el Footwork Sequence
+    // Formulario para el FOOTWORK SEQUENCE
     if(codigo == 'FoSq'){
         const fosq_level = req.body.fosq;
         
         req.getConnection((err,conn)=>{
             conn.query('SELECT rating_base as value FROM fosq_base WHERE nivel = ?', [fosq_level], (error, base) => {
-                if (numRows < 7) {
-                    rowsCortoLibre.push({
-                        code: `FoSq`,
-                        elemento: fosq_level,
-                        base: base[0].value
-                    });
-                    numRows++;
+                if(typeDisc == 'Corto'){
+                    if (numRows < 7) {
+                        rowsLibre.push({
+                            code: `FoSq`,
+                            elemento: fosq_level,
+                            base: base[0].value
+                        });
+                        numRows++;
+                    }
                 }
-
-                console.log(rowsCortoLibre);
+                else{
+                    if (numRows < 13) {
+                        rowsLibre.push({
+                            code: `FoSq`,
+                            elemento: fosq_level,
+                            base: base[0].value
+                        });
+                        numRows++;
+                    }
+                }
+                
+                console.log(rowsLibre);
 
                 sumaBASE += base[0].value;
                 console.log('suma de BASE: '+ sumaBASE);
 
                 // Cargamos el formulario base y pasamos los valores 
-                res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
+                res.render('discoCortoForm', {rowsLibre, sumaBASE, name, categoria});
             })
         })
     }
 
+    // PIRUETA SIMPLE
     if(codigo == 'SSp'){
         const selectedSpin = req.body.spin;
         console.log(selectedSpin);
         
         req.getConnection((err,conn)=>{
             conn.query('SELECT rating_base as value FROM spin_base WHERE spin = ?', [selectedSpin], (error, base) => {
-                if (numRows < 7) {
-                    rowsCortoLibre.push({
-                        code: `SSp`,
-                        elemento: selectedSpin,
-                        base: base[0].value
-                    });
-                    numRows++;
+                if(typeDisc == 'Corto'){
+                    if(numRows < 7) {
+                        rowsLibre.push({
+                            code: `SSp`,
+                            elemento: selectedSpin,
+                            base: base[0].value
+                        });
+                        numRows++;
+                    }
+                }
+                else{
+                    if(numRows < 13) {
+                        rowsLibre.push({
+                            code: `SSp`,
+                            elemento: selectedSpin,
+                            base: base[0].value
+                        });
+                        numRows++;
+                    }
                 }
 
-                console.log(rowsCortoLibre);
+                console.log(rowsLibre);
 
                 sumaBASE += base[0].value;
                 console.log('suma de BASE: '+ sumaBASE);
 
                 // Cargamos el formulario base y pasamos los valores 
-                res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
+                res.render('discoCortoForm', {rowsLibre, sumaBASE, name, categoria});
             })
             
         })
@@ -271,22 +304,35 @@ function addElement(req, res){
 
                     // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
                     if(base_salto.length == selectedSpin.length){
-                        if (numRows < 7) {
-                            rowsCortoLibre.push({
-                                code: `CSp`,
-                                elemento: selectedSpin,
-                                base: total_base
-                            });
-                            numRows++;
+                        if(typeDisc == 'Corto'){
+                            if (numRows < 7) {
+                                rowsLibre.push({
+                                    code: `CSp`,
+                                    elemento: selectedSpin,
+                                    base: total_base
+                                });
+                                numRows++;
+                            }
                         }
+                        else{
+                            if (numRows < 13) {
+                                rowsLibre.push({
+                                    code: `CSp`,
+                                    elemento: selectedSpin,
+                                    base: total_base
+                                });
+                                numRows++;
+                            }
+                        }
+                        
         
-                        console.log(rowsCortoLibre);
+                        console.log(rowsLibre);
         
                         sumaBASE += total_base;
                         console.log('suma de BASE: '+ sumaBASE);
         
                         // Cargamos el formulario base y pasamos los valores 
-                        res.render('discoCortoForm', {rowsCortoLibre, sumaBASE, name, categoria});
+                        res.render('discoCortoForm', {rowsLibre, sumaBASE, name, categoria});
                     }
                 }) 
             }
@@ -299,4 +345,5 @@ module.exports ={
     goToDiscoLibreForm,
     goToaddElementInForm,
     addElement,
+    resetRowsLibre,
 }
