@@ -198,7 +198,7 @@ function addElement(req, res){
                         console.log('suma de BASE: '+ sumaBASE);
         
                         // Cargamos el formulario base y pasamos los valores 
-                        res.render('discoCortoForm', {rowsLibre, sumaBASE, name, categoria , typeDisc});
+                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria , typeDisc});
                         
                     }
                 }) 
@@ -239,7 +239,7 @@ function addElement(req, res){
                 console.log('suma de BASE: '+ sumaBASE);
 
                 // Cargamos el formulario base y pasamos los valores 
-                res.render('discoCortoForm', {rowsLibre, sumaBASE, name, categoria});
+                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
             })
         })
     }
@@ -278,7 +278,7 @@ function addElement(req, res){
                 console.log('suma de BASE: '+ sumaBASE);
 
                 // Cargamos el formulario base y pasamos los valores 
-                res.render('discoCortoForm', {rowsLibre, sumaBASE, name, categoria});
+                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
             })
             
         })
@@ -332,7 +332,7 @@ function addElement(req, res){
                         console.log('suma de BASE: '+ sumaBASE);
         
                         // Cargamos el formulario base y pasamos los valores 
-                        res.render('discoCortoForm', {rowsLibre, sumaBASE, name, categoria});
+                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
                     }
                 }) 
             }
