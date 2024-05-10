@@ -28,11 +28,12 @@ function getInforme(req, res){
         'pattern_sequence': ['key_point1', 'key_point2', 'key_point3', 'key_point4'], 
         'rocker_derecho': ['RoDExtDetras', 'RoDExtDelante', 'RoDIntDetras', 'RoDIntDelante'], 
         'rocker_izq': ['RoIExtDetras', 'RoIExtDelante', 'RoIIntDetras', 'RoIIntDelante']
+        //AÑADIR FILAS DE TRES DERECHO E IZQ
     };
 
     const tablasLibre = {
-        'upright_izquierdo': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman'],
-        'upright_derecho': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman'],
+        'upright_izquierdo': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman', 'biellman_heel'],
+        'upright_derecho': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman', 'biellman_heel'],
         'sit_izquierdo': ['sit', 'forward', 'sideways', 'behind', 'twist'],
         'sit_derecho': ['sit', 'forward', 'sideways', 'behind', 'twist'],
         'camel_izquierdo': ['exterior', 'interior', 'layover', 'forward', 'sideways'],
@@ -42,7 +43,7 @@ function getInforme(req, res){
         'saltos_simples': ['waltz_jump', 'salchow', 'toeloop', 'flip', 'lutz', 'loop_simple', 'thoren', 'axel'],
         'saltos_dobles': ['salchow', 'toeloop', 'flip', 'lutz', 'loop_doble', 'thoren', 'axel'],
         'saltos_triples': ['salchow', 'toeloop'],
-        'posiciones_avanzadas': ['inverted', 'broken', 'bryant'],
+        'posiciones_avanzadas': ['inverted', 'broken', 'bryant', 'broken_forward', 'broken_sideways'],
         'discos': ['corto', 'largo'],
         'flexibilidad': ['split', 'arco']
     };
