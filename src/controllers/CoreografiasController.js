@@ -42,10 +42,10 @@ function goToaddElementInForm (req, res){
 
 /*****************************************************/
 /* Variables que guardan los programas Corto y Largo */
-/* y el numero de filas que tiene la coreografía     */
+/* y el numero de BASE  que tiene la coreografía     */
 /*****************************************************/
 
-let rowsLibre = [];
+const rowsLibre = [];
 let sumaBASE = 0;
 
 function resetRowsLibre(){

@@ -126,7 +126,9 @@
                     alert('Debes introducir al menos 5 elementos para descargar el programa!');
                 }
                 else{
-                    downloadPDF();
+                    downloadPDF().then(() => {
+                        CoreografíasController.resetRowsLibre();
+                    });         
                 }
             }
 
@@ -137,38 +139,36 @@
             });
 
             function downloadPDF() {
-                if(confirm("¿Estás seguro de que quieres descargar el programa? Una vez descargado, se reiniciará la información")){
-                    const select = document.getElementById('select-1');
-                    const AddBtn = document.getElementById('addToProgramm'); 
-                    const DownloadBtn = document.getElementById('downloadProgramm'); 
-                    const msgElement = document.getElementById('msg'); 
+                const select = document.getElementById('select-1');
+                const AddBtn = document.getElementById('addToProgramm'); 
+                const DownloadBtn = document.getElementById('downloadProgramm'); 
+                const msgElement = document.getElementById('msg'); 
 
-                    // Escondemos los botones y el mensaje
-                    select.style.display = 'none';
-                    AddBtn.style.display = 'none';
-                    DownloadBtn.style.display = 'none';
-                    if(msgElement){
-                        msgElement.style.display = 'none';
-                    }
-                    
-                    const pdf = new jsPDF('p', 'pt', 'a4');
-                    const pdfWidth = pdf.internal.pageSize.getWidth();
-                    const pdfHeight = pdf.internal.pageSize.getHeight();
-                    const scale = 1;
-                    const scaleFactor = pdfWidth / main.offsetWidth;
-                    const pdfContent = html2canvas(main, { scale }).then(canvas => {
-                        const imgData = canvas.toDataURL('image/jpeg', 1.0);
-                        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight * scaleFactor);
-                        pdf.save('programa_Modalidad_Libre.pdf');
-                    });
+                // Escondemos los botones y el mensaje
+                select.style.display = 'none';
+                AddBtn.style.display = 'none';
+                DownloadBtn.style.display = 'none';
+                if(msgElement){
+                    msgElement.style.display = 'none';
+                }
+                
+                const pdf = new jsPDF('p', 'pt', 'a4');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const scale = 1;
+                const scaleFactor = pdfWidth / main.offsetWidth;
+                const pdfContent = html2canvas(main, { scale }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight * scaleFactor);
+                    pdf.save('programa_Modalidad_Libre.pdf');
+                });
 
-                    // Volvemos a enseñar los botones
-                    select.style.display = 'inline-block';
-                    AddBtn.style.display = 'inline-block';
-                    DownloadBtn.style.display = 'inline-block';
-                    if(msgElement){
-                        msgElement.style.display = 'inline-block';
-                    }
+                // Volvemos a enseñar los botones
+                select.style.display = 'inline-block';
+                AddBtn.style.display = 'inline-block';
+                DownloadBtn.style.display = 'inline-block';
+                if(msgElement){
+                    msgElement.style.display = 'inline-block';
                 }
             }
         </script>
