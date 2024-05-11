@@ -24,7 +24,6 @@ app.engine('.hbs', engine({
 
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/controllers'));
 
 app.set('view engine', 'hbs')
 
