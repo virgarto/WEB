@@ -95,7 +95,7 @@
                                         </select>
                                     </td>
                                     <td id="elemento-1">
-                                        <a role="button" class="btn btn-outline-success" id="addToProgramm" onclick="addElements(1, document.getElementById('select-1').value)">Añadir Elementos</a>
+                                        <a role="button" class="btn btn-outline-success" id="addToProgramm" onclick="addElements(document.getElementById('select-1').value)">Añadir Elementos</a>
                                         
                                     </td>
                                     <td>
@@ -117,8 +117,8 @@
             </div>
         </footer>
         <script>
-            function addElements(rowNumber, selectedValue) {
-                window.location.href = `/addElements?fila=${rowNumber}&codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
+            function addElements(selectedValue) {
+                window.location.href = `/addElements?codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
             }
         </script>
         <script>

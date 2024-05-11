@@ -6,11 +6,14 @@ function goToDiscoLibreForm (req, res){
     const categoria = req.session.categoria;
     const typeDisc = req.query.typeDisc;
 
+    // Reiniciamos el array con la información de la Coreografía así como la BASE
     resetRowsLibre();
 
-    if(categoria == 'Alevín' || categoria == 'Benjamin'){
+    // PROGRAMA CORTO NO DISPONIBLE PARA DOS CATEGORIAS
+    if((categoria == 'Alevín' && typeDisc == 'Corto') || (categoria == 'Benjamin' && typeDisc == 'Corto')){
         res.render('coreografías', {rol: req.session.rol, msg: 'Programa no disponible para la categoría Alevín y Benjamin'});
     }
+
     res.render('discoLibreForm', {rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc}); 
 }
 
@@ -20,13 +23,14 @@ function goToDiscoLibreForm (req, res){
 /* que se pueda añadir más elementos a los disco     */
 /*****************************************************/
 function goToaddElementInForm (req, res){
-    const fila = req.query.fila;
+    // Variables del form
     const codigo = req.query.codigo;
     const name = req.query.name;
     const categoria = req.query.categoria;
     const typeDisc = req.query.typeDisc;
     console.log('Disco ' + typeDisc)
 
+    // Comprobamos que se puedan añadir o no más elementos al form dependiendo del tipo
     if(typeDisc == 'Corto'){
         if(rowsLibre.length == 7){
             return res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
@@ -38,8 +42,7 @@ function goToaddElementInForm (req, res){
         }
     }
     
-
-    res.render('addElements', {rol: req.session.rol, fila, codigo, name, categoria, typeDisc});
+    res.render('addElements', {rol: req.session.rol, codigo, name, categoria, typeDisc});
 }
 
 /*****************************************************/
@@ -49,11 +52,17 @@ function goToaddElementInForm (req, res){
 
 let rowsLibre = [];
 let sumaBASE = 0;
+let numRows = 0;
 
+
+/*****************************************************/
+/* Función de reseteo del Array de rowsLibre y BASE  */
+/*****************************************************/
 function resetRowsLibre(){
     rowsLibre = [];
     sumaBASE = 0;
-    console.log("Array reseteado POR FIN");
+    numRows = 0;
+    console.log("Array reseteado");
 }
 
 /*****************************************************/
@@ -62,17 +71,15 @@ function resetRowsLibre(){
 /* BASE */
 /*****************************************************/
 function addElement(req, res){
-    const fila = req.body.fila;
+    // Variables del form
     const codigo = req.body.code;
     const name = req.body.patinador;
     const categoria = req.body.categoria;
-    let numRows = 0;
-
+    
     const typeDisc = req.body.typeDisc;
     
     console.log(typeDisc);
     console.log("Code: " + codigo);
-    console.log("#" + fila);
     
     // Formulario para el Salto Simple
     if(codigo == 'SJu'){
@@ -85,12 +92,17 @@ function addElement(req, res){
 
                 if(typeDisc == 'Corto'){
                     if (numRows < 7) {
+                        console.log("numRows: " + numRows);
                         rowsLibre.push({
                             code: `SJu`,
                             elemento: selectedSalto,
                             base: base[0].value
                         });
                         numRows++;
+                    }
+                    else{
+                        // CUANDO RECARGAS LAS PAGINA Y SE DUPLICA EL ULTIMO ELEMENTO INTRODUCIDO
+                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                     }
                 }
                 else{
@@ -101,6 +113,9 @@ function addElement(req, res){
                             base: base[0].value
                         });
                         numRows++;
+                    }
+                    else{
+                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                     }
                 }
                    
@@ -184,6 +199,9 @@ function addElement(req, res){
                                 });
                                 numRows++;
                             }
+                            else{
+                                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            }
                         }
                         else{
                             if (numRows < 13) {
@@ -193,6 +211,9 @@ function addElement(req, res){
                                     base: total_base
                                 });
                                 numRows++;
+                            }
+                            else{
+                                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                             }
                         }
             
@@ -225,6 +246,9 @@ function addElement(req, res){
                         });
                         numRows++;
                     }
+                    else{
+                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                    }
                 }
                 else{
                     if (numRows < 13) {
@@ -234,6 +258,9 @@ function addElement(req, res){
                             base: base[0].value
                         });
                         numRows++;
+                    }
+                    else{
+                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                     }
                 }
                 
@@ -264,6 +291,9 @@ function addElement(req, res){
                         });
                         numRows++;
                     }
+                    else{
+                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                    }
                 }
                 else{
                     if(numRows < 13) {
@@ -273,6 +303,9 @@ function addElement(req, res){
                             base: base[0].value
                         });
                         numRows++;
+                    }
+                    else{
+                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                     }
                 }
 
@@ -317,6 +350,9 @@ function addElement(req, res){
                                 });
                                 numRows++;
                             }
+                            else{
+                                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            }
                         }
                         else{
                             if (numRows < 13) {
@@ -326,6 +362,9 @@ function addElement(req, res){
                                     base: total_base
                                 });
                                 numRows++;
+                            }
+                            else{
+                                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                             }
                         }
                         
