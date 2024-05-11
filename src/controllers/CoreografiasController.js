@@ -6,6 +6,8 @@ function goToDiscoLibreForm (req, res){
     const categoria = req.session.categoria;
     const typeDisc = req.query.typeDisc;
 
+    resetRowsLibre();
+
     if(categoria == 'Alevín' || categoria == 'Benjamin'){
         res.render('coreografías', {rol: req.session.rol, msg: 'Programa no disponible para la categoría Alevín y Benjamin'});
     }
@@ -45,11 +47,13 @@ function goToaddElementInForm (req, res){
 /* y el numero de BASE  que tiene la coreografía     */
 /*****************************************************/
 
-const rowsLibre = [];
+let rowsLibre = [];
 let sumaBASE = 0;
 
 function resetRowsLibre(){
     rowsLibre = [];
+    sumaBASE = 0;
+    console.log("Array reseteado POR FIN");
 }
 
 /*****************************************************/

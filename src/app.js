@@ -23,8 +23,8 @@ app.engine('.hbs', engine({
 }));
 
 
-
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/controllers'));
 
 app.set('view engine', 'hbs')
 
@@ -58,6 +58,7 @@ app.use('/', userPerfilRoutes);
 app.use('/', patinadorRoutes);
 app.use('/', entrenadorRoutes);
 app.use('/', coreosRoutes);
+
 
 app.get('/', (req, res) => {
     if(req.session.loggedin == true)
