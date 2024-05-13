@@ -53,6 +53,7 @@ function goToaddElementInForm (req, res){
 let rowsLibre = [];
 let sumaBASE = 0;
 let numRows = 0;
+let nCJu = 0;
 
 
 /*****************************************************/
@@ -107,11 +108,26 @@ function addElement(req, res){
                 }
                 else{
                     if (numRows < 13) {
-                        rowsLibre.push({
-                            code: `SJu`,
-                            elemento: selectedSalto,
-                            base: base[0].value
-                        });
+                        // Si se es de estas categorias, un salto despues de la mitad del programa incrementa su valor 10%
+                        if(categoria == 'Cadete' || categoria == 'Juvenil' || categoria == 'Junior' || categoria == 'Senior'){
+                            console.log('Categoria dentro');
+                            if(numRows >= 6){
+                                console.log('Fila dentro');
+                                let base_salto = base[0].value + (base[0].value * 0.10); 
+                                console.log('Nueva base: '+ base_salto);
+                                rowsLibre.push({
+                                    code: `SJu`,
+                                    elemento: selectedSalto,
+                                    base: base_salto.toFixed(2)
+                                });
+                            }else{
+                                rowsLibre.push({
+                                    code: `SJu`,
+                                    elemento: selectedSalto,
+                                    base: base[0].value
+                                });
+                            }
+                        }
                         numRows++;
                     }
                     else{
@@ -133,102 +149,122 @@ function addElement(req, res){
     // Formulario para COMBINADO de SALTOS
     if(codigo == 'CoJ'){
         const selectedSalto = req.body.salto;
-        req.getConnection((error, conn) =>{
-            // Tenemos en cuenta la incrementación de valor de saltos según el reglamento
-            let base_final;
-            // Variables que guardan la puntuación total de los saltos y el array con todos los BASE
-            let total_base = 0;
-            let base_salto = []
 
-            // Recorremos el array con los saltos seleccionados
-            for(i = 0; i < selectedSalto.length; i++){
-                var salto = selectedSalto[i];
+        let isDuplicate = false;
 
-                // Obtenemos BASE para cada salto
-                conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [salto], (error, base) => {
-                    // Guardamos el valor en el array y lo sumamos al total
-                    base_salto.push(base[0].value);
-                    //total_base += base[0].value;
-                    console.log("BASE: " + total_base)
-                    base_final = base[0].value;
-
-                    // Comprobamos la categoría y luego los dobles y triples consecutivos
-                    if(i > 0){
-                        let previousSalto = selectedSalto[i-1];
-
-                        //LO COMENTADO ES PARA ALEVIN, INFANTIL Y CADETE DEL PROGRAMA LARGO
-                        /* if(categoria == 'Alevín' || categoria == 'Infantil'){
-                            if (salto.endsWith('_2') && previousSalto.endsWith('_2')){
-                                // Incrementamos el valor un 10%
-                                base_final *= 1.1;  
-                                total_base += base_final;
-                            }
-                        }*/
-
-                        if ((salto.endsWith('_2') && previousSalto.endsWith('_3')) || (salto.endsWith('_3') && previousSalto.endsWith('_2'))){
-                            // Incrementamos el valor un 20%
-                            base_final *= 1.2; 
-                            total_base += base_final; 
-
-                            if(salto == 'axel_2' && previousSalto == 'axel_2'){
-                                // Los doble Axel se consideran triples en este caso
-                                base_final *= 1.3;
-                                total_base += base_final;
-                            }
-                        }
-
-                        if (salto.endsWith('_3') && previousSalto.endsWith('_3')){
-                            // Incrementamos el valor un 30%
-                            base_final *= 1.3;  
-                            total_base += base_final;
-                        }
-                    }
-                    else{
-                        total_base += base[0].value;
-                    }
-                    
-
-                    // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
-                    if(base_salto.length == selectedSalto.length){
-                        if(typeDisc == 'Corto'){
-                            if (numRows < 7) {
-                                rowsLibre.push({
-                                    code: `CoJ`,
-                                    elemento: selectedSalto,
-                                    base: total_base
-                                });
-                                numRows++;
-                            }
-                            else{
-                                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
-                            }
-                        }
-                        else{
-                            if (numRows < 13) {
-                                rowsLibre.push({
-                                    code: `CoJ`,
-                                    elemento: selectedSalto,
-                                    base: total_base
-                                });
-                                numRows++;
-                            }
-                            else{
-                                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
-                            }
-                        }
-            
-                        console.log(rowsLibre);
-        
-                        sumaBASE += total_base;
-                        console.log('suma de BASE: '+ sumaBASE);
-        
-                        // Cargamos el formulario base y pasamos los valores 
-                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria , typeDisc});
-                        
-                    }
-                }) 
+        for (const row of rowsLibre) {
+            console.log('Row elemento: ' + row.elemento)
+            console.log('Selected Saltos: ' + selectedSalto)
+            const isEqual = row.elemento.every(value => selectedSalto.includes(value));
+            if (isEqual) {
+                console.log('Duplicado');
+                isDuplicate = true;
+                break;
             }
-        })
+        }
+
+        if (isDuplicate) {
+            res.render('addElements', {rol: req.session.rol, codigo, name, categoria, typeDisc, msg: 'Este Combinado de Saltos ya ha sido introducido en el programa'})
+        }
+        else{
+            req.getConnection((error, conn) =>{
+                // Tenemos en cuenta la incrementación de valor de saltos según el reglamento
+                let base_final;
+                // Variables que guardan la puntuación total de los saltos y el array con todos los BASE
+                let total_base = 0;
+                let base_salto = []
+
+                // Recorremos el array con los saltos seleccionados
+                for(i = 0; i < selectedSalto.length; i++){
+                    var salto = selectedSalto[i];
+
+                    // Obtenemos BASE para cada salto
+                    conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [salto], (error, base) => {
+                        // Guardamos el valor en el array y lo sumamos al total
+                        base_salto.push(base[0].value);
+                        base_final = base[0].value;
+
+                        // Comprobamos la categoría y luego los dobles y triples consecutivos
+                        if(i > 0){
+                            let previousSalto = selectedSalto[i-1];
+                            if (typeDisc == 'Largo'){
+                                if(categoria == 'Alevín' || categoria == 'Infantil' || categoria == 'Cadete')
+                                {
+                                    if (salto.endsWith('_2') && previousSalto.endsWith('_2')){
+                                        // Incrementamos el valor un 10%
+                                        base_final *= 1.1;  
+                                        total_base += base_final;
+                                    }
+                                }
+
+                                if ((salto.endsWith('_2') && previousSalto.endsWith('_3')) || (salto.endsWith('_3') && previousSalto.endsWith('_2'))){
+                                    // Incrementamos el valor un 20%
+                                    base_final *= 1.2; 
+                                    total_base += base_final; 
+        
+                                    if(salto == 'axel_2' || previousSalto == 'axel_2'){
+                                        // Los doble Axel se consideran triples en este caso
+                                        base_final *= 1.3;
+                                        total_base += base_final;
+                                    }
+                                }
+
+                                if (salto.endsWith('_3') && previousSalto.endsWith('_3')){
+                                    // Incrementamos el valor un 30%
+                                    base_final *= 1.3;  
+                                    total_base += base_final;
+                                }
+                                else{
+                                    total_base += base[0].value;
+                                }
+                            }
+                            
+                        }
+                        
+                        
+
+                        // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
+                        if(base_salto.length == selectedSalto.length){
+                            if(typeDisc == 'Corto'){
+                                if (numRows < 7) {
+                                    rowsLibre.push({
+                                        code: `CoJ`,
+                                        elemento: selectedSalto,
+                                        base: total_base.toFixed(2)
+                                    });
+                                    numRows++;
+                                }
+                                else{
+                                    res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                }
+                            }
+                            else{
+                                if (numRows < 13) {
+                                    rowsLibre.push({
+                                        code: `CoJ`,
+                                        elemento: selectedSalto,
+                                        base: total_base.toFixed(2)
+                                    });
+                                    numRows++;
+                                }
+                                else{
+                                    res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                }
+                            }
+                
+                            console.log(rowsLibre);
+            
+                            sumaBASE += total_base;
+                            console.log('suma de BASE: '+ sumaBASE);
+            
+                            // Cargamos el formulario base y pasamos los valores 
+                            res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria , typeDisc});
+                            
+                        }
+                    }) 
+                }
+            })
+        }
     }
 
     // Formulario para el FOOTWORK SEQUENCE
