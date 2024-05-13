@@ -27,7 +27,10 @@ function getInforme(req, res){
         'loop_izquierdo': ['LoIExtDetras', 'LoIExtDelante', 'LoIIntDetras', 'LoIIntDelante'], 
         'pattern_sequence': ['key_point1', 'key_point2', 'key_point3', 'key_point4'], 
         'rocker_derecho': ['RoDExtDetras', 'RoDExtDelante', 'RoDIntDetras', 'RoDIntDelante'], 
-        'rocker_izq': ['RoIExtDetras', 'RoIExtDelante', 'RoIIntDetras', 'RoIIntDelante']
+        'rocker_izq': ['RoIExtDetras', 'RoIExtDelante', 'RoIIntDetras', 'RoIIntDelante'],
+        'travelling': ['travellingB', 'travelling1', 'travelling2', 'travelling3', 'travelling4'],
+        'tres_derecho': ['TresDExtDetras', 'TresDExtDelante', 'TresDIntDetras', 'TresDIntDelante'], 
+        'tres_izquierdo': ['TresIExtDetras', 'TresIExtDelante', 'TresIIntDetras', 'TresIIntDelante'],
         //AÑADIR FILAS DE TRES DERECHO E IZQ
     };
 
