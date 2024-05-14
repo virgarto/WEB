@@ -66,6 +66,39 @@ function resetRowsLibre(){
     console.log("Array reseteado");
 }
 
+function checkAxel(selectedSalto){
+    let hayAxel = false;
+
+    for(const row of rowsLibre){
+        if(row.code == 'SJu'){
+            if(row.elemento == 'axel' || row.elemento == 'axel_2'){
+                hayAxel = true;
+                break;
+            }
+        }
+    }
+
+    return hayAxel;
+}
+
+function checkDuplicate(selectedSalto){
+    let isDuplicate = false;
+
+    for (const row of rowsLibre) {
+        console.log('Row elemento: ' + row.elemento)
+        console.log('Selected Saltos: ' + selectedSalto)
+
+        // Comparamos cada elemento del array elemento con el introducido
+        const isEqual = row.elemento.every(value => selectedSalto.includes(value));
+        if (isEqual) {
+            isDuplicate = true;
+            break;
+        }
+    }
+
+    return isDuplicate;
+}
+
 /*****************************************************/
 /* Función que según el codigo del elemento, añade a */
 /* la coreografía el salto o la pirueta junto con su */
@@ -85,83 +118,81 @@ function addElement(req, res){
     // Formulario para el Salto Simple
     if(codigo == 'SJu'){
         const selectedSalto = req.body.salto;
-        //Conexión con la BBDD
-        req.getConnection((error, conn) =>{
-            // Obtenemos BASE del salto seleccionado
-            conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [selectedSalto], (error, base) => {
-                console.log("Valoración: " + base[0].value);
 
-                if(typeDisc == 'Corto'){
-                    if (numRows < 7) {
-                        console.log("numRows: " + numRows);
-                        rowsLibre.push({
-                            code: `SJu`,
-                            elemento: selectedSalto,
-                            base: base[0].value
-                        });
-                        numRows++;
-                    }
-                    else{
-                        // CUANDO RECARGAS LAS PAGINA Y SE DUPLICA EL ULTIMO ELEMENTO INTRODUCIDO
-                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
-                    }
-                }
-                else{
-                    if (numRows < 13) {
-                        // Si se es de estas categorias, un salto despues de la mitad del programa incrementa su valor 10%
-                        if(categoria == 'Cadete' || categoria == 'Juvenil' || categoria == 'Junior' || categoria == 'Senior'){
-                            console.log('Categoria dentro');
-                            if(numRows >= 6){
-                                console.log('Fila dentro');
-                                let base_salto = base[0].value + (base[0].value * 0.10); 
-                                console.log('Nueva base: '+ base_salto);
-                                rowsLibre.push({
-                                    code: `SJu`,
-                                    elemento: selectedSalto,
-                                    base: base_salto.toFixed(2)
-                                });
-                            }else{
-                                rowsLibre.push({
-                                    code: `SJu`,
-                                    elemento: selectedSalto,
-                                    base: base[0].value
-                                });
-                            }
+        let hayAxel = checkAxel(selectedSalto);
+
+        if(hayAxel){
+            res.render('addElements', {rol: req.session.rol, codigo, name, categoria, typeDisc, msg: 'No se puede seleccionar un Axel de nuevo'});
+        }
+        else{
+            req.getConnection((error, conn) =>{
+                // Obtenemos BASE del salto seleccionado
+                conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [selectedSalto], (error, base) => {
+                    console.log("Valoración: " + base[0].value);
+
+                    if(typeDisc == 'Corto'){
+                        if (numRows < 7) {
+                            console.log("numRows: " + numRows);
+                            rowsLibre.push({
+                                code: `SJu`,
+                                elemento: selectedSalto,
+                                base: base[0].value
+                            });
+                            numRows++;
                         }
-                        numRows++;
+                        else{
+                            // CUANDO RECARGAS LAS PAGINA Y SE DUPLICA EL ULTIMO ELEMENTO INTRODUCIDO
+                            res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                        }
                     }
                     else{
-                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                        if (numRows < 13) {
+                            // Si se es de estas categorias, un salto despues de la mitad del programa incrementa su valor 10%
+                            if(categoria == 'Cadete' || categoria == 'Juvenil' || categoria == 'Junior' || categoria == 'Senior'){
+                                console.log('Categoria dentro');
+                                if(numRows >= 6){
+                                    console.log('Fila dentro');
+                                    let base_salto = base[0].value + (base[0].value * 0.10); 
+                                    console.log('Nueva base: '+ base_salto);
+                                    rowsLibre.push({
+                                        code: `SJu`,
+                                        elemento: selectedSalto,
+                                        base: base_salto.toFixed(2)
+                                    });
+                                }else{
+                                    rowsLibre.push({
+                                        code: `SJu`,
+                                        elemento: selectedSalto,
+                                        base: base[0].value
+                                    });
+                                }
+                            }
+                            numRows++;
+                        }
+                        else{
+                            res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                        }
                     }
-                }
-                   
-                console.log(rowsLibre);
+                    
+                    console.log(rowsLibre);
 
-                sumaBASE += base[0].value;
-                console.log('suma de BASE: '+ sumaBASE);
+                    sumaBASE += base[0].value;
+                    console.log('suma de BASE: '+ sumaBASE);
 
-                // Cargamos el formulario base y pasamos los valores 
-                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                    // Cargamos el formulario base y pasamos los valores 
+                    res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                })
             })
-        })
+        }
+        
     }
     
     // Formulario para COMBINADO de SALTOS
     if(codigo == 'CoJ'){
         const selectedSalto = req.body.salto;
 
-        let isDuplicate = false;
-
-        for (const row of rowsLibre) {
-            console.log('Row elemento: ' + row.elemento)
-            console.log('Selected Saltos: ' + selectedSalto)
-            const isEqual = row.elemento.every(value => selectedSalto.includes(value));
-            if (isEqual) {
-                console.log('Duplicado');
-                isDuplicate = true;
-                break;
-            }
-        }
+        // Comprobamos que no haya un combinado igual
+        let isDuplicate = checkDuplicate(selectedSalto);
 
         if (isDuplicate) {
             res.render('addElements', {rol: req.session.rol, codigo, name, categoria, typeDisc, msg: 'Este Combinado de Saltos ya ha sido introducido en el programa'})
@@ -425,4 +456,6 @@ module.exports ={
     goToaddElementInForm,
     addElement,
     resetRowsLibre,
+    checkDuplicate,
+    checkAxel
 }
