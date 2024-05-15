@@ -14,7 +14,21 @@ function goToDiscoLibreForm (req, res){
         res.render('coreografías', {rol: req.session.rol, msg: 'Programa no disponible para la categoría Alevín y Benjamin'});
     }
 
-    res.render('discoLibreForm', {rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc}); 
+    res.render('discoLibre', {rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc}); 
+}
+
+/*****************************************************/
+/* Función para acceder al formulario para crear una */
+/* coreografía de Modalidad DANZA: Disco DANZA       */
+/*****************************************************/
+function goToDiscoDanzaForm (req, res){
+    const categoria = req.session.categoria;
+    const typeDisc = req.query.typeDisc;
+
+    // Reiniciamos el array con la información de la Coreografía así como la BASE
+    resetRowsDanza();
+
+    res.render('discoDanza', {rol: req.session.rol, categoria: req.session.categoria, name: req.session.name, typeDisc}); 
 }
 
 /*****************************************************/
@@ -33,27 +47,27 @@ function goToaddElementInForm (req, res){
     // Comprobamos que se puedan añadir o no más elementos al form dependiendo del tipo
     if(typeDisc == 'Corto'){
         if(rowsLibre.length == 7){
-            return res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
+            return res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
         }
     }
     else{
         if(rowsLibre.length == 13){
-            return res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
+            return res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
         }
     }
     
-    res.render('addElements', {rol: req.session.rol, codigo, name, categoria, typeDisc});
+    res.render('addElementsLibre', {rol: req.session.rol, codigo, name, categoria, typeDisc});
 }
 
 /*****************************************************/
-/* Variables que guardan los programas Corto y Largo */
+/* Variables que guardan los programas Libre y Danza */
 /* y el numero de BASE  que tiene la coreografía     */
 /*****************************************************/
 
 let rowsLibre = [];
+let rowsDanza = [];
 let sumaBASE = 0;
 let numRows = 0;
-let nCJu = 0;
 
 
 /*****************************************************/
@@ -61,6 +75,16 @@ let nCJu = 0;
 /*****************************************************/
 function resetRowsLibre(){
     rowsLibre = [];
+    sumaBASE = 0;
+    numRows = 0;
+    console.log("Array reseteado");
+}
+
+/*****************************************************/
+/* Función de reseteo del Array de rowsDanza y BASE  */
+/*****************************************************/
+function resetRowsDanza(){
+    rowsDanza = [];
     sumaBASE = 0;
     numRows = 0;
     console.log("Array reseteado");
@@ -113,7 +137,7 @@ function checkDuplicate(selectedSalto){
 /* la coreografía el salto o la pirueta junto con su */
 /* BASE */
 /*****************************************************/
-function addElement(req, res){
+function addElementLibre(req, res){
     // Variables del form
     const codigo = req.body.code;
     const name = req.body.patinador;
@@ -131,7 +155,7 @@ function addElement(req, res){
             let hayAxel = checkAxel(selectedSalto);
             
             if(hayAxel){
-                res.render('addElements', {rol: req.session.rol, codigo, name, categoria, typeDisc, msg: 'No se puede seleccionar un Axel de nuevo'});
+                res.render('addElementLibre', {rol: req.session.rol, codigo, name, categoria, typeDisc, msg: 'No se puede seleccionar un Axel de nuevo'});
             }
             else{
                 req.getConnection((error, conn) =>{
@@ -151,7 +175,7 @@ function addElement(req, res){
                             }
                             else{
                                 // CUANDO RECARGAS LAS PAGINA Y SE DUPLICA EL ULTIMO ELEMENTO INTRODUCIDO
-                                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                             }
                         }
                         else{
@@ -179,7 +203,7 @@ function addElement(req, res){
                                 numRows++;
                             }
                             else{
-                                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                             }
                         }
                         
@@ -189,7 +213,7 @@ function addElement(req, res){
                         console.log('suma de BASE: '+ sumaBASE);
 
                         // Cargamos el formulario base y pasamos los valores 
-                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                        res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc});
                     })
                 })
             }
@@ -202,7 +226,7 @@ function addElement(req, res){
             let isDuplicate = checkDuplicate(selectedCombSalto);
 
             if (isDuplicate) {
-                res.render('addElements', {rol: req.session.rol, codigo, name, categoria, typeDisc, msg: 'Este Combinado de Saltos ya ha sido introducido en el programa'})
+                res.render('addElementLibre', {rol: req.session.rol, codigo, name, categoria, typeDisc, msg: 'Este Combinado de Saltos ya ha sido introducido en el programa'})
             }
             else{
                 req.getConnection((error, conn) =>{
@@ -277,7 +301,7 @@ function addElement(req, res){
                                         numRows++;
                                     }
                                     else{
-                                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                        res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                     }
                                 }
                                 else{
@@ -290,7 +314,7 @@ function addElement(req, res){
                                         numRows++;
                                     }
                                     else{
-                                        res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                        res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                     }
                                 }
                     
@@ -300,7 +324,7 @@ function addElement(req, res){
                                 console.log('suma de BASE: '+ sumaBASE);
                 
                                 // Cargamos el formulario base y pasamos los valores 
-                                res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria , typeDisc});
+                                res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria , typeDisc});
                                 
                             }
                         }) 
@@ -324,7 +348,7 @@ function addElement(req, res){
                             numRows++;
                         }
                         else{
-                            res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                         }
                     }
                     else{
@@ -337,7 +361,7 @@ function addElement(req, res){
                             numRows++;
                         }
                         else{
-                            res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                         }
                     }
                     
@@ -347,7 +371,7 @@ function addElement(req, res){
                     console.log('suma de BASE: '+ sumaBASE);
 
                     // Cargamos el formulario base y pasamos los valores 
-                    res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                    res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc});
                 })
             })
         break;
@@ -368,7 +392,7 @@ function addElement(req, res){
                             numRows++;
                         }
                         else{
-                            res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                         }
                     }
                     else{
@@ -381,7 +405,7 @@ function addElement(req, res){
                             numRows++;
                         }
                         else{
-                            res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                         }
                     }
 
@@ -391,7 +415,7 @@ function addElement(req, res){
                     console.log('suma de BASE: '+ sumaBASE);
 
                     // Cargamos el formulario base y pasamos los valores 
-                    res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                    res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc});
                 })
                 
             })
@@ -427,7 +451,7 @@ function addElement(req, res){
                                     numRows++;
                                 }
                                 else{
-                                    res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                    res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                 }
                             }
                             else{
@@ -440,7 +464,7 @@ function addElement(req, res){
                                     numRows++;
                                 }
                                 else{
-                                    res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                    res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                 }
                             }
                             
@@ -451,7 +475,7 @@ function addElement(req, res){
                             console.log('suma de BASE: '+ sumaBASE);
             
                             // Cargamos el formulario base y pasamos los valores 
-                            res.render('discoLibreForm', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc});
                         }
                     }) 
                 }
@@ -464,11 +488,16 @@ function addElement(req, res){
     
 }
 
+
+
+
 module.exports ={
     goToDiscoLibreForm,
     goToaddElementInForm,
-    addElement,
+    addElementLibre,
     resetRowsLibre,
     checkDuplicate,
-    checkAxel
+    checkAxel,
+    resetRowsDanza,
+    goToDiscoDanzaForm,
 }

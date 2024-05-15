@@ -48,7 +48,7 @@
             </nav>
         </div>
         <main >
-            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco {{typeDisc}}</h3>
+            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">{{typeDisc}}</h3>
             <div class="container text-center mt-3" >
                     <form method="GET" action="" id="formCoreografíaL">
                         <label for="typeDisc">Disco</label>
@@ -71,7 +71,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each rowsLibre}}
+                                {{#each rowsDanza}}
                                 <tr>
                                     <td>{{inc @index}}
                                     <td>{{code}}</td>
@@ -86,12 +86,12 @@
                                 <tr>
                                     <td>
                                         <select name="codigo" id="select-1">
-                                            <option value="SJu">SJu</option>
-                                            <option value="CoJ">CoJ</option>
-                                            <option value="SSp">SSp</option>
-                                            <option value="CSp">CSp</option>
-                                            <option value="FoSq">FoSq</option>
-                                            <option value="----">----</option>
+                                            <option value="DSSq">SJu</option>
+                                            <option value="FoSq">CoJ</option>
+                                            <option value="ASq">SSp</option>
+                                            <option value="Cl">CSp</option>
+                                            <option value="Tr">FoSq</option>
+                                            <option value="ChStSq">----</option>
                                         </select>
                                     </td>
                                     <td id="elemento-1">
@@ -102,7 +102,7 @@
                                         <a role="button" class="btn btn-success" id="downloadProgramm">Descargar programa</a>
                                     </td>
                                     <td>
-                                        <a role="button" class="btn btn-success" id="reset" href="/discoLibreForm?typeDisc={{typeDisc}}&name={{name}}&categoria={{categoria}}">Resetear programa</a>
+                                        <a role="button" class="btn btn-success" id="reset" href="/discoDanza?typeDisc={{typeDisc}}&name={{name}}&categoria={{categoria}}">Resetear programa</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -160,7 +160,7 @@
                 const pdfContent = html2canvas(main, { scale }).then(canvas => {
                     const imgData = canvas.toDataURL('image/jpeg', 1.0);
                     pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight * scaleFactor);
-                    pdf.save('programa_Modalidad_Libre.pdf');
+                    pdf.save('programa_Modalidad_Danza.pdf');
                 });
 
                 // Volvemos a enseñar los botones

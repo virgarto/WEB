@@ -48,7 +48,7 @@ function coreografias (req, res){
         res.render('login');
     }
     else{ 
-        res.render('coreografias', {rol: req.session.rol});
+        res.render('coreografias', {rol: req.session.rol, categoria: req.session.categoria});
     }
 }
 

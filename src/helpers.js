@@ -7,6 +7,13 @@ Handlebars.registerHelper('eq', function () {
   });
 });
 
+Handlebars.registerHelper('or', function () {
+  const args = Array.prototype.slice.call(arguments, 0, -1);
+  return args.some(function (condicion) {
+    return condicion === true;
+  });
+});
+
 Handlebars.registerHelper('inc', function (index) {
   return index + 1;
 });
