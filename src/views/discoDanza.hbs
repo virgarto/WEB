@@ -86,12 +86,12 @@
                                 <tr>
                                     <td>
                                         <select name="codigo" id="select-1">
-                                            <option value="DSSq">SJu</option>
-                                            <option value="FoSq">CoJ</option>
-                                            <option value="ASq">SSp</option>
-                                            <option value="Cl">CSp</option>
-                                            <option value="Tr">FoSq</option>
-                                            <option value="ChStSq">----</option>
+                                            <option value="DSSq">DSSq</option>
+                                            <option value="FoSq">FoSq</option>
+                                            <option value="ASq">ASq</option>
+                                            <option value="Cl">Cl</option>
+                                            <option value="Tr">Tr</option>
+                                            <option value="ChStSq">ChStSq</option>
                                         </select>
                                     </td>
                                     <td id="elemento-1">
@@ -117,7 +117,7 @@
         </footer>
         <script>
             function addElements(selectedValue) {
-                window.location.href = `/addElements?codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
+                window.location.href = `/addElementDanza?codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
             }
         </script>
         <script>

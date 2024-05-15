@@ -36,7 +36,7 @@ function goToDiscoDanzaForm (req, res){
 /* la coreogría un nuevo elemento. También controla  */
 /* que se pueda añadir más elementos a los disco     */
 /*****************************************************/
-function goToaddElementInForm (req, res){
+function goToaddElementLibre (req, res){
     // Variables del form
     const codigo = req.query.codigo;
     const name = req.query.name;
@@ -56,7 +56,36 @@ function goToaddElementInForm (req, res){
         }
     }
     
-    res.render('addElementsLibre', {rol: req.session.rol, codigo, name, categoria, typeDisc});
+    res.render('addElementLibre', {rol: req.session.rol, codigo, name, categoria, typeDisc});
+}
+
+
+/*****************************************************/
+/* Función para acceder al formulario para añadir a  */
+/* la coreogría un nuevo elemento. También controla  */
+/* que se pueda añadir más elementos a los disco     */
+/*****************************************************/
+function goToaddElementDanza (req, res){
+    // Variables del form
+    const codigo = req.query.codigo;
+    const name = req.query.name;
+    const categoria = req.query.categoria;
+    const typeDisc = req.query.typeDisc;
+    console.log('Disco ' + typeDisc)
+
+    // Comprobamos que se puedan añadir o no más elementos al form dependiendo del tipo
+  /*  if(typeDisc == 'Corto'){
+        if(rowsLibre.length == 7){
+            return res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
+        }
+    }
+    else{
+        if(rowsLibre.length == 13){
+            return res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
+        }
+    }*/
+    
+    res.render('addElementDanza', {rol: req.session.rol, codigo, name, categoria, typeDisc});
 }
 
 /*****************************************************/
@@ -493,11 +522,12 @@ function addElementLibre(req, res){
 
 module.exports ={
     goToDiscoLibreForm,
-    goToaddElementInForm,
+    goToaddElementLibre,
     addElementLibre,
     resetRowsLibre,
     checkDuplicate,
     checkAxel,
     resetRowsDanza,
     goToDiscoDanzaForm,
+    goToaddElementDanza
 }
