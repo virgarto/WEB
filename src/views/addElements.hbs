@@ -60,6 +60,10 @@
 
                         <p>Selecciona el salto a realizar:</p>
 
+                        {{#if msg}}
+                            <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: brown" class="mt-3" id="msg">*{{msg}}*</p>
+                        {{/if}}
+
                         <input type="radio" name="salto" value="waltz_jump"/>
                         <label for="waltz_jump">Waltz_Jump (Base Rating: 0.4)</label> <br>
 
