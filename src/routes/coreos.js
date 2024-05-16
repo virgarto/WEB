@@ -9,5 +9,6 @@ router.post('/discoLibre', CoreografiasController.addElementLibre);
 
 router.get('/discoDanza', CoreografiasController.goToDiscoDanzaForm); 
 router.get('/addElementDanza', CoreografiasController.goToaddElementDanza);
+router.post('/discoDanza', CoreografiasController.addElementDanza);
 
 module.exports = router;

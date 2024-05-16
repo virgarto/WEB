@@ -517,8 +517,50 @@ function addElementLibre(req, res){
     
 }
 
+/*****************************************************/
+/* Función que según el codigo del elemento, añade a */
+/* la coreografía el elemento seleccionado junto con */
+/* su BASE                                           */
+/*****************************************************/
+function addElementDanza(req, res){
+    // Variables del form
+    const codigo = req.body.code;
+    const name = req.body.patinador;
+    const categoria = req.body.categoria;
+    const selectedElement = req.body.element;
+    
+    const typeDisc = req.body.typeDisc;
+    
+    //console.log(typeDisc);
+    console.log("Code: " + codigo);
+    
+    req.getConnection((err,conn)=>{
+        conn.query('SELECT rating_base as value FROM danza_bases WHERE elemento = ?', [selectedElement], (error, base) => {
+            console.log('selectedElement: ' + selectedElement)
+            console.log('base: ' + base[0].value);
+            if (numRows < 7) {
+                rowsDanza.push({
+                    code: codigo,
+                    elemento: selectedElement,
+                    base: base[0].value
+                });
+                numRows++;
+            }
+            else{
+                res.render('discoDanza', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+            }
+            
+            console.log(rowsDanza);
 
+            sumaBASE += base[0].value;
+            console.log('suma de BASE: '+ sumaBASE);
 
+            // Cargamos el formulario base y pasamos los valores 
+            res.render('discoDanza', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+        })
+    })
+
+}
 
 module.exports ={
     goToDiscoLibreForm,
@@ -529,5 +571,6 @@ module.exports ={
     checkAxel,
     resetRowsDanza,
     goToDiscoDanzaForm,
-    goToaddElementDanza
+    goToaddElementDanza,
+    addElementDanza,
 }
