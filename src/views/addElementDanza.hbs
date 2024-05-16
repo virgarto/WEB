@@ -128,8 +128,8 @@
 
                         <p>Selecciona el Artistic Footwork Sequence a realizar:</p>
 
-                        <input type="radio" name="element" value=" ASqB"/>
-                        <label for=" ASqB">ASqB (Base Rating: 3.0)</label> <br>
+                        <input type="radio" name="element" value="ASqB"/>
+                        <label for="ASqB">ASqB (Base Rating: 3.0)</label> <br>
 
                         <input type="radio" name="element" value="ASq1" />
                         <label for="ASq1">ASq1 (Base Rating: 4.0)</label> <br>
@@ -162,8 +162,8 @@
 
                         <p>Selecciona el Cluster a realizar:</p>
 
-                        <input type="radio" name="element" value=" ClSqB"/>
-                        <label for=" ClSqB">ClSqB (Base Rating: 3.0)</label> <br>
+                        <input type="radio" name="element" value="ClSqB"/>
+                        <label for="ClSqB">ClSqB (Base Rating: 3.0)</label> <br>
 
                         <input type="radio" name="element" value="ClSq1" />
                         <label for="ClSq1">ClSq1 (Base Rating: 4.0)</label> <br>
@@ -196,20 +196,28 @@
 
                         <p>Selecciona el Travelling a realizar:</p>
 
-                        <input type="radio" name="element" value=" TrB"/>
-                        <label for=" TrB">TrB (Base Rating: 2.5)</label> <br>
+                        {{#if (eq categoria 'Benjamin')}}
+                            <input type="radio" name="element" value="TrB"/>
+                            <label for="TrB">TrB (Base Rating: 2.5)</label> <br>
 
-                        <input type="radio" name="element" value="Tr1" />
-                        <label for="Tr1">Tr1 (Base Rating: 3.5)</label> <br>
+                            <input type="radio" name="element" value="Tr1" />
+                            <label for="Tr1">Tr1 (Base Rating: 3.5)</label> <br>
+                        {{else}}
+                            <input type="radio" name="element" value="TrB"/>
+                            <label for="TrB">TrB (Base Rating: 2.5)</label> <br>
 
-                        <input type="radio" name="element" value="Tr2" />
-                        <label for="Tr2">Tr2 (Base Rating: 4.5)</label> <br>
+                            <input type="radio" name="element" value="Tr1" />
+                            <label for="Tr1">Tr1 (Base Rating: 3.5)</label> <br>
 
-                        <input type="radio" name="element" value="Tr3" />
-                        <label for="Tr3">Tr3 (Base Rating: 6.0)</label> <br>
+                            <input type="radio" name="element" value="Tr2" />
+                            <label for="Tr2">Tr2 (Base Rating: 4.5)</label> <br>
 
-                        <input type="radio" name="element" value="Tr4" />
-                        <label for="Tr4">Tr4 (Base Rating: 6.5)</label> <br>
+                            <input type="radio" name="element" value="Tr3" />
+                            <label for="Tr3">Tr3 (Base Rating: 6.0)</label> <br>
+
+                            <input type="radio" name="element" value="Tr4" />
+                            <label for="Tr4">Tr4 (Base Rating: 6.5)</label> <br>
+                        {{/if}}
 
                         <button type="submit" class="btn btn-success mt-2">Agregar Travelling</button>
                     </form>

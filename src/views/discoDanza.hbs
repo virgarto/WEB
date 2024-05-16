@@ -85,14 +85,34 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <select name="codigo" id="select-1">
+                                        {{#if (or (eq categoria 'Infantil') (eq categoria 'Alevín'))}}
+                                            <select name="codigo" id="select-1">
                                             <option value="DSSq">DSSq</option>
                                             <option value="FoSq">FoSq</option>
-                                            <option value="ASq">ASq</option>
                                             <option value="Cl">Cl</option>
                                             <option value="Tr">Tr</option>
                                             <option value="ChStSq">ChStSq</option>
                                         </select>
+                                        {{/if}}
+
+                                        {{#if (eq categoria 'Benjamin')}}
+                                            <select name="codigo" id="select-1">
+                                                <option value="ASq">ASq</option>
+                                                <option value="Tr">Tr</option>
+                                                <option value="ChStSq">ChStSq</option>
+                                            </select>
+                                        {{/if}}
+
+                                        {{#if (or (eq categoria 'Junior') (eq categoria 'Senior') (eq categoria 'Cadete') (eq categoria 'Juvenil'))}}
+                                            <select name="codigo" id="select-1">
+                                                    <option value="DSSq">DSSq</option>
+                                                    <option value="FoSq">FoSq</option>
+                                                    <option value="ASq">ASq</option>
+                                                    <option value="Cl">Cl</option>
+                                                    <option value="Tr">Tr</option>
+                                                    <option value="ChStSq">ChStSq</option>
+                                            </select>
+                                        {{/if}}
                                     </td>
                                     <td id="elemento-1">
                                         <a role="button" class="btn btn-outline-success" id="addToProgramm" onclick="addElements(document.getElementById('select-1').value)">Añadir Elementos</a>
