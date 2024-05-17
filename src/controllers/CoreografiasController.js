@@ -543,38 +543,74 @@ function addElementDanza(req, res){
     
     console.log("Code: " + codigo);
 
-    req.getConnection((err,conn)=>{
-        conn.query('SELECT rating_base as value FROM danza_bases WHERE elemento = ?', [selectedElement], (error, base) => {
-            console.log('selectedElement: ' + selectedElement)
-            console.log('base: ' + base[0].value);
-            if (numRows < 7) {
-                rowsDanza.push({
-                    code: codigo,
-                    elemento: selectedElement,
-                    base: base[0].value
-                });
-                numRows++;
-            }
-            else{
-                res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
-            }
-            
-            console.log(rowsDanza);
+    if(codigo == 'PtSq'){
+        if (numRows < 7) {
+            rowsDanza.push({
+                code: codigo,
+                elemento: selectedElement,
+                base: 0
+            });
+            numRows++;
 
-            sumaBASE += base[0].value;
-            console.log('suma de BASE: '+ sumaBASE);
+            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+        }
+        else{
+            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+        }
+    }
+    else if(codigo == 'PtSq_ob'){
+        const keyPoints = [req.body.key_point1, req.body.key_point2, req.body.key_point3, req.body.key_point4]
+        console.log(keyPoints);
 
-            // Cargamos el formulario base y pasamos los valores 
-            if(typeDisc == 'Free Dance'){
-                res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, typeDisc});
-            }
-            else{
-                console.log('Renderiza el disco de Modalidad DANZA')
-                res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
-            }
-            
+        if(numRows < 2){
+            rowsDanza.push({
+                code: codigo,
+                elemento: keyPoints,
+                base: '-'
+            });
+            numRows++;
+
+            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+        }
+        else{
+            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+        }
+    }
+    else{
+        req.getConnection((err,conn)=>{
+            conn.query('SELECT rating_base as value FROM danza_bases WHERE elemento = ?', [selectedElement], (error, base) => {
+                console.log('selectedElement: ' + selectedElement)
+                console.log('base: ' + base[0].value);
+                if (numRows < 7) {
+                    rowsDanza.push({
+                        code: codigo,
+                        elemento: selectedElement,
+                        base: base[0].value
+                    });
+                    numRows++;
+                }
+                else{
+                    res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                }
+                
+                console.log(rowsDanza);
+    
+                sumaBASE += base[0].value;
+                console.log('suma de BASE: '+ sumaBASE);
+    
+                // Cargamos el formulario base y pasamos los valores 
+                if(typeDisc == 'Free Dance'){
+                    res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+                }
+                else{
+                    console.log('Renderiza el disco de Modalidad DANZA')
+                    res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+                }
+                
+            })
         })
-    })
+    }
+    
 }
 
 

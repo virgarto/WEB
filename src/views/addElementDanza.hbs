@@ -264,6 +264,50 @@
                         <button type="submit" class="btn btn-success mt-2">Agregar Pattern Sequence</button>
                     </form>
                 {{/if}}
+
+
+                {{#if (eq codigo 'PtSq_ob')}}
+                    <form method="POST" id="formDanza_ob" action="discoDanzaStyle">
+                        <label for="typeDisc">Disco</label>
+                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
+                        <label for="patinador"></label>
+                        <input type="text" name="patinador" value="{{name}}" readonly> - 
+                        <label for="categoria"></label>
+                        <input type="text" name="categoria" value="{{categoria}}" readonly><br>
+
+                        <label for="code" class="mt-4"></label>
+                        <input type="text" name="code" value="{{codigo}}" readonly>
+
+                        <p>Selecciona el Pattern Sequence:</p>
+                        
+                        <label for="key_point1">KeyPoint 1</label>
+                        <select name="key_point1">
+                            <option value="Y">Y</option>
+                            <option value="N">N</option>
+                        </select>
+                        <br>
+                        <label for="key_point2">KeyPoint 2</label>
+                        <select name="key_point2"><br>
+                            <option value="Y">Y</option>
+                            <option value="N">N</option>
+                        </select>
+                        <br>
+                        <label for="key_point3">KeyPoint 3</label>
+                        <select name="key_point3"><br>
+                            <option value="Y">Y</option>
+                            <option value="N">N</option>
+                        </select>
+                        <br>
+                        <label for="key_point4">KeyPoint 4</label>
+                        <select name="key_point4"><br>
+                            <option value="Y">Y</option>
+                            <option value="N">N</option>
+                        </select>
+                        <br>
+
+                        <button type="submit" class="btn btn-success mt-3">Agregar Pattern Sequence</button>
+                    </form>
+                {{/if}}
             </div>
         </main>
         <footer class="text-center mt-5 footer-copyright">
@@ -277,65 +321,73 @@
             const formCl = document.getElementById('formCl');
             const formTr = document.getElementById('formTr');
 
-            formFoSq.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const typeDisc = document.getElementById('typeDisc').value;
+            if(formFoSq){
+                formFoSq.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const typeDisc = document.getElementById('typeDisc').value;
 
-                if (typeDisc == 'Free Dance') 
-                {
-                    formFoSq.action = '/discoDanzaFree';
-                } 
-                else {
-                    formFoSq.action = '/discoDanzaStyle';
-                }
+                    if (typeDisc == 'Free Dance') 
+                    {
+                        formFoSq.action = '/discoDanzaFree';
+                    } 
+                    else {
+                        formFoSq.action = '/discoDanzaStyle';
+                    }
 
-                formFoSq.submit();
-            });
+                    formFoSq.submit();
+                });
+            }
+            
+            if(formASq){
+                formASq.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const typeDisc = document.getElementById('typeDisc').value;
 
-            formASq.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const typeDisc = document.getElementById('typeDisc').value;
+                    if (typeDisc == 'Free Dance') 
+                    {
+                        formASq.action = '/discoDanzaFree';
+                    } 
+                    else {
+                        formASq.action = '/discoDanzaStyle';
+                    }
 
-                if (typeDisc == 'Free Dance') 
-                {
-                    formASq.action = '/discoDanzaFree';
-                } 
-                else {
-                    formASq.action = '/discoDanzaStyle';
-                }
+                    formASq.submit();
+                });
+            }
+            
+            if(formCl){
+                formCl.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const typeDisc = document.getElementById('typeDisc').value;
 
-                formASq.submit();
-            });
+                    if (typeDisc == 'Free Dance') 
+                    {
+                        formCl.action = '/discoDanzaFree';
+                    } 
+                    else {
+                        formCl.action = '/discoDanzaStyle';
+                    }
 
-            formCl.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const typeDisc = document.getElementById('typeDisc').value;
+                    formCl.submit();
+                });
+            }
 
-                if (typeDisc == 'Free Dance') 
-                {
-                    formCl.action = '/discoDanzaFree';
-                } 
-                else {
-                    formCl.action = '/discoDanzaStyle';
-                }
+            if(formTr){
+                formTr.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const typeDisc = document.getElementById('typeDisc').value;
 
-                formCl.submit();
-            });
+                    if (typeDisc == 'Free Dance') 
+                    {
+                        formTr.action = '/discoDanzaFree';
+                    } 
+                    else {
+                        formTr.action = '/discoDanzaStyle';
+                    }
 
-            formTr.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const typeDisc = document.getElementById('typeDisc').value;
-
-                if (typeDisc == 'Free Dance') 
-                {
-                    formTr.action = '/discoDanzaFree';
-                } 
-                else {
-                    formTr.action = '/discoDanzaStyle';
-                }
-
-                formTr.submit();
-            });
+                    formTr.submit();
+                });
+            }
         </script>
     </body>
 </html>

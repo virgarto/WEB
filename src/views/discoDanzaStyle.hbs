@@ -85,21 +85,17 @@
                                 <td>
                                     {{#if (or (eq categoria 'Infantil') (eq categoria 'Alevín') (eq categoria 'Benjamin'))}}
                                         <select name="codigo" id="select-1">
-                                        <option value="DSSq">DSSq</option>
-                                        <option value="FoSq">FoSq</option>
-                                        <option value="Cl">Cl</option>
-                                        <option value="Tr">Tr</option>
-                                        <option value="ChStSq">ChStSq</option>
-                                    </select>
+                                            <option value="PtSq_ob">Danza Obligatoria</option>
+                                        </select>
                                     {{/if}}
 
                                     {{#if (or (eq categoria 'Junior') (eq categoria 'Senior') (eq categoria 'Cadete') (eq categoria 'Juvenil'))}}
                                         <select name="codigo" id="select-1">
-                                                <option value="PtSq">PtSq</option>
-                                                <option value="FoSq">FoSq</option>
-                                                <option value="ASq">ASq</option>
-                                                <option value="Cl">Cl</option>
-                                                <option value="Tr">Tr</option>
+                                            <option value="PtSq">PtSq</option>
+                                            <option value="FoSq">FoSq</option>
+                                            <option value="ASq">ASq</option>
+                                            <option value="Cl">Cl</option>
+                                            <option value="Tr">Tr</option>
                                         </select>
                                     {{/if}}
                                 </td>
@@ -143,7 +139,7 @@
             }
 
             downloadBtn.addEventListener('click', () => {
-                const jsonLength = {{rowsLibre.length}};
+                const jsonLength = {{rowsDanza.length}};
                 checkLength(jsonLength);
             });
 
