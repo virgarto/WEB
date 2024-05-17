@@ -81,9 +81,9 @@
 
 
                 {{#if (eq codigo 'FoSq')}}
-                    <form method="POST" id="formFoSq" action="discoDanzaFree">
+                    <form method="POST" id="formFoSq">
                         <label for="typeDisc">Disco</label>
-                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
+                        <input type="text" name="typeDisc" id="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
@@ -115,9 +115,9 @@
 
 
                 {{#if (eq codigo 'ASq')}}
-                    <form method="POST" id="formASq" action="discoDanzaFree">
+                    <form method="POST" id="formASq">
                         <label for="typeDisc">Disco</label>
-                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
+                        <input type="text" name="typeDisc" id="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
@@ -149,9 +149,9 @@
 
 
                 {{#if (eq codigo 'Cl')}}
-                    <form method="POST" id="formCl" action="discoDanzaFree">
+                    <form method="POST" id="formCl">
                         <label for="typeDisc">Disco</label>
-                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
+                        <input type="text" name="typeDisc" id="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
@@ -183,9 +183,9 @@
 
 
                 {{#if (eq codigo 'Tr')}}
-                    <form method="POST" id="formTr" action="discoDanzaFree">
+                    <form method="POST" id="formTr">
                         <label for="typeDisc">Disco</label>
-                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
+                        <input type="text" name="typeDisc" id="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
@@ -271,5 +271,71 @@
                 © 2024 Copyright: Virginia García
             </div>
         </footer>
+        <script>
+            const formFoSq = document.getElementById('formFoSq');
+            const formASq = document.getElementById('formASq');
+            const formCl = document.getElementById('formCl');
+            const formTr = document.getElementById('formTr');
+
+            formFoSq.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const typeDisc = document.getElementById('typeDisc').value;
+
+                if (typeDisc == 'Free Dance') 
+                {
+                    formFoSq.action = '/discoDanzaFree';
+                } 
+                else {
+                    formFoSq.action = '/discoDanzaStyle';
+                }
+
+                formFoSq.submit();
+            });
+
+            formASq.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const typeDisc = document.getElementById('typeDisc').value;
+
+                if (typeDisc == 'Free Dance') 
+                {
+                    formASq.action = '/discoDanzaFree';
+                } 
+                else {
+                    formASq.action = '/discoDanzaStyle';
+                }
+
+                formASq.submit();
+            });
+
+            formCl.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const typeDisc = document.getElementById('typeDisc').value;
+
+                if (typeDisc == 'Free Dance') 
+                {
+                    formCl.action = '/discoDanzaFree';
+                } 
+                else {
+                    formCl.action = '/discoDanzaStyle';
+                }
+
+                formCl.submit();
+            });
+
+            formTr.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const typeDisc = document.getElementById('typeDisc').value;
+
+                if (typeDisc == 'Free Dance') 
+                {
+                    formTr.action = '/discoDanzaFree';
+                } 
+                else {
+                    formTr.action = '/discoDanzaStyle';
+                }
+
+                formTr.submit();
+            });
+        </script>
     </body>
 </html>
