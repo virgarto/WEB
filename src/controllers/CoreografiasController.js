@@ -92,7 +92,7 @@ function goToaddElementDanza (req, res){
     const codigo = req.query.codigo;
     const name = req.query.name;
     const categoria = req.query.categoria;
-    const typeDisc = req.body.typeDisc;
+    const typeDisc = req.query.typeDisc;
 
     console.log('TypeDisc: ' + typeDisc)
     
@@ -554,7 +554,7 @@ function addElementDanza(req, res){
             });
             numRows++;
 
-            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria});
+            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
         }
     }
     else{
@@ -571,7 +571,7 @@ function addElementDanza(req, res){
                     numRows++;
                 }
                 else{
-                    res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                    res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                 }
                 
                 console.log(rowsDanza);
@@ -580,7 +580,7 @@ function addElementDanza(req, res){
                 console.log('suma de BASE: '+ sumaBASE);
 
                 // Cargamos el formulario base y pasamos los valores 
-                res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria});
+                res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, typeDisc});
             })
         })
     }
