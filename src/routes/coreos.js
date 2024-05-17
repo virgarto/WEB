@@ -9,9 +9,9 @@ router.post('/discoLibre', CoreografiasController.addElementLibre);
 
 router.get('/discoDanzaFree', CoreografiasController.goTodiscoDanzaFreeForm); 
 router.get('/addElementDanza', CoreografiasController.goToaddElementDanza);
-router.post('/discoDanzaFree', CoreografiasController.addElementDanza);
+router.post('/discoDanzaFree', CoreografiasController.addElementDanzaFree);
 
 router.get('/discoDanzaStyle', CoreografiasController.goTodiscoDanzaStyleForm); 
-router.post('/discoDanzaStyle', CoreografiasController.addElementDanza);
+router.post('/discoDanzaStyle', CoreografiasController.addElementDanzaStyle);
 
 module.exports = router;
