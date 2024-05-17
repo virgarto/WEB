@@ -562,18 +562,32 @@ function addElementDanza(req, res){
         const keyPoints = [req.body.key_point1, req.body.key_point2, req.body.key_point3, req.body.key_point4]
         console.log(keyPoints);
 
-        if(numRows < 2){
-            rowsDanza.push({
-                code: codigo,
-                elemento: keyPoints,
-                base: '-'
-            });
-            numRows++;
+        if(categoria != 'Benjamin'){
+            if(numRows < 2){
+                rowsDanza.push({
+                    code: codigo,
+                    elemento: keyPoints,
+                    base: '-'
+                });
+                numRows++;
 
-            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
-        }
-        else{
-            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+            }
+        }else{
+            // Los Benjamines solo pueden hacer 1 danza obligatoria
+            if(numRows < 1){
+                rowsDanza.push({
+                    code: codigo,
+                    elemento: keyPoints,
+                    base: '-'
+                });
+                numRows++;
+
+                res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+            }
+            else{
+                res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+            }
         }
     }
     else{
