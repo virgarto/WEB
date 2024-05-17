@@ -44,18 +44,18 @@
             </nav>
         </div>
         <main >
-            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">{{typeDisc}}</h3>
+            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco Danza</h3>
             <div class="container text-center mt-3" >
                 {{#if (eq codigo 'DSSq')}}
-                    <form method="POST" id="formDSSq" action="discoDanza">
+                    <form method="POST" id="formDSSq" action="discoDanzaFree">
                         <label for="typeDisc">Disco</label>
                         <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
-                        <input type="text" name="categoria" value="{{categoria}}" readonly>
+                        <input type="text" name="categoria" value="{{categoria}}" readonly><br>
 
-                        <label for="code"></label>
+                        <label for="code" class="mt-4"></label>
                         <input type="text" name="code" value="{{codigo}}" readonly>
 
                         <p>Selecciona el Dance Step Sequence a realizar:</p>
@@ -81,15 +81,15 @@
 
 
                 {{#if (eq codigo 'FoSq')}}
-                    <form method="POST" id="formFoSq" action="discoDanza">
+                    <form method="POST" id="formFoSq" action="discoDanzaFree">
                         <label for="typeDisc">Disco</label>
                         <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
-                        <input type="text" name="categoria" value="{{categoria}}" readonly>
+                        <input type="text" name="categoria" value="{{categoria}}" readonly><br>
 
-                        <label for="code"></label>
+                        <label for="code" class="mt-4"></label>
                         <input type="text" name="code" value="{{codigo}}" readonly>
 
                         <p>Selecciona el Footwork Sequence a realizar:</p>
@@ -115,15 +115,15 @@
 
 
                 {{#if (eq codigo 'ASq')}}
-                    <form method="POST" id="formASq" action="discoDanza">
+                    <form method="POST" id="formASq" action="discoDanzaFree">
                         <label for="typeDisc">Disco</label>
                         <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
-                        <input type="text" name="categoria" value="{{categoria}}" readonly>
+                        <input type="text" name="categoria" value="{{categoria}}" readonly><br>
 
-                        <label for="code"></label>
+                        <label for="code" class="mt-4"></label>
                         <input type="text" name="code" value="{{codigo}}" readonly>
 
                         <p>Selecciona el Artistic Footwork Sequence a realizar:</p>
@@ -149,15 +149,15 @@
 
 
                 {{#if (eq codigo 'Cl')}}
-                    <form method="POST" id="formCl" action="discoDanza">
+                    <form method="POST" id="formCl" action="discoDanzaFree">
                         <label for="typeDisc">Disco</label>
                         <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
-                        <input type="text" name="categoria" value="{{categoria}}" readonly>
+                        <input type="text" name="categoria" value="{{categoria}}" readonly><br>
 
-                        <label for="code"></label>
+                        <label for="code" class="mt-4"></label>
                         <input type="text" name="code" value="{{codigo}}" readonly>
 
                         <p>Selecciona el Cluster a realizar:</p>
@@ -183,15 +183,15 @@
 
 
                 {{#if (eq codigo 'Tr')}}
-                    <form method="POST" id="formTr" action="discoDanza">
+                    <form method="POST" id="formTr" action="discoDanzaFree">
                         <label for="typeDisc">Disco</label>
                         <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
-                        <input type="text" name="categoria" value="{{categoria}}" readonly>
+                        <input type="text" name="categoria" value="{{categoria}}" readonly><br>
 
-                        <label for="code"></label>
+                        <label for="code" class="mt-4"></label>
                         <input type="text" name="code" value="{{codigo}}" readonly>
 
                         <p>Selecciona el Travelling a realizar:</p>
@@ -225,23 +225,43 @@
 
 
                 {{#if (eq codigo 'ChStSq')}}
-                    <form method="POST" id="formChStSq" action="discoDanza">
+                    <form method="POST" id="formChStSq" action="discoDanzaFree">
+                        <label for="patinador"></label>
+                        <input type="text" name="patinador" value="{{name}}" readonly> - 
+                        <label for="categoria"></label>
+                        <input type="text" name="categoria" value="{{categoria}}" readonly><br>
+
+                        <label for="code" class="mt-4"></label>
+                        <input type="text" name="code" value="{{codigo}}" readonly>
+
+                        <p>Selecciona el Choreo Step Sequence:</p>
+
+                        <input type="radio" name="element" value="ChStSq"/>
+                        <label for="ChStSq">ChStSq (Base Rating: 3)</label> <br>
+
+                        <button type="submit" class="btn btn-success mt-2">Agregar Choreo Step Sequence</button>
+                    </form>
+                {{/if}}
+
+
+                {{#if (eq codigo 'PtSq')}}
+                    <form method="POST" id="formChStSq" action="discoDanzaStyle">
                         <label for="typeDisc">Disco</label>
                         <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
                         <label for="patinador"></label>
                         <input type="text" name="patinador" value="{{name}}" readonly> - 
                         <label for="categoria"></label>
-                        <input type="text" name="categoria" value="{{categoria}}" readonly>
+                        <input type="text" name="categoria" value="{{categoria}}" readonly><br>
 
-                        <label for="code"></label>
+                        <label for="code" class="mt-4"></label>
                         <input type="text" name="code" value="{{codigo}}" readonly>
 
-                        <p>Selecciona el Choreo Step Sequence:</p>
+                        <p>Selecciona el Pattern Sequence:</p>
 
-                        <input type="radio" name="element" value=" ChStSq"/>
-                        <label for=" ChStSq">ChStSq (Base Rating: 3)</label> <br>
+                        <input type="radio" name="element" value="PtSq"/>
+                        <label for="PtSq">PtSq </label> <br>
 
-                        <button type="submit" class="btn btn-success mt-2">Agregar Choreo Step Sequence</button>
+                        <button type="submit" class="btn btn-success mt-2">Agregar Pattern Sequence</button>
                     </form>
                 {{/if}}
             </div>

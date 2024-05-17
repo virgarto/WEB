@@ -48,86 +48,86 @@
             </nav>
         </div>
         <main >
-            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">{{typeDisc}}</h3>
+            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Free Dance</h3>
             <div class="container text-center mt-3" >
-                    <form method="GET" action="" id="formCoreografíaL">
-                        <label for="typeDisc">Disco</label>
-                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
-                        <label for="patinador">Patinador/a:</label> <br>
-                        <input type="text" name="patinador" class="form-control text-center mt-1" value="{{name}}" readonly><br>
-                        <label for="categoria">Categoria:</label> <br>
-                        <input type="text" name="categoria" class="form-control text-center mt-1" value="{{categoria}}" readonly><br>
+                <form method="GET" action="" id="formCoreografíaL">
+                    <label for="typeDisc">Disco</label>
+                    <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
+                    <label for="patinador">Patinador/a:</label> <br>
+                    <input type="text" name="patinador" class="form-control text-center mt-1" value="{{name}}" readonly><br>
+                    <label for="categoria">Categoria:</label> <br>
+                    <input type="text" name="categoria" class="form-control text-center mt-1" value="{{categoria}}" readonly><br>
 
-                        {{#if msg}}
-                            <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: rgb(42, 165, 63)" id="msg">*{{msg}}*</p>
-                        {{/if}}
-                        <table class="table table-striped table-hover table-responsive-sm"> 
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Code</th>
-                                    <th>Elements</th>
-                                    <th>BASE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each rowsDanza}}
-                                <tr>
-                                    <td>{{inc @index}}
-                                    <td>{{code}}</td>
-                                    <td>{{elemento}}</td>
-                                    <td>{{base}}</td>
-                                </tr>
-                                {{/each}}
-                                <tr>
-                                    <td><b>Total:</b></td>
-                                    <td>{{sumaBASE}}</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        {{#if (or (eq categoria 'Infantil') (eq categoria 'Alevín'))}}
-                                            <select name="codigo" id="select-1">
-                                            <option value="DSSq">DSSq</option>
-                                            <option value="FoSq">FoSq</option>
-                                            <option value="Cl">Cl</option>
+                    {{#if msg}}
+                        <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: rgb(42, 165, 63)" id="msg">*{{msg}}*</p>
+                    {{/if}}
+                    <table class="table table-striped table-hover table-responsive-sm"> 
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Code</th>
+                                <th>Elements</th>
+                                <th>BASE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each rowsDanza}}
+                            <tr>
+                                <td>{{inc @index}}
+                                <td>{{code}}</td>
+                                <td>{{elemento}}</td>
+                                <td>{{base}}</td>
+                            </tr>
+                            {{/each}}
+                            <tr>
+                                <td><b>Total:</b></td>
+                                <td>{{sumaBASE}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{#if (or (eq categoria 'Infantil') (eq categoria 'Alevín'))}}
+                                        <select name="codigo" id="select-1">
+                                        <option value="DSSq">DSSq</option>
+                                        <option value="FoSq">FoSq</option>
+                                        <option value="Cl">Cl</option>
+                                        <option value="Tr">Tr</option>
+                                        <option value="ChStSq">ChStSq</option>
+                                    </select>
+                                    {{/if}}
+
+                                    {{#if (eq categoria 'Benjamin')}}
+                                        <select name="codigo" id="select-1">
+                                            <option value="ASq">ASq</option>
                                             <option value="Tr">Tr</option>
                                             <option value="ChStSq">ChStSq</option>
                                         </select>
-                                        {{/if}}
+                                    {{/if}}
 
-                                        {{#if (eq categoria 'Benjamin')}}
-                                            <select name="codigo" id="select-1">
+                                    {{#if (or (eq categoria 'Junior') (eq categoria 'Senior') (eq categoria 'Cadete') (eq categoria 'Juvenil'))}}
+                                        <select name="codigo" id="select-1">
+                                                <option value="DSSq">DSSq</option>
+                                                <option value="FoSq">FoSq</option>
                                                 <option value="ASq">ASq</option>
+                                                <option value="Cl">Cl</option>
                                                 <option value="Tr">Tr</option>
                                                 <option value="ChStSq">ChStSq</option>
-                                            </select>
-                                        {{/if}}
-
-                                        {{#if (or (eq categoria 'Junior') (eq categoria 'Senior') (eq categoria 'Cadete') (eq categoria 'Juvenil'))}}
-                                            <select name="codigo" id="select-1">
-                                                    <option value="DSSq">DSSq</option>
-                                                    <option value="FoSq">FoSq</option>
-                                                    <option value="ASq">ASq</option>
-                                                    <option value="Cl">Cl</option>
-                                                    <option value="Tr">Tr</option>
-                                                    <option value="ChStSq">ChStSq</option>
-                                            </select>
-                                        {{/if}}
-                                    </td>
-                                    <td id="elemento-1">
-                                        <a role="button" class="btn btn-outline-success" id="addToProgramm" onclick="addElements(document.getElementById('select-1').value)">Añadir Elementos</a>
-                                        
-                                    </td>
-                                    <td>
-                                        <a role="button" class="btn btn-success" id="downloadProgramm">Descargar programa</a>
-                                    </td>
-                                    <td>
-                                        <a role="button" class="btn btn-success" id="reset" href="/discoDanza?typeDisc={{typeDisc}}&name={{name}}&categoria={{categoria}}">Resetear programa</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                                        </select>
+                                    {{/if}}
+                                </td>
+                                <td id="elemento-1">
+                                    <a role="button" class="btn btn-outline-success" id="addToProgramm" onclick="addElements(document.getElementById('select-1').value)">Añadir Elementos</a>
+                                    
+                                </td>
+                                <td>
+                                    <a role="button" class="btn btn-success" id="downloadProgramm">Descargar programa</a>
+                                </td>
+                                <td>
+                                    <a role="button" class="btn btn-success" id="reset" href="/discoDanza?name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}">Resetear programa</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </main>
         <footer class="text-center mt-5 footer-copyright">
@@ -180,7 +180,7 @@
                 const pdfContent = html2canvas(main, { scale }).then(canvas => {
                     const imgData = canvas.toDataURL('image/jpeg', 1.0);
                     pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight * scaleFactor);
-                    pdf.save('programa_Modalidad_Danza.pdf');
+                    pdf.save('programa_Modalidad_Danza_Free_Dance.pdf');
                 });
 
                 // Volvemos a enseñar los botones

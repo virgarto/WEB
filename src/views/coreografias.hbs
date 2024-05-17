@@ -56,11 +56,11 @@
 
                 <p class="fs-5 text mt-5">Modalidad Danza</p>
                     {{#if (or (eq categoria 'Infantil') (eq categoria 'Alevín') (eq categoria 'Benjamin'))}}
-                        <a role="button" class="btn btn-outline-success mt-2 btn-lg">Danza Obligatoria</a>
+                        <a role="button" href="/discoDanzaStyle" class="btn btn-outline-success mt-2 btn-lg">Danza Obligatoria</a>
                     {{else}}
-                        <a role="button" class="btn btn-outline-success mt-2 btn-lg">Style Dance</a>
+                        <a role="button" href="/discoDanzaStyle" class="btn btn-outline-success mt-2 btn-lg">Style Dance</a>
                     {{/if}}
-                <a role="button" href="/discoDanza?typeDisc=FreeDance" class="btn btn-outline-success mt-2 btn-lg">Free Dance</a>
+                <a role="button" href="/discoDanzaFree?&typeDisc=FreeDance" class="btn btn-outline-success mt-2 btn-lg">Free Dance</a>
             </div>
         </main>
         <footer class="text-center mt-5 footer-copyright">

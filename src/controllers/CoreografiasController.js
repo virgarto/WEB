@@ -19,17 +19,39 @@ function goToDiscoLibreForm (req, res){
 
 /*****************************************************/
 /* Función para acceder al formulario para crear una */
-/* coreografía de Modalidad DANZA: Disco DANZA       */
+/* coreografía de Modalidad DANZA: Disco DANZA Free  */
 /*****************************************************/
-function goToDiscoDanzaForm (req, res){
-    const categoria = req.session.categoria;
+function goTodiscoDanzaFreeForm (req, res){
     const typeDisc = req.query.typeDisc;
 
     // Reiniciamos el array con la información de la Coreografía así como la BASE
     resetRowsDanza();
 
-    res.render('discoDanza', {rol: req.session.rol, categoria: req.session.categoria, name: req.session.name, typeDisc}); 
+    res.render('discoDanzaFree', {rol: req.session.rol, categoria: req.session.categoria, name: req.session.name, typeDisc}); 
 }
+
+
+/*****************************************************/
+/* Función para acceder al formulario para crear una */
+/* coreografía de Modalidad DANZA: Disco DANZA Free  */
+/*****************************************************/
+function goTodiscoDanzaStyleForm (req, res){
+    const categoria = req.session.categoria;
+    let typeDisc;
+
+    if(categoria == 'Alevin' || categoria == 'Infantil' || categoria == 'Benjamin'){
+        typeDisc = 'Danza Obligatoria';
+    }
+    else{
+         typeDisc = 'Style Dance';
+    }
+
+    // Reiniciamos el array con la información de la Coreografía así como la BASE
+    resetRowsDanza();
+
+    res.render('discoDanzaStyle', {rol: req.session.rol, categoria: req.session.categoria, name: req.session.name, typeDisc}); 
+}
+
 
 /*****************************************************/
 /* Función para acceder al formulario para añadir a  */
@@ -70,20 +92,9 @@ function goToaddElementDanza (req, res){
     const codigo = req.query.codigo;
     const name = req.query.name;
     const categoria = req.query.categoria;
-    const typeDisc = req.query.typeDisc;
-    console.log('Disco ' + typeDisc)
+    const typeDisc = req.body.typeDisc;
 
-    // Comprobamos que se puedan añadir o no más elementos al form dependiendo del tipo
-  /*  if(typeDisc == 'Corto'){
-        if(rowsLibre.length == 7){
-            return res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
-        }
-    }
-    else{
-        if(rowsLibre.length == 13){
-            return res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
-        }
-    }*/
+    console.log('TypeDisc: ' + typeDisc)
     
     res.render('addElementDanza', {rol: req.session.rol, codigo, name, categoria, typeDisc});
 }
@@ -528,38 +539,51 @@ function addElementDanza(req, res){
     const name = req.body.patinador;
     const categoria = req.body.categoria;
     const selectedElement = req.body.element;
-    
     const typeDisc = req.body.typeDisc;
     
-    //console.log(typeDisc);
     console.log("Code: " + codigo);
-    
-    req.getConnection((err,conn)=>{
-        conn.query('SELECT rating_base as value FROM danza_bases WHERE elemento = ?', [selectedElement], (error, base) => {
-            console.log('selectedElement: ' + selectedElement)
-            console.log('base: ' + base[0].value);
-            if (numRows < 7) {
-                rowsDanza.push({
-                    code: codigo,
-                    elemento: selectedElement,
-                    base: base[0].value
-                });
-                numRows++;
-            }
-            else{
-                res.render('discoDanza', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
-            }
-            
-            console.log(rowsDanza);
 
-            sumaBASE += base[0].value;
-            console.log('suma de BASE: '+ sumaBASE);
+    if(codigo == 'PtSq')
+    {
+        if(categoria == 'Juvenil' || categoria == 'Cadete' || categoria == 'Junior' || categoria == 'Senior'){
+            // No se pone la base del style dance, depende de la seleccionada ese año
+            rowsDanza.push({
+                code: codigo,
+                elemento: selectedElement,
+                base: 0
+            });
+            numRows++;
 
-            // Cargamos el formulario base y pasamos los valores 
-            res.render('discoDanza', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria});
+        }
+    }
+    else{
+        req.getConnection((err,conn)=>{
+            conn.query('SELECT rating_base as value FROM danza_bases WHERE elemento = ?', [selectedElement], (error, base) => {
+                console.log('selectedElement: ' + selectedElement)
+                console.log('base: ' + base[0].value);
+                if (numRows < 7) {
+                    rowsDanza.push({
+                        code: codigo,
+                        elemento: selectedElement,
+                        base: base[0].value
+                    });
+                    numRows++;
+                }
+                else{
+                    res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                }
+                
+                console.log(rowsDanza);
+
+                sumaBASE += base[0].value;
+                console.log('suma de BASE: '+ sumaBASE);
+
+                // Cargamos el formulario base y pasamos los valores 
+                res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria});
+            })
         })
-    })
-
+    }
 }
 
 module.exports ={
@@ -570,7 +594,8 @@ module.exports ={
     checkDuplicate,
     checkAxel,
     resetRowsDanza,
-    goToDiscoDanzaForm,
+    goTodiscoDanzaFreeForm,
     goToaddElementDanza,
     addElementDanza,
+    goTodiscoDanzaStyleForm,
 }
