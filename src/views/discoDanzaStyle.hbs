@@ -48,10 +48,28 @@
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">{{typeDisc}}</h3>
             <div class="container text-center mt-3" >
                 <form method="GET" action="" id="formCoreografíaDS">
-                    <label for="patinador">Patinador/a:</label> <br>
-                    <input type="text" name="patinador" class="form-control text-center mt-1" value="{{name}}" readonly><br>
-                    <label for="categoria">Categoria:</label> <br>
-                    <input type="text" name="categoria" class="form-control text-center mt-1" value="{{categoria}}" readonly><br>
+                    {{#if rol }}
+                        <label for="typeDisc">Disco</label>
+                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
+
+                        <select class="mt-3" name="patinador_select" id="patinador_select" onchange="updatePatinador()">
+                            {{#each listPat}}
+                                <option value="{{Nombre}}" data-categoria="{{Categoria}}">{{Nombre}} ({{Categoria}})</option>
+                            {{/each}}
+                        </select> <br>
+
+                        <label for="patinador" class="mt-3">Patinador/a:</label> <br>
+                        <input type="text" name="patinador" class="form-control text-center mt-1" id="patinadorInput" value="" readonly>
+                        <label for="categoria">Categoria:</label> <br>
+                        <input type="text" name="categoria" class="form-control text-center mt-1" id="categoriaInput" value="" readonly>
+                    {{else}}
+                        <label for="typeDisc">Disco</label>
+                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
+                        <label for="patinador">Patinador/a:</label> <br>
+                        <input type="text" name="patinador" class="form-control text-center mt-1" value="{{name}}" readonly><br>
+                        <label for="categoria">Categoria:</label> <br>
+                        <input type="text" name="categoria" class="form-control text-center mt-1" value="{{categoria}}" readonly><br>
+                    {{/if}}
 
                     {{#if msg}}
                         <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: rgb(42, 165, 63)" id="msg">*{{msg}}*</p>
@@ -118,8 +136,32 @@
             </div>
         </footer>
         <script>
-            function addElements(selectedValue) {
-                window.location.href = `/addElementDanza?codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
+            function updatePatinador() {
+                const select = document.getElementById('patinador_select');
+                const patinador = select.value;
+
+                const optionElement = select.options[select.selectedIndex];
+                const categoria = optionElement.getAttribute('data-categoria');
+
+                const patinador_input = document.getElementById('patinadorInput');
+                const categoria_input = document.getElementById('categoriaInput');
+
+                // Muestra la información del patinador en los campos correspondientes
+                    patinador_input.value = patinador;
+                    categoria_input.value = categoria;
+            }
+
+            function addElement(selectedValue) {
+                const select = document.getElementById('patinador_select');
+                if(select){
+                    const patinador = document.getElementById('patinadorInput').value;
+                    const categoria = document.getElementById('categoriaInput').value;
+
+                    window.location.href = `/addElementLibre?codigo=${selectedValue}&name=${patinador}&categoria=${categoria}&typeDisc={{typeDisc}}`;
+                }
+                else{
+                    window.location.href = `/addElementLibre?codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
+                } 
             }
         </script>
         <script>

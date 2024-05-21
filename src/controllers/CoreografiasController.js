@@ -76,7 +76,7 @@ function goToaddElementLibre (req, res){
     const name = req.query.name;
     const categoria = req.query.categoria;
     const typeDisc = req.query.typeDisc;
-    console.log('Disco ' + typeDisc)
+    console.log('user ' + name)
 
     // Comprobamos que se puedan añadir o no más elementos al form dependiendo del tipo
     if(typeDisc == 'Corto'){
