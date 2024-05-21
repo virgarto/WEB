@@ -14,6 +14,15 @@ function goToDiscoLibreForm (req, res){
         res.render('coreografías', {rol: req.session.rol, msg: 'Programa no disponible para la categoría Alevín y Benjamin'});
     }
 
+    if(req.session.rol == 'Entrenador'){
+        req.getConnection((error, conn) =>{
+            conn.query('SELECT username AS Nombre, categoria_act AS Categoria FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
+                console.log(listPat);
+                res.render('discoLibre', {listPat, rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc});
+            });
+        });
+    }
+
     res.render('discoLibre', {rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc}); 
 }
 

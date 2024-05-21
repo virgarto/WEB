@@ -1,7 +1,3 @@
-function home (req, res){
-    res.render('home', {rol: req.session.rol});
-}
-
 function perfil (req, res){
     if(req.session.loggedin != true)
     {
@@ -53,7 +49,6 @@ function coreografias (req, res){
 }
 
 module.exports = {
-    home,
     perfil,
     entrenamientosPatinador,
     entrenamientosEntrenador,
