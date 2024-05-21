@@ -22,8 +22,11 @@ function goToDiscoLibreForm (req, res){
             });
         });
     }
+    else{
+        res.render('discoLibre', {rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc}); 
+    }
 
-    res.render('discoLibre', {rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc}); 
+    
 }
 
 /*****************************************************/

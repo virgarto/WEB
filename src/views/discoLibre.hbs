@@ -48,12 +48,23 @@
             <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;">Disco {{typeDisc}}</h3>
             <div class="container text-center mt-3" >
                     <form method="GET" action="" id="formCoreografíaL">
-                        <label for="typeDisc">Disco</label>
-                        <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
-                        <label for="patinador">Patinador/a:</label> <br>
-                        <input type="text" name="patinador" class="form-control text-center mt-1" value="{{name}}" readonly><br>
-                        <label for="categoria">Categoria:</label> <br>
-                        <input type="text" name="categoria" class="form-control text-center mt-1" value="{{categoria}}" readonly><br>
+                        {{#if rol }}
+                            <select name="patinador_select" id="patinador_select" onchange="updatePatinador()">
+                                {{#each listPat}}
+                                    <option value="{{Nombre}}" data-categoria="{{Categoria}}">{{Nombre}} ({{Categoria}})</option>
+                                {{/each}}
+                            </select>
+
+                            <input type="text" name="patinador" id="patinadorInput" value="" readonly>
+                            <input type="text" name="categoria" id="categoriaInput" value="" readonly>
+                        {{else}}
+                            <label for="typeDisc">Disco</label>
+                            <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
+                            <label for="patinador">Patinador/a:</label> <br>
+                            <input type="text" name="patinador" class="form-control text-center mt-1" value="{{name}}" readonly><br>
+                            <label for="categoria">Categoria:</label> <br>
+                            <input type="text" name="categoria" class="form-control text-center mt-1" value="{{categoria}}" readonly><br>
+                        {{/if}}
 
                         {{#if msg}}
                             <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: rgb(42, 165, 63)" id="msg">*{{msg}}*</p>
@@ -111,6 +122,25 @@
                 © 2024 Copyright: Virginia García
             </div>
         </footer>
+        <script>
+            function updatePatinador() {
+                const select = document.getElementById('patinador_select');
+                const patinador = select.value;
+
+                const optionElement = select.options[select.selectedIndex];
+                const categoria = optionElement.getAttribute('data-categoria');
+
+                const patinador_input = document.getElementById('patinadorInput');
+                const categoria_input = document.getElementById('categoriaInput');
+
+                // Busca el patinador en la lista de patinadores
+                console.log(categoria)
+
+                // Muestra la información del patinador en los campos correspondientes
+                    patinador_input.value = patinador;
+                    categoria_input.value = categoria;
+            }
+        </script>
         <script>
             function addElement(selectedValue) {
                 window.location.href = `/addElementLibre?codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
