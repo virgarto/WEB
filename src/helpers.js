@@ -18,4 +18,5 @@ Handlebars.registerHelper('inc', function (index) {
   return index + 1;
 });
 
+
 module.exports = Handlebars;
