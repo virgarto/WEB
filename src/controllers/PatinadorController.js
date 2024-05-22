@@ -10,6 +10,7 @@ function getInforme(req, res){
     const modalidad = req.query.modalidad;
     const fecha_ini = req.query.startDate;
     const fecha_fin = req.query.endDate;
+    const email = req.session.email;
 
     const placeholders = [];
     const values = [];
@@ -31,7 +32,6 @@ function getInforme(req, res){
         'travelling': ['travellingB', 'travelling1', 'travelling2', 'travelling3', 'travelling4'],
         'tres_derecho': ['TresDExtDetras', 'TresDExtDelante', 'TresDIntDetras', 'TresDIntDelante'], 
         'tres_izquierdo': ['TresIExtDetras', 'TresIExtDelante', 'TresIIntDetras', 'TresIIntDelante'],
-        //AÑADIR FILAS DE TRES DERECHO E IZQ
     };
 
     const tablasLibre = {
@@ -44,15 +44,16 @@ function getInforme(req, res){
         'heel_izquierdo': ['heel', 'forward', 'sideways', 'layover'],
         'heel_derecho': ['heel', 'forward', 'sideways', 'layover'],
         'saltos_simples': ['waltz_jump', 'salchow', 'toeloop', 'flip', 'lutz', 'loop_simple', 'thoren', 'axel'],
-        'saltos_dobles': ['salchow', 'toeloop', 'flip', 'lutz', 'loop_doble', 'thoren', 'axel'],
-        'saltos_triples': ['salchow', 'toeloop'],
+        'saltos_dobles': ['salchow_2', 'toeloop_2', 'flip_2', 'lutz_2', 'loop_2', 'thoren_2', 'axel_2'],
+        'saltos_triples': ['salchow_3', 'toeloop_3'],
         'posiciones_avanzadas': ['inverted', 'broken', 'bryant', 'broken_forward', 'broken_sideways'],
         'discos': ['corto', 'largo'],
         'flexibilidad': ['split', 'arco']
     };
 
     req.getConnection((err,conn)=> {
-        conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [req.session.email], (err, id) =>{
+        
+        conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [email], (err, id) =>{
             if(err){
                 console.log("Error al obtener el Id del usuario: " + err);
             }
