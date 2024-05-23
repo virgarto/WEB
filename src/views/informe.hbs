@@ -65,21 +65,21 @@
                             <ul>
                                 {{#each this}}
                                     <li style="list-style: none;">{{@key}}: {{this}}</li>
-                                    <canvas id="chart-{{@key}}"></canvas>
+                                    
                                 {{/each}}
                             </ul>
                         </div>
-                        
+                        <canvas id="chart-{{@key}}"></canvas>
                     {{/each}}
                 </div>
 
                 <script>
                     // Function to generate a chart for a given avgData item
-                    function generateChart(key, avgDataItem) {
+                    function generateChart(bloque, key, avgDataItem) {
                         console.log('avgDataItem: ' + avgDataItem);
                         console.log('key: ' + key);
 
-                        var ctx = document.getElementById('chart-' + key).getContext('2d');
+                        var ctx = document.getElementById('chart-' + bloque).getContext('2d');
                         var chart = new Chart(ctx, {
                             type: 'line',
                             data: {
@@ -104,8 +104,9 @@
 
                     // Generate charts for each avgData item
                     {{#each avgData}}
+                        const {{@key}} = {{@key}};
                         {{#each this}}
-                            generateChart('{{@key}}', '{{this}}');
+                            generateChart({{@key}}, '{{@key}}', '{{this}}');
                         {{/each}}
                     {{/each}}
                 </script>
