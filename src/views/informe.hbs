@@ -65,49 +65,57 @@
                             <ul>
                                 {{#each this}}
                                     <li style="list-style: none;">{{@key}}: {{this}}</li>
-                                    
+                                    <canvas id="chart-{{@key}}"></canvas>
                                 {{/each}}
                             </ul>
                         </div>
-                        <canvas id="chart-{{@key}}"></canvas>
+                        
                     {{/each}}
                 </div>
 
                 <script>
-                    // Function to generate a chart for a given avgData item
-                    function generateChart(bloque, key, avgDataItem) {
+                    // Función parar crear las gráficas
+                    function generateChart(key, avgDataItem) {
                         console.log('avgDataItem: ' + avgDataItem);
                         console.log('key: ' + key);
 
-                        var ctx = document.getElementById('chart-' + bloque).getContext('2d');
+                        // Convertimos la informacion de los entrenamientos a array
+                        var dataArray = avgDataItem.split(',');
+
+                        var ctx = document.getElementById('chart-' + key).getContext('2d');
                         var chart = new Chart(ctx, {
                             type: 'line',
                             data: {
                                 labels: ['Entrenamiento 1', 'Entrenamiento 2', 'Entrenamiento 3'],
                                 datasets: [{
                                     label: key,
-                                    data: [avgDataItem],
+                                    data: dataArray,
                                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                                     borderColor: 'rgba(75, 192, 192, 1)',
                                     borderWidth: 1
                                 }]
                             },
                             options: {
+                                responsive: true,
                                 scales: {
                                     y: {
-                                        beginAtZero: true
+                                        beginAtZero: true,
+                                        max: 4
                                     }
                                 }
                             }
                         });
                     }
 
-                    // Generate charts for each avgData item
+                    // Llamada a la función para generar las gráficas
                     {{#each avgData}}
-                        const {{@key}} = {{@key}};
-                        {{#each this}}
-                            generateChart({{@key}}, '{{@key}}', '{{this}}');
+                        //let bloque_{index + 1} = {{@key}};
+                        if('{{@key}}' == 'upright_izquierdo'){
+                            {{#each this}}
+                            generateChart(/*bloque_{index + 1}, */'{{@key}}', '{{this}}');
                         {{/each}}
+                        }
+                        
                     {{/each}}
                 </script>
             </div>
