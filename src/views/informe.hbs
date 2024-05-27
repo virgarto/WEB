@@ -57,21 +57,24 @@
             <div class="container text-center">
                 <p>Días entrenados: {{dias}}</p>
                 <p> De {{fecha_ini}} a {{fecha_fin}}</p>
-                <div class="block">
-                    {{#each avgData}}
-                        <div>
-                            <b class="text-uppercase">{{@key}}</b>
-                            <ul class="d-flex flex-row">
-                                {{#each this}}
-                                    <li style="list-style: none;">{{@key}}: {{this}}</li>
-                                    
-                                    <canvas id="chart-{{@../index}}-{{@key}}" class="w-25 h-25"></canvas>
-                                {{/each}}
-                            </ul>
-                            <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{#each avgData}}
+                                <b class="text-uppercase">{{@key}}</b>
+                                <ul class="row">
+                                    {{#each this}}
+                                        <div class="col-md-4 list-unstyled mb-5">
+                                            <li>{{@key}}: {{this}}</li>
+                                        
+                                            <canvas id="chart-{{@../index}}-{{@key}}" class="w-100 h-100"></canvas>
+                                        </div>
+                                    {{/each}}
+                                </ul>
+                                <br>
+                            {{/each}}
                         </div>
-                        
-                    {{/each}}
+                    </div>
                 </div>
 
                 <script>
@@ -87,7 +90,7 @@
                         // Creamos los labels con los dias que se muestran
                         var labels = [];
                         for (var i = 0; i < {{dias}}; i++) {
-                            labels.push('Entrenamiento ' + (i + 1));
+                            labels.push('Entrene ' + (i + 1));
                         }
 
                         var ctx = document.getElementById('chart-' + index + '-' + key).getContext('2d');
@@ -118,11 +121,9 @@
 
                     // Llamada a la función para generar las gráficas
                     {{#each avgData}}
-                        //let bloque_{index + 1} = {{@key}};
-                            {{#each this}}
+                        {{#each this}}
                             generateChart('{{@../index}}', '{{@key}}', '{{this}}');
                         {{/each}}
-                        
                     {{/each}}
                 </script>
             </div>
