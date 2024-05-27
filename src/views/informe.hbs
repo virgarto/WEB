@@ -57,17 +57,18 @@
             <div class="container text-center">
                 <p>Días entrenados: {{dias}}</p>
                 <p> De {{fecha_ini}} a {{fecha_fin}}</p>
-                <canvas id="prueba"></canvas>
                 <div class="block">
                     {{#each avgData}}
                         <div>
-                            <b>{{@key}}</b>
-                            <ul>
+                            <b class="text-uppercase">{{@key}}</b>
+                            <ul class="d-flex flex-row">
                                 {{#each this}}
                                     <li style="list-style: none;">{{@key}}: {{this}}</li>
-                                    <canvas id="chart-{{@../index}}-{{@key}}"></canvas>
+                                    
+                                    <canvas id="chart-{{@../index}}-{{@key}}" class="w-25 h-25"></canvas>
                                 {{/each}}
                             </ul>
+                            <br>
                         </div>
                         
                     {{/each}}
@@ -83,12 +84,18 @@
                         // Convertimos la informacion de los entrenamientos a array
                         var dataArray = avgDataItem.split(',');
 
+                        // Creamos los labels con los dias que se muestran
+                        var labels = [];
+                        for (var i = 0; i < {{dias}}; i++) {
+                            labels.push('Entrenamiento ' + (i + 1));
+                        }
+
                         var ctx = document.getElementById('chart-' + index + '-' + key).getContext('2d');
                         console.log('context: ' + ctx);
                         var chart = new Chart(ctx, {
                             type: 'line',
                             data: {
-                                labels: ['Entrenamiento 1', 'Entrenamiento 2', 'Entrenamiento 3'],
+                                labels: labels,
                                 datasets: [{
                                     label: key,
                                     data: dataArray,
@@ -125,34 +132,5 @@
                 © 2024 Copyright: Virginia García
             </div>
         </footer>
-        <script>
-            var ctx = document.getElementById('prueba').getContext('2d');
-                        var chart = new Chart(ctx, {
-                            type: 'line',
-                            data: {
-                                labels: ['Entrenamiento 1', 'Entrenamiento 2', 'Entrenamiento 3'],
-                                datasets: [{
-                                    label: 'salchow_3',
-                                    data: [1, 0, 2],
-                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                    borderWidth: 1
-                                },
-                                {
-                                    label: 'toeloop_3',
-                                    data: [1, 1, 4],
-                                    borderColor: 'rgba(153, 102, 255, 1)',
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-        </script>
     </body>
 </html>
