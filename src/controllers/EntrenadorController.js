@@ -57,8 +57,8 @@ function getInformeEntrenador(req,res) {
         'heel_izquierdo': ['heel', 'forward', 'sideways', 'layover'],
         'heel_derecho': ['heel', 'forward', 'sideways', 'layover'],
         'saltos_simples': ['waltz_jump', 'salchow', 'toeloop', 'flip', 'lutz', 'loop_simple', 'thoren', 'axel'],
-        'saltos_dobles': ['salchow', 'toeloop', 'flip', 'lutz', 'loop_doble', 'thoren', 'axel'],
-        'saltos_triples': ['salchow', 'toeloop'],
+        'saltos_dobles': ['salchow_2', 'toeloop_2', 'flip_2', 'lutz_2', 'loop_2', 'thoren_2', 'axel_2'],
+        'saltos_triples': ['salchow_3', 'toeloop_3'],
         'posiciones_avanzadas': ['inverted', 'broken', 'bryant', 'broken_forward', 'broken_sideways'],
         'discos': ['corto', 'largo'],
         'flexibilidad': ['split', 'arco']

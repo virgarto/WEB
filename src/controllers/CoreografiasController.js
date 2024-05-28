@@ -40,7 +40,18 @@ function goTodiscoDanzaFreeForm (req, res){
     // Reiniciamos el array con la información de la Coreografía así como la BASE
     resetRowsDanza();
 
-    res.render('discoDanzaFree', {rol: req.session.rol, categoria: req.session.categoria, name: req.session.name, typeDisc}); 
+    // Si accedemos como entrenador necesitamos listado de patinadores para rellenar el form
+    if(req.session.rol == 'Entrenador'){
+        req.getConnection((error, conn) =>{
+            conn.query('SELECT username AS Nombre, categoria_act AS Categoria FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
+                console.log(listPat);
+                res.render('discoDanzaFree', {listPat, rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc});
+            });
+        });
+    }
+    else{
+        res.render('discoDanzaFree', {rol: req.session.rol, categoria: req.session.categoria, name: req.session.name, typeDisc});  
+    }
 }
 
 
@@ -62,7 +73,19 @@ function goTodiscoDanzaStyleForm (req, res){
     // Reiniciamos el array con la información de la Coreografía así como la BASE
     resetRowsDanza();
 
-    res.render('discoDanzaStyle', {rol: req.session.rol, categoria: req.session.categoria, name: req.session.name, typeDisc}); 
+    // Si accedemos como entrenador necesitamos listado de patinadores para rellenar el form
+    if(req.session.rol == 'Entrenador'){
+        req.getConnection((error, conn) =>{
+            conn.query('SELECT username AS Nombre, categoria_act AS Categoria FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
+                console.log(listPat);
+                res.render('discoDanzaStyle', {listPat, rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc});
+            });
+        });
+    }
+    else{
+        res.render('discoDanzaStyle', {rol: req.session.rol, categoria: req.session.categoria, name: req.session.name, typeDisc});  
+    }
+
 }
 
 
@@ -82,12 +105,12 @@ function goToaddElementLibre (req, res){
     // Comprobamos que se puedan añadir o no más elementos al form dependiendo del tipo
     if(typeDisc == 'Corto'){
         if(rowsLibre.length == 7){
-            return res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
+            return res.render('discoLibre', {rowsLibre, sumaBASE, name, typeDisc, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
         }
     }
     else{
         if(rowsLibre.length == 13){
-            return res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
+            return res.render('discoLibre', {rowsLibre, sumaBASE, name, typeDisc, categoria, msg: 'Ya no se pueden añadir más elementos al programa.'})
         }
     }
     
@@ -264,7 +287,7 @@ function addElementLibre(req, res){
                         
                         console.log(rowsLibre);
 
-                        sumaBASE += (base[0].value).toFixed(2);
+                        sumaBASE += (base[0].value);
                         console.log('suma de BASE: '+ sumaBASE);
 
                         // Cargamos el formulario base y pasamos los valores 
@@ -376,7 +399,7 @@ function addElementLibre(req, res){
                     
                                 console.log(rowsLibre);
                 
-                                sumaBASE += total_base.toFixed(2);
+                                sumaBASE += total_base;
                                 console.log('suma de BASE: '+ sumaBASE);
                 
                                 // Cargamos el formulario base y pasamos los valores 
@@ -423,7 +446,7 @@ function addElementLibre(req, res){
                     
                     console.log(rowsLibre);
 
-                    sumaBASE += (base[0].value).toFixed(2);
+                    sumaBASE += (base[0].value);
                     console.log('suma de BASE: '+ sumaBASE);
 
                     // Cargamos el formulario base y pasamos los valores 
@@ -467,7 +490,7 @@ function addElementLibre(req, res){
 
                     console.log(rowsLibre);
 
-                    sumaBASE += (base[0].value).toFixed(2);
+                    sumaBASE += (base[0].value);
                     console.log('suma de BASE: '+ sumaBASE);
 
                     // Cargamos el formulario base y pasamos los valores 
@@ -527,7 +550,7 @@ function addElementLibre(req, res){
             
                             console.log(rowsLibre);
             
-                            sumaBASE += total_base.toFixed(2);
+                            sumaBASE += total_base;
                             console.log('suma de BASE: '+ sumaBASE);
             
                             // Cargamos el formulario base y pasamos los valores 

@@ -180,11 +180,13 @@
                 const AddBtn = document.getElementById('addToProgramm'); 
                 const DownloadBtn = document.getElementById('downloadProgramm'); 
                 const msgElement = document.getElementById('msg'); 
+                const resetBtn = document.getElementById('reset'); 
 
                 // Escondemos los botones y el mensaje
                 select.style.display = 'none';
                 AddBtn.style.display = 'none';
                 DownloadBtn.style.display = 'none';
+                resetBtn.style.display = 'none';
                 if(msgElement){
                     msgElement.style.display = 'none';
                 }
@@ -204,6 +206,7 @@
                 select.style.display = 'inline-block';
                 AddBtn.style.display = 'inline-block';
                 DownloadBtn.style.display = 'inline-block';
+                resetBtn.style.display = 'inline-block';
                 if(msgElement){
                     msgElement.style.display = 'inline-block';
                 }
