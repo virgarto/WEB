@@ -134,7 +134,7 @@
                                     <a role="button" class="btn btn-success" id="downloadProgramm">Descargar programa</a>
                                 </td>
                                 <td>
-                                    <a role="button" class="btn btn-success" id="reset" href="/discoDanza?name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}">Resetear programa</a>
+                                    <a role="button" class="btn btn-success" id="reset" href="/discoDanzaFree?name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}">Resetear programa</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -163,16 +163,16 @@
                     categoria_input.value = categoria;
             }
 
-            function addElement(selectedValue) {
+            function addElements(selectedValue) {
                 const select = document.getElementById('patinador_select');
                 if(select){
                     const patinador = document.getElementById('patinadorInput').value;
                     const categoria = document.getElementById('categoriaInput').value;
 
-                    window.location.href = `/addElementLibre?codigo=${selectedValue}&name=${patinador}&categoria=${categoria}&typeDisc={{typeDisc}}`;
+                    window.location.href = `/addElementDanza?codigo=${selectedValue}&name=${patinador}&categoria=${categoria}&typeDisc={{typeDisc}}`;
                 }
                 else{
-                    window.location.href = `/addElementLibre?codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
+                    window.location.href = `/addElementDanza?codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
                 } 
             }
         </script>
@@ -199,11 +199,13 @@
                 const AddBtn = document.getElementById('addToProgramm'); 
                 const DownloadBtn = document.getElementById('downloadProgramm'); 
                 const msgElement = document.getElementById('msg'); 
+                const resetBtn = document.getElementById('reset');
 
                 // Escondemos los botones y el mensaje
                 select.style.display = 'none';
                 AddBtn.style.display = 'none';
                 DownloadBtn.style.display = 'none';
+                resetBtn.style.display = 'none';
                 if(msgElement){
                     msgElement.style.display = 'none';
                 }
@@ -223,6 +225,7 @@
                 select.style.display = 'inline-block';
                 AddBtn.style.display = 'inline-block';
                 DownloadBtn.style.display = 'inline-block';
+                resetBtn.style.display = 'inline-block';
                 if(msgElement){
                     msgElement.style.display = 'inline-block';
                 }
