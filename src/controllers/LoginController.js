@@ -1,6 +1,11 @@
 // Para encriptar la información
 const bcrypt = require('bcrypt');
 
+/*****************************************************/
+/* Función que según el codigo del elemento, añade a */
+/* la coreografía el salto o la pirueta junto con su */
+/* BASE                                              */
+/*****************************************************/
 function login(req, res) {
     // Comprobamos que no haya una sesion: Si no la hay al pulsar login le manda al form
     if(req.session.loggedin != true)

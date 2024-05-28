@@ -14,250 +14,252 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     </head>
     <body>
-        <div id="page-container">
-            <div id="content-wrap">
-                <div> 
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="container-fluid" style="background-color: #eeeeee;">
-                            <a class="navbar-brand">
-                                <img alt="logo" width="120" height="120" src="imagenes/icono.jpg">
-                            </a>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
+        <div>  
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand ms-5">
+                        <img alt="logo" width="100" height="100" src="imagenes/icono.jpg">
+                    </a>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav navbar-nav-custom ms-auto">
+                            <li class="nav-item">
+                                {{#if rol}}
+                                    <a class="nav-link active" href="entrenamientosList">PATINADORES</a>
+                                {{else}}
                                     <a class="nav-link active" href="entrenamientos">ENTRENAMIENTOS</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="coreografias">COREOGRAFÍAS</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="perfil">PERFIL</a>
-                                </li>
-                            </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-                <main style="padding-bottom: 4em;">
-                    <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamiento Libre</h3>
-                    <div class="text-center">
-                        <form id="entreneform" method="POST" action="">
-                            <!-- progressbar -->
-                            <ul id="progressbar">
-                                <li class="active">Upright</li>
-                                <li>Sit</li>
-                                <li>Camel</li>
-                                <li>Heel</li>
-                                <li>Saltos Simples</li>
-                                <li>Saltos dobles y triples</li>
-                                <li>Posiciones avanzadas, discos y flexibilidad</li>
-                            </ul>
-                            <fieldset class="form-step">
-                                <h4 class="fs-title">UPRIGHT IZQUIERDO</h4>
-                                    <label for="upright_izq">Upright</label>
-                                    <input type="number" max="4" name="upright_izq"><br>
-                                    <label for="forward_izq">Forward</label>
-                                    <input type="number" max="4" name="forward_izq"><br>
-                                    <label for="layback_izq">Layback</label>
-                                    <input type="number" max="4" name="layback_izq"><br>
-                                    <label for="sideways_izq">Sideways</label>
-                                    <input type="number" max="4" name="sideways_izq"><br>
-                                    <label for="split_izq">Split</label>
-                                    <input type="number" max="4" name="split_izq"><br>
-                                    <label for="torso_izq">Torso</label>
-                                    <input type="number" max="4" name="torso_izq"><br>
-                                    <label for="biellman_izq">Biellman</label>
-                                    <input type="number" max="4" name="biellman_izq"><br>
-                                    <label for="biellman_heel_izq">Biellman Heel</label>
-                                    <input type="number" max="4" name="biellman_heel_izq"><br><br>
-
-                                <h4 class="fs-title">UPRIGHT DERECHO</h4>
-                                    <label for="upright_der">Upright</label>
-                                    <input type="number" max="4" name="upright_der"><br>
-                                    <label for="forward_der">Forward</label>
-                                    <input type="number" max="4" name="forward_der"><br>
-                                    <label for="layback_der">Layback</label>
-                                    <input type="number" max="4" name="layback_der"><br>
-                                    <label for="sideways_der">Sideways</label>
-                                    <input type="number" max="4" name="sideways_der"><br>
-                                    <label for="split_der">Split</label>
-                                    <input type="number" max="4" name="split_der"><br>
-                                    <label for="torso_der">Torso</label>
-                                    <input type="number" max="4" name="torso_der"><br>
-                                    <label for="biellman_der">Biellman</label>
-                                    <input type="number" max="4" name="biellman_der"><br>
-                                    <label for="biellman_heel_der">Biellman Heel</label>
-                                    <input type="number" max="4" name="biellman_heel_der"><br><br>
-
-                                <input type="button" name="next" class="next action-button" value="Next"/>
-                            </fieldset>
-
-                            <fieldset class="form-step">
-                                <h4 class="fs-title">SIT IZQUIERDO</h4>
-                                    <label for="sit_izq">Sit</label>
-                                    <input type="number" max="4" name="sit_izq"><br>
-                                    <label for="sit_forward_izq">Forward</label>
-                                    <input type="number" max="4" name="sit_forward_izq"><br>
-                                    <label for="sit_sideways_izq">Sideways</label>
-                                    <input type="number" max="4" name="sit_sideways_izq"><br>
-                                    <label for="behind_izq">Behind</label>
-                                    <input type="number" max="4" name="behind_izq"><br>
-                                    <label for="twist_izq">Twist</label>
-                                    <input type="number" max="4" name="twist_izq"><br><br>
-
-                                <h4 class="fs-title">SIT DERECHO</h4>
-                                    <label for="sit_der">Sit</label>
-                                    <input type="number" max="4" name="sit_der"><br>
-                                    <label for="sit_forward_der">Forward</label>
-                                    <input type="number" max="4" name="sit_forward_der"><br>
-                                    <label for="sit_sideways_der">Sideways</label>
-                                    <input type="number" max="4" name="sit_sideways_der"><br>
-                                    <label for="behind_der">Behind</label>
-                                    <input type="number" max="4" name="behind_der"><br>
-                                    <label for="twist_der">Twist</label>
-                                    <input type="number" max="4" name="twist_der"><br><br>
-
-                                <input type="button" name="previous" class="previous action-button" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next"/>
-                            </fieldset>
-
-                            <fieldset class="form-step">
-                                <h4 class="fs-title">CAMEL IZQUIERDO</h4>
-                                    <label for="exterior_izq">Exterior</label>
-                                    <input type="number" max="4" name="exterior_izq"><br>
-                                    <label for="interior_izq">Interior</label>
-                                    <input type="number" max="4" name="interior_izq"><br>
-                                    <label for="layover_izq">Layover</label>
-                                    <input type="number" max="4" name="layover_izq"><br>
-                                    <label for="camel_forward_izq">Forward</label>
-                                    <input type="number" max="4" name="camel_forward_izq"><br>
-                                    <label for="camel_sideways_izq">Sideways</label>
-                                    <input type="number" max="4" name="camel_sideways_izq"><br><br>
-                        
-                                <h4 class="fs-title">CAMEL DERECHO</h4>
-                                    <label for="exterior_der">Exterior</label>
-                                    <input type="number" max="4" name="exterior_der"><br>
-                                    <label for="interior_der">Interior</label>
-                                    <input type="number" max="4" name="interior_der"><br>
-                                    <label for="layover_der">Layover</label>
-                                    <input type="number" max="4" name="layover_der"><br>
-                                    <label for="camel_forward_der">Forward</label>
-                                    <input type="number" max="4" name="camel_forward_der"><br>
-                                    <label for="camel_sideways_der">Sideways</label>
-                                    <input type="number" max="4" name="camel_sideways_der"><br><br>
-
-                                <input type="button" name="previous" class="previous action-button" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next"/>
-                            </fieldset>
-
-                            <fieldset class="form-step">
-                                <h4 class="fs-title">HEEL IZQUIERDO</h4>
-                                    <label for="heel_izq">Heel</label>
-                                    <input type="number" max="4" name="heel_izq"><br>
-                                    <label for="heel_forward_izq">Forward</label>
-                                    <input type="number" max="4" name="heel_forward_izq"><br>
-                                    <label for="heel_sideways_izq">Sideways</label>
-                                    <input type="number" max="4" name="heel_sideways_izq"><br>
-                                    <label for="heel_layover_izq">Layover</label>
-                                    <input type="number" max="4" name="heel_layover_izq"><br><br>
-
-                                <h4 class="fs-title">HEEL DERECHO</h4>
-                                    <label for="heel_der">Heel</label>
-                                    <input type="number" max="4" name="heel_der"><br>
-                                    <label for="heel_forward_der">Forward</label>
-                                    <input type="number" max="4" name="heel_forward_der"><br>
-                                    <label for="heel_sideways_der">Sideways</label>
-                                    <input type="number" max="4" name="heel_sideways_der"><br>
-                                    <label for="heel_layover_der">Layover</label>
-                                    <input type="number" max="4" name="heel_layover_der"><br><br>
-
-                                <input type="button" name="previous" class="previous action-button" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next"/>
-                            </fieldset>
-
-                            <fieldset class="form-step">
-                                <h4 class="fs-title">SALTOS SIMPLES</h4>
-                                    <label for="waltz_jump">Waltz Jump</label>
-                                    <input type="number" max="4" name="waltz_jump"><br>
-                                    <label for="salchow">Salchow</label>
-                                    <input type="number" max="4" name="salchow"><br>
-                                    <label for="toeloop">Toeloop</label>
-                                    <input type="number" max="4" name="toeloop"><br>
-                                    <label for="flip">Flip</label>
-                                    <input type="number" max="4" name="flip"><br>
-                                    <label for="lutz">Lutz</label>
-                                    <input type="number" max="4" name="lutz"><br>
-                                    <label for="loop_simple">Loop</label>
-                                    <input type="number" max="4" name="loop_simple"><br>
-                                    <label for="thoren">Thoren</label>
-                                    <input type="number" max="4" name="thoren"><br>
-                                    <label for="axel">Axel</label>
-                                    <input type="number" max="4" name="axel"><br><br>
-                                
-                                <input type="button" name="previous" class="previous action-button" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next"/>
-                            </fieldset>
-
-                            <fieldset class="form-step">
-                                <h4 class="fs-title">SALTOS DOBLES</h4>
-                                    <label for="salchow_2">Salchow</label>
-                                    <input type="number" max="4" name="salchow_2"><br>
-                                    <label for="Toeloop_2">Toeloop</label>
-                                    <input type="number" max="4" name="Toeloop_2"><br>
-                                    <label for="flip_2">Flip</label>
-                                    <input type="number" max="4" name="flip_2"><br>
-                                    <label for="lutz_2">Lutz</label>
-                                    <input type="number" max="4" name="lutz_2"><br>
-                                    <label for="loop_2">Loop</label>
-                                    <input type="number" max="4" name="loop_2"><br>
-                                    <label for="thoren_2">Thoren</label>
-                                    <input type="number" max="4" name="thoren_2"><br>
-                                    <label for="axel_2">Axel</label>
-                                    <input type="number" max="4" name="axel_2"><br><br>
-
-                                <h4 class="fs-title">SALTOS TRIPLES</h4>
-                                    <label for="salchow_3">Salchow</label>
-                                    <input type="number" max="4" name="salchow_3"><br>
-                                    <label for="Toeloop_3">Toeloop</label>
-                                    <input type="number" max="4" name="Toeloop_3"><br><br>
-
-                                <input type="button" name="previous" class="previous action-button" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next"/>
-                            </fieldset>
-
-                            <fieldset class="form-step">
-                                <h4 class="fs-title">POSICIONES AVANZADAS</h4>
-                                    <label for="pos_inverted">Inverted</label>
-                                    <input type="number" max="4" name="pos_inverted"><br>
-                                    <label for="pos_broken">Broken</label>
-                                    <input type="number" max="4" name="pos_broken"><br>
-                                    <label for="pos_broken_forw">Broken Forward</label>
-                                    <input type="number" max="4" name="pos_broken_forw"><br>
-                                    <label for="pos_broken_sideways">Broken Forward</label>
-                                    <input type="number" max="4" name="pos_broken_sideways"><br>
-                                    <label for="pos_bryant">Bryant</label>
-                                    <input type="number" max="4" name="pos_bryant"><br><br>
-
-                                <h4 class="fs-title">DISCOS</h4>
-                                    <label for="disc_corto">Corto</label>
-                                    <input type="number" max="4" name="disc_corto"><br>
-                                    <label for="disc_largo">Largo</label>
-                                    <input type="number" max="4" name="disc_largo"><br><br>
-
-                                <h4 class="fs-title">Flexibilidad</h4>    
-                                    <label for="flexi_split">Split</label>
-                                    <input type="number" max="4" name="flexi_split"><br>
-                                    <label for="flexi_arco">Arco (Espalda)</label>
-                                    <input type="number" max="4" name="flexi_arco"><br><br>
-
-
-                                <input type="button" name="previous" class="previous action-button" value="Previous" />
-                                <input type="submit" name="anyadirEntreneDanzaBtn" class="submit-button" value="Submit">
-                            </fieldset>
-                        </form>
+                                {{/if}}
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="coreografias">COREOGRAFÍAS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="perfil">PERFIL</a>
+                            </li>
+                        </ul>
                     </div>
-                </main>
+                </div>
+            </nav>
+        </div>
+        <main style="padding-bottom: 4em;">
+            <h3 class="display-6 fw-normal font-monospace" style="background-color: #f3d886; color:#222222;" >Entrenamiento Libre</h3>
+            <div class="text-center">
+                <form id="entreneform" method="POST" action="">
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active">Upright</li>
+                        <li>Sit</li>
+                        <li>Camel</li>
+                        <li>Heel</li>
+                        <li>Saltos Simples</li>
+                        <li>Saltos dobles y triples</li>
+                        <li>Posiciones avanzadas, discos y flexibilidad</li>
+                    </ul>
+                    <fieldset class="form-step">
+                        <h4 class="fs-title">UPRIGHT IZQUIERDO</h4>
+                            <label for="upright_izq">Upright</label>
+                            <input type="number" max="4" name="upright_izq"><br>
+                            <label for="forward_izq">Forward</label>
+                            <input type="number" max="4" name="forward_izq"><br>
+                            <label for="layback_izq">Layback</label>
+                            <input type="number" max="4" name="layback_izq"><br>
+                            <label for="sideways_izq">Sideways</label>
+                            <input type="number" max="4" name="sideways_izq"><br>
+                            <label for="split_izq">Split</label>
+                            <input type="number" max="4" name="split_izq"><br>
+                            <label for="torso_izq">Torso</label>
+                            <input type="number" max="4" name="torso_izq"><br>
+                            <label for="biellman_izq">Biellman</label>
+                            <input type="number" max="4" name="biellman_izq"><br>
+                            <label for="biellman_heel_izq">Biellman Heel</label>
+                            <input type="number" max="4" name="biellman_heel_izq"><br><br>
+
+                        <h4 class="fs-title">UPRIGHT DERECHO</h4>
+                            <label for="upright_der">Upright</label>
+                            <input type="number" max="4" name="upright_der"><br>
+                            <label for="forward_der">Forward</label>
+                            <input type="number" max="4" name="forward_der"><br>
+                            <label for="layback_der">Layback</label>
+                            <input type="number" max="4" name="layback_der"><br>
+                            <label for="sideways_der">Sideways</label>
+                            <input type="number" max="4" name="sideways_der"><br>
+                            <label for="split_der">Split</label>
+                            <input type="number" max="4" name="split_der"><br>
+                            <label for="torso_der">Torso</label>
+                            <input type="number" max="4" name="torso_der"><br>
+                            <label for="biellman_der">Biellman</label>
+                            <input type="number" max="4" name="biellman_der"><br>
+                            <label for="biellman_heel_der">Biellman Heel</label>
+                            <input type="number" max="4" name="biellman_heel_der"><br><br>
+
+                        <input type="button" name="next" class="next action-button" value="Next"/>
+                    </fieldset>
+
+                    <fieldset class="form-step">
+                        <h4 class="fs-title">SIT IZQUIERDO</h4>
+                            <label for="sit_izq">Sit</label>
+                            <input type="number" max="4" name="sit_izq"><br>
+                            <label for="sit_forward_izq">Forward</label>
+                            <input type="number" max="4" name="sit_forward_izq"><br>
+                            <label for="sit_sideways_izq">Sideways</label>
+                            <input type="number" max="4" name="sit_sideways_izq"><br>
+                            <label for="behind_izq">Behind</label>
+                            <input type="number" max="4" name="behind_izq"><br>
+                            <label for="twist_izq">Twist</label>
+                            <input type="number" max="4" name="twist_izq"><br><br>
+
+                        <h4 class="fs-title">SIT DERECHO</h4>
+                            <label for="sit_der">Sit</label>
+                            <input type="number" max="4" name="sit_der"><br>
+                            <label for="sit_forward_der">Forward</label>
+                            <input type="number" max="4" name="sit_forward_der"><br>
+                            <label for="sit_sideways_der">Sideways</label>
+                            <input type="number" max="4" name="sit_sideways_der"><br>
+                            <label for="behind_der">Behind</label>
+                            <input type="number" max="4" name="behind_der"><br>
+                            <label for="twist_der">Twist</label>
+                            <input type="number" max="4" name="twist_der"><br><br>
+
+                        <input type="button" name="previous" class="previous action-button" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next"/>
+                    </fieldset>
+
+                    <fieldset class="form-step">
+                        <h4 class="fs-title">CAMEL IZQUIERDO</h4>
+                            <label for="exterior_izq">Exterior</label>
+                            <input type="number" max="4" name="exterior_izq"><br>
+                            <label for="interior_izq">Interior</label>
+                            <input type="number" max="4" name="interior_izq"><br>
+                            <label for="layover_izq">Layover</label>
+                            <input type="number" max="4" name="layover_izq"><br>
+                            <label for="camel_forward_izq">Forward</label>
+                            <input type="number" max="4" name="camel_forward_izq"><br>
+                            <label for="camel_sideways_izq">Sideways</label>
+                            <input type="number" max="4" name="camel_sideways_izq"><br><br>
+                
+                        <h4 class="fs-title">CAMEL DERECHO</h4>
+                            <label for="exterior_der">Exterior</label>
+                            <input type="number" max="4" name="exterior_der"><br>
+                            <label for="interior_der">Interior</label>
+                            <input type="number" max="4" name="interior_der"><br>
+                            <label for="layover_der">Layover</label>
+                            <input type="number" max="4" name="layover_der"><br>
+                            <label for="camel_forward_der">Forward</label>
+                            <input type="number" max="4" name="camel_forward_der"><br>
+                            <label for="camel_sideways_der">Sideways</label>
+                            <input type="number" max="4" name="camel_sideways_der"><br><br>
+
+                        <input type="button" name="previous" class="previous action-button" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next"/>
+                    </fieldset>
+
+                    <fieldset class="form-step">
+                        <h4 class="fs-title">HEEL IZQUIERDO</h4>
+                            <label for="heel_izq">Heel</label>
+                            <input type="number" max="4" name="heel_izq"><br>
+                            <label for="heel_forward_izq">Forward</label>
+                            <input type="number" max="4" name="heel_forward_izq"><br>
+                            <label for="heel_sideways_izq">Sideways</label>
+                            <input type="number" max="4" name="heel_sideways_izq"><br>
+                            <label for="heel_layover_izq">Layover</label>
+                            <input type="number" max="4" name="heel_layover_izq"><br><br>
+
+                        <h4 class="fs-title">HEEL DERECHO</h4>
+                            <label for="heel_der">Heel</label>
+                            <input type="number" max="4" name="heel_der"><br>
+                            <label for="heel_forward_der">Forward</label>
+                            <input type="number" max="4" name="heel_forward_der"><br>
+                            <label for="heel_sideways_der">Sideways</label>
+                            <input type="number" max="4" name="heel_sideways_der"><br>
+                            <label for="heel_layover_der">Layover</label>
+                            <input type="number" max="4" name="heel_layover_der"><br><br>
+
+                        <input type="button" name="previous" class="previous action-button" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next"/>
+                    </fieldset>
+
+                    <fieldset class="form-step">
+                        <h4 class="fs-title">SALTOS SIMPLES</h4>
+                            <label for="waltz_jump">Waltz Jump</label>
+                            <input type="number" max="4" name="waltz_jump"><br>
+                            <label for="salchow">Salchow</label>
+                            <input type="number" max="4" name="salchow"><br>
+                            <label for="toeloop">Toeloop</label>
+                            <input type="number" max="4" name="toeloop"><br>
+                            <label for="flip">Flip</label>
+                            <input type="number" max="4" name="flip"><br>
+                            <label for="lutz">Lutz</label>
+                            <input type="number" max="4" name="lutz"><br>
+                            <label for="loop_simple">Loop</label>
+                            <input type="number" max="4" name="loop_simple"><br>
+                            <label for="thoren">Thoren</label>
+                            <input type="number" max="4" name="thoren"><br>
+                            <label for="axel">Axel</label>
+                            <input type="number" max="4" name="axel"><br><br>
+                        
+                        <input type="button" name="previous" class="previous action-button" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next"/>
+                    </fieldset>
+
+                    <fieldset class="form-step">
+                        <h4 class="fs-title">SALTOS DOBLES</h4>
+                            <label for="salchow_2">Salchow</label>
+                            <input type="number" max="4" name="salchow_2"><br>
+                            <label for="Toeloop_2">Toeloop</label>
+                            <input type="number" max="4" name="Toeloop_2"><br>
+                            <label for="flip_2">Flip</label>
+                            <input type="number" max="4" name="flip_2"><br>
+                            <label for="lutz_2">Lutz</label>
+                            <input type="number" max="4" name="lutz_2"><br>
+                            <label for="loop_2">Loop</label>
+                            <input type="number" max="4" name="loop_2"><br>
+                            <label for="thoren_2">Thoren</label>
+                            <input type="number" max="4" name="thoren_2"><br>
+                            <label for="axel_2">Axel</label>
+                            <input type="number" max="4" name="axel_2"><br><br>
+
+                        <h4 class="fs-title">SALTOS TRIPLES</h4>
+                            <label for="salchow_3">Salchow</label>
+                            <input type="number" max="4" name="salchow_3"><br>
+                            <label for="Toeloop_3">Toeloop</label>
+                            <input type="number" max="4" name="Toeloop_3"><br><br>
+
+                        <input type="button" name="previous" class="previous action-button" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next"/>
+                    </fieldset>
+
+                    <fieldset class="form-step">
+                        <h4 class="fs-title">POSICIONES AVANZADAS</h4>
+                            <label for="pos_inverted">Inverted</label>
+                            <input type="number" max="4" name="pos_inverted"><br>
+                            <label for="pos_broken">Broken</label>
+                            <input type="number" max="4" name="pos_broken"><br>
+                            <label for="pos_broken_forw">Broken Forward</label>
+                            <input type="number" max="4" name="pos_broken_forw"><br>
+                            <label for="pos_broken_sideways">Broken Forward</label>
+                            <input type="number" max="4" name="pos_broken_sideways"><br>
+                            <label for="pos_bryant">Bryant</label>
+                            <input type="number" max="4" name="pos_bryant"><br><br>
+
+                        <h4 class="fs-title">DISCOS</h4>
+                            <label for="disc_corto">Corto</label>
+                            <input type="number" max="4" name="disc_corto"><br>
+                            <label for="disc_largo">Largo</label>
+                            <input type="number" max="4" name="disc_largo"><br><br>
+
+                        <h4 class="fs-title">Flexibilidad</h4>    
+                            <label for="flexi_split">Split</label>
+                            <input type="number" max="4" name="flexi_split"><br>
+                            <label for="flexi_arco">Arco (Espalda)</label>
+                            <input type="number" max="4" name="flexi_arco"><br><br>
+
+
+                        <input type="button" name="previous" class="previous action-button" value="Previous" />
+                        <input type="submit" name="anyadirEntreneDanzaBtn" class="submit-button" value="Submit">
+                    </fieldset>
+                </form>
             </div>
+        </main>
+        </div>
             <footer class="text-center mt-5 footer-copyright">
                 <div class="p-3" style="background-color: #222222; color:#ded8ae">
                     © 2024 Copyright: Virginia García

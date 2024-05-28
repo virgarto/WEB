@@ -20,26 +20,26 @@
     <body>
         <div> 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid" style="background-color: #eeeeee;">
-                    <a class="navbar-brand">
-                        <img alt="logo" width="120" height="120" src="imagenes/icono.jpg">
+                <div class="container-fluid">
+                    <a class="navbar-brand ms-5">
+                        <img alt="logo" width="100" height="100" src="imagenes/icono.jpg">
                     </a>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            {{#if rol}}
-                                <a class="nav-link" href="entrenamientosList">PATINADORES</a>
-                            {{else}}
-                                <a class="nav-link" href="entrenamientos">ENTRENAMIENTOS</a>
-                            {{/if}}
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="coreografias">COREOGRAFÍAS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="perfil">PERFIL</a>
-                        </li>
-                    </ul>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav navbar-nav-custom ms-auto">
+                            <li class="nav-item">
+                                {{#if rol}}
+                                    <a class="nav-link" href="entrenamientosList">PATINADORES</a>
+                                {{else}}
+                                    <a class="nav-link" href="entrenamientos">ENTRENAMIENTOS</a>
+                                {{/if}}
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="coreografias">COREOGRAFÍAS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="perfil">PERFIL</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -131,7 +131,7 @@
             </div>
         </main>
         <footer class="text-center mt-5 footer-copyright">
-            <div class="text-center p-3" style="background-color: #222222; color:#ded8ae">
+            <div class="text-center p-3" style="background-color: #222222; color:#eeeeee">
                 © 2024 Copyright: Virginia García
             </div>
         </footer>

@@ -1,16 +1,32 @@
+/*****************************************************/
+/* Función para acceder al formulario para generar   */
+/* un informe como entrenador                        */
+/*****************************************************/
 function goToInforme (req, res){
+    // Recogemos el email del patinador seleccionado
     const email = req.query.email;
+
     res.render('informeEntrenador', {rol: req.session.rol, email});
 }
 
+/*****************************************************/
+/* Función que crea el informe del patinador         */
+/* seleccionado por el entrenador                    */
+/*****************************************************/
 function getInformeEntrenador(req,res) {
+    // Variables para generar informa
     const patinador_email = req.query.patinador;
     const modalidad = req.query.modalidad;
     const fecha_ini = req.query.startDate;
     const fecha_fin = req.query.endDate;
 
+    // Variables para crear la consulta dinámica
+    // placeholder se encargará de guardar las '?' de cada  consulta
+    // values almacena los valores reales que reemplazarán los ?
     const placeholders = [];
     const values = [];
+
+    // Tablas de modalidad danza y libre
     const tablasDanza = {
         'art_foot_sequence': ['ASqB', 'ASq1', 'ASq2', 'ASq3', 'ASq4'],
         'bracket_derecho': ['BrDExtDetras', 'BrDExtDelante', 'BrDIntDetras', 'BrDIntDelante'], 
@@ -50,6 +66,7 @@ function getInformeEntrenador(req,res) {
 
     req.getConnection((err, conn) => {
         console.log(patinador_email);
+        // Obtenemos el id del patinador seleccionado
         conn.query('SELECT id AS pat_ID FROM users WHERE email = ?', [patinador_email], (error, id) => {
             if(err){
                 console.log("Error al obtener el Id del usuario" + error);
@@ -57,6 +74,7 @@ function getInformeEntrenador(req,res) {
                 console.log('Id del patinador: ' + id[0].pat_ID);
                 const id_pat = id[0].pat_ID;
 
+                // Diferenciamos la modalidad seleccionada para obtener los entrenamientos realizados entre las fechas introducidas
                 if(modalidad ==  'danza'){
                     conn.query('SELECT * FROM entrenamiento_danza WHERE fecha >= ? AND fecha <= ? AND id_patinador = ?', [fecha_ini, fecha_fin, id_pat], (err, entrenes_danza) => {
                         if(err){
@@ -67,13 +85,16 @@ function getInformeEntrenador(req,res) {
                                 console.log(entrenes_danza);
                                 let avgData = {};
                                 
+                                // Creamos la consula dinámica, por cada iteración se añade al array placeholder un nuevo '?' y values el id correspondiente
                                 for(let tablasName in  tablasDanza) {
                                     const columnNames = tablasDanza[tablasName];
                                     for (let i = 0; i < entrenes_danza.length; i++) {
                                         placeholders.push('?');
                                         values.push(entrenes_danza[i].id);
                                     }
-                                    const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
+
+
+                                    const sql = 'SELECT ' + columnNames.map(c => 'GROUP_CONCAT('+ c +') AS '+ c ).join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                                 
                                     conn.query(sql, values, (err, avg_data) => {
                                         if (err) {
@@ -81,10 +102,10 @@ function getInformeEntrenador(req,res) {
                                             return;
                                         }
                                     
-                                        //console.log(tablasName, avg_data);
+                                        //guardamos la información obtenida
                                         avgData[tablasName] = avg_data[0];
             
-                                        //Reset placeholders y values
+                                        //Reseteo placeholders y values
                                         placeholders.length = 0;
                                         values.length = 0;
             
@@ -95,6 +116,7 @@ function getInformeEntrenador(req,res) {
                                     });
                                 }
                             }else{
+                                // no hay entrenamientos entre las fechas
                                 console.log('No se encontraron entrenamientos de modalidad danza registrados para este usuario.');
                                 res.render('informeEntrenador', {error: 'No se encontraron entrenamientos de modalidad danza registrados para este usuario.'});
                             }
@@ -118,7 +140,7 @@ function getInformeEntrenador(req,res) {
                                         values.push(entrenes_libre[i].id);
                                     }
             
-                                    const sql = 'SELECT' + columnNames.map(c => ' AVG('+ c +') AS '+ c + '_avg').join(',') + ' FROM (SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
+                                    const sql = 'SELECT ' + columnNames.map(c => 'GROUP_CONCAT('+ c +') AS '+ c ).join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                                 
                                     conn.query(sql, values, (err, avg_data) => {
                                         if (err) {

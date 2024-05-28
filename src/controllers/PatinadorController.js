@@ -77,7 +77,7 @@ function getInforme(req, res){
                                         placeholders.push('?');
                                         values.push(entrenes_danza[i].id);
                                     }
-                                    const sql = 'SELECT ' + columnNames.map(c => 'AVG('+ c +') AS '+ c + '_avg ').join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
+                                    const sql = 'SELECT ' + columnNames.map(c => 'GROUP_CONCAT('+ c +') AS '+ c ).join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                                 
                                     conn.query(sql, values, (err, avg_data) => {
                                         if (err) {

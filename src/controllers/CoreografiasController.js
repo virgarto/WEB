@@ -14,6 +14,7 @@ function goToDiscoLibreForm (req, res){
         res.render('coreografías', {rol: req.session.rol, msg: 'Programa no disponible para la categoría Alevín y Benjamin'});
     }
 
+    // Si accedemos como entrenador necesitamos listado de patinadores para rellenar el form
     if(req.session.rol == 'Entrenador'){
         req.getConnection((error, conn) =>{
             conn.query('SELECT username AS Nombre, categoria_act AS Categoria FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
@@ -187,7 +188,7 @@ function checkDuplicate(selectedSalto){
 /*****************************************************/
 /* Función que según el codigo del elemento, añade a */
 /* la coreografía el salto o la pirueta junto con su */
-/* BASE */
+/* BASE                                              */
 /*****************************************************/
 function addElementLibre(req, res){
     // Variables del form
@@ -204,9 +205,11 @@ function addElementLibre(req, res){
         case 'SJu':
             const selectedSalto = req.body.salto;
 
+            // Comprobamos si hay Axel
             let hayAxel = checkAxel(selectedSalto);
             
-            if(hayAxel){
+            // Si ya se ha introducido un axel y ha seleccionado otro salta el msg de que no se puede añadir otra vez
+            if(hayAxel && (selectedSalto == 'axel' || selectedSalto == 'axel_2')){
                 res.render('addElementLibre', {rol: req.session.rol, codigo, name, categoria, typeDisc, msg: 'No se puede seleccionar un Axel de nuevo'});
             }
             else{
@@ -277,6 +280,7 @@ function addElementLibre(req, res){
             // Comprobamos que no haya un combinado igual
             let isDuplicate = checkDuplicate(selectedCombSalto);
 
+            // Si hay un combo igual salta error
             if (isDuplicate) {
                 res.render('addElementLibre', {rol: req.session.rol, codigo, name, categoria, typeDisc, msg: 'Este Combinado de Saltos ya ha sido introducido en el programa'})
             }
