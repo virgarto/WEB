@@ -1,3 +1,6 @@
+/**************************************************/
+/* Función para cargar la pagina del perfil       */
+/**************************************************/
 function perfil (req, res){
     if(req.session.loggedin != true)
     {
@@ -8,6 +11,9 @@ function perfil (req, res){
     }
 }
 
+/*******************************************************/
+/* Función para cargar la pagina de entrenamientos     */
+/*******************************************************/
 function entrenamientosPatinador (req, res){
     if(req.session.loggedin != true)
     {
@@ -18,6 +24,10 @@ function entrenamientosPatinador (req, res){
     }
 }
 
+/*******************************************************/
+/* Función para cargar el listado de patinadores del   */
+/* club para que se pueda crear un informe             */
+/*******************************************************/
 function entrenamientosEntrenador (req, res){
     if(req.session.loggedin != true)
     {
@@ -38,6 +48,9 @@ function entrenamientosEntrenador (req, res){
     }   
 }
 
+/*****************************************************/
+/* Función para cargar la página de coreografías     */
+/*****************************************************/
 function coreografias (req, res){
     if(req.session.loggedin != true)
     {

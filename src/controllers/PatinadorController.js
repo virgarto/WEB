@@ -1,19 +1,39 @@
+/*******************************************************/
+/* Función que carga el formulario para crear un nuevo */
+/* entrenamiento de modalidad danza                    */
+/*******************************************************/
 function goToEntreneForm (req, res){
     res.render('newEntreneDanza');
 }
 
+
+/*******************************************************/
+/* Función que carga el formulario para crear un nuevo */
+/* entrenamiento de modalidad libre                    */
+/*******************************************************/
 function goToEntreneLibre (req, res){
     res.render('newEntreneLibre');
 }
 
+
+/*******************************************************/
+/* Función para generar un informe a partir de los     */
+/* entrenamientos introducidos por el patinador        */
+/*******************************************************/
 function getInforme(req, res){
+    // Variables del formulario
     const modalidad = req.query.modalidad;
     const fecha_ini = req.query.startDate;
     const fecha_fin = req.query.endDate;
     const email = req.session.email;
 
+    // Variables para crear la consulta dinámica
+    // placeholder se encargará de guardar las '?' de cada  consulta
+    // values almacena los valores reales que reemplazarán los ?
     const placeholders = [];
     const values = [];
+
+    // Tablas de modalidad danza y libre
     const tablasDanza = {
         'art_foot_sequence': ['ASqB', 'ASq1', 'ASq2', 'ASq3', 'ASq4'],
         'bracket_derecho': ['BrDExtDetras', 'BrDExtDelante', 'BrDIntDetras', 'BrDIntDelante'], 
@@ -52,7 +72,7 @@ function getInforme(req, res){
     };
 
     req.getConnection((err,conn)=> {
-        
+        // Obtenemos el id del patinador
         conn.query('SELECT id AS pat_ID FROM users WHERE email = ?;', [email], (err, id) =>{
             if(err){
                 console.log("Error al obtener el Id del usuario: " + err);
@@ -61,6 +81,7 @@ function getInforme(req, res){
                 console.log(id[0].pat_ID);
                 const id_pat = id[0].pat_ID;
 
+                // Diferenciamos la modalidad seleccionada para obtener los entrenamientos realizados entre las fechas introducidas
                 if(modalidad ==  'danza'){
                     conn.query('SELECT * FROM entrenamiento_danza WHERE fecha >= ? AND fecha <= ? AND id_patinador = ?', [fecha_ini, fecha_fin, id_pat], (err, entrenes_danza) => {
                         if(err){
@@ -70,7 +91,8 @@ function getInforme(req, res){
                             if(entrenes_danza.length > 0){
                                 console.log(entrenes_danza);
                                 let avgData = {};
-                                
+
+                                // Creamos la consula dinámica, por cada iteración se añade al array placeholder un nuevo '?' y values el id correspondiente
                                 for(let tablasName in  tablasDanza) {
                                     const columnNames = tablasDanza[tablasName];
                                     for (let i = 0; i < entrenes_danza.length; i++) {
@@ -85,10 +107,10 @@ function getInforme(req, res){
                                             return;
                                         }
                                     
-                                        //console.log(tablasName, avg_data);
+                                        //guardamos la información obtenida
                                         avgData[tablasName] = avg_data[0];
             
-                                        //Reset placeholders y values
+                                        //Reseteo placeholders y values
                                         placeholders.length = 0;
                                         values.length = 0;
             
@@ -156,9 +178,15 @@ function getInforme(req, res){
         
     })
      
- }
+}
 
+
+/*******************************************************/
+/* Función para guardar en la BBDD un nuevo entrene    */
+/* de modalidad danza                                  */
+/*******************************************************/
 function createEntreneDanza(req, res){
+    // Elementos de modalidad danza recogidos en el formulario
     const {travellingB, travelling1, travelling2, travelling3, travelling4} = req.body;
     const {clusterB, cluster1, cluster2, cluster3, cluster4} = req.body;
     const {key_point1, key_point2, key_point3, key_point4} = req.body;
@@ -224,7 +252,13 @@ function createEntreneDanza(req, res){
     })
 }
 
+
+/*******************************************************/
+/* Función para guardar en la BBDD un nuevo entrene    */
+/* de modalidad libre                                  */
+/*******************************************************/
 function createEntreneLibre(req, res){
+    // Elementos de modalidad libre recogidos en el formulario
     const {upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq, biellman_heel_izq} = req.body;
     const {upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der,biellman_heel_der} = req.body;
     const {sit_izq, sit_forward_izq, sit_sideways_izq, behind_izq, twist_izq} = req.body;

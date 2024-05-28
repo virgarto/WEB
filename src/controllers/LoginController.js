@@ -1,11 +1,10 @@
 // Para encriptar la información
 const bcrypt = require('bcrypt');
 
-/*****************************************************/
-/* Función que según el codigo del elemento, añade a */
-/* la coreografía el salto o la pirueta junto con su */
-/* BASE                                              */
-/*****************************************************/
+/*******************************************************/
+/* Función que carga el formulario de login o en caso  */
+/*  de haber una sesión iniciada lleva al perfil       */
+/*******************************************************/
 function login(req, res) {
     // Comprobamos que no haya una sesion: Si no la hay al pulsar login le manda al form
     if(req.session.loggedin != true)
@@ -17,7 +16,9 @@ function login(req, res) {
     }
 }
 
-//Función inicio sesión
+/********************************************************/
+/* Función que se encarga del inicio de sesión del user */
+/********************************************************/
 function auth(req, res){
     const data = req.body;
     
@@ -57,6 +58,10 @@ function auth(req, res){
     });
 }
 
+/**********************************************************/
+/* Función que carga el formulario de registro o en caso  */
+/*  de haber una sesión iniciada lleva al perfil          */
+/**********************************************************/
 function signUp(req, res) {
     // Comprobamos que no haya una sesion: Si no la hay al pulsar login le manda al form
     if(req.session.loggedin != true)
@@ -68,7 +73,10 @@ function signUp(req, res) {
     }
 }
 
-//Funcion registrar usuario
+/******************************************************/
+/* Función para añadir un nuevo usuario a la BBDD y   */
+/* crea su sesión                                     */
+/******************************************************/
 function anyadirUser(req, res) {
     const data = req.body;
 
@@ -124,7 +132,9 @@ function anyadirUser(req, res) {
     
 }
 
-//Función cierre sesión
+/****************************************/
+/* Función para el cierre de sesión     */
+/****************************************/
 function logout(req, res) {
     if(req.session.loggedin == true){
         req.session.destroy();

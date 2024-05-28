@@ -14,7 +14,7 @@ function goToInforme (req, res){
 /* seleccionado por el entrenador                    */
 /*****************************************************/
 function getInformeEntrenador(req,res) {
-    // Variables para generar informa
+    // Variables del formulario
     const patinador_email = req.query.patinador;
     const modalidad = req.query.modalidad;
     const fecha_ini = req.query.startDate;
