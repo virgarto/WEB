@@ -53,15 +53,16 @@
                             <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
 
                             <select class="mt-3" name="patinador_select" id="patinador_select" onchange="updatePatinador()">
+                                <option value="">Selecciona un patinador</option>
                                 {{#each listPat}}
                                     <option value="{{Nombre}}" data-categoria="{{Categoria}}">{{Nombre}} ({{Categoria}})</option>
                                 {{/each}}
                             </select> <br>
 
                             <label for="patinador" class="mt-3">Patinador/a:</label> <br>
-                            <input type="text" name="patinador" class="form-control text-center mt-1" id="patinadorInput" value="" readonly>
+                            <input type="text" name="patinador" class="form-control text-center mt-1" id="patinadorInput" value="{{name}}" readonly>
                             <label for="categoria">Categoria:</label> <br>
-                            <input type="text" name="categoria" class="form-control text-center mt-1" id="categoriaInput" value="" readonly>
+                            <input type="text" name="categoria" class="form-control text-center mt-1" id="categoriaInput" value="{{categoria}}" readonly>
                         {{else}}
                             <label for="typeDisc">Disco</label>
                             <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>

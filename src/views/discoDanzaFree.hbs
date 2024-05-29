@@ -51,17 +51,18 @@
                     {{#if rol }}
                         <label for="typeDisc">Disco</label>
                         <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
-
+                        
                         <select class="mt-3" name="patinador_select" id="patinador_select" onchange="updatePatinador()">
+                            <option value="">Selecciona un patinador</option>
                             {{#each listPat}}
                                 <option value="{{Nombre}}" data-categoria="{{Categoria}}">{{Nombre}} ({{Categoria}})</option>
                             {{/each}}
                         </select> <br>
 
                         <label for="patinador" class="mt-3">Patinador/a:</label> <br>
-                        <input type="text" name="patinador" class="form-control text-center mt-1" id="patinadorInput" value="" readonly>
+                        <input type="text" name="patinador" class="form-control text-center mt-1" id="patinadorInput" value="{{name}}" readonly>
                         <label for="categoria">Categoria:</label> <br>
-                        <input type="text" name="categoria" class="form-control text-center mt-1" id="categoriaInput" value="" readonly>
+                        <input type="text" name="categoria" class="form-control text-center mt-1" id="categoriaInput" value="{{categoria}}" readonly>
                     {{else}}
                         <label for="typeDisc">Disco</label>
                         <input type="text" name="typeDisc" value="{{typeDisc}}" readonly><br>
@@ -125,6 +126,7 @@
                                                 <option value="ChStSq">ChStSq</option>
                                         </select>
                                     {{/if}}
+                                    <div id="selectElements"></div>
                                 </td>
                                 <td id="elemento-1">
                                     <a role="button" class="btn btn-outline-success" id="addToProgramm" onclick="addElements(document.getElementById('select-1').value)">Añadir Elementos</a>
@@ -161,6 +163,107 @@
                 // Muestra la información del patinador en los campos correspondientes
                     patinador_input.value = patinador;
                     categoria_input.value = categoria;
+
+                // Hacemos el select para añadir los diferentes elementos dependiendo
+                // de la categoría del patinador seleccionado
+                const selectElements = document.getElementById('selectElements');
+                
+                // Limpiamos el div
+                selectElements.innerHTML = '';
+
+                if(categoria == 'Infantil' || categoria == 'Alevín'){
+                    // Creamos select
+                    const select = document.createElement('select');
+                    select.name = 'codigo';
+                    select.id = 'select-1';
+
+                    // Creamos opcion
+                    const option1 = document.createElement('option');
+                    option1.value = 'DSSq';
+                    option1.text = 'DSSq';
+                    select.appendChild(option1);
+
+                    const option2 = document.createElement('option');
+                    option2.value = 'FoSq';
+                    option2.text = 'FoSq';
+                    select.appendChild(option2);
+
+                    const option3 = document.createElement('option');
+                    option3.value = 'Cl';
+                    option3.text = 'Cl';
+                    select.appendChild(option3);
+
+                    const option4 = document.createElement('option');
+                    option4.value = 'Tr';
+                    option4.text = 'Tr';
+                    select.appendChild(option4);
+
+                    const option5 = document.createElement('option');
+                    option5.value = 'ChStSq';
+                    option5.text = 'ChStSq';
+                    select.appendChild(option5);
+                    
+                    selectElements.appendChild(select);
+                }
+                else if(categoria == 'Benjamin'){
+                    const select = document.createElement('select');
+                    select.name = 'codigo';
+                    select.id = 'select-1';
+
+                    const option1 = document.createElement('option');
+                    option1.value = 'ASq';
+                    option1.text = 'ASq';
+                    select.appendChild(option1);
+
+                    const option2 = document.createElement('option');
+                    option2.value = 'Tr';
+                    option2.text = 'Tr';
+                    select.appendChild(option2);
+
+                    const option3 = document.createElement('option');
+                    option3.value = 'ChStSq';
+                    option3.text = 'ChStSq';
+                    select.appendChild(option3);
+
+                    selectElements.appendChild(select);
+                }
+                else{
+                    const select = document.createElement('select');
+                    select.name = 'codigo';
+                    select.id = 'select-1';
+
+                    const option1 = document.createElement('option');
+                    option1.value = 'DSSq';
+                    option1.text = 'DSSq';
+                    select.appendChild(option1);
+
+                    const option2 = document.createElement('option');
+                    option2.value = 'FoSq';
+                    option2.text = 'FoSq';
+                    select.appendChild(option2);
+
+                    const option3 = document.createElement('option');
+                    option3.value = 'ASq';
+                    option3.text = 'ASq';
+                    select.appendChild(option3);
+
+                    const option4 = document.createElement('option');
+                    option4.value = 'Cl';
+                    option4.text = 'Cl';
+                    select.appendChild(option4);
+
+                    const option5 = document.createElement('option');
+                    option5.value = 'Tr';
+                    option5.text = 'Tr';
+                    select.appendChild(option5);
+
+                    const option6 = document.createElement('option');
+                    option6.value = 'ChStSq';
+                    option6.text = 'ChStSq';
+                    select.appendChild(option6);
+
+                    selectElements.appendChild(select);
+                }
             }
 
             function addElements(selectedValue) {
@@ -174,6 +277,8 @@
                 else{
                     window.location.href = `/addElementDanza?codigo=${selectedValue}&name={{name}}&categoria={{categoria}}&typeDisc={{typeDisc}}`;
                 } 
+
+                select.style.display = 'none';
             }
         </script>
         <script>

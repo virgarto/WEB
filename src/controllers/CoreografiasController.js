@@ -221,8 +221,8 @@ function addElementLibre(req, res){
     
     const typeDisc = req.body.typeDisc;
     
-    console.log(typeDisc);
-    console.log("Code: " + codigo);
+    console.log(name);
+    console.log("categoria: " + categoria);
 
     switch(codigo){
         case 'SJu':
@@ -253,7 +253,7 @@ function addElementLibre(req, res){
                             }
                             else{
                                 // CUANDO RECARGAS LAS PAGINA Y SE DUPLICA EL ULTIMO ELEMENTO INTRODUCIDO
-                                res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                             }
                         }
                         else{
@@ -281,7 +281,7 @@ function addElementLibre(req, res){
                                 numRows++;
                             }
                             else{
-                                res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                             }
                         }
                         
@@ -291,7 +291,7 @@ function addElementLibre(req, res){
                         console.log('suma de BASE: '+ sumaBASE);
 
                         // Cargamos el formulario base y pasamos los valores 
-                        res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                        res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc});
                     })
                 })
             }
@@ -380,7 +380,7 @@ function addElementLibre(req, res){
                                         numRows++;
                                     }
                                     else{
-                                        res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                        res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                     }
                                 }
                                 else{
@@ -393,7 +393,7 @@ function addElementLibre(req, res){
                                         numRows++;
                                     }
                                     else{
-                                        res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                        res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                     }
                                 }
                     
@@ -403,7 +403,7 @@ function addElementLibre(req, res){
                                 console.log('suma de BASE: '+ sumaBASE);
                 
                                 // Cargamos el formulario base y pasamos los valores 
-                                res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria , typeDisc});
+                                res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria , typeDisc});
                                 
                             }
                         }) 
@@ -427,7 +427,7 @@ function addElementLibre(req, res){
                             numRows++;
                         }
                         else{
-                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                         }
                     }
                     else{
@@ -440,7 +440,7 @@ function addElementLibre(req, res){
                             numRows++;
                         }
                         else{
-                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                         }
                     }
                     
@@ -450,7 +450,7 @@ function addElementLibre(req, res){
                     console.log('suma de BASE: '+ sumaBASE);
 
                     // Cargamos el formulario base y pasamos los valores 
-                    res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                    res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc});
                 })
             })
         break;
@@ -471,7 +471,7 @@ function addElementLibre(req, res){
                             numRows++;
                         }
                         else{
-                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                         }
                     }
                     else{
@@ -484,7 +484,7 @@ function addElementLibre(req, res){
                             numRows++;
                         }
                         else{
-                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                            res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                         }
                     }
 
@@ -494,7 +494,7 @@ function addElementLibre(req, res){
                     console.log('suma de BASE: '+ sumaBASE);
 
                     // Cargamos el formulario base y pasamos los valores 
-                    res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                    res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc});
                 })
                 
             })
@@ -530,7 +530,7 @@ function addElementLibre(req, res){
                                     numRows++;
                                 }
                                 else{
-                                    res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                    res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                 }
                             }
                             else{
@@ -543,7 +543,7 @@ function addElementLibre(req, res){
                                     numRows++;
                                 }
                                 else{
-                                    res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                                    res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                 }
                             }
                             
@@ -554,7 +554,7 @@ function addElementLibre(req, res){
                             console.log('suma de BASE: '+ sumaBASE);
             
                             // Cargamos el formulario base y pasamos los valores 
-                            res.render('discoLibre', {rowsLibre, sumaBASE, name, categoria, typeDisc});
+                            res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc});
                         }
                     }) 
                 }
@@ -591,10 +591,10 @@ function addElementDanza(req, res){
             });
             numRows++;
 
-            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+            res.render('discoDanzaStyle', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc});
         }
         else{
-            res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+            res.render('discoDanzaStyle', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
         }
     }
     else if(codigo == 'PtSq_ob'){
@@ -610,7 +610,7 @@ function addElementDanza(req, res){
                 });
                 numRows++;
 
-                res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+                res.render('discoDanzaStyle', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc});
             }
         }else{
             // Los Benjamines solo pueden hacer 1 danza obligatoria
@@ -622,10 +622,10 @@ function addElementDanza(req, res){
                 });
                 numRows++;
 
-                res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+                res.render('discoDanzaStyle', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc});
             }
             else{
-                res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                res.render('discoDanzaStyle', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
             }
         }
     }
@@ -643,7 +643,7 @@ function addElementDanza(req, res){
                     numRows++;
                 }
                 else{
-                    res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
+                    res.render('discoDanzaFree', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                 }
                 
                 console.log(rowsDanza);
@@ -653,11 +653,11 @@ function addElementDanza(req, res){
     
                 // Cargamos el formulario base y pasamos los valores 
                 if(typeDisc == 'Free Dance'){
-                    res.render('discoDanzaFree', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+                    res.render('discoDanzaFree', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc});
                 }
                 else{
                     console.log('Renderiza el disco de Modalidad DANZA')
-                    res.render('discoDanzaStyle', {rowsDanza, sumaBASE, name, categoria, typeDisc});
+                    res.render('discoDanzaStyle', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc});
                 }
                 
             })
