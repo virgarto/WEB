@@ -245,6 +245,7 @@
                 const DownloadBtn = document.getElementById('downloadProgramm'); 
                 const msgElement = document.getElementById('msg'); 
                 const resetBtn = document.getElementById('reset'); 
+                const selectElements = document.getElementById('patinador_select');
 
                 // Escondemos los botones y el mensaje
                 select.style.display = 'none';
@@ -253,6 +254,9 @@
 
                 if(msgElement){
                     msgElement.style.display = 'none';
+                }
+                if(selectElements){
+                    selectElements.style.display = 'none';
                 }
                 
                 const pdf = new jsPDF('p', 'pt', 'a4');
@@ -273,6 +277,9 @@
                 resetBtn.style.display = 'inline-block';
                 if(msgElement){
                     msgElement.style.display = 'inline-block';
+                }
+                if(selectElements){
+                    selectElements.style.display = 'inline-block';
                 }
             }
         </script>
