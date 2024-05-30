@@ -22,6 +22,7 @@ function editPatinador (req, res){
     const data = req.body;
 
     req.getConnection((err, conn) =>{
+        // obtenemos la información mediante el email, ya que no se puede cambiar
         conn.query('SELECT * FROM users WHERE email = ?', [req.session.email] , (err, userData) => {
             
             if(userData.length > 0){

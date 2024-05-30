@@ -34,6 +34,7 @@ function entrenamientosEntrenador (req, res){
         res.render('login');
     }
     else{ 
+        // Nos conectamos a la BBDD para obtener el listado
         req.getConnection((err, conn) => {
             if(err) 
                 console.log('Error al conectarse a la BBDD: ' + err);

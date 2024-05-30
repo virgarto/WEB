@@ -90,24 +90,3 @@
     .login-box a:hover, .signUpBox a:hover{
         color: darkgrey;
     }
-
-    /* FORMULARIO EDIT PATINADOR */
-    .formEditPat{
-        text-align: center;
-    }
-    
-    @media screen and (max-width: 70em) {
-    .cbp-mc-column {
-    width: 25%;
-    }
-    .cbp-mc-column:nth-child(3) {
-    width: 100%;
-    }
-    }
-    
-    @media screen and (max-width: 48em) {
-    .cbp-mc-column {
-    width: 50%;
-    padding: 10px;
-    }
-    }

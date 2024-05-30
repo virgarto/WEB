@@ -52,6 +52,7 @@ function auth(req, res){
                 });
             }
             else{
+                // Si no se encuentra el usuario
                 res.render('login', {error: 'Error: Este usuario no existe!'});
             }
         });
@@ -80,8 +81,8 @@ function signUp(req, res) {
 function anyadirUser(req, res) {
     const data = req.body;
 
-    // Comprobamos si existe el usuario
     req.getConnection((err, conn) => {
+        // Comprobamos si existe el usuario
         conn.query('SELECT * FROM users WHERE email = ?', [data.email], (err, userData) => {
             if(userData.length > 0){
                 res.render('signUp', {error: 'Error: Este usuario ya existe.'});
@@ -105,6 +106,7 @@ function anyadirUser(req, res) {
                                 req.session.rol = data.rol;
                             }
 
+                            // Obtenemos el año de nacimiento del usuario
                             const fechaNacimiento = new Date(data.fecha_nacimiento);
                             const anyoNacimiento = fechaNacimiento.getFullYear();
                             
@@ -122,7 +124,6 @@ function anyadirUser(req, res) {
                             else{
                                 res.redirect('/');
                             }
-                            
                         })
                     });
                 });

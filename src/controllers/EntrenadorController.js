@@ -96,6 +96,7 @@ function getInformeEntrenador(req,res) {
 
                                     const sql = 'SELECT ' + columnNames.map(c => 'GROUP_CONCAT('+ c +') AS '+ c ).join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                                 
+                                    // Ejecutamos la consulta con los values recogidos
                                     conn.query(sql, values, (err, avg_data) => {
                                         if (err) {
                                             console.error(err);
@@ -109,7 +110,7 @@ function getInformeEntrenador(req,res) {
                                         placeholders.length = 0;
                                         values.length = 0;
             
-                                        if (Object.keys(avgData).length === Object.keys(tablasLibre).length) {
+                                        if (Object.keys(avgData).length === Object.keys(tablasDanza).length) {
                                             // Renderizamos la vista con los datos
                                             res.render("informe", { avgData, dias: entrenes_danza.length, fecha_ini, fecha_fin, rol: req.session.rol });
                                         }
@@ -132,6 +133,8 @@ function getInformeEntrenador(req,res) {
 
                                 let avgData = {};
             
+                                // Recorremos la tabla correspondiente y para cada elemento en el array
+                                // empujamos un '?' al array placeholders y el id del elemento actual al array values.
                                 for(let tablasName in  tablasLibre) {
                                     const columnNames = tablasLibre[tablasName];
             
@@ -142,13 +145,14 @@ function getInformeEntrenador(req,res) {
             
                                     const sql = 'SELECT ' + columnNames.map(c => 'GROUP_CONCAT('+ c +') AS '+ c ).join(',') + ' FROM ( SELECT ' + columnNames.join(',') + ' FROM ' + tablasName + ' WHERE id IN ('+ placeholders.join(',') + ') ) AS subquery'; 
                                 
+                                    // Ejecutamos la consulta con los values recogidos
                                     conn.query(sql, values, (err, avg_data) => {
                                         if (err) {
                                             console.error(err);
                                             return;
                                         }
                                     
-                                        console.log(tablasName, avg_data);
+                                        // Guardamos el resultado
                                         avgData[tablasName] = avg_data[0];
                                         
                                         //Reset placeholders y values
