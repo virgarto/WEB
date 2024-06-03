@@ -20,7 +20,13 @@
                     <a class="navbar-brand ms-5">
                         <img alt="logo" width="100" height="100" src="imagenes/icono.jpg">
                     </a>
-                    <div class="collapse navbar-collapse">
+                    <!-- Boton para menu desplegable desde movil -->
+                    <button class="navbar-toggler" id="botonMenu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                        </svg>
+                    </button>
+                    <div class="collapse navbar-collapse" id="menuContent">
                         <ul class="navbar-nav navbar-nav-custom ms-auto">
                             <li class="nav-item">
                                 {{#if rol}}
@@ -81,5 +87,17 @@
                 © 2024 Copyright: Virginia García
             </div>
         </footer>
+        <script>
+            // Seleccionamos el botón y el menú
+            const navbarToggler = document.getElementById('botonMenu');
+            const navbarMenu = document.getElementById('menuContent');
+
+            // Agregamos un evento al botón para mostrar el menú cuando se haga clic
+            if(navbarToggler){
+                navbarToggler.addEventListener('click', () => {
+                navbarMenu.classList.toggle('show');
+            });
+            }
+        </script>
     </body>
 </html>
