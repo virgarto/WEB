@@ -18,7 +18,7 @@ main{
 
 .display-6{
     background-color: var(--bc_black);
-    color: #eeeeee;
+    color: #f3d886;
     text-align: center;
     padding-top: 25px;
     padding-bottom: 25px;
@@ -208,6 +208,7 @@ th{color: #333;}
 	display: block;
 }
 
+
 @media screen and (max-width: 1000px){
 	.navbar-nav-custom {
 		display: none;
@@ -223,6 +224,18 @@ th{color: #333;}
 		font-size: 2.5em;
 		margin-right: 15px;
 		text-align: right;
+	}
+
+	.profile-card .text-center img {
+		margin-top: 50px;
+		margin-bottom: 30px;
+	}
+	.profile-card .container a{
+		width: 300px;
+		height: 150px;
+		margin-top: 20px;
+		font-size: 30px;
+		margin-left: -50px;
 	}
 	
 }
