@@ -33,7 +33,7 @@ nav .nav-link {
 
 .navbar-nav-custom {
 	margin-right: 2rem;
-  }
+}
 
 #namePage{
     background-color: var(--bc_black);
@@ -200,6 +200,29 @@ th{color: #333;}
 	cursor: not-allowed;
 }
 
-@media screen {
+.navbar-toggler {
+	display: none;
+  }
+
+.navbar-toggler {
+	display: block;
+}
+
+@media screen and (max-width: 1000px){
+	.navbar-nav-custom {
+		display: none;
+	}
+	.navbar-toggler {
+		display: block;
+		margin-right: 30px;
+	}
+
+	nav .nav-link {
+		text-decoration: none;
+		color: --bc_black;
+		font-size: 2.5em;
+		margin-right: 15px;
+		text-align: right;
+	}
 	
 }
