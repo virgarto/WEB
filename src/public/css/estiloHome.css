@@ -91,9 +91,23 @@
         color: darkgrey;
     }
 
-    @media screen and (max-width: 400px){
+    @media screen and (max-width: 1000px){
         .login-box{
-            width: 400px;
+            width: 700px;
+            height: 1000px;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            text-align: center;
+            border-radius: 15px;
+            border: 2px solid #969da5;
+            box-shadow: 5px 5px #969da5;
+        }
+
+        .signUpBox{
+            width: 700px;
             height: fit-content;
             top: 50%;
             left: 50%;
@@ -105,4 +119,84 @@
             border: 2px solid #969da5;
             box-shadow: 5px 5px #969da5;
         }
+
+        .login-box .logoLogin, .signUpBox .logoSUp{
+            width: 200px;
+            border-radius: 50%;
+            margin-top: 15px;
+            
+        }
+
+        .login-box h1, .signUpBox h1{
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 50px;
+            font-family: 'Kay Pho Du', serif;
+            font-weight: bold;
+            margin-bottom: 80px;
+        }
+
+        .login-box label, .signUpBox label{
+            margin: 0;
+            padding: 0;
+            font-size: 35px;
+            font-family: 'Kay Pho Du', serif;
+            font-weight: 100;
+        }
+        
+        .login-box input[type="text"], .login-box input[type="password"],
+        .signUpBox input[type="text"], .signUpBox input[type="email"], .signUpBox input[type="password"]{
+            width: 75%;
+            border: none;
+            border-bottom: 1px solid #969da5;
+            outline: none;
+            height: 50px;
+            margin-bottom: 100px;
+            margin-top: 20px;
+            font-size: 30px;
+        }
+
+        .login-box input[type="submit"], .signUpBox input[type="submit"]{
+            border: none;
+            outline: none;
+            width: 150px;
+            height: 80px;
+            background: #535c85;
+            border-radius: 5px;
+            color: #eeeeee;
+            font-size: 30px;
+            margin-top: -20px;
+        }
+
+        .login-box a, .signUpBox a{
+            text-decoration: none;
+            font-size: 20px;
+            line-height: 20px;
+            font-family: 'Kay Pho Du', serif;
+            color: black;
+            margin-bottom: 15px;
+        }
+
+        .signUpBox select{
+            height: 50px;
+            width: 200px;
+            font-size: 30px;
+            margin-bottom: 50px;
+        }
+
+        .signUpBox input[type="date"]{
+            height: 50px;
+            width: 250px;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .signUpBox input[type="radio"]{
+            height: 30px;
+            width: 30px;
+            font-size: 30px;
+            margin-bottom: 50px;
+        }
+        
     }
