@@ -24,6 +24,15 @@ main{
     padding-bottom: 25px;
 }
 
+.btn.btn-custom{
+	border: 1px solid #2A3255;
+}
+
+.btn.btn-custom:hover{
+	background-color: #2A3255;
+	color: #eeeeee;
+}
+
 nav .nav-link {
     text-decoration: none;
     color: --bc_black;
