@@ -94,6 +94,7 @@ footer{
 	border-radius: 3px;
 	margin: 0 auto 5px auto;
 }
+
 /*progressbar connectors*/
 #progressbar li:after {
 	content: '';
@@ -197,4 +198,8 @@ th{color: #333;}
 	pointer-events: none;
 	opacity: 0.5;
 	cursor: not-allowed;
+}
+
+@media screen {
+	
 }
