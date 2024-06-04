@@ -68,7 +68,7 @@
         outline: none;
         width: 80px;
         height: 40px;
-        background: #535c85;
+        background: #a3b4ff;
         border-radius: 5px;
         color: #000000;
         font-size: 13px;
@@ -76,6 +76,7 @@
     
     .login-box input[type="submit"]:hover, .signUpBox input[type="submit"]:hover{
         color: #eeeeee;
+        background-color: #293154;
     }
     
     .login-box a, .signUpBox a{
@@ -162,7 +163,7 @@
             outline: none;
             width: 150px;
             height: 80px;
-            background: #535c85;
+            background: #a3b4ff;
             border-radius: 5px;
             color: #eeeeee;
             font-size: 30px;

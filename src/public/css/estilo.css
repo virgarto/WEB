@@ -33,6 +33,27 @@ main{
 	color: #eeeeee;
 }
 
+.btn.btn-outline-success{
+	border: 1px solid #2A3255;
+	color: #333;
+}
+.btn.btn-outline-success:hover{
+	background-color: #2A3255;
+	color: #ebebeb;
+	border: 1px solid #2A3255;
+}
+
+.btn.btn-success{
+	background-color: #a3b4ff;
+	border: 1px solid #a3b4ff;
+	color: #222222;
+}
+.btn.btn-success:hover{
+	background-color: #2A3255;
+	border: 1px solid #2A3255;
+	color: #ebebeb;
+}
+
 nav .nav-link {
     text-decoration: none;
     color: --bc_black;
@@ -121,18 +142,32 @@ footer{
 }
 
 #progressbar li.active:before,  #progressbar li.active:after{
-	background: #535b85;
+	background: #293154;
 	color: rgb(230, 227, 227);
 }
 
 #entreneForm .previous{
 	background: white;
-	color: #535b85;
+	color: #293154;
 }
 
 #entreneform .action-button {
 	width: 100px;
-	background: #535b85;
+	background: #8e93ab;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 10px;
+	margin: 10px 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#entreneform .action-button:hover {
+	width: 100px;
+	background: #2a3557;
 	font-weight: bold;
 	color: white;
 	border: 0 none;
