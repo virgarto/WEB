@@ -227,10 +227,13 @@ footer{
 	border: #727171 solid 1px;
 } 
 
-#formInforme, #formEditPat{
+#formInforme, #formEditPat, #formSJu, #formCoJ, #formFoSq, #formSSp, #formCSp, #formDSSq,
+#formFoSq, #formASq, #formCl, #formTr, #formChStSq, #formPtSq, #formDanza_ob{
 	display:inline-block;
 	justify-content: center;
 }
+
+
 
 th{color: #333;}
 
