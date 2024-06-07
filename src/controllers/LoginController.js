@@ -37,7 +37,6 @@ function auth(req, res){
                             req.session.loggedin = true;
                             req.session.email = element.email;
                             req.session.name = element.username;
-                            req.session.estado = element.estado;
                             req.session.categoria = element.categoria_act;
                             req.session.club = element.club;
 
@@ -98,7 +97,6 @@ function anyadirUser(req, res) {
                             req.session.loggedin = true;
                             req.session.name = data.username;
                             req.session.fecha_nacimiento = data.fecha_nacimiento;
-                            req.session.estado = data.estado;
                             req.session.club = data.club;
 
                             //Pasamos el rol a la sesión tan solo si el usuario cuenta con el rol de Entrenador
@@ -114,7 +112,8 @@ function anyadirUser(req, res) {
                             if(anyoNacimiento > 2003 && data.rol ==  "Patinador/a"){
                                 conn.query('SELECT cat_2023, cat_2024, cat_2025 FROM categoria WHERE anyo = ?', [anyoNacimiento], (err, catData) =>{
                                 
-                                    conn.query('UPDATE users SET categoria_ant = ?, categoria_act = ?, categoria_post = ? WHERE email = ?', [catData[0].cat_2023, catData[0].cat_2024, catData[0].cat_2025, data.email]);
+                                    conn.query('UPDATE users SET categoria_ant = ?, categoria_act = ?, categoria_post = ? WHERE email = ?', 
+                                        [catData[0].cat_2023, catData[0].cat_2024, catData[0].cat_2025, data.email]);
                                 
                                     data.categoria = catData[0].cat_2024;
                                     req.session.categoria = data.categoria;
