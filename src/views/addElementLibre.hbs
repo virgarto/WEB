@@ -748,26 +748,41 @@
 
         <script>
             // TENEMOS EN CUENTA LA CANTIDAD DE SALTOS Y PIRUETAS MÁX QUE SE PUEDEN MARCAR
-            const form = document.getElementById('formCoJ');
-            const checkboxes = form.querySelectorAll('input[type="checkbox"]');
-            const maxCheckboxes = 4;
-            if( {{categoria}} == 'Infantil'){
-                maxCheckboxes = 2;
+            const formCoJ = document.getElementById('formCoJ');
+            const formCSp = document.getElementById('formCSp');
+
+            if(formCSp){
+                comprobarCheckboxes(document.getElementById('inverted-dif'));
+            }
+            else if(formCoJ){
+                comprobarCheckboxes(formCoJ);
             }
 
-            form.addEventListener('change', (event) => {
-            const checkedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
+            function comprobarCheckboxes(form){
+                
+                const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+                const maxCheckboxes = 4;
+                if( '{{categoria}}' == 'Infantil'){
+                    maxCheckboxes = 2;
+                }
 
-            if (checkedCheckboxes.length >= maxCheckboxes) {
-                checkedCheckboxes.slice(maxCheckboxes).forEach((checkbox) => {
-                checkbox.disabled = true;
-                });
-            } else {
-                checkboxes.forEach((checkbox) => {
-                checkbox.disabled = false;
+                console.log(checkboxes);
+
+                form.addEventListener('change', (event) => {
+                const checked = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
+                console.log(checked);
+                if (checked.length >= maxCheckboxes) {
+                    checked.slice(maxCheckboxes).forEach((checkbox) => {
+                    checkbox.disabled = true;
+                    });
+                } else {
+                    checkboxes.forEach((checkbox) => {
+                    checkbox.disabled = false;
+                    });
+                }
                 });
             }
-            });
+            
         </script>
     </body>
 </html>
