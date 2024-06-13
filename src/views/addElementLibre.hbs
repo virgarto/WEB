@@ -471,6 +471,8 @@
                         }
                     }
                     document.getElementById('upright-dif').appendChild(radioButtons);
+
+                    comprobarCheckboxes(document.getElementById('formCSp'));
                 }
             });  
             
@@ -513,6 +515,8 @@
                         }
                     }
                     document.getElementById('sit-dif').appendChild(radioButtons);
+
+                    comprobarCheckboxes(document.getElementById('formCSp'));
                 }
             });  
             document.getElementById('sit').disabled = true;
@@ -580,6 +584,7 @@
                     }
 
                         targetDiv.appendChild(radioButtons);
+                        comprobarCheckboxes(document.getElementById('formCSp'));
                     }
                 });
             }); 
@@ -646,6 +651,7 @@
                             }
                         }
                         targetDiv.appendChild(radioButtons);
+                        comprobarCheckboxes(document.getElementById('formCSp'));
                     }
                 });
             }); 
@@ -686,6 +692,7 @@
                     }
                 }
                 document.getElementById('broken-dif').appendChild(radioButtons);
+                comprobarCheckboxes(document.getElementById('formCSp'));
             }); 
 
             // INVERTED
@@ -724,6 +731,7 @@
                     }
                 }
                 document.getElementById('inverted-dif').appendChild(radioButtons);
+                comprobarCheckboxes(document.getElementById('formCSp'));
             }); 
 
             // CODIGO PARA OCULTAR LOS INPUTS 
@@ -744,9 +752,7 @@
             ocultarDiv('heel2', 'heel2-dif');
             ocultarDiv('broken', 'broken-dif');
             ocultarDiv('inverted', 'inverted-dif');
-        </script>
-
-        <script>
+        
             // TENEMOS EN CUENTA LA CANTIDAD DE SALTOS Y PIRUETAS MÁX QUE SE PUEDEN MARCAR
             const formCoJ = document.getElementById('formCoJ');
             const formCSp = document.getElementById('formCSp');
