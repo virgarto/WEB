@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Patinem</title>
         <link href="../css/estilo.css" type="text/css" rel="stylesheet">
+        <link rel="shortcut icon" href="imagenes/icono.jpg">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
@@ -63,6 +64,30 @@
                         <li>Loop derecho e izquierdo</li>
                         <li>Tres derecho e izquierdo</li>
                     </ul>
+
+                    <a role="button" class="btn btn-outline-success" id="LeyendaBtn">Ver leyenda de Valoraciones</a>
+                    <div id="LeyendaTabla" class="hidden mb-4 mt-3">
+                        <table class="table table-bordered border-dark table-responsive-sm" style="width: fit-content;  margin: auto;">
+                            <thead>
+                                <th class="table-info border-dark" colspan="2">Guía de Valoraciones</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>1: </b> Primera vez que la pruebo (0 a 3 de 10)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>2: </b> Me sale pocas veces (4 a 5 de 10)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>3: </b> Me sale bastantes veces (6 a 7 de 10)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>4: </b> Me sale casi siempre (8 a 10 de 10)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                     <fieldset class="form-step">
                         <h4 class="fs-title">TRAVELLING</h4>
                             <label for="travellingB">Travelling B</label>
@@ -296,6 +321,18 @@
                 navbarMenu.classList.toggle('show');
             });
             }
+        </script>
+        <script>
+            document.getElementById('LeyendaBtn').addEventListener('click', function() {
+                var LeyendaTabla = document.getElementById('LeyendaTabla');
+                if (LeyendaTabla.classList.contains('hidden')) {
+                    LeyendaTabla.classList.remove('hidden');
+                    this.textContent = 'Ocultar leyenda de Valoraciones';
+                } else {
+                    LeyendaTabla.classList.add('hidden');
+                    this.textContent = 'Ver leyenda de Valoraciones';
+                }
+            });
         </script>
         <script>
             var current_fs, next_fs, previous_fs; //fieldsets
