@@ -147,56 +147,58 @@
                         <p>Selecciona la combinación de saltos a realizar:</p>
                         
                         <div class="form-check text-start">
-                            <input type="checkbox" name="salto" value="waltz_jump"/>
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('waltz_jump')">+</a>
                             <label for="waltz_jump">Waltz_Jump (Base Rating: 0.4)</label> <br>
 
-                            <input type="checkbox" name="salto" value="salchow" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('salchow')">+</a>
                             <label for="salchow">Salchow (Base Rating: 0.6)</label> <br>
-
-                            <input type="checkbox" name="salto" value="toeloop" />
+                            
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('toeloop')">+</a>
                             <label for="toeloop">Toeloop (Base Rating: 0.6)</label> <br>
 
-                            <input type="checkbox" name="salto" value="flip" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('flip')">+</a>
                             <label for="flip">Flip (Base Rating: 0.8)</label> <br>
 
-                            <input type="checkbox" name="salto" value="lutz" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('lutz')">+</a>
                             <label for="lutz">Lutz (Base Rating: 0.9)</label> <br>
 
-                            <input type="checkbox" name="salto" value="loop_simple" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('loop_simple')">+</a>
                             <label for="loop_simple">Loop (Base Rating: 0.9)</label> <br>
 
-                            <input type="checkbox" name="salto" value="thoren" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('thoren')">+</a>
                             <label for="thoren">Thoren (Base Rating: 0.9)</label> <br>
 
-                            <input type="checkbox" name="salto" value="axel" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('axel')">+</a>
                             <label for="axel">Axel (Base Rating: 1.3)</label> <br>
 
-                            <input type="checkbox" name="salto" value="salchow_2" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('salchow_2')">+</a>
                             <label for="salchow_2">2 Salchow (Base Rating: 1.7)</label> <br>
 
-                            <input type="checkbox" name="salto" value="toeloop_2" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('toeloop_2')">+</a>
                             <label for="toeloop_2">2 Toeloop (Base Rating: 1.7)</label> <br>
 
-                            <input type="checkbox" name="salto" value="flip_2" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('flip_2')">+</a>
                             <label for="flip_2">2 Flip (Base Rating: 2)</label> <br>
 
-                            <input type="checkbox" name="salto" value="lutz_2" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('lutz_2')">+</a>
                             <label for="lutz_2">2 Lutz (Base Rating: 2.2)</label> <br>
 
-                            <input type="checkbox" name="salto" value="loop_2" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('loop_2')">+</a>
                             <label for="loop_2">2 Loop (Base Rating: 2.2)</label> <br>
 
-                            <input type="checkbox" name="salto" value="thoren_2" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('thoren_2')">+</a>
                             <label for="thoren_2">2 Thoren (Base Rating: 2.2)</label> <br>
 
-                            <input type="checkbox" name="salto" value="axel_2" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('axel_2')">+</a>
                             <label for="axel_2">2 Axel (Base Rating: 6.1)</label> <br>
 
-                            <input type="checkbox" name="salto" value="salchow_3" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('salchow_3')">+</a>
                             <label for="salchow_3">3 Salchow (Base Rating: 7)</label> <br>
 
-                            <input type="checkbox" name="salto" value="toeloop_3" />
+                            <a role="button" class="btn btn-outline-success" onclick="addSalto('toeloop_3')">+</a>
                             <label for="toeloop_3">3 Toeloop (Base Rating: 7)</label> <br>
+
+                            <div id="comboSaltos"></div>
                         </div>
                         <button type="submit" class="btn btn-success mt-2">Agregar Salto</button>
                     </form>
@@ -429,6 +431,32 @@
             });
             }
         </script>
+
+        <script>
+            const comb_saltos = [];
+            function addSalto(salto){
+                if('{{typeDisc}}' == 'Corto'){
+                    if(comb_saltos.length < 4)
+                    {
+                        comb_saltos.push(salto);
+                    }
+                }
+                else if('{{typeDisc}}' == 'Largo'){
+                    if(comb_saltos.length < 5)
+                    {
+                        comb_saltos.push(salto);
+                    }
+                }
+                
+                const div = document.getElementById('comboSaltos');
+                p = document.createElement('p');
+                
+                p.innerHTML = comb_saltos;
+
+                div.appendChild(p);
+            }
+        </script>
+
         <script> 
             const code = document.getElementById('code').value;
             console.log(code);
