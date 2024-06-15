@@ -298,7 +298,9 @@ function addElementLibre(req, res){
         break;
 
         case 'CoJ':
-            const selectedCombSalto = req.body.salto;
+            const combSalto = req.body.salto;
+            const selectedCombSalto = combSalto.split(",");
+            console.log(selectedCombSalto);
 
             // Comprobamos que no haya un combinado igual
             let isDuplicate = checkDuplicate(selectedCombSalto);
@@ -318,6 +320,7 @@ function addElementLibre(req, res){
                     // Recorremos el array con los saltos seleccionados
                     for(i = 0; i < selectedCombSalto.length; i++){
                         var salto = selectedCombSalto[i];
+                        console.log(salto);
 
                         // Obtenemos BASE para cada salto
                         conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [salto], (error, base) => {

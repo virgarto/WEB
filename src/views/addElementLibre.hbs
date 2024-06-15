@@ -198,8 +198,12 @@
                             <a role="button" class="btn btn-outline-success" onclick="addSalto('toeloop_3')">+</a>
                             <label for="toeloop_3">3 Toeloop (Base Rating: 7)</label> <br>
 
-                            <div id="comboSaltos"></div>
+                            <div class="text-center mt-3">
+                                <label> Combo final: </label>
+                                <input name="salto" id="inputSaltos" class="form-control border-info-subtle border-2 border-top"></input>
+                            </div>
                         </div>
+                        <a role="button" class="btn btn-outline-danger mt-2" onclick="clearSaltos()">Borrar combinación</a>
                         <button type="submit" class="btn btn-success mt-2">Agregar Salto</button>
                     </form>
                 {{/if}}
@@ -433,7 +437,7 @@
         </script>
 
         <script>
-            const comb_saltos = [];
+            let comb_saltos = [];
             function addSalto(salto){
                 if('{{typeDisc}}' == 'Corto'){
                     if(comb_saltos.length < 4)
@@ -448,12 +452,16 @@
                     }
                 }
                 
-                const div = document.getElementById('comboSaltos');
-                p = document.createElement('p');
-                
-                p.innerHTML = comb_saltos;
+                console.log(comb_saltos);
+                const input = document.getElementById('inputSaltos');
+                input.value = comb_saltos;
+            }
 
-                div.appendChild(p);
+            function clearSaltos(){
+                comb_saltos = [];
+                console.log(comb_saltos);
+                const input = document.getElementById('inputSaltos');
+                input.value = comb_saltos;
             }
         </script>
 
