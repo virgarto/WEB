@@ -26,6 +26,12 @@ function editPatinador (req, res){
         conn.query('SELECT * FROM users WHERE email = ?', [req.session.email] , (err, userData) => {
             
             if(userData.length > 0){
+                console.log(userData);
+
+                if(data.username && data.username.length > 0){
+                    conn.query('UPDATE users SET username = ?, password = ? WHERE email = ?', [data.username, data.password,req.session.email]);
+                    console.log(data.username);
+                }
                 // Comprobamos que las dos contraseñas se han introducido
                 if(data.password.length > 0 && data.password2.length > 0){
                     console.log(data.password);
@@ -37,14 +43,9 @@ function editPatinador (req, res){
                             data.password = hash; 
                             
                             // Si se ha añadido un nuevo nombre se actualiza username y password
-                            if(data.username && data.username.length > 0){
-                                conn.query('UPDATE users SET username = ?, password = ? WHERE email = ?', [data.username, data.password,req.session.email]);
-                                console.log(data.username);
-                            }
-                            else{
+                            
                                 // Actualiza password
                                 conn.query('UPDATE users SET password = ? WHERE email = ?', [data.password, req.session.email]);
-                            }
                         });
 
                         // Actualizamos las variables de sesion

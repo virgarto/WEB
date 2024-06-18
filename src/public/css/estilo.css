@@ -237,7 +237,7 @@ footer{
 
 th{color: #333;}
 
-.hidden {
+.hidden, .form-check.text-start.hidden {
 	display: none;
 }
 

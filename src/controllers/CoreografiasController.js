@@ -504,7 +504,9 @@ function addElementLibre(req, res){
         break;
 
         case 'CSp':
-            const selectedCombSpin = req.body.spin;
+            const CombSpin = req.body.spin;
+            const selectedCombSpin = CombSpin.split(",");
+            
             req.getConnection((error, conn) =>{
                 // Variables que guardan la puntuación total de los saltos y el array con todos los BASE
                 let total_base = 0;
