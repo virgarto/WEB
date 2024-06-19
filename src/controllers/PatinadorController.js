@@ -242,10 +242,16 @@ function createEntreneDanza(req, res){
                 // a la tabla temporal
 
                 // Añadimos en la tabla principal los registros de la tabla temporal para que estén todos en el mismo registro
-                conn.query('INSERT INTO entrenamiento_danza (id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq, id_tres_der, id_tres_izq) SELECT MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq), MAX(id_tres_der), MAX(id_tres_izq) FROM entrenamiento_danza_temp');
+                //conn.query('INSERT INTO entrenamiento_danza (id_patinador, fecha, id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq, id_tres_der, id_tres_izq) SELECT ? MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq), MAX(id_tres_der), MAX(id_tres_izq) FROM entrenamiento_danza_temp');
+                
+                conn.query('INSERT INTO entrenamiento_danza (id_patinador, fecha, id_travelling, id_cluster, id_pattern_sq, id_art_foot_sq, id_dance_step_sq, id_footwork_sq, id_choreo_step_sq, id_bracket_der, id_bracket_izq, id_counter_der, id_counter_izq, id_rocker_der, id_rocker_izq, id_loop_der, id_loop_izq, id_tres_der, id_tres_izq) SELECT ? AS id_pat, CURDATE() AS fecha, MAX(id_travelling), MAX(id_cluster), MAX(id_pattern_sq), MAX(id_art_foot_sq), MAX(id_dance_step_sq), MAX(id_footwork_sq), MAX(id_choreo_step_sq), MAX(id_bracket_der), MAX(id_bracket_izq), MAX(id_counter_der), MAX(id_counter_izq), MAX(id_rocker_der), MAX(id_rocker_izq), MAX(id_loop_der), MAX(id_loop_izq), MAX(id_tres_der), MAX(id_tres_izq) FROM entrenamiento_danza_temp', [id_pat]);
+                
+                // Borramos la información guardada en la tabla temporal
+                conn.query('DELETE FROM entrenamiento_danza_temp WHERE id > 0');
 
+    
                 // Finalizamos la creación del entrenamiento añadiendo el id del usuario
-                conn.query('UPDATE entrenamiento_danza SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_danza)', [id_pat]); 
+                //conn.query('UPDATE entrenamiento_danza SET id_patinador = ?, fecha = CURDATE() WHERE id = (SELECT MAX(id) FROM entrenamiento_danza)', [id_pat]); 
         
                 // Borramos la información guardada en la tabla temporal
                 conn.query('DELETE FROM entrenamiento_danza_temp');

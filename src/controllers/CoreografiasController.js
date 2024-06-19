@@ -637,8 +637,7 @@ function addElementDanza(req, res){
     else{
         req.getConnection((err,conn)=>{
             conn.query('SELECT rating_base as value FROM danza_bases WHERE elemento = ?', [selectedElement], (error, base) => {
-                console.log('selectedElement: ' + selectedElement)
-                console.log('base: ' + base[0].value);
+                
                 if (numRows < 7) {
                     rowsDanza.push({
                         code: codigo,
@@ -650,18 +649,14 @@ function addElementDanza(req, res){
                 else{
                     res.render('discoDanzaFree', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                 }
-                
-                console.log(rowsDanza);
     
                 sumaBASE += base[0].value;
-                console.log('suma de BASE: '+ sumaBASE);
     
                 // Cargamos el formulario base y pasamos los valores 
                 if(typeDisc == 'Free Dance'){
                     res.render('discoDanzaFree', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc});
                 }
                 else{
-                    console.log('Renderiza el disco de Modalidad DANZA')
                     res.render('discoDanzaStyle', {rol: req.session.rol, rowsDanza, sumaBASE, name, categoria, typeDisc});
                 }
                 

@@ -207,7 +207,7 @@
                 {{/if}}
 
                 {{#if (eq codigo 'FoSq')}}
-                    <form method="POST" id="forFoSq" action="discoLibre">
+                    <form method="POST" id="formFoSq" action="discoLibre">
                         <label for="typeDisc">Disco</label>
                         <input type="text" name="typeDisc" class="form-control text-center w-100" value="{{typeDisc}}" readonly><br>
                         <div class="d-flex">
@@ -511,9 +511,7 @@
                     container.appendChild(label);
 
                     container.appendChild(document.createElement('br'));
-                }
-                // Agregar condición para mostrar u ocultar el div
-                    
+                }                    
             }
 
             // FUNCION PARA ESCONDER LOS INPUTS

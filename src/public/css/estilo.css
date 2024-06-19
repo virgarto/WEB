@@ -227,8 +227,7 @@ footer{
 	border: #727171 solid 1px;
 } 
 
-#formInforme, #formEditPat, #formSJu, #formCoJ, #formFoSq, #formSSp, #formCSp, #formDSSq,
-#formFoSq, #formASq, #formCl, #formTr, #formChStSq, #formPtSq, #formDanza_ob{
+#formInforme, #formEditPat, #formSJu, #formCoJ, #formFoSq, #formSSp, #formCSp, #formDSSq, #formASq, #formCl, #formTr, #formChStSq, #formPtSq, #formDanza_ob{
 	display:inline-block;
 	justify-content: center;
 }
