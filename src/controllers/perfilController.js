@@ -26,32 +26,25 @@ function editPatinador (req, res){
         conn.query('SELECT * FROM users WHERE email = ?', [req.session.email] , (err, userData) => {
             
             if(userData.length > 0){
-                console.log(userData);
-
-                if(data.username && data.username.length > 0){
-                    conn.query('UPDATE users SET username = ?, password = ? WHERE email = ?', [data.username, data.password,req.session.email]);
-                    console.log(data.username);
-                }
                 // Comprobamos que las dos contraseñas se han introducido
                 if(data.password.length > 0 && data.password2.length > 0){
-                    console.log(data.password);
-                    console.log(data.password2);
 
                     if(data.password === data.password2){
-                        console.log("Contraseñas iguales")
                         bcrypt.hash(data.password, 12).then(hash => {
-                            data.password = hash; 
-                            
-                            // Si se ha añadido un nuevo nombre se actualiza username y password
-                            
-                                // Actualiza password
-                                conn.query('UPDATE users SET password = ? WHERE email = ?', [data.password, req.session.email]);
+                            data.password2 = hash; 
+                            // Actualiza password
+                            conn.query('UPDATE users SET password = ? WHERE email = ?', [data.password, req.session.email]);
+
+                            if(data.username && data.username.length > 0 && data.username != userData[0].username){
+                                conn.query('UPDATE users SET username = ?, password = ? WHERE email = ?', [data.username, data.password2, req.session.email]);
+                                console.log(data.username);
+                                req.session.name = data.username;
+                            }
                         });
 
                         // Actualizamos las variables de sesion
-                        req.session.name = data.username;
-                        req.session.password = data.password;
-                        res.redirect('/');
+                        req.session.password = data.password2;
+                        res.render('editUserForm', {msg: 'Cambios realizados con éxito!', name: req.session.name, password: req.session.password2});
                     }
                     else{
                         res.render('editUserForm', {error: 'Error:Las contraseñas no coinciden.'});
@@ -59,10 +52,12 @@ function editPatinador (req, res){
                 }
                 else if(data.username && data.username.length > 0){
                     // Actualiza username
-                        conn.query('UPDATE users SET username = ? WHERE email = ?', [data.username, req.session.email]);
+                    conn.query('UPDATE users SET username = ? WHERE email = ?', [data.username, req.session.email]);
+                    req.session.name = data.username;
+                    res.render('editUserForm', {msg: 'Cambios realizados con éxito!', name: req.session.name});
                 }
             }
-            else{
+            if(data.username == userData[0].username && data.password2 == ''){
                 res.render('editUserForm', {error: 'Error: No has hecho ningún cambio.'});
             }
         })

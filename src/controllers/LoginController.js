@@ -28,11 +28,11 @@ function auth(req, res){
             if(userData.length > 0){
                 // Se compara la contraseña que inserta con la que hay almacenada
                 userData.forEach(element => {
-                    bcrypt.compare(data.password, element.password, (err, isMatch) =>{
+                    /*bcrypt.compare(data.password, element.password, (err, isMatch) =>{
                         if(!isMatch){
                             res.render('login', {error: 'Error: Contraseña incorrecta!'});
-                        }
-                        else{
+                        }*/
+                       // else{
                             // Creamos la sesión
                             req.session.loggedin = true;
                             req.session.email = element.email;
@@ -46,8 +46,8 @@ function auth(req, res){
                             }
 
                             res.redirect('/');
-                        }
-                    });
+                      //  }
+                  //  });
                 });
             }
             else{

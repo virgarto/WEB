@@ -55,6 +55,10 @@
                     {{#if error}}
                         <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: brown">*{{error}}*</p>
                     {{/if}}
+                    {{#if msg}}
+                        <p style="font-family: 'Kay Pho Du'; font-weigth: bold; color: rgb(42, 165, 63)">*{{msg}}*</p>
+                    {{/if}}
+
                     <label for="username" class="mt-2">Username</label><br>
                     <input type="text" name="username" class="form-control text-center mt-1" value="{{name}}"><br>
 
