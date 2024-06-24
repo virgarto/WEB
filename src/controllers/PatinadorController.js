@@ -78,7 +78,6 @@ function getInforme(req, res){
                 console.log("Error al obtener el Id del usuario: " + err);
             }
             else{
-                console.log(id[0].pat_ID);
                 const id_pat = id[0].pat_ID;
 
                 // Diferenciamos la modalidad seleccionada para obtener los entrenamientos realizados entre las fechas introducidas
@@ -89,7 +88,6 @@ function getInforme(req, res){
                         }
                         else{
                             if(entrenes_danza.length > 0){
-                                console.log(entrenes_danza);
                                 let avgData = {};
 
                                 // Creamos la consula dinámica, por cada iteración se añade al array placeholder un nuevo '?' y values el id correspondiente
@@ -110,7 +108,6 @@ function getInforme(req, res){
                                     
                                         //guardamos la información obtenida
                                         avgData[tablasName] = avg_data[0];
-                                        console.log(avgData[tablasName]);
             
                                         //Reseteo placeholders y values
                                         placeholders.length = 0;
@@ -123,7 +120,6 @@ function getInforme(req, res){
                                     });
                                 }
                             }else{
-                                console.log('No se encontraron entrenamientos de modalidad danza registrados para este usuario.');
                                 res.render('entrenamientos', {error: 'No se encontraron entrenamientos de modalidad danza registrados para este usuario.'});
                             }
                         }
@@ -134,7 +130,6 @@ function getInforme(req, res){
                             console.log('Error al obtener listado de entrenamientos Libre: ' + err);
                         }else{
                             if(entrenes_libre.length  > 0){
-                                console.log(entrenes_libre);
 
                                 let avgData = {};
             
@@ -156,7 +151,6 @@ function getInforme(req, res){
                                             return;
                                         }
                                     
-                                        console.log(tablasName, avg_data);
                                         avgData[tablasName] = avg_data[0];
                                         
                                         //Reset placeholders y values
@@ -171,7 +165,6 @@ function getInforme(req, res){
                                 }
                             }
                             else{
-                                console.log('No se encontraron entrenamientos de modalidad libre registrados para este usuario.');
                                 res.render('entrenamientos', {error: 'No se encontraron entrenamientos de modalidad libre registrados para este usuario.'});
                             }
                         }
@@ -217,7 +210,6 @@ function createEntreneDanza(req, res){
             }
             else{
                 const id_pat = id[0].pat_ID;
-                console.log("Id del patinador: " + id_pat);
 
                 // Creamos los registros de cada elemento integrativo del entrenamiento
                 conn.query('INSERT INTO travelling (travellingB, travelling1, travelling2, travelling3, travelling4) VALUES (?, ?, ?, ?, ?)', [travellingB, travelling1, travelling2, travelling3, travelling4]);
@@ -295,7 +287,6 @@ function createEntreneLibre(req, res){
             }
             else{
                 const id_pat = id[0].pat_ID;
-                console.log("Id del patinador: " + id_pat);
 
                 // Creamos los registros de cada elemento integrativo del entrenamiento
                 conn.query('INSERT INTO upright_izquierdo (upright, forward, layback, sideways, split, torso, biellman, biellman_heel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq, biellman_heel_izq]);

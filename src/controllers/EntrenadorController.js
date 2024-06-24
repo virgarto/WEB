@@ -65,13 +65,11 @@ function getInformeEntrenador(req,res) {
     };
 
     req.getConnection((err, conn) => {
-        console.log(patinador_email);
         // Obtenemos el id del patinador seleccionado
         conn.query('SELECT id AS pat_ID FROM users WHERE email = ?', [patinador_email], (error, id) => {
             if(err){
                 console.log("Error al obtener el Id del usuario" + error);
             }else{
-                console.log('Id del patinador: ' + id[0].pat_ID);
                 const id_pat = id[0].pat_ID;
 
                 // Diferenciamos la modalidad seleccionada para obtener los entrenamientos realizados entre las fechas introducidas
@@ -82,7 +80,6 @@ function getInformeEntrenador(req,res) {
                         }
                         else{
                             if(entrenes_danza.length > 0){
-                                console.log(entrenes_danza);
                                 let avgData = {};
                                 
                                 // Creamos la consula dinámica, por cada iteración se añade al array placeholder un nuevo '?' y values el id correspondiente
@@ -118,7 +115,6 @@ function getInformeEntrenador(req,res) {
                                 }
                             }else{
                                 // no hay entrenamientos entre las fechas
-                                console.log('No se encontraron entrenamientos de modalidad danza registrados para este usuario.');
                                 res.render('informeEntrenador', {error: 'No se encontraron entrenamientos de modalidad danza registrados para este usuario.'});
                             }
                         }
@@ -129,8 +125,6 @@ function getInformeEntrenador(req,res) {
                             console.log('Error al obtener listado de entrenamientos Libre: ' + err);
                         }else{
                             if(entrenes_libre.length  > 0){
-                                console.log(entrenes_libre);
-
                                 let avgData = {};
             
                                 // Recorremos la tabla correspondiente y para cada elemento en el array
@@ -167,7 +161,6 @@ function getInformeEntrenador(req,res) {
                                 }
                             }
                             else{
-                                console.log('No se encontraron entrenamientos de modalidad libre registrados para este usuario.');
                                 res.render('informeEntrenador', {error: 'No se encontraron entrenamientos de modalidad libre registrados para este usuario.'});
                             }
                         }

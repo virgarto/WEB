@@ -18,7 +18,6 @@ function goToDiscoLibreForm (req, res){
     if(req.session.rol == 'Entrenador'){
         req.getConnection((error, conn) =>{
             conn.query('SELECT username AS Nombre, categoria_act AS Categoria FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
-                console.log(listPat);
                 res.render('discoLibre', {listPat, rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc});
             });
         });
@@ -44,7 +43,6 @@ function goTodiscoDanzaFreeForm (req, res){
     if(req.session.rol == 'Entrenador'){
         req.getConnection((error, conn) =>{
             conn.query('SELECT username AS Nombre, categoria_act AS Categoria FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
-                console.log(listPat);
                 res.render('discoDanzaFree', {listPat, rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc});
             });
         });
@@ -77,7 +75,6 @@ function goTodiscoDanzaStyleForm (req, res){
     if(req.session.rol == 'Entrenador'){
         req.getConnection((error, conn) =>{
             conn.query('SELECT username AS Nombre, categoria_act AS Categoria FROM users WHERE rol = "Patinador/a" AND club = ?', [req.session.club], (err, listPat) => {
-                console.log(listPat);
                 res.render('discoDanzaStyle', {listPat, rol: req.session.rol, categoria: req.session.categoria, name:  req.session.name, typeDisc});
             });
         });
@@ -100,7 +97,6 @@ function goToaddElementLibre (req, res){
     const name = req.query.name;
     const categoria = req.query.categoria;
     const typeDisc = req.query.typeDisc;
-    console.log('user ' + name)
 
     // Comprobamos que se puedan añadir o no más elementos al form dependiendo del tipo
     if(typeDisc == 'Corto'){
@@ -129,8 +125,6 @@ function goToaddElementDanza (req, res){
     const name = req.query.name;
     const categoria = req.query.categoria;
     const typeDisc = req.query.typeDisc;
-
-    console.log('TypeDisc: ' + typeDisc)
     
     res.render('addElementDanza', {rol: req.session.rol, codigo, name, categoria, typeDisc});
 }
@@ -153,7 +147,6 @@ function resetRowsLibre(){
     rowsLibre = [];
     sumaBASE = 0;
     numRows = 0;
-    console.log("Array reseteado");
 }
 
 /*****************************************************/
@@ -163,7 +156,6 @@ function resetRowsDanza(){
     rowsDanza = [];
     sumaBASE = 0;
     numRows = 0;
-    console.log("Array reseteado");
 }
 
 
@@ -195,9 +187,6 @@ function checkDuplicate(selectedSalto){
     let isDuplicate = false;
 
     for (const row of rowsLibre) {
-        console.log('Row elemento: ' + row.elemento)
-        console.log('Selected Saltos: ' + selectedSalto)
-
         // Comparamos cada elemento del array elemento con el introducido
         if (selectedSalto.every(value => Array.from(row.elemento).includes(value))) {
             isDuplicate = true;
@@ -220,9 +209,6 @@ function addElementLibre(req, res){
     const categoria = req.body.categoria;
     
     const typeDisc = req.body.typeDisc;
-    
-    console.log(name);
-    console.log("categoria: " + categoria);
 
     switch(codigo){
         case 'SJu':
@@ -239,11 +225,9 @@ function addElementLibre(req, res){
                 req.getConnection((error, conn) =>{
                     // Obtenemos BASE del salto seleccionado
                     conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [selectedSalto], (error, base) => {
-                        console.log("Valoración: " + base[0].value);
-
+                        
                         if(typeDisc == 'Corto'){
                             if (numRows < 7) {
-                                console.log("numRows: " + numRows);
                                 rowsLibre.push({
                                     code: `SJu`,
                                     elemento: selectedSalto,
@@ -260,11 +244,9 @@ function addElementLibre(req, res){
                             if (numRows < 13) {
                                 // Si se es de estas categorias, un salto despues de la mitad del programa incrementa su valor 10%
                                 if(categoria == 'Cadete' || categoria == 'Juvenil' || categoria == 'Junior' || categoria == 'Senior'){
-                                    console.log('Categoria dentro');
+                                    
                                     if(numRows >= 6){
-                                        console.log('Fila dentro');
-                                        let base_salto = base[0].value + (base[0].value * 0.10); 
-                                        console.log('Nueva base: '+ base_salto);
+                                        let base_salto = base[0].value + (base[0].value * 0.10);
                                         rowsLibre.push({
                                             code: `SJu`,
                                             elemento: selectedSalto,
@@ -284,11 +266,8 @@ function addElementLibre(req, res){
                                 res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                             }
                         }
-                        
-                        console.log(rowsLibre);
 
                         sumaBASE += (base[0].value);
-                        console.log('suma de BASE: '+ sumaBASE);
 
                         // Cargamos el formulario base y pasamos los valores 
                         res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc});
@@ -300,7 +279,6 @@ function addElementLibre(req, res){
         case 'CoJ':
             const combSalto = req.body.salto;
             const selectedCombSalto = combSalto.split(",");
-            console.log(selectedCombSalto);
 
             // Comprobamos que no haya un combinado igual
             let isDuplicate = checkDuplicate(selectedCombSalto);
@@ -320,7 +298,6 @@ function addElementLibre(req, res){
                     // Recorremos el array con los saltos seleccionados
                     for(i = 0; i < selectedCombSalto.length; i++){
                         var salto = selectedCombSalto[i];
-                        console.log(salto);
 
                         // Obtenemos BASE para cada salto
                         conn.query('SELECT rating_base AS value FROM saltos_base WHERE salto_nombre = ?', [salto], (error, base) => {
@@ -399,11 +376,8 @@ function addElementLibre(req, res){
                                         res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                     }
                                 }
-                    
-                                console.log(rowsLibre);
                 
                                 sumaBASE += total_base;
-                                console.log('suma de BASE: '+ sumaBASE);
                 
                                 // Cargamos el formulario base y pasamos los valores 
                                 res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria , typeDisc});
@@ -447,10 +421,8 @@ function addElementLibre(req, res){
                         }
                     }
                     
-                    console.log(rowsLibre);
 
                     sumaBASE += (base[0].value);
-                    console.log('suma de BASE: '+ sumaBASE);
 
                     // Cargamos el formulario base y pasamos los valores 
                     res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc});
@@ -460,7 +432,6 @@ function addElementLibre(req, res){
 
         case 'SSp':
             const selectedSpin = req.body.spin;
-            console.log(selectedSpin);
             
             req.getConnection((err,conn)=>{
                 conn.query('SELECT rating_base as value FROM spin_base WHERE spin = ?', [selectedSpin], (error, base) => {
@@ -491,10 +462,8 @@ function addElementLibre(req, res){
                         }
                     }
 
-                    console.log(rowsLibre);
 
                     sumaBASE += (base[0].value);
-                    console.log('suma de BASE: '+ sumaBASE);
 
                     // Cargamos el formulario base y pasamos los valores 
                     res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc});
@@ -521,7 +490,6 @@ function addElementLibre(req, res){
                         // Guardamos el valor en el array y lo sumamos al total
                         base_salto.push(base[0].value);
                         total_base += base[0].value;
-                        console.log("BASE: " + total_base)
 
                         // Comprobamos que estén todos y pasamos la información a la tabla de la coreografía
                         if(base_salto.length == selectedCombSpin.length){
@@ -551,12 +519,8 @@ function addElementLibre(req, res){
                                     res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc, msg: 'Ya no se pueden añadir más elementos al programa.'})
                                 }
                             }
-                            
-            
-                            console.log(rowsLibre);
-            
+                                  
                             sumaBASE += total_base;
-                            console.log('suma de BASE: '+ sumaBASE);
             
                             // Cargamos el formulario base y pasamos los valores 
                             res.render('discoLibre', {rol: req.session.rol, rowsLibre, sumaBASE, name, categoria, typeDisc});
@@ -585,8 +549,6 @@ function addElementDanza(req, res){
     const selectedElement = req.body.element;
     const typeDisc = req.body.typeDisc;
     
-    console.log("Code: " + codigo);
-
     if(codigo == 'PtSq'){
         if (numRows < 7) {
             rowsDanza.push({
@@ -604,7 +566,6 @@ function addElementDanza(req, res){
     }
     else if(codigo == 'PtSq_ob'){
         const keyPoints = [req.body.key_point1, req.body.key_point2, req.body.key_point3, req.body.key_point4]
-        console.log(keyPoints);
 
         if(categoria != 'Benjamin'){
             if(numRows < 2){

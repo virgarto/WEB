@@ -87,10 +87,6 @@
                 <script>
                     // Función parar crear las gráficas
                     function generateChart(index, key, avgDataItem) {
-                        console.log('avgDataItem: ' + avgDataItem);
-                        console.log('key: ' + key);
-                        console.log('index: ' + index);
-
                         // Convertimos la informacion de los entrenamientos a array
                         var dataArray = avgDataItem.split(',');
 
@@ -101,7 +97,6 @@
                         }
 
                         var ctx = document.getElementById('chart-' + index + '-' + key).getContext('2d');
-                        console.log('context: ' + ctx);
                         var chart = new Chart(ctx, {
                             type: 'line',
                             data: {
