@@ -17,7 +17,7 @@ function perfil (req, res){
 function entrenamientosPatinador (req, res){
     if(req.session.loggedin != true)
     {
-        res.render('login');
+        res.redirect('/')
     }
     else{ 
         res.render('entrenamientos', {email: req.session.email});     
@@ -31,7 +31,7 @@ function entrenamientosPatinador (req, res){
 function entrenamientosEntrenador (req, res){
     if(req.session.loggedin != true)
     {
-        res.render('login');
+        res.redirect('/')
     }
     else{ 
         // Nos conectamos a la BBDD para obtener el listado
@@ -54,7 +54,7 @@ function entrenamientosEntrenador (req, res){
 function coreografias (req, res){
     if(req.session.loggedin != true)
     {
-        res.render('login');
+        res.redirect('/')
     }
     else{ 
         res.render('coreografias', {rol: req.session.rol, categoria: req.session.categoria});

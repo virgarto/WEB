@@ -498,7 +498,7 @@ function addElementLibre(req, res){
                                     rowsLibre.push({
                                         code: `CSp`,
                                         elemento: selectedCombSpin,
-                                        base: total_base
+                                        base: total_base.toFixed(2)
                                     });
                                     numRows++;
                                 }
@@ -511,7 +511,7 @@ function addElementLibre(req, res){
                                     rowsLibre.push({
                                         code: `CSp`,
                                         elemento: selectedCombSpin,
-                                        base: total_base
+                                        base: total_base.toFixed(2)
                                     });
                                     numRows++;
                                 }

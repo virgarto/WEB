@@ -115,7 +115,7 @@ function getInformeEntrenador(req,res) {
                                 }
                             }else{
                                 // no hay entrenamientos entre las fechas
-                                res.render('informeEntrenador', {error: 'No se encontraron entrenamientos de modalidad danza registrados para este usuario.'});
+                                res.render('informeEntrenador', {error: 'No se encontraron entrenamientos de modalidad danza registrados para este usuario.', rol: req.session.rol, email:patinador_email});
                             }
                         }
                     });
@@ -161,7 +161,7 @@ function getInformeEntrenador(req,res) {
                                 }
                             }
                             else{
-                                res.render('informeEntrenador', {error: 'No se encontraron entrenamientos de modalidad libre registrados para este usuario.'});
+                                res.render('informeEntrenador', {error: 'No se encontraron entrenamientos de modalidad libre registrados para este usuario.', rol: req.session.rol, email:patinador_email});
                             }
                         }
                     });
