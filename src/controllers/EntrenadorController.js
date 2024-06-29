@@ -48,8 +48,8 @@ function getInformeEntrenador(req,res) {
     };
 
     const tablasLibre = {
-        'upright_izquierdo': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman', 'biellman_heel'],
-        'upright_derecho': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman', 'biellman_heel'],
+        'upright_izquierdo': ['upright', 'forward', 'layback', 'split', 'torso', 'biellman', 'biellman_heel'],
+        'upright_derecho': ['upright', 'forward', 'layback', 'split', 'torso', 'biellman', 'biellman_heel'],
         'sit_izquierdo': ['sit', 'forward', 'sideways', 'behind', 'twist'],
         'sit_derecho': ['sit', 'forward', 'sideways', 'behind', 'twist'],
         'camel_izquierdo': ['exterior', 'interior', 'layover', 'forward', 'sideways'],

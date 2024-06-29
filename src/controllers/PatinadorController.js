@@ -55,8 +55,8 @@ function getInforme(req, res){
     };
 
     const tablasLibre = {
-        'upright_izquierdo': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman', 'biellman_heel'],
-        'upright_derecho': ['upright', 'forward', 'layback', 'sideways', 'split', 'torso', 'biellman', 'biellman_heel'],
+        'upright_izquierdo': ['upright', 'forward', 'layback', 'split', 'torso', 'biellman', 'biellman_heel'],
+        'upright_derecho': ['upright', 'forward', 'layback', 'split', 'torso', 'biellman', 'biellman_heel'],
         'sit_izquierdo': ['sit', 'forward', 'sideways', 'behind', 'twist'],
         'sit_derecho': ['sit', 'forward', 'sideways', 'behind', 'twist'],
         'camel_izquierdo': ['exterior', 'interior', 'layover', 'forward', 'sideways'],
@@ -264,8 +264,8 @@ function createEntreneDanza(req, res){
 /*******************************************************/
 function createEntreneLibre(req, res){
     // Elementos de modalidad libre recogidos en el formulario
-    const {upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq, biellman_heel_izq} = req.body;
-    const {upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der,biellman_heel_der} = req.body;
+    const {upright_izq, forward_izq, layback_izq, split_izq, torso_izq, biellman_izq, biellman_heel_izq} = req.body;
+    const {upright_der, forward_der, layback_der, split_der, torso_der, biellman_der,biellman_heel_der} = req.body;
     const {sit_izq, sit_forward_izq, sit_sideways_izq, behind_izq, twist_izq} = req.body;
     const {sit_der, sit_forward_der, sit_sideways_der, behind_der, twist_der} = req.body;
     const {exterior_izq, interior_izq, layover_izq, camel_forward_izq, camel_sideways_izq} = req.body;
@@ -289,8 +289,8 @@ function createEntreneLibre(req, res){
                 const id_pat = id[0].pat_ID;
 
                 // Creamos los registros de cada elemento integrativo del entrenamiento
-                conn.query('INSERT INTO upright_izquierdo (upright, forward, layback, sideways, split, torso, biellman, biellman_heel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [upright_izq, forward_izq, layback_izq, sideways_izq, split_izq, torso_izq, biellman_izq, biellman_heel_izq]);
-                conn.query('INSERT INTO upright_derecho (upright, forward, layback, sideways, split, torso, biellman, biellman_heel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [upright_der, forward_der, layback_der, sideways_der, split_der, torso_der, biellman_der, biellman_heel_der]);
+                conn.query('INSERT INTO upright_izquierdo (upright, forward, layback, split, torso, biellman, biellman_heel) VALUES (?, ?, ?, ?, ?, ?, ?)', [upright_izq, forward_izq, layback_izq, split_izq, torso_izq, biellman_izq, biellman_heel_izq]);
+                conn.query('INSERT INTO upright_derecho (upright, forward, layback, split, torso, biellman, biellman_heel) VALUES (?, ?, ?, ?, ?, ?, ?)', [upright_der, forward_der, layback_der, split_der, torso_der, biellman_der, biellman_heel_der]);
                 conn.query('INSERT INTO sit_izquierdo (sit, forward, sideways, behind, twist) VALUES (?, ?, ?, ?, ?)', [sit_izq, sit_forward_izq, sit_sideways_izq, behind_izq, twist_izq]);
                 conn.query('INSERT INTO sit_derecho (sit, forward, sideways, behind, twist) VALUES (?, ?, ?, ?, ?)', [sit_der, sit_forward_der, sit_sideways_der, behind_der, twist_der]);
                 conn.query('INSERT INTO camel_izquierdo (exterior, interior, layover, forward, sideways) VALUES (?, ?, ?, ?, ?)', [exterior_izq, interior_izq, layover_izq, camel_forward_izq, camel_sideways_izq]);

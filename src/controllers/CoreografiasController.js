@@ -598,12 +598,12 @@ function addElementDanza(req, res){
     else{
         req.getConnection((err,conn)=>{
             conn.query('SELECT rating_base as value FROM danza_bases WHERE elemento = ?', [selectedElement], (error, base) => {
-                
+                let base_final = base[0].value
                 if (numRows < 7) {
                     rowsDanza.push({
                         code: codigo,
                         elemento: selectedElement,
-                        base: base[0].value
+                        base: base_final.toFixed(2)
                     });
                     numRows++;
                 }

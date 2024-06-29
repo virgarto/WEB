@@ -32,13 +32,16 @@ function editPatinador (req, res){
                     if(data.password === data.password2){
                         bcrypt.hash(data.password, 12).then(hash => {
                             data.password2 = hash; 
+
+                            console.log('hash: ' + data.password2);
                             // Actualiza password
-                            conn.query('UPDATE users SET password = ? WHERE email = ?', [data.password, req.session.email]);
+                            conn.query('UPDATE users SET password = ? WHERE email = ?', [data.password2, req.session.email]);
 
                             if(data.username && data.username.length > 0 && data.username != userData[0].username){
                                 conn.query('UPDATE users SET username = ?, password = ? WHERE email = ?', [data.username, data.password2, req.session.email]);
                                 req.session.name = data.username;
                             }
+
                         });
 
                         // Actualizamos las variables de sesion
