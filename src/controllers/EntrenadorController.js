@@ -48,14 +48,14 @@ function getInformeEntrenador(req,res) {
     };
 
     const tablasLibre = {
-        'upright_izquierdo': ['upright', 'forward', 'layback', 'split', 'torso', 'biellman', 'biellman_heel'],
-        'upright_derecho': ['upright', 'forward', 'layback', 'split', 'torso', 'biellman', 'biellman_heel'],
+        'upright_izquierdo': ['upright', 'forward', 'layback', 'split', 'torso', 'biellman'],
+        'upright_derecho': ['upright', 'forward', 'layback', 'split', 'torso', 'biellman'],
         'sit_izquierdo': ['sit', 'forward', 'sideways', 'behind', 'twist'],
         'sit_derecho': ['sit', 'forward', 'sideways', 'behind', 'twist'],
         'camel_izquierdo': ['exterior', 'interior', 'layover', 'forward', 'sideways'],
         'camel_derecho': ['exterior', 'interior', 'layover', 'forward', 'sideways'],
-        'heel_izquierdo': ['heel', 'forward', 'sideways', 'layover'],
-        'heel_derecho': ['heel', 'forward', 'sideways', 'layover'],
+        'heel_izquierdo': ['heel', 'forward', 'biellman_heel'],
+        'heel_derecho': ['heel', 'forward', 'biellman_heel'],
         'saltos_simples': ['waltz_jump', 'salchow', 'toeloop', 'flip', 'lutz', 'loop_simple', 'thoren', 'axel'],
         'saltos_dobles': ['salchow_2', 'toeloop_2', 'flip_2', 'lutz_2', 'loop_2', 'thoren_2', 'axel_2'],
         'saltos_triples': ['salchow_3', 'toeloop_3'],

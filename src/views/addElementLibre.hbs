@@ -291,14 +291,14 @@
                         </a><br>
                         <div id="sit-dif" class="form-check text-start hidden"> </div> <br>
 
-                        <a role="button" class="btn btn-outline-success w-50" id="camel" onclick="crearBotones('camel-dif', camel, 'SSp')">CAMEL BACK
+                        <a role="button" class="btn btn-outline-success w-50" id="camel" onclick="crearBotones('camel-dif', camel_array, 'SSp')">CAMEL BACK
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
                         <div id="camel-dif" class="form-check text-start hidden"> </div> <br>
 
-                        <a role="button" class="btn btn-outline-success w-50" id="camel2" onclick="crearBotones('camel2-dif', camel_array, 'SSp')">CAMEL FORWARD
+                        <a role="button" class="btn btn-outline-success w-50" id="camel2" onclick="crearBotones('camel2-dif', camel2_array, 'SSp')">CAMEL FORWARD
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
@@ -319,19 +319,12 @@
                         </a><br>
                         <div id="heel2-dif" class="form-check text-start hidden"> </div> <br>
 
-                        <a role="button" class="btn btn-outline-success w-50" id="broken" onclick="crearBotones('broken-dif', broken_array, 'SSp')">BROKEN
+                        <a role="button" class="btn btn-outline-success w-50" id="avanzadas" onclick="crearBotones('avanzadas-dif', avanzadas_array, 'SSp')">POSICIONES AVANZADAS
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="broken-dif" class="form-check text-start hidden"> </div> <br>
-
-                        <a role="button" class="btn btn-outline-success w-50" id="inverted" onclick="crearBotones('inverted-dif', inverted_array, 'SSp')">INVERTED
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                            </svg>
-                        </a><br>
-                        <div id="inverted-dif" class="form-check text-start hidden"> </div> <br>
+                        <div id="avanzadas-dif" class="form-check text-start hidden"> </div> <br>
 
                         <div class="text-center mt-3">
                             <label> Combo final: </label>
@@ -401,19 +394,12 @@
                         </a><br>
                         <div id="heel2-dif" class="form-check text-start hidden"> </div> <br>
 
-                        <a role="button" class="btn btn-outline-success w-50" id="broken" onclick="crearBotones('broken-dif', broken_array, 'CSp')">BROKEN
+                        <a role="button" class="btn btn-outline-success w-50" id="avanzadas" onclick="crearBotones('avanzadas-dif', avanzadas_array, 'CSp')">POSICIONES AVANZADAS
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                             </svg>
                         </a><br>
-                        <div id="broken-dif" class="form-check text-start hidden"> </div> <br>
-
-                        <a role="button" class="btn btn-outline-success w-50" id="inverted" onclick="crearBotones('inverted-dif', inverted_array, 'CSp')">INVERTED
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                            </svg>
-                        </a><br>
-                        <div id="inverted-dif" class="form-check text-start hidden"> </div> <br>
+                        <div id="avanzadas-dif" class="form-check text-start hidden"> </div> <br>
 
                         <div class="text-center mt-3">
                             <label> Combo final: </label>
@@ -481,14 +467,13 @@
         </script>
 
         <script>
-            const upright_array = ['upright_spin, BASE: 0.5', 'upright_biellman, 2+80%', 'upright_biellman_heel, 3+40%', 'upright_split, 1+50%', 'upright_torso, 1+40%', 'upright_layback, 1+20%', 'upright_forward, 1', 'upright_heel, 50%'];   
+            const upright_array = ['upright_spin, BASE: 0.5', 'upright_biellman, 2+80%', 'upright_split, 1+50%', 'upright_torso, 1+40%', 'upright_layback, 1+20%', 'upright_forward, 1', 'upright_heel, 50%'];   
             const sit_array = ['sit_spin, BASE: 0.8', 'sit_sideways, 60%', 'sit_twist, 60%', 'sit_forward, 40%', 'sit_behind, 20%'];   
             const camel_array = ['camel_back_spin, BASE: 1.0', 'camel_back_forward, 40%', 'camel_back_sideways, 60%', 'camel_back_layover, 20%']; 
             const camel2_array = ['camel_forw_spin, BASE: 1.2', 'camel_forw_forward, 40%', 'camel_forw_sideways, 60%', 'camel_forw_layover, 20%'] 
-            const heel_array = ['heel_back_spin, BASE: 2', 'heel_back_forward, 40%', 'heel_back_sideways, 60%', 'heel_back_layover, 20%']; 
-            const heel2_array = ['heel_forw_spin, BASE: 2.5', 'heel_forw_forward, 40%', 'heel_forw_sideways, 60%', 'heel_forw_layover, 20%'];
-            const broken_array = ['broken_spin, BASE: 1.8', 'broken_forward, 40%', 'broken_sideways, 60%']; 
-            const inverted_array = ['inverted_spin, BASE: 2.8', 'inverted_bryant, 25%'];  
+            const heel_array = ['heel_back_spin, BASE: 2', 'heel_back_forward, 40%', 'heel_back_biellman_heel, 3+40%']; 
+            const heel2_array = ['heel_forw_spin, BASE: 2.5', 'heel_forw_forward, 40%', 'heel_forw_biellman_heel, 3+40%'];
+            const avanzadas_array = ['inverted_spin, BASE: 2.8', 'inverted_bryant, 25%', 'broken_spin, BASE: 1.8', 'broken_forward, 40%', 'broken_sideways, 60%']
 
             // FUNCION PARA CREAR LOS INPUTS
             function crearBotones(idContainer, arrayData, codigo){
@@ -535,8 +520,7 @@
             ocultarDiv('camel2', 'camel2-dif');
             ocultarDiv('heel', 'heel-dif');
             ocultarDiv('heel2', 'heel2-dif');
-            ocultarDiv('broken', 'broken-dif');
-            ocultarDiv('inverted', 'inverted-dif');
+            ocultarDiv('avanzadas', 'avanzadas-dif');
         </script>
     </body>
 </html>
